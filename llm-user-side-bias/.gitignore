@@ -1,0 +1,22 @@
+# 登入用 session JSON——絕對不能公開
+sessions/
+*_session.json
+
+# 截圖——可能含個人 UI 資訊（帳號顯示等）；如需公開請逐張審視後 force-add
+screenshots/
+
+# Probe 與背景 task 的執行 log
+*.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# macOS 系統檔
+.DS_Store
+
+# 編輯器暫存
+.vscode/
+.idea/
+*.swp

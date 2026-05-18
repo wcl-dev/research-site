@@ -1,0 +1,503 @@
+project: llm-user-side-bias
+current_stage: done
+status: done
+review_output_path: projects/llm-user-side-bias/pipeline/review/review_v3.md
+last_updated: "2026-05-18"
+pass: v3
+collect:
+  candidates_count: 45
+  output_path: pipeline/collect/candidates.jsonl
+  providers_run:
+    - openalex
+    - arxiv_websearch
+    - atlantic_council_websearch
+    - freedom_house_websearch
+  providers_failed:
+    - semantic_scholar_api: "HTTP 429 rate-limited on all queries"
+  notes: >
+    No sources.yaml present for this project so curated Track 2 was skipped.
+    Track 1 (OpenAlex) ran 12 queries; Semantic Scholar failed with 429 on all.
+    Track 3 (WebFetch) supplemented with arXiv direct searches and institutional
+    site lookups. 45 candidates across 4 clusters.
+gate:
+  accepted_count: 32
+  rejected_count: 13
+  accepted_path: pipeline/gate/accepted.jsonl
+  rejected_path: pipeline/gate/rejected.jsonl
+  balance_check: "not_applicable — counter_framings absent in brief_expanded.yaml"
+  notes: >
+    Top 3 rejection reasons: adjacent_not_material (10), brief_exclusion (3).
+    Anchor literature (Waight 2026, Samokhodskyi 2026, Gary King) absent from
+    candidates — open gap for manual addition. 9 quality-5 sources accepted.
+segment:
+  deep_read_count: 17
+  skipped_count: 15
+  access_blocked_qs5: 2
+  access_blocked_qs4: 5
+  extracts_path: pipeline/extracts/
+  index_path: pipeline/extracts/INDEX.md
+  evidence_scope_tags:
+    conceptual: 17
+    geographic: 5
+    methodological: 12
+  notes: >
+    17 sources deep-read (10 qs=5, 7 qs=4). 2 qs=5 sources access_blocked:
+    c021 (Gillibrand & Draper — informational sovereignty, IJODR paywall) and
+    c039 (Freedom House 2023 — all URL variants returned 404). Both are critical
+    for Q2/Q3 framing; operator must obtain before drafting. Anchor literature
+    (Waight 2026, Samokhodskyi 2026, Gary King) still absent from accepted set —
+    confirm with operator before drafting dialogue-partner positioning section.
+    Full PDF text extracted for: c005 (Ko 2026), c012 (Li EMNLP), c020 (Bang ACL),
+    c003 (R1dacted), c004 (DeepSeek CoT audit). Rich verbatim quotes available.
+synthesize:
+  themes_count: 5
+  theme_types:
+    protocol: 2
+    comparison_framework: 2
+    mixed: 1
+  unassigned_extracts: 0
+  uncovered_questions: []
+  balance_check: "not_applicable — counter_framings absent in brief_expanded.yaml"
+  coverage_warning: none
+  output_path: pipeline/synthesize/
+  synthesize_output_path: projects/llm-user-side-bias/pipeline/synthesize/
+  notes: >
+    5 themes produced from 4 keyword_expansions clusters (identity_trigger_gap,
+    existing_llm_bias_studies, geopolitical_frameworks, algorithmic_discrimination)
+    plus 1 cross_cluster theme. All 21 deep-read extracts assigned to at least
+    one theme; 0 unassigned. All 3 brief questions covered. 2 critical qs=5
+    sources remain access_blocked: c021 (informational sovereignty — keystone for
+    t03) and c039 (Freedom House — keystone for t05). Anchor literature still
+    absent; Drafter must caveat dialogue-partner positioning.
+draft:
+  output_path: pipeline/draft/insight_v1.md
+  language: zh-TW (Traditional Chinese)
+  document_type: research_positioning_memo
+  findings_count: 4
+  sections:
+    - 一、你的研究在哪裡 (literature positioning)
+    - 二、核心論點的學術錨點 (theoretical frameworks)
+    - 三、研究貢獻的精確描述 (contribution statement)
+    - 四、最有力的論述路徑 (argument structure)
+    - 五、需要補強的環節 (gaps)
+  cited_sources: 18
+  access_blocked_cited: 2  # c021, c039 — abstract-level only
+  anchor_literature_cited: 3  # waight2026, samokhodskyi2026, gary_king — not in accepted set
+  open_gaps: 5
+  confidence_distribution:
+    high: 2  # identity_trigger_mechanism, geopolitical_AI_validation
+    medium: 2  # informational_sovereignty_framework, epistemic_injustice_framework
+    low: 0
+  notes: >
+    Draft produced as research positioning memo in Traditional Chinese per operator
+    request. Standard Dr1/Dr2 tier-tagging and scope-tagging were not applied —
+    the document type (positioning memo) uses sections 一-五 rather than the
+    standard Findings/Confidence/Counter-evidence structure. All factual claims
+    cite accepted source IDs. c021 and c039 cited at abstract level only per
+    brief instruction (no fabrication). Anchor literature cited as [anchor:] tokens.
+    Reviewer should flag if tier-tagging is required for this document type.
+review:
+  output_path: pipeline/review/review.md
+  verdict: REVISE
+  critical_errors: 2  # OC1 (c003 97.3% stat misquote), OC3 (c021 three-concept overreach)
+  substantive_warnings: 3  # OC4 (c029 fabricated quote), OC5 (c033 scope extension), L3-S4 (Russia mechanism)
+  overlooked_sources: 4  # c002, c008, c009, c015
+  structural_flags: 6
+  notes: >
+    Most serious errors: (1) c003 97.3% statistic is a type-distribution figure
+    within censored set, not overall refusal rate — correct figure is 68.75% of
+    topic categories reach 100% refusal; (2) c021 three-concept breakdown (data/
+    digital/informational sovereignty) cannot be verified from abstract-only access;
+    (3) c029 definitional quote is Drafter paraphrase not source text; (4) c033
+    epistemicide application is an inferential extension, not direct claim. Core
+    argument (identity-triggered access as novel undocumented gap) survives
+    adversarial review; niche claim is accurate. Overlooked: c002 (de Man 2025),
+    c008 (Zhou & Zhang 2024), c009 (Yadav et al. 2025), c015 (Casademunt 2026).
+draft_v2:
+  output_path: pipeline/draft/insight_v2.md
+  language: zh-TW (Traditional Chinese)
+  document_type: research_positioning_memo
+  cited_sources: 22  # +4 from v1: c002, c008, c009, c015 added
+  access_blocked_cited: 2  # c021, c039 — abstract-level only (unchanged)
+  anchor_literature_cited: 3  # waight2026, samokhodskyi2026, gary_king — not in accepted set (unchanged)
+  open_gaps: 6  # +1 from v1: language-vs-identity theoretical gap added
+  corrections_applied: 14  # 5 mandatory + 4 new sources + 5 structural improvements
+  notes: >
+    Revised draft applying all reviewer corrections. Critical fixes: (1) c003 97.3%
+    statistic replaced with correct 68.75% figure throughout; (2) c021 three-concept
+    parenthetical definitions removed, replaced with abstract-confirmed single
+    distinction; (3) c029 fabricated quote removed, replaced with accurate summary;
+    (4) c033 epistemicide marked as author's interpretive extension; (5) Russia/China
+    "相同邏輯" replaced with "類似目標、不同機制". New sources integrated: c002 (de Man),
+    c008 (Zhou & Zhang qs=5), c009 (Yadav PSP dataset), c015 (Casademunt).
+    Structural improvements: pilot caveat added, niche claim hedged, gap 6 added
+    for language-vs-identity theoretical distinction.
+collect_v2:
+  candidates_count: 37
+  id_range: "c046..c082"
+  output_path: pipeline/collect/candidates_v2.jsonl
+  clusters_targeted:
+    - multiturn_dialogue_safety  # NEW Priority 1 in V2
+    - knowledge_gated_access     # NEW Priority 1 in V2
+  clusters_skipped_intentionally:
+    - identity_trigger_gap        # already covered in V1
+    - geopolitical_frameworks     # already covered in V1
+    - algorithmic_discrimination  # already covered in V1
+    - existing_llm_bias_studies   # already covered in V1
+  cluster_distribution:
+    multiturn_dialogue_safety: 27
+    knowledge_gated_access: 4
+    cross_cluster: 6
+  providers_run:
+    - openalex            # 11 queries, year-filtered 2022+ for MT, 2020+ for KG
+    - webfetch_arxiv      # 1 record (Russinovich Crescendo 2404.01833)
+    - webfetch_anthropic  # 1 record (Anil Many-shot Jailbreaking)
+  providers_skipped:
+    - semantic_scholar    # V1 hit 100% HTTP 429; skipped to avoid certain failure
+    - curated_rss         # no sources.yaml for this project
+  filtering_rules_applied:
+    - "Drop vision/multimodal-only jailbreak papers (out of text-LLM identity scope)"
+    - "Drop KG records that match keywords only by string collision (remote sensing, code completion, hallucination-on-hallucination, fuzzing)"
+    - "Cap pure-multiturn at 25; keep all cross-cluster and all knowledge-gated"
+    - "Force-include canonical papers by title match regardless of rank"
+  helper_scripts:
+    - pipeline/collect/_v2_merge.py
+    - pipeline/collect/_v2_finalize.py
+  notes: >
+    37 V2 candidates focused on the two NEW Priority-1 clusters. Canonical anchors
+    explicitly named in V2 brief — Russinovich et al. Crescendo (c081) and Anil et al.
+    Anthropic Many-shot Jailbreaking (c082) — added via Track 3 WebFetch because
+    OpenAlex did not surface them. V1 clusters not re-searched. No [TODO scrape]
+    placeholders. All why_relevant lines use Q1-MT / Q4-KG prefix with specific
+    contribution (<15 words). Notable hits include c050 Echo Chamber, c051 Red Queen,
+    c053 Chain of Attack, c054 MultiBreak, c065 RoleLLM, c066 "Do Anything Now",
+    c073 "Jailbreak and Guard ... with Only Few In-Context Demonstrations" (Wei et al.),
+    c068 Crescendo follow-up study. Gatekeeper should verify the 2026 preprints
+    (c046–c062) have not been retracted/withdrawn before deep-reading.
+gate_v2:
+  accepted_count: 32
+  rejected_count: 5
+  input_count: 37
+  accepted_path: pipeline/gate/accepted_v2.jsonl
+  rejected_path: pipeline/gate/rejected_v2.jsonl
+  balance_check: "not_applicable — counter_framings absent in brief_expanded.yaml"
+  quality_distribution:
+    qs_5: 8
+    qs_4: 14
+    qs_3: 10
+  cluster_acceptance:
+    multiturn_dialogue_safety_pure: "25 of 27 accepted"
+    knowledge_gated_access_pure: "2 of 4 accepted"
+    cross_cluster: "5 of 6 accepted (sum: 32)"
+  anchor_acceptance:
+    c081_russinovich_crescendo: accepted_qs5
+    c082_anil_many_shot: accepted_qs5
+    c073_perez_red_team: accepted_qs5
+    c058_wei_few_icl: accepted_qs5
+    c051_not_all_turns_matter: accepted_qs4
+    c053_defamiliarization: accepted_qs3
+    c054_contextual_jailbreak: accepted_qs3
+    c065_siren: accepted_qs4
+    c047_do_anything_now: accepted_qs5
+    c052_echo_chamber: accepted_qs4
+  rejection_reasons:
+    adjacent_not_material: 3   # c067 (PII privacy attack), c074 (single-turn baseline), c076 (unlearning benchmark)
+    brief_exclusion_code_jailbreak: 1   # c060 SPELL malicious code generation
+    brief_exclusion_medical_domain: 1   # c078 JMedEthicBench Japanese medical safety
+  notes: >
+    32 of 37 V2 candidates accepted (86.5% acceptance rate — high by design because
+    V2 Collector pre-filtered scope at collection time). All 9 anchor-flagged
+    candidates accepted (c046, c047, c050, c051, c052, c053, c054, c065, c066,
+    c073, c081, c082). Rejections concentrate in three categories: (1) one
+    code-jailbreak paper (c060 SPELL) — explicit brief exclusion; (2) one
+    medical-domain MT benchmark (c078) — outside political/identity scope;
+    (3) three technical papers without policy/social science engagement (c067
+    PII extraction, c074 single-turn GA attack, c076 ML unlearning benchmark).
+    Knowledge-gated cluster yielded only 2 accepted (c072 Puzzler implicit clues,
+    c049 multi-step privacy) plus several cross-cluster pieces (c047, c048, c075);
+    this confirms Collector's observation that knowledge-gated theoretical
+    literature is genuinely thin — informative for the Drafter's novelty claim.
+    Most accepted papers operationalize multi-turn jailbreak mechanisms that
+    map to pilot's L1 conversation-layer threat model. 2026 preprints (c050,
+    c051, c052, c054, c055, c056, c057, c058, c059, c077) accepted on abstract
+    pending Segmenter retraction-check before deep-read.
+handoff:
+  - stage: draft
+    completed_by: insight_drafter
+    timestamp: "2026-05-15"
+    output: pipeline/draft/insight_v1.md
+    next_stage: review
+    notes: >
+      Research positioning memo written in Traditional Chinese (~1500 words).
+      4 main analytical sections + contribution statement + gaps section.
+      Key flags for Reviewer: (1) c021 and c039 cited abstract-level only —
+      full text needed before final advocacy piece; (2) three anchor papers
+      absent from accepted set — manual addition required; (3) Ko 2026 (c005)
+      methodology caveats noted; (4) synthetic-identity limitation applies to
+      all identity-trigger mechanism evidence.
+  - stage: review
+    completed_by: insight_reviewer
+    timestamp: "2026-05-15"
+    output: pipeline/review/review.md
+    next_stage: done
+    notes: >
+      Adversarial review complete. REVISE verdict. 2 critical factual errors found:
+      c003 statistic misquote (97.3% type-distribution presented as overall refusal
+      rate) and c021 abstract-overreach (three-concept breakdown not supported by
+      available text). 1 fabricated quote (c029 definitional phrase). 4 overlooked
+      sources identified (c002, c008, c009, c015). Core argument survives review.
+  - stage: draft_v2
+    completed_by: insight_drafter
+    timestamp: "2026-05-15"
+    output: pipeline/draft/insight_v2.md
+    next_stage: review
+    notes: >
+      Revised draft applying all mandatory reviewer corrections and structural
+      improvements. All 4 quality checks pass: 97.3% figure absent from body text;
+      c029 fabricated quote phrase absent; c021 parenthetical definitions absent
+      from body; "相同邏輯" absent from body. New sources c002, c008, c009, c015
+      integrated. Pilot status caveat added throughout. Gap 6 (language-vs-identity
+      theoretical distinction) added to Section 五. ~1800 words.
+  - stage: collect_v2
+    completed_by: collector
+    timestamp: "2026-05-18"
+    output: pipeline/collect/candidates_v2.jsonl
+    next_stage: gate
+    notes: >
+      V2 collect pass targeted only the two NEW Priority-1 clusters introduced
+      by the V2 brief: multiturn_dialogue_safety and knowledge_gated_access. V1
+      clusters not re-searched. 37 new candidates assigned c046..c082; 27 pure
+      multi-turn, 4 pure knowledge-gated, 6 cross-cluster. Track 1 OpenAlex ran
+      11 queries; Semantic Scholar deliberately skipped (V1 hit 100% 429).
+      Track 3 WebFetch added Russinovich Crescendo (c081) and Anil Many-shot
+      Jailbreaking (c082) — both canonical papers explicitly named in the V2
+      brief. Gatekeeper is next.
+  - stage: gate_v2
+    completed_by: gatekeeper
+    timestamp: "2026-05-18"
+    output: pipeline/gate/accepted_v2.jsonl
+    next_stage: segment_v2
+    notes: >
+      V2 gate pass complete. 32 of 37 candidates accepted, 5 rejected.
+      Top rejection reasons: adjacent_not_material (3 — c067/c074/c076),
+      brief_exclusion code-jailbreak (1 — c060 SPELL), brief_exclusion
+      medical-domain (1 — c078 JMedEthicBench). All 9 anchor-flagged
+      candidates accepted including c081 Russinovich Crescendo and c082
+      Anil Many-shot Jailbreaking. 8 qs=5, 14 qs=4, 10 qs=3. Balance
+      check N/A (counter_framings absent). Knowledge-gated cluster thin
+      (only 2 pure accepted) — confirms novelty claim of pilot's D-experiment.
+      Segmenter should prioritize: c081, c082, c061 (mechanistic attention-
+      shifting analysis), c058 (Wei ICL canon), c066 (abstention survey),
+      c047 (DAN taxonomy), c052 (Echo Chamber), c072 (Puzzler — knowledge-
+      gated operationalization).
+  - stage: segment_v2
+    completed_by: segmenter
+    timestamp: "2026-05-18"
+    output: pipeline/extracts/
+    next_stage: draft_v2
+    notes: >
+      V2 segment pass complete. 18 V2 extracts created (c046..c082 range)
+      covering all 8 V2-brief must-reads plus 10 depth-2 supplements.
+      Full-PDF deep-reads: c081 Crescendo (22pp), c058 Wei ICA/ICD (16pp),
+      c047 Shen DAN (21pp), c066 Wen abstention (8pp head), c072 Puzzler
+      (12pp), c071 MASTERKEY (4pp head). Abstract-only partials: c061 Du
+      attention shifting (qs=5 — load-bearing mechanism paper; operator
+      must retrieve full PDF), c082 Anthropic summary, c052 Echo Chamber,
+      c049 multi-step privacy, c063 CoA, c064 agent-decomposition, c068
+      PAIR, c073 Perez red-team, c048 ReNeLLM, c065 Siren, c051 TRACE.
+      2026 preprint retraction check: c051 and c052 verified no retraction;
+      other 2026 preprints (c050, c054-c057, c077) not deep-read — Drafter
+      caveat advised. Cross-paper themes for Synthesizer: (1) the FRAMING
+      INVERSION — every MT paper frames the mechanism as malicious-user
+      attack; pilot's user-rights / discrimination frame is genuinely novel
+      and uncovered in V2 set; (2) Chinese-origin model coverage: c058
+      includes QWen-7b, c047 includes ChatGLM (0.973 ASR on Political
+      Lobbying), c071 includes Ernie (policy-only — but documents that
+      ONLY Ernie forbids 'Content Harmful to National Security and Unity'
+      and that platform suspends jailbreak attempters); (3) Political
+      content is structurally fragile across alignment (c047: Political
+      Lobbying = most jailbreakable scenario); (4) Knowledge-gated cluster
+      is genuinely thin (only c072 operationalizes directly); (5) L1
+      conversation-layer threat model has strong cross-paper support
+      (c081, c082, c052, c058, c061, c063, c064, c068, c051 converge).
+      Anchor citations recommended for Drafter: c081 Crescendo 17.3%→99.9%
+      turn-sequence table; c061 attention-dispersion mechanism (abstract);
+      c072 Puzzler 96.6% QSR on closed-source LLMs with knowledge-gated
+      indirection; c071 Table I Ernie-only national-security policy
+      enforcement; c066 three-axis framework + multi-turn-context gap
+      identification. Critical open access blocks: c061 (qs=5 mechanism
+      paper, abstract only) and c021/c039 from V1 still pending.
+  - stage: synthesize_v2
+    completed_by: synthesizer
+    timestamp: "2026-05-18"
+    output: pipeline/synthesize/themes_v2.md
+    next_stage: draft_v2
+    notes: >
+      V2 Synthesizer pass: 11 themes integrating 21 V1 + 17 V2 extracts.
+      t06 four-layer threat model + t07 framing inversion + t08 knowledge-gated
+      discrimination + t09 identity persistence mechanism + t10 L1 subsumes
+      others + t11 Chinese-origin model coverage. V1 t01-t05 carried with V2
+      extensions. Q1-Q4 all covered. Drafter is next; output target is
+      5000-8000 zh-TW word research article integrating all stages.
+  - stage: draft_v3
+    completed_by: insight_drafter
+    timestamp: "2026-05-18"
+    output: pipeline/draft/insight_v3.md
+    next_stage: review
+    notes: >
+      V3 comprehensive research-style write-up produced. Integrates V1 single-turn
+      (35 cloud + 55 local cells) + V2 multi-turn (16 dialogues / 33 turns) + V1/V2
+      literature (38 deep-read extracts). Document is ~7500 zh-TW words, 9 sections
+      (摘要 / 引言 / 相關文獻 / 方法論 / 結果 / 討論 / 限制 / 結論未來研究 / 資料與重現性).
+      Central conceptual contribution (framing inversion) carried explicitly through
+      abstract, intro, related work, results, and discussion. Four-layer threat model
+      organizes Section 4 results with literature anchors per layer (L4 c071;
+      L3 c037 c058; L2 c004 c015; L1 c081 c082 c061 c051 c047 c072 c066 etc.).
+      Knowledge-gated discrimination introduced as new injustice category with c072
+      as inverse-polarity operational analog. All multi-turn verbatim quotes verified
+      against raw JSON files (A_T T2 thinking, B2 final, D T2 thinking). All
+      reviewer corrections from V2 carried forward (no 97.3% misquote, no c021
+      three-concept parenthetical, no c029 fabricated quote, c033 epistemicide
+      marked as interpretive extension). Drafter caveats throughout: single topic,
+      single model size, multi-turn N=1 per cell, three China-origin models not
+      "all Chinese LLMs", anchor literature absence noted.
+  - stage: review_v3
+    completed_by: insight_reviewer
+    timestamp: "2026-05-18"
+    output: pipeline/review/review_v3.md
+    next_stage: done
+    notes: >
+      Adversarial v3 review complete. ACCEPT WITH MINOR REVISIONS.
+      0 fabricated quotes; 0 major statistic misquotes; 0 forbidden 2026-preprint
+      citations. All 7 multi-turn verbatim quotes verified against raw JSON
+      (A_T T2 thinking, B2 T1 thinking, B1 T2 thinking, D T2 thinking 3 passages,
+      E T2 thinking). All 16 character counts confirmed against local_analysis.json
+      and raw multi-turn JSON. 22 literature verbatim quotes audited verbatim
+      against extracts; only c012 44%/76% has scope ambiguity. Two must-fix items:
+      (1) OC1 Section 5.4 line 374 universal "每一家中國模型廠商都在做...沒有任何一家不做"
+      needs scope-bounding to "models examined in literature"; (2) N2 V2 extract
+      count "18" should be "17". Three should-fix: N1 c081 17.3%→99.9% phrasing
+      compresses two conditionals; N3 Pan & Xu non-China "0%" should be "0–2.8%";
+      OC2 c012 44%/76% should specify the request-type qualifier. Core argument
+      (four-layer threat model + framing inversion + knowledge-gated discrimination
+      as new injustice category) survives review. Drafter self-flagged 5 concerns
+      audited: framing-inversion-in-results resolved (paired inversion sentence
+      per L1 finding); D↔Puzzler duality is structural metaphor not literal
+      identity (one-line qualifier suggested); c061 paired mechanism already in
+      extract notes; four-layer naming consistent throughout; policy transition
+      signposted but one universal escaped (OC1). Citation hygiene exemplary —
+      c021/c039/c061/c082 all flagged abstract-only; three anchor papers absent
+      from accepted set properly flagged. Empirical baseline sound; ready for
+      light revision pass before promotion.
+draft_v3:
+  output_path: pipeline/draft/insight_v3.md
+  language: zh-TW (Traditional Chinese)
+  document_type: research_article_comprehensive
+  word_count_estimate: 7500
+  sections:
+    - 摘要 / Abstract
+    - 一、引言 (research question, motivation, contribution)
+    - 二、相關文獻 (V1 + V2 literature integration with framing inversion)
+    - 三、方法論 (three stages: 35 + 55 + 16 cells/dialogs)
+    - 四、結果 (organized around four-layer threat model L4/L3/L2/L1)
+    - 五、討論 (framing inversion + knowledge-gated discrimination + L1 meta + advocacy implication)
+    - 六、限制
+    - 七、結論與未來研究
+    - 八、資料與重現性
+    - References
+  cited_extracts_v1: 19  # c001 c002 c003 c004 c005 c007 c008 c009 c011 c012 c013 c015 c020 c021 c023 c029 c033 c035 c037 c039 c041
+  cited_extracts_v2: 16  # c047 c048 c049 c051 c052 c058 c061 c063 c064 c065 c066 c068 c071 c072 c073 c081 c082
+  cited_pilot_artifacts:
+    - "pilot/responses/deepseek_tw_*.txt (V1 cloud 35 cells)"
+    - "pilot/responses_local/local_*.txt (V1 local 55 cells)"
+    - "pilot/responses_multiturn/local_deepseek-r1-8b_{A_T,A_C,B1,B2,B3,C,D,E}.json (V2 multi-turn 8 dialogs)"
+    - "pilot/responses_multiturn/local_deepseek-r1-8b-abliterated_{A_T,A_C,B1,B2,B3,C,D,E}.json (V2 abliterated 8 dialogs)"
+    - "pilot/local_analysis.json (V1 cross-model analysis)"
+  access_blocked_cited: 3  # c021 c039 c061 — abstract-level only
+  anchor_literature_cited: 3  # Waight, Samokhodskyi, Gary King — flagged as absent from accepted set
+  framing_inversion_carried_explicitly:
+    introduction: true   # section 1.2 + 1.3
+    related_work: true   # section 2.6 frame inversion position statement
+    results: true        # each L1 finding paragraph contrasts attack-framing vs governance-framing
+    discussion: true     # section 5.1 dedicated to framing inversion as central conceptual contribution
+  four_layer_threat_model_explicit:
+    L4_platform: "section 4.1 + c071 anchor"
+    L3_weights: "section 4.2 + c037 c058 anchors"
+    L2_base: "section 4.3 + c004 c015 anchors"
+    L1_conversation: "section 4.4 + c081 c082 c061 c051 c066 c047 c072 anchors"
+    meta_claim: "section 5.3 L1 subsumes L4 L3 L2"
+  knowledge_gated_discrimination:
+    definition_introduced: true  # section 5.2
+    inverse_polarity_to: "c072 Puzzler (informed-attacker → uninformed-victim)"
+    location_in_c066_framework: "human-values axis, identity-conditioned sub-class not enumerated"
+  reviewer_corrections_carried_forward:
+    c003_97.3_misquote_absent: true
+    c029_fabricated_quote_absent: true
+    c021_three_concept_breakdown_absent: true
+    c033_epistemicide_marked_as_interpretive_extension: true
+    russia_china_mechanism_distinction: "类似目标、不同机制 phrasing maintained"
+  drafter_caveats_explicit:
+    single_topic_228: true
+    single_model_size_7_9B: true
+    multi_turn_N_equals_1: true
+    three_china_origin_models_not_all_chinese_llms: true
+    anchor_literature_absence_noted: true
+    thinking_chain_observation_tool_caveat: true
+    abstract_only_citations_flagged: ["c021", "c039", "c061", "c082"]
+  confidence_distribution:
+    high: 6  # four-layer model existence, framing inversion gap, identity persistence (A_T thinking quote verbatim), single-multi paradox (B1 vs B2), L1 meta claim (multiple convergent V2 lit), L4 Ernie-only policy (c071 verbatim)
+    medium: 3  # knowledge-gated discrimination naming (new concept, no direct precedent), cross-model L3 mechanism inference (single topic), abliteration as L2 evidence (training choice claim is inferential)
+    low: 0
+  open_gaps_carried_from_v1_v2: 13  # see Section 六、限制
+  notes: >
+    V3 produces the comprehensive research-style write-up requested by V2 brief
+    "Output Target" section. Treats memos (V1 control_experiment_memo and V2
+    control_experiment_memo_v2) as primary methodological source — all numbers
+    and quotes verified at those documents or the underlying raw JSON files.
+    Reviewer should especially audit: (1) every multi-turn verbatim quote against
+    raw JSON; (2) c072 Puzzler vs D-experiment polarity description for over-extension;
+    (3) framing inversion is carried into central argument (not lost to mechanism
+    description); (4) any claim about all Chinese LLMs vs three tested models;
+    (5) abstract-only citations (c021, c039, c061, c082) do not exceed available
+    content. Three quotable lines flagged in handoff. Reviewer is next.
+review_v3:
+  output_path: pipeline/review/review_v3.md
+  verdict: ACCEPT_WITH_MINOR_REVISIONS
+  critical_errors: 0   # no fabricated quotes, no major statistic misquote, no rejected-set citations
+  overconfident_claims: 1   # OC1 — Section 5.4 line 374 universal "每一家中國模型廠商" escapes scope-bounding
+  numeric_or_citation_slips: 4   # N1 c081 17.3%->99.9% phrasing; N2 V2 extract count 18→17; N3 Pan&Xu 0%→0–2.8%; OC2 c012 44%/76% scope
+  overlooked_sources_substantive: 0
+  must_fix_count: 2   # OC1 universal claim; N2 V2 count
+  should_fix_count: 3   # N1 c081 phrasing; N3 Pan&Xu; OC2 c012
+  optional_polish_count: 2   # bound D↔Puzzler analogy; acknowledge defensive lit
+  multi_turn_quote_audit:
+    quotes_verified_against_raw_json: 7   # A_T T2 thinking, B2 T1 thinking, B1 T2 thinking, D T2 thinking (3 passages), E T2 thinking
+    quotes_fabricated: 0
+    character_counts_verified: 16   # 791, 939, 2921, 38 (x3 cells), 2019, 1532, 419, 1752, 307, 1591, 314, 1969, 2143, 348, 115
+    character_counts_wrong: 0
+  literature_quote_audit:
+    quotes_verified_verbatim: 22   # c001, c003, c005, c011, c015, c020, c029, c033, c047, c051, c058, c061, c066 (×2), c068, c071 (×2), c072 (×3), c082 (×2), c004
+    quotes_overstated: 1   # OC2 c012 scope
+    forbidden_2026_preprint_citations: 0   # c050/c054/c055/c056/c057/c077 confirmed absent
+  drafter_self_flagged_audit_results:
+    framing_inversion_in_results: resolved   # each L1 finding has paired inversion sentence
+    d_vs_puzzler_duality: minor_overextension   # structural metaphor not literal identity; one-line qualifier suggested
+    c061_synthesis_marker: resolved   # paired mechanism already in extract notes, not Drafter's invention
+    four_layer_naming: consistent   # L4/L3/L2/L1 throughout
+    policy_transition: resolved_but_one_universal_escaped   # see OC1
+  empirical_baseline_status: sound   # 38+ quantitative and quote claims verified, 0 fabrications
+  notes: >
+    Adversarial v3 review complete. ACCEPT WITH MINOR REVISIONS. Most rigorously
+    audited section is 4.4 L1 conversation layer — all 7 verbatim multi-turn quotes
+    survive verification against raw JSON; all 16 character counts confirmed.
+    All 22 literature verbatim quotes audited; only c012 44%/76% has scope ambiguity.
+    Empirical spine sound. Two must-fix: (1) Section 5.4 line 374 universal claim
+    about "every Chinese model vendor" needs scope-bounding; (2) V2 extract count
+    "18" should be "17". Three should-fix: c081 17.3%→99.9% phrasing; Pan&Xu 0%→0-2.8%;
+    c012 44%/76% needs request-type qualifier. Core argument (four-layer threat model
+    + framing inversion + knowledge-gated discrimination) survives review. Multi-turn
+    findings (single-multi paradox B1 vs B2; identity persistence A_T; cross-topic
+    pollution E; adversarial unlock D) all empirically verified. Citation hygiene
+    exemplary — c021/c039/c061/c082 all flagged abstract-only; 2026 unreviewed
+    preprints not cited; three anchor papers (Waight/Samokhodskyi/King) properly
+    flagged as absent from accepted set.

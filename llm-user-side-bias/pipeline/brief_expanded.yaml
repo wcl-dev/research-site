@@ -1,0 +1,137 @@
+project: llm-user-side-bias
+stage: pipeline
+
+core_question: >
+  Do LLMs with different geopolitical training/deployment contexts systematically
+  implement differential information access policies based on user-side identity signals,
+  and can this be theorized as a form of geopolitically-motivated algorithmic discrimination?
+
+research_frame: geopolitical
+target_output: general-public advocacy piece, Traditional Chinese, ELN style
+audience: informed general public, policy community in Taiwan
+
+pilot_findings:
+  key_signal: >
+    DeepSeek refuses the 228 Event question when user declares Taiwanese or Chinese
+    identity, but answers freely with no identity disclosed. Effect is IP-independent,
+    topic-specific (North Korea answered for all identities), and accompanied by
+    language-switching (C identity → Simplified Chinese refusal with "合規" vocabulary).
+  secondary_signals:
+    - Gemini adds Taiwan security framing for T identity on Q2 (control topic)
+    - ChatGPT explicitly addresses C identity's national interest mid-response
+    - Gemini uses "屠殺" (TW IP) vs "軍事鎮壓" (HK IP) for same event/identity
+
+anchor_literature:
+  - id: waight2026
+    citation: "Waight et al., Nature 2026"
+    mechanism: training-side (state media in training data)
+    relationship: dialogue partner — our work extends from training-side to deployment-side
+  - id: samokhodskyi2026
+    citation: "Samokhodskyi / ELN 2026"
+    mechanism: language-side (prompt language affects framing)
+    relationship: dialogue partner — our work moves from language signal to identity signal
+  - id: citizen_lab_censorship
+    citation: "Citizen Lab / Gary King (various)"
+    mechanism: platform-side internet censorship
+    relationship: dialogue partner — does LLM censorship mirror or differ from internet censorship?
+
+clusters:
+  - name: multiturn_dialogue_safety
+    priority: 1
+    description: >
+      Multi-turn / conversational LLM safety: how does dialogue context modulate
+      refusal and framing? Includes multi-turn jailbreaking, persona/role escalation,
+      adversarial follow-up, gradient erosion of safety filters, in-context learning
+      effects on alignment. NEW in V2 — the previous pipeline did not cover this.
+    search_queries:
+      - '"multi-turn" "jailbreak" LLM safety alignment'
+      - '"conversational attack" LLM safety'
+      - '"persona attack" OR "role escalation" LLM'
+      - '"context window" alignment bypass jailbreak'
+      - '"in-context learning" safety alignment'
+      - '"multi-turn refusal" OR "follow-up" LLM safety'
+      - '"dialogue" "jailbreak" LLM 2024 2025 2026'
+      - '"crescendo attack" LLM safety'
+      - '"chain of conversation" jailbreak'
+      - '"context-aware" alignment LLM'
+
+  - name: knowledge_gated_access
+    priority: 1
+    description: >
+      Theoretical frameworks for "knowledge-gated discrimination" — the observation
+      that models may open up more for users who already know the answer
+      (D experiment finding). Also covers asymmetric information access in AI.
+    search_queries:
+      - '"knowledge-gated" access AI OR LLM'
+      - '"asymmetric information access" AI'
+      - '"context-dependent" epistemic AI'
+      - '"adversarial" prompting "uncovering" content'
+      - '"prior knowledge" LLM safety output'
+
+  - name: identity_trigger_gap
+    priority: 2
+    description: >
+      Gap between topic-level LLM censorship research and identity-triggered differential
+      access. Who has studied user identity as a trigger (not just topic) for LLM refusals?
+    search_queries:
+      - '"LLM" "identity" "differential response"'
+      - '"language model" "persona" "censorship"'
+      - '"AI" "user identity" "content moderation"'
+      - '"identity disclosure" "chatbot" bias'
+      - '"who is blocked" OR "differential access" LLM'
+
+  - name: geopolitical_frameworks
+    priority: 2
+    description: >
+      Theoretical frameworks for understanding AI as a geopolitical instrument:
+      technological sovereignty, digital authoritarianism, informational sovereignty.
+    search_queries:
+      - '"technological sovereignty" AI OR LLM'
+      - '"informational sovereignty" "artificial intelligence"'
+      - '"digital authoritarianism" AI chatbot'
+      - '"AI geopolitics" OR "geopolitical AI"'
+      - 'LLM "political control" "state" censorship'
+      - '"China AI" censorship "DeepSeek" OR "Ernie" OR "Qwen"'
+
+  - name: algorithmic_discrimination
+    priority: 2
+    description: >
+      Frameworks from algorithmic fairness / epistemic justice applied to AI
+      differential treatment based on national identity or ethnicity.
+    search_queries:
+      - '"algorithmic discrimination" "national identity" OR "ethnicity"'
+      - '"epistemic injustice" AI OR algorithm'
+      - '"information inequality" "artificial intelligence"'
+      - '"AI fairness" "nationality" OR "geopolitics"'
+
+  - name: existing_llm_bias_studies
+    priority: 3
+    description: >
+      Empirical studies measuring LLM political bias across models, languages, or conditions.
+      Needed to position the pilot study relative to the literature.
+    search_queries:
+      - '"LLM" "political bias" "cross-lingual" OR "multilingual"'
+      - '"ChatGPT" "Gemini" "DeepSeek" comparison bias'
+      - '"Chinese LLM" political sensitivity censorship study'
+      - 'LLM "228" OR "Tiananmen" OR "Taiwan" censorship'
+      - 'Freedom House OR "Stanford HAI" AI political content 2024 2025 2026'
+
+acceptance_criteria:
+  accept:
+    - Peer-reviewed papers or credible reports (Freedom House, Citizen Lab, Stanford HAI, RAND, etc.)
+    - Papers published 2020–2026 (prefer 2023+)
+    - Papers that address: identity signals in LLMs, geopolitical AI bias, informational sovereignty, algorithmic discrimination
+    - Papers that engage with Chinese LLMs specifically
+    - Papers that would be cited in an ELN-style advocacy piece
+  reject:
+    - Papers about general NLP bias unrelated to political/identity content
+    - Technical papers without policy/social science relevance
+    - Papers about deepfakes, image generation, or non-text AI
+    - Paywalled sources with no accessible abstract/summary
+    - Blog posts without institutional affiliation (unless major institution)
+
+success_looks_like:
+  - Confirmation that "identity as access-control trigger" is understudied → validates novelty
+  - One strong theoretical framework (e.g., informational sovereignty) we can anchor to
+  - 2–3 empirical comparisons of Chinese vs. Western LLMs to cite alongside pilot data
+  - Enough to say: "This study contributes X to the literature on Y"
