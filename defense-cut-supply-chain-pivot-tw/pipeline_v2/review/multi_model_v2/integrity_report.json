@@ -1,0 +1,51 @@
+{
+  "pipeline": "/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2",
+  "actual_accepted_n": 79,
+  "actual_extract_n": 19,
+  "reviews": [
+    {
+      "review_path": "/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/review/multi_model_v2/r_claude.md",
+      "model": "claude",
+      "claimed_accepted_n": null,
+      "actual_accepted_n": 79,
+      "claimed_extract_n": null,
+      "actual_extract_n": 19,
+      "cited_cids_count": 46,
+      "bracket_citation_count": 5,
+      "errors": [],
+      "hallucinated_cids": [],
+      "lens_multipliers": {},
+      "usable": true
+    },
+    {
+      "review_path": "/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/review/multi_model_v2/r_codex.md",
+      "model": "codex",
+      "claimed_accepted_n": 79,
+      "actual_accepted_n": 79,
+      "claimed_extract_n": 19,
+      "actual_extract_n": 19,
+      "cited_cids_count": 46,
+      "bracket_citation_count": 0,
+      "errors": [],
+      "hallucinated_cids": [],
+      "lens_multipliers": {},
+      "usable": true
+    },
+    {
+      "review_path": "/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/review/multi_model_v2/r_gemini.md",
+      "model": "gemini",
+      "claimed_accepted_n": 79,
+      "actual_accepted_n": 79,
+      "claimed_extract_n": 19,
+      "actual_extract_n": 19,
+      "cited_cids_count": 32,
+      "bracket_citation_count": 12,
+      "errors": [],
+      "hallucinated_cids": [],
+      "lens_multipliers": {},
+      "usable": true
+    }
+  ],
+  "any_hard_error": false,
+  "any_count_mismatch": false
+}

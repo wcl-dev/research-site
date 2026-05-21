@@ -1,0 +1,31 @@
+# sources.yaml — defense-cut-supply-chain-pivot-tw v2
+#
+# v1 (pipeline/) deliberately ran with NO sources.yaml — it skipped the MOPS
+# primary-data layer as a test fixture. v2 closes that gap: this file exists
+# only to register the MOPS portal so Collector Track 4 (Wf4 / audit #9) can
+# fan out across the priority listed companies.
+#
+# No curated RSS entries: source_priorities.must_include is empty
+# (新領域, sources_seed.yaml 無可 cherry-pick 的 entry). Track 2 is therefore
+# thin by design — Collector should weight Track 3 (general web) per the C5
+# zh-TW coverage rule, and seek_direct URLs in brief_expanded.yaml carry the
+# must-fetch news/report layer.
+
+sources:
+  - name: "公開資訊觀測站 MOPS"
+    type: primary_doc
+    fetch: portal
+    content_style: primary_data_portal
+    focus: >-
+      台灣上市櫃公司官方財報 primary source — 年報 / 法說會簡報 / 重大訊息 /
+      重大轉投資公告 / 合併報表海外營運區段。對本研究用於查工具機聚落與無人機
+      相關上市櫃廠商的西進中國子公司設立、PRC 營收佔比、軍用商規業務揭露。
+    homepage: "https://mopsfin.twse.com.tw/"
+    portal_url_pattern: "https://mopsfin.twse.com.tw/?co_id={ticker}"
+    required_ticker_field: priority_tickers
+    notes: >-
+      JS-heavy SPA — Track 4 WebFetch 很可能回 js_only / access_blocked
+      (brief.md lines 205-211 已預期)。portal-wide 失敗時依 collector spec
+      第 5 點 clean-abort：handoff notes 記錄、輸出 operator 手動下載年報 PDF
+      待辦清單。ticker 清單 = brief_expanded.yaml.keyword_expansions.priority_tickers
+      (10 家：5 工具機 + 4 無人機整機 + 1 零組件)。

@@ -1,0 +1,343 @@
+project: defense-cut-supply-chain-pivot-tw
+version: v2
+year_from: 2015
+languages: [zh-TW, en, zh-CN]
+
+# 雙鏈 framing + comparative 對比結構
+brief_type:
+  intent: comparative
+  horizon: current
+
+# ──────────────────────────────────────────────────────────────
+# I3 — Concept ontology (A 工具機 / B 無人機相關製造 / E 買方市場)
+# research_focus = (A ∪ B) — 對比鏈
+# pathways(P_west / P_south)、外銷對沖等放 brief.md prose，不放 ontology
+# ──────────────────────────────────────────────────────────────
+concept_ontology:
+  - id: A
+    label: "工具機產業（上游母機）"
+    definition: >-
+      製造精密零組件用的工作母機產業，包括 CNC 車床、銑床、五軸加工中心、
+      磨床、線切割機、滾齒機等。技術應用跨多產業（航太、汽車、3C、國防），
+      不局限於無人機。
+    examples_in:
+      - "友嘉集團（Fair Friend Group）"
+      - "台中精機（Victor Taichung）"
+      - "東台精機（Tongtai）"
+      - "上銀科技（HIWIN，2049.TW）"
+      - "銀泰科技（PMI）"
+      - "程泰機械（Goodway）"
+      - "瀧澤科技（Takisawa Taiwan）"
+      - "台灣麗馳（Litz Hitech）"
+      - "大立機器"
+      - "亞德客集團（Airtac）"
+      - "百德機械"
+    examples_out:
+      - "工具機加工出來的零組件本身（屬於 B 範疇）"
+      - "純消費電子組裝（不是工作母機）"
+
+  - id: B
+    label: "無人機相關製造業（中下游：整機 + 零組件）"
+    definition: >-
+      用工具機加工的無人機相關零組件廠 + 整機廠。涵蓋軍規（NCSIST 自研）
+      + 軍用商規（民間廠商接國防訂單但採用 COTS 商用底層技術）。
+    examples_in:
+      - "中山科學研究院（NCSIST，國家隊核心，純軍規）"
+      - "中光電智能機器人（佳世達 / 中光電；微型 + 監偵）"
+      - "長榮航太（2645.TW；艦載監偵）"
+      - "智飛科技（VTOL 混合構型）"
+      - "神通資訊（5206.TW；微型目獲 / 戰術）"
+      - "漢翔航空（2634.TW；複材 + 量產）"
+      - "雷虎科技（8033.TW；軍用商規 + 無人艇）"
+      - "經緯航太（系統設計）"
+      - "飛鴻、台希創、新樂飛"
+      - "碳基科技（碳纖維機體 / 無人艇複材）"
+      - "亞洲光學（光學酬載 — 熱顯像 / 夜視）"
+      - "建準（散熱風扇）"
+      - "鈺創（AI 視覺 / 記憶體）"
+    examples_out:
+      - "DJI 等純消費級無人機（純商用，不在範圍）"
+      - "純空拍機 / 農業噴灑無人機（除非作為對比 baseline）"
+
+  - id: E
+    label: "無人機買方市場（最終客戶 / 外銷對手方）"
+    definition: >-
+      採購軍規 / 軍用商規無人機的國家或機構。本研究中作為「外銷對沖」軸的對手方。
+    examples_in:
+      - "美國（DoD / FMS）"
+      - "波蘭（2025 進口台灣無人機數量超過美國）"
+      - "法國（Parrot 合作）"
+      - "日本"
+      - "印度"
+      - "捷克、波蘭、烏克蘭"
+      - "以色列"
+      - "台灣國防部（在軍購未被砍的版本中）"
+    examples_out:
+      - "中國（不是台灣無人機買家，但是 P_west 產能轉移目的地）"
+      - "東南亞（不是主要買家，是 P_south 產能轉移目的地）"
+
+research_focus: "A∪B"
+
+# ──────────────────────────────────────────────────────────────
+# Queries — 5 大角度
+# ──────────────────────────────────────────────────────────────
+queries:
+  # ── 角度 1：軍購砍案事實基底（Q1）──
+  - text: "台灣 國防特別預算 1.25兆 7800億 4700億 砍 立法院 2026"
+  - text: "保衛國家安全 強化不對稱戰力 採購特別條例 三讀 藍白"
+  - text: "3350億 無人載具 21萬架 1320艘 無人艇 軍購 刪除"
+  - text: "本土軍工產業鏈 3000億 委製 預算 砍光"
+
+  # ── 角度 2：工具機西進與十五五（Q3 / A）──
+  - text: "台灣 工具機 西進 中國 設廠 友嘉 上銀 台中精機"
+    concept_target: A
+  - text: "Taiwan machine tool industry China investment relocation"
+    concept_target: A
+  - text: "中國 十五五規劃 工具機 進口替代 國產化"
+    concept_target: A
+  - text: "台灣 精密機械 中國 關稅 成本 競爭"
+    concept_target: A
+  - text: "Taiwanese CNC machine tool manufacturers mainland China factory"
+    concept_target: A
+
+  # ── 角度 3：無人機產業外銷與非紅供應鏈（Q2 / B / E）──
+  - text: "台灣 無人機 外銷 21倍 波蘭 歐洲 非紅供應鏈 2025"
+    concept_target: B
+  - text: "Taiwan drone export non-China supply chain Poland Europe 2025"
+    concept_target: B
+  - text: "嘉義 民雄航太園區 無人機 國家隊 中光電 雷虎"
+    concept_target: B
+  - text: "亞洲無人機AI創新應用研發中心 廠商進駐 2025"
+    concept_target: B
+  - text: "DSET 台灣 無人機 信任 民主供應夥伴 不對稱作戰"
+    concept_target: B
+
+  # ── 角度 4：長臂管轄 + 非紅供應鏈鎖出機制（Q5）──
+  - text: "中國 反外國制裁法 台商 長臂管轄 域外管轄"
+  - text: "US BIS Entity List Taiwan machine tool export control"
+  - text: "Wassenaar Arrangement dual-use export control five-axis machining"
+  - text: "EAR Entity List Taiwanese company subsidiary China"
+  - text: "台灣 國防供應鏈 紅供應鏈 美國 出口管制 鎖出"
+
+  # ── 角度 5：學術 baseline + 國際比較（Q3 / Q6）──
+  - text: "Taiwan defense industry domestic production cross-strait industrial relocation"
+  - text: "cross-strait industrial integration semiconductor defense supply chain Taiwan"
+  - text: "South Korea Israel domestic defense production China relationship"
+  - text: "friend-shoring near-shoring defense supply chain Indo-Pacific"
+  - text: "industrial pivot Vietnam Indonesia Taiwanese investment 2020 2025"
+
+# ──────────────────────────────────────────────────────────────
+# Keyword expansions
+# ──────────────────────────────────────────────────────────────
+keyword_expansions:
+  synonyms:
+    - "軍購"
+    - "國防特別預算"
+    - "1.25兆"
+    - "藍白"
+    - "西進"
+    - "南移"
+    - "產能轉移"
+    - "non-red supply chain"
+    - "非紅供應鏈"
+    - "long-arm jurisdiction"
+    - "長臂管轄"
+
+  adjacent_concepts:
+    - "friend-shoring"
+    - "near-shoring"
+    - "industrial relocation"
+    - "dual-use technology"
+    - "雙用途技術"
+    - "COTS（Commercial Off-The-Shelf）"
+    - "asymmetric warfare"
+    - "不對稱作戰"
+    - "刺蝟戰略"
+    - "porcupine strategy"
+    - "技術擴散"
+    - "technology diffusion"
+
+  key_actors:
+    # National team core
+    - "中山科學研究院（NCSIST）"
+    - "國防部"
+    - "經濟部"
+    # Drone integrator (Tier 1)
+    - "中光電智能機器人"
+    - "長榮航太（2645.TW）"
+    - "智飛科技"
+    - "神通資訊（5206.TW）"
+    - "漢翔航空（2634.TW）"
+    - "雷虎科技（8033.TW）"
+    - "經緯航太"
+    - "新樂飛"
+    # Drone components
+    - "碳基科技"
+    - "亞洲光學"
+    - "建準"
+    - "鈺創"
+    # Machine tool cluster (Tier 0 upstream)
+    - "友嘉集團"
+    - "台中精機"
+    - "東台精機"
+    - "上銀科技（2049.TW）"
+    - "銀泰科技"
+    - "程泰機械"
+    - "瀧澤科技"
+    - "台灣麗馳"
+    - "大立機器"
+    - "亞德客集團"
+    - "百德機械"
+    # Policy / advocacy
+    - "DSET（科技、民主與社會研究中心）"
+    - "Atlantic Council"
+    - "RAND"
+    - "INDSR（國防安全研究院）"
+    - "Cofacts"
+    # Foreign drone buyers
+    - "波蘭 國防部"
+    - "Parrot（法國）"
+    - "美國 DoD"
+    - "FMS（Foreign Military Sales）"
+    # Mainland counterparts
+    - "DJI（大疆）"
+    - "極飛"
+    - "瀋陽機床"
+    - "大連機床"
+    - "海天精工"
+
+  # ──────────────────────────────────────────────────────────────
+  # priority_tickers — Track 4 (Wf4) MOPS co_id fan-out list
+  # 操作員 2026-05-20 retrofit: brief.md "Priority 上市櫃公司" 表轉成 MOPS
+  # 用的 4 碼 co_id。sources.yaml MOPS entry 的 required_ticker_field 指向此。
+  # 建準電機 SUNON 未上市（brief 註「查 OTC」）→ 不在此 deterministic 清單，
+  # 由 operator 手動處理。
+  # ──────────────────────────────────────────────────────────────
+  priority_tickers:
+    - "2049"   # 上銀科技 HIWIN（工具機 — 滾珠螺桿）
+    - "1590"   # 亞德客 Airtac（工具機 — 氣動元件）
+    - "1583"   # 程泰機械 Goodway（工具機）
+    - "4526"   # 東台精機 Tongtai（工具機）
+    - "6609"   # 瀧澤科技 Takisawa Taiwan（工具機；operator 2026-05-20 修正：brief 原誤植 1568）
+    - "2634"   # 漢翔航空 AIDC（無人機整機 — 複材 / 軍規）
+    - "2645"   # 長榮航太 EGAT（無人機整機 — 國防訂單）
+    - "5206"   # 神通資訊 SYSTEX（無人機整機 — 軍用商規）
+    - "8033"   # 雷虎科技 THUNDER TIGER（無人機整機 — 無人艇）
+    - "5351"   # 鈺創科技 Etron（零組件 — AI 視覺記憶體）
+
+  technical_jargon:
+    - "五軸加工中心"
+    - "five-axis machining center"
+    - "BLDC（Brushless DC motor）"
+    - "VTOL"
+    - "ALTIUS-600 / 700"
+    - "海馬士（HIMARS）"
+    - "M109A7"
+    - "AI 輔助 C5ISR"
+    - "Entity List"
+    - "EAR（Export Administration Regulations）"
+
+  counter_framings:
+    - "外銷對沖（無人機整機外銷強勁可補內銷）"
+    - "西進是商業合理性、不必過度國防化"
+    - "中國市場規模 ≠ 中國長臂管轄"
+    - "工具機跟國防製造能力的連結是想像的"
+    - "南移東南亞才是 hedge 主軸"
+    - "藍白砍預算是程序問題而非實質"
+
+  regulations_and_law:
+    - "中華人民共和國 反外國制裁法"
+    - "US BIS Entity List"
+    - "Wassenaar Arrangement"
+    - "EAR（Export Administration Regulations）"
+    - "EU dual-use regulation 2021/821"
+    - "Foreign Direct Product Rule（FDPR）"
+
+  locations:
+    # West-bound destinations
+    - "上海"
+    - "蘇州"
+    - "崑山"
+    - "東莞"
+    - "深圳"
+    - "成都"
+    # South-bound destinations
+    - "越南（Hanoi、HCMC、北寧）"
+    - "印尼（Jakarta、Batam）"
+    - "印度（Tamil Nadu、Karnataka）"
+    - "馬來西亞（Johor、Penang）"
+    - "泰國（Bangkok、EEC）"
+
+  time_markers:
+    - "2015 美中貿易摩擦初期"
+    - "2018 中美貿易戰"
+    - "2020 COVID 供應鏈重組"
+    - "2022 美中科技戰 + Chip Act"
+    - "2024 賴清德五大信賴產業宣示"
+    - "2025-11 軍購特別條例提案"
+    - "2026-05-08 立法院三讀砍版"
+    - "2026-05-15 中央社報導無人機 21 倍外銷"
+    - "2026-05-18 ChinaTimes 工具機十五五"
+
+# ──────────────────────────────────────────────────────────────
+# G4 / audit #16 — counter_framings 語意展開
+# 操作員 2026-05-19 retrofit (Cluster C 落地後)：原 counter_framings 是 sentence-length，
+# validate_gate.check_balance_asymmetry / Gatekeeper G4 substring match 永遠 false negative。
+# 這份 map 提供短關鍵字讓 balance check 真的有用。
+# ──────────────────────────────────────────────────────────────
+counter_framing_keywords:
+  outbound_hedge: ["外銷", "整機外銷", "export", "出口"]
+  biz_rationality: ["商業合理", "成本", "供應鏈成本", "市場規模"]
+  scale_not_jurisdiction: ["中國市場", "市場規模", "non-jurisdictional"]
+  tool_drone_link_imagined: ["連結是想像", "推論過度", "缺乏直接證據"]
+  southeast_hedge: ["東南亞", "南向", "ASEAN", "越南", "印度"]
+  budget_procedural: ["程序", "預算審議", "三讀", "程序問題"]
+
+# ──────────────────────────────────────────────────────────────
+# 邊界 + 排除
+# ──────────────────────────────────────────────────────────────
+exclusion_terms:
+  - "空拍機評測"
+  - "drone photography review"
+  - "agricultural drone spraying"
+  - "農業噴灑 無人機"
+  - "consumer drone"
+  - "影視航拍"
+  - "餐飲 兩岸投資"
+  - "文創 中資"
+
+# ──────────────────────────────────────────────────────────────
+# Source priorities
+# ──────────────────────────────────────────────────────────────
+source_priorities:
+  must_include: []   # 新領域，sources_seed.yaml 中無既有 entries 可 cherry-pick
+  deprioritize:
+    - "純消費級無人機品牌新聞"
+    - "工具機展覽會行銷文"
+    - "個別公司股價技術分析"
+
+# ──────────────────────────────────────────────────────────────
+# 直接抓的 URL（已 reconnaissance 過 / operator 指定）
+# ──────────────────────────────────────────────────────────────
+seek_direct:
+  # ── Primary data portal (operator 補充) ──
+  - "https://mopsfin.twse.com.tw/"   # MOPS 公開資訊觀測站 — 上市櫃財報 primary source；對應 brief.md "Primary Data Sources" 段內公司 ticker 清單
+  # ── 軍購砍案 / 無人機產業 ──
+  - "https://technews.tw/2026/05/16/taiwan-stocks-slide-after-defense-drone-budget-cuts/"
+  - "https://tw.news.yahoo.com/%E8%97%8D%E7%99%BD%E7%A0%8D%E5%85%89%E8%BB%8D%E8%B3%BC3350%E5%84%84%E7%84%A1%E4%BA%BA%E6%A9%9F%E9%A0%90%E7%AE%97-%E7%BE%85%E5%BB%B7%E7%91%8B%E7%AB%9F%E6%89%B9%E4%B8%AD%E5%A4%AE%E5%88%A5%E5%BF%98%E5%8F%B0%E4%B8%AD%E7%94%A2%E6%A5%AD%E9%81%AD%E6%89%93%E8%87%89-031200160.html"
+  - "https://www.chinatimes.com/newspapers/20260518000174-260202?chdtv"
+  - "https://www.cna.com.tw/news/afe/202605170028.aspx"
+  - "https://www.twreporter.org/a/special-military-procurement-budget-in-deadlock"
+  - "https://udn.com/news/story/10930/9466846"
+  - "https://www.mnd.gov.tw/Publication/85301"
+  - "https://news.ltn.com.tw/news/politics/paper/1754344"
+  - "https://news.ltn.com.tw/news/politics/breakingnews/5433419"
+  - "https://news.nextapple.com/politics/20260511/C7C3F608D927B15E342DDBC85081E657"
+
+# ──────────────────────────────────────────────────────────────
+# Review trigger（per backlog/multi-model-reviewer.md §3）
+# ──────────────────────────────────────────────────────────────
+review:
+  mode: multi_model
+  fidelity_level: high
+  # models: 不指定 → 默認 [claude, codex, gemini]

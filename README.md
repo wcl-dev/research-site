@@ -12,6 +12,6 @@ A place where I pose the questions, AI agents do the execution, and research com
 - **人提供**：問題意識、研究方向、判斷與評估、什麼可以公開的把關。
 - **Agents 提供**（主要是 Claude，部分 Codex）：大量的查找、分析、撰寫時間。
 
-Source materials for each project (pipeline intermediates, drafts, reviewer notes) live in a private working repo. This public repo only holds finished, ship-ready outputs.
+Each project ships its finished output together with the working materials behind it — pipeline intermediates, drafts, reviewer notes. Genuinely sensitive files (login sessions, screenshots that may reveal personal info, run logs) are kept out via .gitignore. Showing the process is deliberate: it's how the agents' actual work stays visible.
 
-每一份研究的原始材料（pipeline 中間檔、草稿、reviewer 筆記）保留在私有工作目錄；這個 repo 只放完成、可公開的成品。
+每一份研究除了成品，也一併公開背後的工作材料 —— pipeline 中間檔、草稿、reviewer 筆記。真正敏感的檔案（登入 session、可能洩漏個人資訊的截圖、執行 log）透過 .gitignore 排除。公開過程是刻意的：這樣才看得見 agents 實際做了什麼。

@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>軍購砍 4700 億後的西進壓力 — 以無人機產業及其上游工具機為例</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EFE2; --paper-card:#FCF9F1; --paper-sink:#E9E1CC;
+    --ink:#211F19; --ink-soft:#544F44; --ink-faint:#8A8473;
+    --rule:#D4CBB2; --rule-soft:#E2DAC4;
+    --navy:#1B4A66;     /* A 工具機 ／ 結構性深色 */
+    --jade:#2B7458;     /* B 無人機 */
+    --clay:#B5402B;     /* 砍 ／ 風險 */
+    --display:'Fraunces','Noto Serif TC',serif;
+    --serif:'Fraunces','Noto Serif TC',serif;
+    --mono:'IBM Plex Mono','Noto Serif TC',monospace;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--serif); font-weight:400; line-height:1.9;
+    font-size:19px; -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
+    opacity:.42; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  a{color:inherit}
+  ::selection{background:var(--paper-sink)}
+
+  /* ============ LAYOUT ============ */
+  .shell{display:flex; min-height:100vh}
+
+  /* ---- sidebar ---- */
+  .nav{
+    width:300px; flex:none; position:fixed; top:0; left:0; bottom:0;
+    background:var(--paper-sink); border-right:1px solid var(--rule);
+    padding:42px 0 36px; overflow-y:auto; z-index:40;
+  }
+  .nav-brand{padding:0 32px 26px; border-bottom:1px solid var(--rule); margin-bottom:10px}
+  .nav-kicker{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--clay); font-weight:600; margin-bottom:14px;
+  }
+  .nav-title{
+    font-family:var(--display); font-weight:600; font-size:23px; line-height:1.4;
+    color:var(--ink);
+  }
+  .nav-title b{color:var(--clay); font-weight:700}
+  .nav-scope{
+    font-size:14px; color:var(--ink-soft); line-height:1.55;
+    margin-top:14px; padding-left:12px; border-left:3px solid var(--navy);
+  }
+  .nav-meta{
+    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
+    margin-top:16px; letter-spacing:.02em;
+  }
+  .nav ol{list-style:none; padding:20px 16px 0}
+  .nav .nav-grp{
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-faint); padding:20px 14px 9px; font-weight:600;
+  }
+  .nav a{
+    display:flex; gap:12px; align-items:baseline; text-decoration:none;
+    padding:9px 14px; border-radius:8px; color:var(--ink-soft);
+    font-size:15.5px; line-height:1.5; transition:background .18s,color .18s;
+  }
+  .nav a .ix{
+    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
+    flex:none; width:24px; font-weight:500;
+  }
+  .nav a:hover{background:var(--paper-card); color:var(--ink)}
+  .nav a.sub{padding-left:30px; font-size:14.5px}
+  .nav a.active{background:var(--ink); color:var(--paper-card)}
+  .nav a.active .ix{color:var(--paper-card)}
+
+  /* ---- main ---- */
+  main{margin-left:300px; flex:1; min-width:0}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 48px}
+  section{padding:96px 0; border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:none}
+
+  /* ============ HERO ============ */
+  .hero{
+    border-bottom:4px double var(--rule);
+    background:linear-gradient(180deg,var(--paper-card),transparent 72%);
+  }
+  .hero-inner{max-width:var(--maxw); margin:0 auto; padding:74px 48px 64px}
+  .hero-kicker{
+    font-family:var(--mono); font-size:13px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--clay); font-weight:600;
+    display:flex; align-items:center; gap:14px; margin-bottom:30px;
+  }
+  .hero-kicker::after{content:""; flex:1; height:1px; background:var(--rule)}
+  h1.hero-title{
+    font-family:var(--display); font-weight:600; font-size:clamp(38px,5.6vw,64px);
+    line-height:1.18; letter-spacing:-.012em; margin-bottom:28px;
+  }
+  h1.hero-title .cut{color:var(--clay); font-style:italic; font-weight:500}
+  .hero-stand{
+    font-size:21px; line-height:1.82; color:var(--ink-soft);
+    max-width:720px; margin-bottom:38px;
+  }
+  .hero-stand b{color:var(--ink); font-weight:700}
+  .hero-scope{
+    font-family:var(--display); font-weight:500; color:var(--ink);
+    font-size:clamp(20px,2.5vw,26px); line-height:1.46;
+    margin:-6px 0 34px; padding-left:20px; border-left:4px solid var(--navy);
+  }
+  .hero-tension{
+    display:flex; margin:38px 0 8px; border:1px solid var(--rule);
+    border-radius:14px; overflow:hidden; background:var(--paper-card);
+  }
+  .ht-cell{flex:1; padding:28px 30px}
+  .ht-cell+.ht-cell{border-left:1px solid var(--rule)}
+  .ht-arrow{font-size:36px; line-height:1; margin-bottom:10px; display:block}
+  .ht-cell.down .ht-arrow{color:var(--clay)}
+  .ht-cell.up .ht-arrow{color:var(--jade)}
+  .ht-big{font-family:var(--display); font-size:27px; font-weight:600; line-height:1.32}
+  .ht-sub{font-size:15px; color:var(--ink-faint); margin-top:8px}
+  .hero-foot{
+    margin-top:34px; font-size:15px; color:var(--ink-soft);
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero-foot .dot{width:7px;height:7px;border-radius:50%;background:var(--clay);
+    display:inline-block;flex:none}
+
+  /* ============ SECTION HEADERS ============ */
+  .sec-head{margin-bottom:52px}
+  .sec-num{
+    font-family:var(--mono); font-size:14px; font-weight:600; letter-spacing:.14em;
+    color:var(--ink-faint); display:block; margin-bottom:16px;
+  }
+  h2.sec-title{
+    font-family:var(--display); font-weight:600; font-size:clamp(30px,3.9vw,44px);
+    line-height:1.26; letter-spacing:-.01em;
+  }
+  .sec-lead{
+    font-size:19px; color:var(--ink-soft); margin-top:20px; max-width:720px;
+    line-height:1.84;
+  }
+
+  /* in-section sub-heading — 看得見的層級 */
+  .sub-h{
+    font-family:var(--display); font-size:24px; font-weight:600; color:var(--ink);
+    margin:0 0 26px; padding-bottom:14px; border-bottom:2px solid var(--rule);
+    line-height:1.4;
+  }
+  .block{margin-top:64px}
+  .cap{
+    font-family:var(--mono); font-size:13.5px; color:var(--ink-soft);
+    margin-bottom:18px; font-weight:500; letter-spacing:.01em;
+  }
+
+  /* ============ TL;DR ============ */
+  .tldr-list{display:flex; flex-direction:column; gap:14px}
+  .tldr{
+    display:flex; gap:28px; padding:32px 34px;
+    background:var(--paper-card); border:1px solid var(--rule); border-radius:12px;
+    align-items:flex-start;
+  }
+  .tldr .num{
+    font-family:var(--display); font-size:50px; font-weight:600; line-height:.85;
+    color:var(--navy); flex:none; width:54px;
+  }
+  .tldr .body p{font-size:18.5px; line-height:1.82}
+  .tldr .body b{font-weight:700}
+  .tldr .tag{
+    font-family:var(--mono); font-size:13px; color:var(--ink-faint); margin-top:14px;
+  }
+
+  /* ============ DUAL-CHAIN ============ */
+  .chains{display:grid; grid-template-columns:1fr 1fr; gap:22px}
+  .chain{border:1px solid var(--rule); border-radius:16px; overflow:hidden;
+    background:var(--paper-card)}
+  .chain-top{padding:26px 28px}
+  .chain.A .chain-top{background:var(--navy)}
+  .chain.B .chain-top{background:var(--jade)}
+  .chain-top *{color:#fff}
+  .chain-tag{font-family:var(--mono); font-size:13px; letter-spacing:.1em;
+    opacity:.82; text-transform:uppercase}
+  .chain-name{font-family:var(--display); font-size:26px; font-weight:600; margin-top:7px}
+  .chain-sub{font-size:14.5px; opacity:.9; margin-top:8px; line-height:1.6}
+  .chain-rows{padding:8px 28px 24px}
+  .crow{padding:20px 0}
+  .crow+.crow{border-top:1px solid var(--rule-soft)}
+  .crow .lbl{font-size:15px; color:var(--ink-faint); margin-bottom:8px}
+  .crow .val{font-size:17.5px; line-height:1.62}
+  .crow .val b{font-weight:700}
+  .meter{display:flex; gap:6px; margin-top:12px; align-items:center}
+  .meter i{width:32px; height:9px; border-radius:2px; background:var(--rule); display:block}
+  .chain.A .meter i.on{background:var(--navy)}
+  .chain.B .meter i.on{background:var(--jade)}
+  .meter .mtxt{font-family:var(--mono); font-size:13px; color:var(--ink-soft);
+    margin-left:10px}
+
+  /* hedge paths */
+  .paths{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  .path{background:var(--paper-card); border:1px solid var(--rule); border-radius:14px;
+    padding:26px 24px}
+  .path-no{font-family:var(--mono); font-size:13px; color:var(--ink-faint)}
+  .path-name{font-family:var(--display); font-size:23px; font-weight:600; margin:8px 0 14px}
+  .path-desc{font-size:16px; line-height:1.68; color:var(--ink-soft)}
+  .path-tags{display:flex; gap:8px; margin-top:18px; flex-wrap:wrap}
+  .ptag{font-family:var(--mono); font-size:12.5px; padding:5px 10px; border-radius:5px;
+    border:1px solid var(--rule); color:var(--ink-soft)}
+  .ptag.A{border-color:var(--navy); color:var(--navy)}
+  .ptag.B{border-color:var(--jade); color:var(--jade)}
+
+  /* budget bar */
+  .bbar{display:flex; height:84px; border-radius:11px; overflow:hidden;
+    border:1px solid var(--rule)}
+  .bseg{display:flex; flex-direction:column; justify-content:center; padding:0 26px;
+    color:#fff}
+  .bseg.keep{background:var(--navy); flex:0 0 62.4%}
+  .bseg.cut{background:var(--clay); flex:0 0 37.6%}
+  .bseg .bv{font-size:24px; font-weight:600; font-family:var(--display)}
+  .bseg .bl{font-size:13px; opacity:.9; margin-top:3px}
+  .budget-cap{display:flex; justify-content:space-between; margin-top:14px;
+    font-family:var(--mono); font-size:13px; color:var(--ink-faint); flex-wrap:wrap; gap:8px}
+  .budget-note{margin-top:22px; padding:22px 26px; background:var(--paper-card);
+    border:1px solid var(--rule); border-left:4px solid var(--clay); border-radius:0 10px 10px 0;
+    font-size:16.5px; line-height:1.78}
+  .budget-note b{font-weight:700}
+
+  /* ============ FINDINGS ============ */
+  .find{background:var(--paper-card); border:1px solid var(--rule);
+    border-radius:16px; padding:40px 42px; margin-bottom:24px}
+  .find-top{display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap;
+    margin-bottom:20px}
+  .find-no{font-family:var(--mono); font-size:14px; font-weight:600; letter-spacing:.08em;
+    color:var(--paper-card); background:var(--ink); padding:7px 12px; border-radius:6px;
+    flex:none}
+  .find h3{font-family:var(--display); font-size:25px; font-weight:600; line-height:1.42;
+    flex:1; min-width:260px}
+  .find-sum{font-size:18px; line-height:1.84; color:var(--ink-soft)}
+  .find-sum b{color:var(--ink); font-weight:700}
+  .find-key{margin-top:24px; padding:22px 26px; background:var(--paper-sink);
+    border-radius:11px; font-size:17px; line-height:1.74}
+  .find-key .kl{font-family:var(--mono); font-size:13px; letter-spacing:.08em;
+    color:var(--clay); font-weight:600; display:block; margin-bottom:6px}
+  .find-key b{font-weight:700}
+  .find .block{margin-top:34px}
+
+  /* 西進深度 ladder — 縱向排列，每列一家，避免標籤重疊 */
+  .ladder{margin-top:4px}
+  .l-end{font-family:var(--mono); font-size:13px; color:var(--ink-faint); padding-left:50px}
+  .l-end.bot{margin-top:10px}
+  .rung{display:flex; gap:22px; padding:22px 0; position:relative}
+  .rung+.rung{border-top:1px solid var(--rule-soft)}
+  .rung::before{content:""; position:absolute; left:13px; top:0; bottom:0; width:2px;
+    background:var(--rule)}
+  .rung:first-of-type::before{top:35px}
+  .rung:last-of-type::before{bottom:auto; height:35px}
+  .rung-node{flex:none; width:28px; display:flex; justify-content:center; padding-top:5px;
+    position:relative; z-index:2}
+  .rung-node::before{content:""; width:16px; height:16px; border-radius:50%;
+    background:var(--paper); border:3px solid var(--navy)}
+  .rung.extreme .rung-node::before{border-color:var(--clay); width:20px; height:20px;
+    box-shadow:0 0 0 5px rgba(181,64,43,.14)}
+  .rung-body{flex:1; min-width:0}
+  .rung-co{font-family:var(--display); font-size:20px; font-weight:600;
+    display:flex; flex-wrap:wrap; align-items:baseline; gap:5px 11px}
+  .rung-co .tk{font-family:var(--mono); font-size:13px; color:var(--ink-faint); font-weight:400}
+  .rung-co .rung-tag{font-family:var(--mono); font-size:12.5px; color:var(--clay);
+    border:1px solid var(--clay); border-radius:5px; padding:2px 9px; font-weight:500}
+  .rung-fact{font-size:16px; line-height:1.7; color:var(--ink-soft); margin-top:8px}
+
+  /* stat grid */
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:16px}
+  .stat{border:1px solid var(--rule); border-radius:12px; padding:24px 22px;
+    background:var(--paper)}
+  .stat .sv{font-family:var(--display); font-size:42px; font-weight:600; line-height:1;
+    color:var(--jade)}
+  .stat.c .sv{color:var(--clay)}
+  .stat .sl{font-size:14.5px; color:var(--ink-soft); margin-top:12px; line-height:1.55}
+  .stat .su{font-family:var(--mono); font-size:12px; color:var(--ink-faint); margin-top:8px}
+
+  /* tariff bars */
+  .tbars{display:flex; flex-direction:column; gap:16px}
+  .tbar-row{display:flex; align-items:center; gap:18px}
+  .tbar-lab{font-size:16px; width:120px; flex:none; color:var(--ink-soft)}
+  .tbar-track{flex:1; background:var(--paper-sink); border-radius:5px; height:38px;
+    position:relative; overflow:hidden}
+  .tbar-fill{height:100%; border-radius:5px; width:0;
+    transition:width 1.1s cubic-bezier(.2,.7,.2,1);
+    display:flex; align-items:center; justify-content:flex-end; padding-right:14px;
+    font-family:var(--display); font-size:17px; color:#fff; font-weight:600}
+  .tbar-fill.tw{background:var(--clay)}
+  .tbar-fill.jk{background:var(--navy)}
+  .tbar-note{font-size:15px; color:var(--ink-soft); line-height:1.7; margin-top:16px}
+
+  /* risk layers */
+  .risk-stack{display:flex; flex-direction:column; gap:12px}
+  .rlayer{display:flex; border:1px solid var(--rule); border-radius:12px;
+    overflow:hidden; background:var(--paper-card)}
+  .rlayer .rn{flex:none; width:68px; background:var(--clay); color:#fff;
+    font-family:var(--display); font-size:30px; font-weight:600;
+    display:flex; align-items:center; justify-content:center}
+  .rlayer .rc{padding:22px 26px}
+  .rlayer .rt{font-family:var(--display); font-size:20px; font-weight:600}
+  .rlayer .rd{font-size:16px; line-height:1.7; color:var(--ink-soft); margin-top:7px}
+  .rlayer .rd b{font-weight:700; color:var(--ink)}
+
+  /* timeline */
+  .timeline{position:relative; padding:38px 12px 10px}
+  .tl-line{position:absolute; left:12px; right:12px; top:52px; height:2px;
+    background:var(--rule)}
+  .tl-pts{display:flex; justify-content:space-between; position:relative}
+  .tl-pt{text-align:center; flex:1}
+  .tl-pt .tl-dot{width:17px; height:17px; border-radius:50%; margin:0 auto;
+    background:var(--paper-card); border:4px solid var(--navy); position:relative; z-index:2}
+  .tl-pt.cut .tl-dot{border-color:var(--clay); background:var(--clay)}
+  .tl-pt .tl-d{font-family:var(--mono); font-size:14px; margin-top:13px; font-weight:600}
+  .tl-pt .tl-x{font-size:14.5px; color:var(--ink-soft); margin-top:5px; line-height:1.5}
+  .tl-pt.cut .tl-d{color:var(--clay)}
+
+  /* ============ LONGFORM ============ */
+  .lf-toc{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:44px; padding-bottom:32px;
+    border-bottom:1px solid var(--rule)}
+  .lf-toc a{font-family:var(--mono); font-size:13.5px; text-decoration:none;
+    padding:8px 14px; border:1px solid var(--rule); border-radius:22px;
+    color:var(--ink-soft); transition:all .16s}
+  .lf-toc a:hover{background:var(--ink); color:var(--paper-card); border-color:var(--ink)}
+  .lf h3{font-family:var(--display); font-size:27px; font-weight:600; line-height:1.36;
+    margin:56px 0 10px; padding-top:18px}
+  .lf h3:first-of-type{margin-top:0}
+  .lf h3 .fid{font-family:var(--mono); font-size:16px; color:var(--clay);
+    font-weight:500; margin-right:12px}
+  .lf p{margin:18px 0; font-size:18.5px; line-height:1.92}
+  .lf p b{font-weight:700}
+  .lf .em{font-weight:700; background:var(--paper-sink); padding:1px 5px; border-radius:3px}
+  .lf .cf-item{margin:18px 0; padding:24px 28px; background:var(--paper-card);
+    border:1px solid var(--rule); border-radius:12px}
+  .lf-cf{counter-reset:cf}
+  .lf .cf-item .cf-q{font-family:var(--display); font-weight:600; font-size:19px;
+    margin-bottom:10px; display:flex; gap:12px; align-items:baseline; line-height:1.4}
+  .lf .cf-item .cf-q::before{
+    counter-increment:cf; content:"反框架 " counter(cf);
+    font-family:var(--mono); font-size:12px; letter-spacing:.04em; color:var(--clay);
+    border:1px solid var(--clay); padding:3px 8px; border-radius:5px; flex:none;
+    font-weight:500;
+  }
+  .lf .cf-item p{margin:0; font-size:16.5px; line-height:1.78; color:var(--ink-soft)}
+  .gaps{list-style:none}
+  .gaps li{position:relative; padding:18px 22px 18px 56px; margin-bottom:12px;
+    background:var(--paper-card); border:1px solid var(--rule);
+    border-radius:11px; font-size:16.5px; line-height:1.76; color:var(--ink-soft)}
+  .gaps li::before{content:"?"; position:absolute; left:20px; top:18px;
+    font-family:var(--display); font-weight:700; font-size:19px; color:var(--clay);
+    width:26px; height:26px; border:2px solid var(--clay); border-radius:50%;
+    text-align:center; line-height:23px}
+  .gaps li b{color:var(--ink); font-weight:700}
+
+  /* ============ SOURCES ============ */
+  .src-grid{display:grid; grid-template-columns:1fr 1fr; gap:0 36px}
+  .src{padding:16px 0; border-bottom:1px solid var(--rule-soft); font-size:15px;
+    line-height:1.6; display:flex; gap:14px}
+  .src .sid{font-family:var(--mono); font-size:12px; color:var(--clay); flex:none;
+    font-weight:600; padding-top:2px; width:38px}
+  .src .sx b{font-weight:700}
+  .src .sx span{color:var(--ink-faint); font-family:var(--mono); font-size:12px}
+  .src-note{font-size:15px; color:var(--ink-soft); margin-top:26px; line-height:1.8}
+
+  footer{background:var(--ink); color:var(--ink-faint); margin-left:300px;
+    padding:44px 48px; font-size:14px; line-height:2}
+  footer b{color:var(--paper-card); font-weight:700}
+
+  /* reveal */
+  .rv{opacity:0; transform:translateY(22px);
+    transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1; transform:none}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:1040px){
+    .nav{position:static; width:100%; height:auto; bottom:auto;
+      border-right:none; border-bottom:2px solid var(--rule)}
+    .nav ol{display:flex; flex-wrap:wrap; padding:14px}
+    .nav .nav-grp{width:100%; padding:12px 14px 4px}
+    .nav a.sub{padding-left:14px}
+    main,footer{margin-left:0}
+    .shell{flex-direction:column}
+    .chains,.paths{grid-template-columns:1fr}
+    .src-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:600px){
+    body{font-size:17.5px}
+    .wrap,.hero-inner{padding-left:24px; padding-right:24px}
+    section{padding:64px 0}
+    .hero-inner{padding-top:52px}
+    .hero-tension{flex-direction:column}
+    .ht-cell+.ht-cell{border-left:none; border-top:1px solid var(--rule)}
+    .find{padding:28px 24px}
+    .tldr{padding:24px; gap:18px}
+    .tldr .num{font-size:40px; width:42px}
+    .bseg .bv{font-size:18px}
+    .rlayer{flex-direction:column}
+    .rlayer .rn{width:100%; height:48px}
+    footer{padding:30px 24px}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">
+      <a href="../" style="display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:18px">← weichen&#x27;s Research</a>
+      <div class="nav-kicker">研究定位備忘錄</div>
+      <div class="nav-title">軍購砍 <b>4700 億</b>後的<br>西進壓力與非紅供應鏈</div>
+      <div class="nav-scope">以無人機產業及其上游工具機為例</div>
+      <div class="nav-meta">台灣國防供應鏈 · 2026 / 05</div>
+    </div>
+    <ol>
+      <li class="nav-grp">四種閱讀深度</li>
+      <li><a href="#tldr"><span class="ix">01</span>三十秒摘要</a></li>
+      <li><a href="#framing"><span class="ix">02</span>雙鏈分析</a></li>
+      <li><a href="#findings"><span class="ix">03</span>五項發現</a></li>
+      <li><a href="#finding-1" class="sub">F1　被砍的 4700 億是什麼</a></li>
+      <li><a href="#finding-2" class="sub">F2　工具機西進是存量事實</a></li>
+      <li><a href="#finding-3" class="sub">F3　砍案到西進是壓力非事實</a></li>
+      <li><a href="#finding-4" class="sub">F4　雙鏈差別待遇</a></li>
+      <li><a href="#finding-5" class="sub">F5　西進風險三層機制</a></li>
+      <li><a href="#longform"><span class="ix">04</span>完整分析</a></li>
+      <li class="nav-grp">附錄</li>
+      <li><a href="#sources"><span class="ix">05</span>資料來源</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker">台灣國防供應鏈 · 產業結構分析</div>
+        <h1 class="hero-title">軍購砍 <span class="cut">4700 億</span>之後，<br>誰會西進，承諾會不會跳票</h1>
+        <p class="hero-scope">以無人機產業及其上游工具機聚落為例 —— 一個雙鏈分析</p>
+        <p class="hero-stand">
+          2026 年 5 月，立法院把 1.25 兆國防特別預算砍到 7800 億。這段期間，兩個方向相反的訊號同時出現 ——
+          <b>軍購被大砍</b>，<b>無人機外銷卻成長 21 倍</b>。這個表面上的矛盾，本備忘錄用「雙鏈分析」拆開：
+          上游工具機與中下游無人機，受到的衝擊本來就不一樣。
+        </p>
+        <div class="hero-tension">
+          <div class="ht-cell down">
+            <span class="ht-arrow">↓</span>
+            <div class="ht-big">軍購特別預算被砍 4700 億</div>
+            <div class="ht-sub">1.25 兆 → 7800 億，砍掉的是本土訂單</div>
+          </div>
+          <div class="ht-cell up">
+            <span class="ht-arrow">↑</span>
+            <div class="ht-big">無人機整機外銷 ×21 倍</div>
+            <div class="ht-sub">2025 外銷產值 29.5 億，買方 36 國</div>
+          </div>
+        </div>
+        <div class="hero-foot">
+          <span class="dot"></span><span>立場：產業結構分析，不是政治批判</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= 01 · TL;DR ================= -->
+    <section id="tldr">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">三十秒摘要：軍購砍案的五個重點</h2>
+        </header>
+        <div class="tldr-list">
+          <div class="tldr rv">
+            <div class="num">1</div>
+            <div class="body">
+              <p>2026 年 5 月 8 日立法院三讀，把原提的 <b>1.25 兆國防特別預算砍到 7800 億</b>，落差 4700 億。砍後的 7800 億幾乎全是純對美軍購；被砍的 4700 億，集中落在「本土軍工、委製、無人載具」這些<b>本土訂單</b>上。</p>
+              <div class="tag">詳見發現 1</div>
+            </div>
+          </div>
+          <div class="tldr rv">
+            <div class="num">2</div>
+            <div class="body">
+              <p>砍掉的這 4700 億，砍的正是這筆特別預算自己列的三大重點之一 ——「<b>打造非紅供應鏈</b>」的本土財源。軍購案本身，就是非紅供應鏈這個國家承諾的一部分。</p>
+              <div class="tag">詳見發現 1</div>
+            </div>
+          </div>
+          <div class="tldr rv">
+            <div class="num">3</div>
+            <div class="body">
+              <p>「軍購砍 → 西進機率大增」應理解為<b>壓力與條件，而非必然結果</b>。工具機聚落西進是<b>早於砍案、已被一手財報坐實的結構性存量</b>（程泰、東台、瀧澤、上銀、亞德客都有中國製造子公司）；砍案是疊加在既有壓力上的新推力。</p>
+              <div class="tag">詳見發現 2、3</div>
+            </div>
+          </div>
+          <div class="tldr rv">
+            <div class="num">4</div>
+            <div class="body">
+              <p>西進的具體風險有三層：<b>中國長臂管轄</b>（在華資產受中國法支配）、<b>美國 BIS Entity List 鎖出</b>（會穿透到設在台灣的中資關聯實體）、以及<b>製造能力與技術外洩</b>的長期國防代價。但風險是「有條件的」，不是所有西進一概而論。</p>
+              <div class="tag">詳見發現 5</div>
+            </div>
+          </div>
+          <div class="tldr rv">
+            <div class="num">5</div>
+            <div class="body">
+              <p>雙鏈差別待遇明確：<b>工具機（A）</b>外銷受 20% 對等關稅與中國低價夾擊、對沖能力弱、西進壓力最大；<b>無人機整機（B）</b>外銷強勁、買方 36 國，但零組件（電池、稀土）仍依賴中國，且長期受上游工具機產能掏空牽制。<b>無人機外銷蓬勃 ≠ 西進壓力消失。</b></p>
+              <div class="tag">詳見發現 4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 · 雙鏈 framing ================= -->
+    <section id="framing">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">雙鏈分析：工具機與無人機，為什麼要分開看</h2>
+          <p class="sec-lead">同一個砍預算事件，對「上游工具機（A）」與「中下游無人機相關製造（B）」的衝擊、外銷對沖能力、西進壓力完全不同。把兩條鏈分開，才能解釋「軍購被砍」與「無人機外銷大漲」為何能同時為真。</p>
+        </header>
+
+        <div class="block rv">
+          <h3 class="sub-h">兩條產業鏈的差別對照</h3>
+          <div class="chains">
+            <div class="chain A">
+              <div class="chain-top">
+                <div class="chain-tag">A 鏈 · 上游母機</div>
+                <div class="chain-name">工具機產業</div>
+                <div class="chain-sub">CNC 車床、五軸加工中心、精密傳動零組件 —— 製造一切精密零件的「工作母機」</div>
+              </div>
+              <div class="chain-rows">
+                <div class="crow">
+                  <div class="lbl">軍購砍的衝擊</div>
+                  <div class="val">間接（軍購是需求之一）＋ 直接（本土扶植被砍）</div>
+                </div>
+                <div class="crow">
+                  <div class="lbl">外銷對沖能力</div>
+                  <div class="val"><b>弱</b>　出口衰退、輸美實質稅率 24.7%、中國低價夾擊
+                    <div class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><span class="mtxt">弱</span></div>
+                  </div>
+                </div>
+                <div class="crow">
+                  <div class="lbl">西進壓力</div>
+                  <div class="val"><b>最大</b>　是西進的主軸
+                    <div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><span class="mtxt">高</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chain B">
+              <div class="chain-top">
+                <div class="chain-tag">B 鏈 · 中下游</div>
+                <div class="chain-name">無人機相關製造</div>
+                <div class="chain-sub">軍規與軍用商規整機廠＋零組件廠 —— 漢翔、長榮航太、雷虎、中光電智能機器人等</div>
+              </div>
+              <div class="chain-rows">
+                <div class="crow">
+                  <div class="lbl">軍購砍的衝擊</div>
+                  <div class="val">直接（內銷國防訂單被砍）</div>
+                </div>
+                <div class="crow">
+                  <div class="lbl">外銷對沖能力</div>
+                  <div class="val"><b>強</b>　2025 外銷成長 21 倍、買方 36 國、非紅供應鏈需求支撐
+                    <div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><span class="mtxt">強</span></div>
+                  </div>
+                </div>
+                <div class="crow">
+                  <div class="lbl">西進壓力</div>
+                  <div class="val"><b>短期不大、長期受 A 牽制</b>　零組件仍賴中國
+                    <div class="meter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><span class="mtxt">低 – 中</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block rv">
+          <h3 class="sub-h">被衝擊的廠商有三條 hedge 路徑</h3>
+          <div class="paths">
+            <div class="path">
+              <div class="path-no">路徑 01</div>
+              <div class="path-name">西進中國</div>
+              <div class="path-desc">十五五規劃磁吸 ＋ 中國市場規模 ＋ 成本誘因。是主要的風險路徑 —— 風險來自中國長臂管轄與美國 BIS 鎖出。</div>
+              <div class="path-tags"><span class="ptag A">工具機壓力大</span><span class="ptag B">無人機部分零組件</span></div>
+            </div>
+            <div class="path">
+              <div class="path-no">路徑 02</div>
+              <div class="path-name">南移東南亞</div>
+              <div class="path-desc">越南、印尼、印度、馬來西亞、泰國。屬中性的對沖路徑，但技術轉移成本高。</div>
+              <div class="path-tags"><span class="ptag A">工具機並行</span><span class="ptag B">無人機並行</span></div>
+            </div>
+            <div class="path">
+              <div class="path-no">路徑 03</div>
+              <div class="path-name">外銷對沖</div>
+              <div class="path-desc">用外銷成長補上被砍的內銷。無人機整機外銷強勁、走得通；工具機外銷衰退、補不上。</div>
+              <div class="path-tags"><span class="ptag B">無人機可行</span><span class="ptag A">工具機困難</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block rv">
+          <h3 class="sub-h">被砍的 4700 億，砍在哪裡</h3>
+          <div class="bbar">
+            <div class="bseg keep">
+              <div class="bv">7,800 億</div>
+              <div class="bl">砍後保留 —— 幾乎全是純對美軍購</div>
+            </div>
+            <div class="bseg cut">
+              <div class="bv">4,700 億</div>
+              <div class="bl">被砍 —— 本土訂單</div>
+            </div>
+          </div>
+          <div class="budget-cap">
+            <span>原提：1.25 兆元（12,500 億）</span>
+            <span>砍後佔原版 62.4 ％</span>
+          </div>
+          <div class="budget-note">
+            <b>關鍵澄清：</b>被砍的 4700 億是「原版 1.25 兆」與「砍後 7800 億」的<b>總落差</b>，不是「3000 億 + 3350 億」這種可加總的明細。3000 億是原版用於「打造本土軍工產業鏈」的整體匡列；3350 億無人載具（21 萬架無人機、1320 艘無人艇）是政治論述中常被單獨點名的重點項目 —— 兩者範圍重疊、不能直接相加。能確定的只有一條：被砍的整體，就是這筆本土財源。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 · FINDINGS ================= -->
+    <section id="findings">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">五項發現：軍購砍案如何牽動西進</h2>
+        </header>
+
+        <article class="find rv" id="finding-1">
+          <div class="find-top">
+            <span class="find-no">F1</span>
+            <h3>被砍的 4700 億，砍掉的是「本土軍工＋無人載具」，也砍掉了非紅供應鏈承諾的財源</h3>
+          </div>
+          <p class="find-sum">
+            原版 1.25 兆是二分結構：約 9000 億對外軍購＋ 3000 億「打造本土軍工產業鏈」。三讀後匡列 7800 億，砍後幾乎全是純對美軍購。關鍵在於 ——《國防特別預算條例》草案的三大重點之一，就是「<b>打造非紅供應鏈</b>」。砍掉本土軍工，砍的正是這條國家承諾的本土財源。這不是研究外掛的價值判斷，而是預算案<b>自己揭示</b>的政策目標。
+          </p>
+          <div class="find-key">
+            <span class="kl">重點</span>
+            軍購案本身就是「非紅供應鏈」承諾的一部分；砍的，是這個承諾的錢。
+          </div>
+        </article>
+
+        <article class="find rv" id="finding-2">
+          <div class="find-top">
+            <span class="find-no">F2</span>
+            <h3>工具機聚落西進中國，是早於砍案、已被一手財報逐條坐實的結構性存量</h3>
+          </div>
+          <p class="find-sum">
+            西進不是假設，是 5 家上市櫃公司在公開資訊觀測站（MOPS）的<b>財報附表逐條揭露</b>的事實。沿著「西進深度」排開，亞德客是光譜的<b>極端端點</b> —— 它的製造、市場、連企業的功能性貨幣都在中國。
+          </p>
+          <div class="block">
+            <p class="cap">圖 F2　工具機聚落西進深度光譜（由淺到深）</p>
+            <div class="ladder">
+              <div class="l-end top">↑ 西進較淺</div>
+              <div class="rung">
+                <div class="rung-node"></div>
+                <div class="rung-body">
+                  <div class="rung-co">瀧澤科技 <span class="tk">6609</span></div>
+                  <div class="rung-fact">浙江嘉善廠生產「三軸以上聯動數控機床」；2026 Q1 廠房仍在興建中。</div>
+                </div>
+              </div>
+              <div class="rung">
+                <div class="rung-node"></div>
+                <div class="rung-body">
+                  <div class="rung-co">程泰機械 <span class="tk">1583</span></div>
+                  <div class="rung-fact">中國有 5 家 100% 持股子公司（蘇州、吳江、嘉興、上海）。</div>
+                </div>
+              </div>
+              <div class="rung">
+                <div class="rung-node"></div>
+                <div class="rung-body">
+                  <div class="rung-co">東台精機 <span class="tk">4526</span></div>
+                  <div class="rung-fact">4 家中國子公司，並在泰國、越南、馬來西亞設廠 —— 西進與南移雙軌並行。</div>
+                </div>
+              </div>
+              <div class="rung">
+                <div class="rung-node"></div>
+                <div class="rung-body">
+                  <div class="rung-co">上銀科技 <span class="tk">2049</span></div>
+                  <div class="rung-fact">台灣母廠對中國子公司的銷貨佔合併營收 17%，形成製造價值鏈的跨海峽上下游綁定。</div>
+                </div>
+              </div>
+              <div class="rung extreme">
+                <div class="rung-node"></div>
+                <div class="rung-body">
+                  <div class="rung-co">亞德客國際 <span class="tk">1590</span> <span class="rung-tag">極端端點</span></div>
+                  <div class="rung-fact">中國有 8 家全資子公司、對陸投資帳面約新台幣 378 億元、94% 應收帳款在中國，公司功能性貨幣為人民幣。</div>
+                </div>
+              </div>
+              <div class="l-end bot">↓ 西進最深</div>
+            </div>
+          </div>
+          <div class="find-key">
+            <span class="kl">重點</span>
+            西進是財報坐實的結構性存量 —— 但這是「砍案之前」就存在的事實。
+          </div>
+        </article>
+
+        <article class="find rv" id="finding-3">
+          <div class="find-top">
+            <span class="find-no">F3</span>
+            <h3>「軍購砍 → 西進加速」目前只能說是壓力與條件，不是已發生的事實</h3>
+          </div>
+          <p class="find-sum">
+            這是全文最須謹慎的一條。所有引用的 2026 第一季財報都<b>截至 3 月 31 日，早於 5 月 8 日的砍案</b> —— 財報在時間上根本拍不到砍案的反應。因此「砍案後已大舉西進」沒有一手證據、不能成立；但反過來，財報也顯示西進趨勢線在砍案前就向上。
+          </p>
+          <div class="block">
+            <p class="cap">圖 F3　為什麼財報證明不了「砍案造成西進」</p>
+            <div class="timeline">
+              <div class="tl-line"></div>
+              <div class="tl-pts">
+                <div class="tl-pt"><div class="tl-dot"></div><div class="tl-d">2026 · Q1</div><div class="tl-x">財報截止 3/31</div></div>
+                <div class="tl-pt cut"><div class="tl-dot"></div><div class="tl-d">5 / 08</div><div class="tl-x">軍購砍案三讀</div></div>
+                <div class="tl-pt"><div class="tl-dot"></div><div class="tl-d">2026 · H2</div><div class="tl-x">中報／年報才拍得到反應</div></div>
+              </div>
+            </div>
+          </div>
+          <p class="find-sum" style="margin-top:30px">
+            「砍案 → 西進機率上升」需要三個條件同時成立：①內銷國防訂單的預期增量無法由年度／補充預算補回；②外銷市場無法吸收工具機閒置產能；③中國磁吸誘因持續、且法規風險未被廠商充分內部化。<b>條件成立程度越高，西進機率越高 —— 但這是機率與壓力的語言，不是「已經西進」。</b>
+          </p>
+          <div class="find-key">
+            <span class="kl">重點</span>
+            用「壓力與機率」描述因果，不做「已西進」的事實宣稱。這是誠實，也是準確。
+          </div>
+        </article>
+
+        <article class="find rv" id="finding-4">
+          <div class="find-top">
+            <span class="find-no">F4</span>
+            <h3>雙鏈差別待遇：工具機外銷補不上，無人機整機外銷強勁但 B 鏈仍有風險</h3>
+          </div>
+          <p class="find-sum">
+            工具機（A）的外銷對沖能力結構性偏弱；無人機整機（B）的外銷則明顯較強。但「無人機外銷蓬勃」<b>絕不等於</b>「無人機鏈沒有西進壓力」 —— 零組件仍依賴中國，且長期受上游工具機產能掏空牽制。
+          </p>
+          <div class="block">
+            <p class="cap">圖 F4a　工具機外銷的死路：輸美實質稅率</p>
+            <div class="tbars">
+              <div class="tbar-row">
+                <span class="tbar-lab">台灣工具機</span>
+                <div class="tbar-track"><div class="tbar-fill tw" data-w="100%">24.7%</div></div>
+              </div>
+              <div class="tbar-row">
+                <span class="tbar-lab">日本／韓國</span>
+                <div class="tbar-track"><div class="tbar-fill jk" data-w="60.7%">15%</div></div>
+              </div>
+            </div>
+            <p class="tbar-note">
+              台灣工具機輸美實質稅率 24.7%（MFN 4.7% ＋ 對等關稅 20%），比日韓高近 10 個百分點；台中工具機毛利率低於 20% —— 關稅幾乎吃掉全部毛利。截至 2025 年 9 月，台中機械設備製造業已有 1,357 人實施減班休息。
+            </p>
+          </div>
+          <div class="block">
+            <p class="cap">圖 F4b　無人機整機外銷：對沖能力在另一個量級</p>
+            <div class="stats">
+              <div class="stat"><div class="sv">×21</div><div class="sl">2025 整機外銷成長倍數</div><div class="su">外銷產值 29.5 億</div></div>
+              <div class="stat"><div class="sv">36</div><div class="sl">前來洽商的國家數</div><div class="su">買方市場</div></div>
+              <div class="stat c"><div class="sv">~60%</div><div class="sl">波蘭一國吸走的出口比重</div><div class="su">集中度即風險</div></div>
+              <div class="stat"><div class="sv">129<span style="font-size:20px">億</span></div><div class="sl">2025 無人機產業總產值</div><div class="su">年增逾 2.5 倍</div></div>
+            </div>
+          </div>
+          <div class="find-key">
+            <span class="kl">重點</span>
+            無人機外銷蓬勃 ≠ 西進壓力消失。上游工具機若被掏空，B 鏈的長期製造基礎也會被侵蝕。
+          </div>
+        </article>
+
+        <article class="find rv" id="finding-5">
+          <div class="find-top">
+            <span class="find-no">F5</span>
+            <h3>西進的風險機制：中國長臂管轄、美國 BIS 鎖出、技術擴散三層</h3>
+          </div>
+          <p class="find-sum">
+            「西進有風險」不該停在空泛口號。本研究用一手法規文本與廠商財報，把風險寫成三個具體層次。
+          </p>
+          <div class="block">
+            <div class="risk-stack">
+              <div class="rlayer">
+                <div class="rn">1</div>
+                <div class="rc">
+                  <div class="rt">中國長臂管轄</div>
+                  <div class="rd">在華子公司的資本結構受中國公司法直接支配；《反外國制裁法》與《阻斷辦法》構成「反向長臂管轄」工具。深度西進的台商面對「美中合規兩難」，而製造資產被綁在中國境內。</div>
+                </div>
+              </div>
+              <div class="rlayer">
+                <div class="rn">2</div>
+                <div class="rc">
+                  <div class="rt">美國 BIS Entity List 鎖出</div>
+                  <div class="rd">2025 年 3 月 BIS 一次將 12 家實體列入 Entity List，其中 1 家位於台灣（中資雲端子公司）。關鍵啟示：Entity List 會<b>穿透到「設在台灣的中國關聯實體」</b>。</div>
+                </div>
+              </div>
+              <div class="rlayer">
+                <div class="rn">3</div>
+                <div class="rc">
+                  <div class="rt">技術擴散的長期國防代價</div>
+                  <div class="rd">上銀年報揭露其在中國長期面對仿冒與專利侵權、須持續訴訟維權。學術上亦記錄過台灣資源流向中國國防關聯廠商的先例。製造能力與技術外洩，是難以逆轉的長期代價。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="find-key">
+            <span class="kl">重點</span>
+            鎖出風險是「有條件的」—— 主要適用於「同時具備國防關聯性 ＋ 歐美市場依賴」的廠商。亞德客深度西進卻沒被鎖出，正因為它非國防、賣的是中國內需市場。不是所有西進一概而論。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 04 · LONGFORM ================= -->
+    <section id="longform">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">完整分析：論證、六個反框架與證據邊界</h2>
+        </header>
+
+        <div class="lf rv">
+          <div class="lf-toc">
+            <a href="#lf-context">研究脈絡</a>
+            <a href="#lf-f1">F1 · 4700 億</a>
+            <a href="#lf-f2">F2 · 西進存量</a>
+            <a href="#lf-f3">F3 · 壓力非事實</a>
+            <a href="#lf-f4">F4 · 雙鏈差別</a>
+            <a href="#lf-f5">F5 · 風險三層</a>
+            <a href="#lf-cf">六個反框架</a>
+            <a href="#lf-gaps">證據邊界</a>
+          </div>
+
+          <h3 id="lf-context">研究脈絡與範圍</h3>
+          <p>2026 年 5 月 8 日，立法院藍白聯手三讀通過《保衛國家安全及強化不對稱戰力計畫採購特別條例》，將行政院原提 1.25 兆元的國防特別預算砍至 7800 億元，落差 4700 億元。這個事件值得做產業結構分析，有三個理由：第一，這段期間同時出現兩個方向相反的訊號 ——「軍購被大幅砍」與「無人機產業外銷 21 倍成長」—— 容易讓人困惑；「雙鏈分析」把這個表面矛盾拆開：兩條產業鏈受到的衝擊本來就不一樣。第二，「西進中國的風險」這個論述常停在空泛口號，本研究要用具體的廠商財報、出口管制法規與長臂管轄案例，把風險機制寫實。第三，這是政治敏感題目 —— 本研究的立場是<span class="em">產業結構分析，不是政治批判</span>：不評價「藍白應不應該砍」，只分析「砍了之後，產業鏈會承受什麼壓力、面對哪些 hedge 選項、對國家品牌承諾有何衝擊」。</p>
+          <p><b>範圍界定：</b>時間軸 2015 至今、重點壓在 2024–2026；地理主軸台灣、流向中國、對照南移東南亞與外銷買方市場。用途範圍是軍用／國防無人機與軍用商規，不深入純商用無人機。一個重要的時序限制：本研究引用的公開資訊觀測站（MOPS）財報資料截至 2026-03-31，<span class="em">早於 2026-05-08 的軍購砍案</span> —— 因此財報只能證明「西進的結構性基線」，不能證明「砍案後西進已發生」，這條界線在全文嚴格遵守。國際比較（美、烏、以、韓如何處理本國國防製造業 vs 中國訂單的張力）因缺乏系統性的國別比較資料，本研究刻意不展開，並在「證據邊界」明列為聚焦取捨而非遺漏。</p>
+
+          <h3 id="lf-f1"><span class="fid">F1</span>被砍的 4700 億，砍掉的是本土軍工與無人載具的財源</h3>
+          <p>行政院原提的 1.25 兆元特別預算為二分結構：約 9000 億元用於對外軍購、其餘 3000 億元用於「打造本土軍工產業鏈」；立法院三讀後總額匡列 7800 億元，佔原版的 62.4%，落差正是 4700 億元，而砍後的 7800 億幾乎全是純對美軍購。須特別澄清這 4700 億落差的<b>內部結構</b>，以免把幾個數字相加：4700 億是「原版 1.25 兆」與「砍後 7800 億」的<b>總落差</b>，它<b>不是</b>「3000 億 + 3350 億」這種可加總的明細。3000 億指的是原版用於「打造本土軍工產業鏈」的整體匡列；3350 億無人載具預算（含 21 萬架無人機、1320 艘無人艇的目標）是政治論述中常被單獨點名的<b>重點項目</b> —— 兩者在預算文件裡是不同報導層級的描述，涵蓋範圍重疊、不能直接相加。能確定的事實只有一條：被砍的 4700 億，不是均勻打擊對美軍購，而是<span class="em">集中落在「本土軍工產業鏈＋委製＋無人載具」這些本土訂單</span>上。</p>
+          <p>關鍵在於：《國防特別預算條例》草案被總結為三大重點 ——「加強不對稱戰力」「構築台灣之盾防空系統」與「打造非紅供應鏈」。也就是說，「非紅供應鏈」不是這個研究外掛的價值判斷，而是軍購特別預算<b>自己揭示</b>的政策目標之一。砍掉本土軍工 3000 億，砍掉的正是這條「非紅供應鏈」國家承諾的本土財源 —— 這是把「軍購砍」與「非紅供應鏈品牌風險」連起來的事實基礎，而非規範訴求。</p>
+          <p>軍購砍對廠商內銷訂單的衝擊有具體量級可參照。砍案前，國防部已啟動「軍用商規無人機」計畫並完成兩批得標：第二批由長榮航太、智飛科技、中光電智能機器人、神通資訊四家分得，合約總值 69.51 億元、履約至 2027 年 9 月；另有「史上最大無人機標案」（約 5 萬架、約 50 億元）與 500 億元級採購商機在規劃中。被砍的 3350 億無人載具預算若實現，將是這些內銷訂單的數十倍規模 —— 砍掉的是這條「內銷活水」的未來增量。須避免把「未來規劃被砍」與「已簽合約蒸發」混為一談：已簽的 69.51 億合約是否因砍案受影響，現有資料未能確認。</p>
+
+          <h3 id="lf-f2"><span class="fid">F2</span>工具機聚落西進，是一手財報坐實的結構性存量</h3>
+          <p>台灣工具機聚落（上游母機）西進中國，不是假設，而是上市櫃公司財報附表逐條揭露的事實。公開資訊觀測站（MOPS）的一手財報顯示：<b>程泰機械</b>在中國有五家 100% 持股子公司（蘇州、吳江、嘉興、上海）；<b>東台精機</b>在中國有四家子公司，核心的蘇州東昱精機實收資本額約新台幣 8 億元、營業項目明載「聯動數位控制機床、數位控制系統等之製造」；<b>瀧澤科技</b>的中國孫公司瀧澤機電（浙江嘉善）營業項目為「生產三軸以上聯動數控機床」。三家都是「CNC 工具機整機在中國設廠製造」的直接證據。</p>
+          <p>上游精密傳動零組件廠同樣西進。<b>上銀科技</b>在蘇州設有中國子公司「中國上銀公司」（實收資本額人民幣 3 億元的製造型子公司）；2026 Q1 上銀台灣母公司自台灣累積匯往中國上銀公司的投資約新台幣 15 億元、期末帳面價值已達 28.2 億元。更值得注意的是跨海峽上下游綁定：2026 Q1 上銀台灣母廠賣給中國上銀公司的金額約新台幣 11 億元、佔合併總營收 17%，而中國上銀公司 88% 的進貨來自台灣母廠。西進在這裡不是孤立子公司，而是製造價值鏈的<b>跨海峽分工</b>。</p>
+          <p><b>亞德客</b>（精密機械／自動化元件廠，非 CNC 工具機整機）是西進光譜的<span class="em">極端端點</span>。其 FY2025 合併財報顯示：在中國有 8 家全資子公司，期末對陸投資帳面金額合計約新台幣 378 億元（光寧波亞德客一家就約 302 億元）；公司「功能性貨幣為人民幣」（新台幣只是為了台灣上市而採用的表達貨幣）；94% 的應收帳款集中在中國。亦即亞德客的製造、市場與企業經濟實質都在中國，台灣主要是上市與部分營運／貿易節點。亞德客不是「軍購砍 → 西進」的案例（它做氣動元件、與國防訂單無關），它的價值是作為「工具機聚落西進若走到終局會是什麼樣子」的對照基線。</p>
+          <p><b>須保留的 nuance：</b>西進是分層的，不是全產能搬遷。上銀年報自陳其轉投資網絡橫跨歐美日十餘家關係企業、其風險段認知到的分散方向是「東歐＋東南亞」；瀧澤年報則明言西進策略是「低階機在中國、高階與智慧產線根留台灣」的分層。產業新聞並指十五五規劃磁吸、加上台灣銷陸需負擔關稅成本，三重壓力下「台工具機業醞釀登陸投資潮」—— 但「醞釀投資潮」是趨勢觀察與業者口徑，不等於已實現的投資統計。</p>
+
+          <h3 id="lf-f3"><span class="fid">F3</span>「砍案 → 西進加速」是壓力與條件，不是事實</h3>
+          <p>這是全文最須謹慎、也最容易被誤讀的一條。MOPS 財報能證明「西進的結構性存量」，但<b>不能</b>證明「砍案後西進已加速」，原因是時序：所有 2026 Q1 財報都截至 2026-03-31，而軍購砍案 2026-05-08 才三讀 —— 財報在時間上根本拍不到砍案的反應。具體看 2026 Q1 數字：程泰五家中國子公司「本期匯出／收回」欄全為 0、無新增匯出；上銀、東台對中國的投資也屬既有存量延續。因此「砍案後廠商已大舉西進」這個說法，目前沒有一手證據支撐、不能成立。</p>
+          <p>反過來，財報也不支持「砍案後不會西進」的樂觀結論。瀧澤的一手財報顯示西進是<b>動態累積的進行式</b>：浙江子公司自 2018 年投審會核准後分批匯出，2022、2025 年持續追加核准，2026 Q1 浙江嘉善廠房仍在興建中、且該子公司本季認列投資利益約新台幣 3600 萬元。也就是說，在砍案前夕，工具機西進的趨勢線是向上、向中國加碼的。砍案是把一個新的推力（內銷訂單預期落空）疊加到這條既有的上升趨勢上。須同時放在天平另一端的是：媒體「醞釀登陸投資潮」的框架，與一手財報「2026 Q1 本期匯出為 0」之間其實有張力 —— 判讀者不應把「醞釀投資潮」直接讀成「西進已加速」。</p>
+          <p>因此「軍購砍 → 西進機率大增」應被理解為<b>條件性的機率上升</b>，而非必然結果。其成立需要幾個可觀察的條件同時存在：(1) 內銷國防訂單的預期增量無法由年度／補充預算補回 —— 目前只能確認國防部表態「不再提二次特別預算」，但年度／補充預算實際能補回多少未知，故此條件只能說「方向上偏成立、量級未知」；(2) 外銷市場無法吸收工具機聚落的閒置產能（見 F4，此條件對工具機偏成立）；(3) 中國十五五的磁吸誘因持續、且西進的法規風險未被廠商充分內部化（見 F5）。<span class="em">當這些條件成立程度越高，西進機率越高 —— 但這是機率與壓力的語言，不是「已經西進」的事實宣稱。</span></p>
+
+          <h3 id="lf-f4"><span class="fid">F4</span>雙鏈差別待遇：工具機補不上，無人機強勁但仍有風險</h3>
+          <p>工具機（A）的外銷對沖能力，由產業統計證明是<b>結構性偏弱</b>。台灣工具機公會資料顯示，2025 年 1–8 月工具機總出口年減 7.7%、車床類更年減 18.3%；對中國出口佔比由 2021 年的 32.2% 降至 2025 年的 26.7%，但中國仍是第一大出口市場。工具機被「兩面夾擊」：高階遭日本、中低階遭中國低價加補貼擠壓。更關鍵的是美國這條外銷路被關稅實質封堵 —— 台灣工具機輸美實質稅率達 24.7%（MFN 4.7% ＋ 對等關稅 20%），比日韓的 15% 高出近 10 個百分點，而台中工具機毛利率低於 20%，關稅幾乎吃掉全部毛利。台灣 70% 精密機械／工具機廠集中於台中聚落，截至 2025 年 9 月該市機械設備製造業已有 49 家次、1,357 人實施減班休息。工具機聚落在軍購砍之前就已在承受外銷衝擊。</p>
+          <p>無人機整機（B）的外銷對沖能力則明顯較強。台灣無人機產業 2025 年產值達 129 億元（年增逾 2.5 倍），其中整機外銷產值成長 21 倍、外銷產值 29.5 億元；2026 年第一季出口金額已超過 2025 年全年，並有 36 個國家的廠商前來洽商。多筆獨立報導交叉佐證且買方組合一致（波蘭、德國、捷克為大宗）。這是雙鏈分析的核心 nuance：無人機整機有「非紅供應鏈」需求支撐的買方市場，對沖能力與工具機不在同一個量級。</p>
+          <p>但「無人機外銷蓬勃」絕不等於「無人機鏈沒有西進壓力」，須先說清楚一條界線：本研究蒐集到的資料<b>沒有</b>「某無人機廠商西進中國」的具名案例，本研究不主張 B 鏈已發生可觀察的西進 —— 這裡說的「B 鏈仍有風險」指的是<b>供應鏈依賴與結構性風險</b>，不是已實現的西進事實。理由有二：第一，外銷的高成長有低基期效應，且高度集中於少數買家（波蘭一國即吸走約 6 成出口量），集中度本身是風險；第二，更結構性的是 —— 無人機整機的零組件仍依賴中國，智庫指出台灣無人機國家隊雖外銷強勁，但電池與稀土仍依賴中國。</p>
+          <p>雙鏈之間還有一層上下游關係決定的長期牽制：工具機（A）是製造無人機相關零組件的「母機」。瀧澤年報明文記載 CNC 車床的重要用途包含「國防航太工業零件加工」。須謹慎處理這條連結 ——「國防航太工業零件」不等同於「無人機零組件」，「掏空工具機產能 → 侵蝕無人機長期製造基礎」這一步是結構性外推。在此前提下：工具機西進若掏空台灣本地的中低階精密加工產能，無人機整機鏈的長期製造基礎也會被侵蝕。<span class="em">無人機今天外銷蓬勃，不保證上游母機產能流失後，這條「非紅供應鏈」的長期承諾還站得住。</span></p>
+
+          <h3 id="lf-f5"><span class="fid">F5</span>西進風險三層：長臂管轄、BIS 鎖出、技術擴散</h3>
+          <p>美國 BIS Entity List 的「鎖出」機制不是假設。美國商務部 BIS 2025 年 3 月的最終規則（聯邦法規一手文本）一次將 12 家實體加入 Entity List，其中 1 家位於台灣 —— 即位於新北市的一家中國雲端巨頭子公司，因母公司關係被連帶列管，管制強度為「全品項」加「推定駁回」。Entity List 的法律效果是：一旦實體被列，任何受美國出口管理規則（EAR）管轄品項的出口、再出口、境內移轉都須額外許可、且喪失多數例外。工具機（尤其五軸加工中心）依雙用途品項框架推論正屬此類典型品項。這個機制的關鍵啟示是：<span class="em">Entity List 會穿透到「設在台灣的中國關聯實體」。</span></p>
+          <p><b>須區分兩件性質不同的事，不宜混為對稱的「雙向鎖出」：</b>(1) 美方 Entity List 是落在<b>廠商頭上的鎖出風險</b> —— 深度西進、且涉敏感品項或中資關聯的台灣廠商，可能因此觸及美方 EAR 風險，這是風險。(2) 台灣經濟部維護的「戰略性高科技貨品出口管制名單」則是台灣作為<b>出口管制執法端</b>、要求企業履行的<b>合規義務</b> —— 它協助企業比對交易對象是否落入管制清單，本身並不是西進造成的鎖出風險。兩者同屬出口管制體系，但一個是施加在廠商身上的風險、一個是廠商該盡的合規責任。把法源層次補齊，這個議題其實橫跨「美國 BIS／EAR ＋ 台灣戰略貨品管制 ＋ 中國反制法制」三端。</p>
+          <p>中國端的「長臂管轄」風險，來自中國法規對在華台商資產的支配力。一個結構性事實由一手財報側面證實：瀧澤董事會因「中國大陸公司法修正」而須處理浙江孫公司的減資與增資調整案 —— 在華子公司的資本結構受中國法律框架直接支配，須由台灣母公司董事會層級被動因應。在制裁法層面，中國《反外國制裁法》與《阻斷辦法》構成「反向長臂管轄」工具，2025 年中國已首次動用《阻斷辦法》反制美方長臂管轄。對深度西進的台商而言，這形成「美中合規兩難」：美國要求的合規動作可能違反中國法、反之亦然，而企業的製造資產被綁在中國境內。</p>
+          <p>第三層是技術擴散與製造能力外洩的長期國防代價。一手財報提供了「技術西進後遭抄襲」的廠商級例證：上銀年報揭露其在中國市場長期面對仿冒與專利侵權，須持續訴訟維權。學術層面，有同儕審查研究記錄了台灣資源流向中國國防關聯廠商、提升中國國防微電子能力的先例 —— 這是「技術擴散 → 中國軍力」這條長期代價最核心的論述來源（該來源因取用限制，未能逐一手查證）。</p>
+          <p><b>須誠實放上風險敘事的另一面：脫鉤本身也有代價。</b>有同儕審查研究主張，跨國的亞太生產分工長期以來是一股「和平的力量」，過度脫鉤本身會帶來衝突風險。這條對立觀點不否定前述長期代價，但它提醒：把所有跨海峽生產關係都當成國防風險、進而主張全面脫鉤，會忽略相互依賴的穩定作用 —— 政策上的正確問題不是「要不要與中國有任何生產關係」，而是「<span class="em">哪些品項、哪種國防關聯性的西進需要被管制</span>」。本研究因此採「有條件、分品項」的風險判讀。</p>
+          <p><b>須誠實標示這個發現的證據邊界。</b>本研究蒐集到的資料<b>沒有</b>「某台灣工具機廠因西進中國而被 BIS／EAR 鎖出歐美訂單」的具名案例 —— 列管機制的存在能被證明，但機制存在不等於個案已發生。亞德客的案例反而<b>界定了風險的適用邊界</b>：亞德客深度西進、卻沒有「被歐美鎖出」問題 —— 正因為它做氣動元件、非國防相關、賣的本來就是中國內需市場。這反證「非紅供應鏈鎖出風險」是<span class="em">有條件的</span>：風險主要適用於「同時具備國防關聯性 ＋ 歐美市場依賴」的工具機與無人機廠，不是所有西進一概而論。</p>
+
+          <h3 id="lf-cf">六個對立框架的處理</h3>
+          <p>對外公開、政治敏感的題目須誠實處理對立框架，不能只寫單面。以下逐一回應六個可能挑戰本研究的反向論述。</p>
+          <div class="lf-cf">
+            <div class="cf-item"><div class="cf-q">外銷對沖可補內銷</div>
+              <p>對無人機整機（B）部分成立、對工具機（A）不成立。無人機外銷強勁，但零組件仍依賴中國、外銷高度集中波蘭一國 —— 對沖能力強但非無風險。對工具機，外銷對沖明確補不上。此框架可部分採用於 B 鏈，不可套用於 A 鏈。</p></div>
+            <div class="cf-item"><div class="cf-q">西進是商業合理、不必過度國防化</div>
+              <p>此框架有一手廠商口徑支撐，本研究承認西進確有商業合理性 —— 這正是它難以單靠道德勸說阻止的原因。但「商業合理」與「有國家代價」可以並存：個別廠商合理的選擇，加總起來仍可能掏空聚落製造能力並承擔法規風險。本研究不過度國防化每一筆西進，但保留「加總後的結構性國防代價」這個分析層次。</p></div>
+            <div class="cf-item"><div class="cf-q">中國市場規模 ≠ 中國長臂管轄</div>
+              <p>部分成立。亞德客顯示純服務中國內需市場的西進並未招致歐美鎖出。但不能推到「西進無長臂風險」：在華資產確實受中國公司法直接支配，《反外國制裁法》《阻斷辦法》是已動用的工具。正確結論是：長臂管轄風險與「市場 vs 製造 vs 國防關聯」的組合有關。</p></div>
+            <div class="cf-item"><div class="cf-q">工具機跟國防製造能力的連結是想像的</div>
+              <p>本研究不接受其強版本，但承認其指出的證據弱點為真。連結有一手證據（瀧澤年報載 CNC 車床用途含「國防航太零件加工」），但缺乏「某工具機廠西進後直接削弱某國防專案」的具名個案 —— 連結在產業邏輯上成立，但缺乏個案層級的因果證據。</p></div>
+            <div class="cf-item"><div class="cf-q">南移東南亞才是 hedge 主軸</div>
+              <p>有真實依據但不足以取代西進主軸。東台同時在泰、越、馬設子公司，是「西進＋南移並行」的雙軌而非二選一。南移是真實的第三條 hedge 路徑、與西進並存，但一手財報顯示的工具機在華製造存量規模仍大於南移存量。</p></div>
+            <div class="cf-item"><div class="cf-q">藍白砍預算是程序問題而非實質</div>
+              <p>本研究不採其強版本。砍掉的 4700 億有明確的實質內容，且對應到具體的內銷訂單。能成立的有限版本只是：砍案的「實質產業後果」尚未在一手數據中顯現（即 F3 的時序限制）—— 但「後果尚未被數據拍到」不等於「砍案只是程序問題」。</p></div>
+          </div>
+
+          <h3 id="lf-gaps">證據邊界：這份分析還無法回答什麼</h3>
+          <p>在政治敏感的題目上，明說哪些問題還無法回答，是分析與宣傳的分水嶺。以下是本研究刻意標示的證據邊界。</p>
+          <ul class="gaps">
+            <li><b>B 鏈（無人機整機／零組件）缺乏公司層級的一手財報。</b>一手財報集中在 A 鏈 5 家工具機廠；無人機相關上市櫃公司沒有同等深度的財報查核。「無人機鏈是否西進」目前只能靠零組件依賴邏輯與上下游推論 —— A 鏈的西進論述遠比 B 鏈紮實。</li>
+            <li><b>「工具機西進後失去歐美訂單」沒有具名產業案例。</b>能證明「列管機制存在」，但沒有任何一家台灣工具機廠被記錄為「因西進而被 BIS／EAR 鎖出」。本研究嚴守此界線：機制存在不等於個案已發生。</li>
+            <li><b>Wassenaar Arrangement／ECCN 雙用途分類的條約層未能逐項對應。</b>本研究以一手法源處理 BIS／EAR Entity List 與台灣戰略貨品管制，但「工具機落入哪個雙用途分類」採框架性推論，未能逐條對應條約清單。</li>
+            <li><b>「技術擴散 → 中國軍力」的核心學術來源未能一手查證。</b>該來源因取用限制無法取得全文 —— 這條長期代價的論述目前缺乏一手深度查證的支撐。</li>
+            <li><b>「砍案 → 西進」的因果無法用現有財報驗證。</b>所有財報截至 2026-03，早於砍案；廠商的實際反應須待 2026 年中報、年報才能觀察。</li>
+            <li><b>國際比較（美／烏／以／韓）不在本研究範圍。</b>這是聚焦取捨而非遺漏 —— 缺乏系統性的國別比較資料，故不展開。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 · SOURCES ================= -->
+    <section id="sources">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">資料來源：本報告的證據基底</h2>
+          <p class="sec-lead">其中 10 筆為 5 家上市櫃公司在公開資訊觀測站（MOPS）公開的財務報告。</p>
+        </header>
+        <div class="src-grid rv">
+          <div class="src"><span class="sid">財報</span><div class="sx"><b>上銀科技</b> 2024 年報 ／ 2026 Q1 合併財報 <span>MOPS 2049</span></div></div>
+          <div class="src"><span class="sid">財報</span><div class="sx"><b>程泰機械</b> 2025 ／ 2026 Q1 合併財報 <span>MOPS 1583</span></div></div>
+          <div class="src"><span class="sid">財報</span><div class="sx"><b>東台精機</b> 2025 ／ 2026 Q1 合併財報 <span>MOPS 4526</span></div></div>
+          <div class="src"><span class="sid">財報</span><div class="sx"><b>瀧澤科技</b> 113 年度年報 ／ 2026 Q1 合併財報 <span>MOPS 6609</span></div></div>
+          <div class="src"><span class="sid">財報</span><div class="sx"><b>亞德客國際</b> FY2025 ／ 2026 Q1 合併財報 <span>MOPS 1590</span></div></div>
+          <div class="src"><span class="sid">深度</span><div class="sx"><b>1.25 兆的拔河</b> — 軍購現況與預算僵局 <span>報導者</span></div></div>
+          <div class="src"><span class="sid">法源</span><div class="sx"><b>BIS Entity List 最終規則</b>（含台灣實體）<span>美國商務部 BIS</span></div></div>
+          <div class="src"><span class="sid">法源</span><div class="sx"><b>eCFR 15 CFR Part 744</b> Entity List 現行條文 <span>美國 eCFR</span></div></div>
+          <div class="src"><span class="sid">法源</span><div class="sx"><b>戰略性高科技貨品出口管制名單</b> <span>台灣經濟部</span></div></div>
+          <div class="src"><span class="sid">統計</span><div class="sx"><b>台灣工具機產業現況</b> 2025 年 1–8 月 <span>工具機公會 TAMI</span></div></div>
+          <div class="src"><span class="sid">統計</span><div class="sx"><b>臺中工具機產業受美國關稅衝擊專案報告</b> <span>台中市政府</span></div></div>
+          <div class="src"><span class="sid">產業</span><div class="sx"><b>無人機民主之翼航向全球</b> — 129 億產值、外銷 21 倍 <span>中央社</span></div></div>
+          <div class="src"><span class="sid">產業</span><div class="sx"><b>陸十五五磁吸 台工具機業醞釀登陸投資潮</b> <span>工商時報</span></div></div>
+          <div class="src"><span class="sid">學術</span><div class="sx"><b>跨海峽國防半導體產業與區域安全</b> <span>M-C. M. Chu</span></div></div>
+          <div class="src"><span class="sid">學術</span><div class="sx"><b>相互保證的中斷：全球化、安全與脫鉤的危險</b> <span>T. J. Christensen</span></div></div>
+          <div class="src"><span class="sid">機制</span><div class="sx"><b>中國《阻斷辦法》反制長臂管轄</b> · 立院外委會長臂管轄專案報告 <span>多筆新聞</span></div></div>
+        </div>
+        <p class="src-note">
+          以上為主要引用來源；本報告全文另引用其他新聞與機構資料，合計約 38 筆。「財報」類為公開資訊觀測站（MOPS）的公司財務報告。
+        </p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <b>軍購砍 4700 億後，台灣國防供應鏈的西進壓力與「非紅供應鏈」承諾</b><br>
+  以無人機產業及其上游工具機為例 · 研究定位備忘錄 · 2026 年 5 月 · 對外公開版本<br>
+  立場：產業結構分析，不是政治批判
+</footer>
+
+<script>
+  const navLinks = [...document.querySelectorAll('.nav a')];
+  const map = new Map();
+  navLinks.forEach(a=>{
+    const id=a.getAttribute('href').slice(1);
+    const el=document.getElementById(id);
+    if(el) map.set(el,a);
+  });
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        navLinks.forEach(a=>a.classList.remove('active'));
+        const a=map.get(e.target);
+        if(a) a.classList.add('active');
+      }
+    });
+  },{rootMargin:'-15% 0px -75% 0px'});
+  map.forEach((a,el)=>spy.observe(el));
+
+  const rev = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        e.target.querySelectorAll('[data-w]').forEach(b=>{b.style.width=b.getAttribute('data-w')});
+        rev.unobserve(e.target);
+      }
+    });
+  },{rootMargin:'0px 0px -10% 0px'});
+  document.querySelectorAll('.rv').forEach((el,i)=>{
+    el.style.transitionDelay=(Math.min(i,4)*0.06)+'s';
+    rev.observe(el);
+  });
+  const barObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.querySelectorAll('[data-w]').forEach(b=>b.style.width=b.getAttribute('data-w'));
+        barObs.unobserve(e.target);
+      }
+    });
+  },{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.tbars,.bbar').forEach(el=>barObs.observe(el));
+</script>
+</body>
+</html>

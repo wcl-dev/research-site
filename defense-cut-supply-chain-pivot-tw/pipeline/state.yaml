@@ -1,0 +1,15 @@
+project: defense-cut-supply-chain-pivot-tw
+tool: insight-pipeline
+version: v1
+current_stage: done
+status: done
+brief_path: pipeline/brief.md
+brief_expanded_path: pipeline/brief_expanded.yaml
+collect_output_path: pipeline/collect/candidates.jsonl
+gate_output_path: pipeline/gate/accepted.jsonl
+gate_rejected_path: pipeline/gate/rejected.jsonl
+extracts_output_path: pipeline/extracts/
+synthesize_output_path: pipeline/synthesize/
+draft_output_path: pipeline/draft/insight_v1.md
+review_output_path: pipeline/review/review.md
+last_handoff_ts: "2026-05-19T05:00:00Z"
