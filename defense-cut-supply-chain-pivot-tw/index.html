@@ -6,18 +6,18 @@
 <title>軍購砍 4700 億後的西進壓力 — 以無人機產業及其上游工具機為例</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F4EFE2; --paper-card:#FCF9F1; --paper-sink:#E9E1CC;
+    --paper:#F4EFE2; --paper-card:#FCF9F1;
     --ink:#211F19; --ink-soft:#544F44; --ink-faint:#8A8473;
-    --rule:#D4CBB2; --rule-soft:#E2DAC4;
+    --rule:#D4CBB2;
     --navy:#1B4A66;     /* A 工具機 ／ 結構性深色 */
     --jade:#2B7458;     /* B 無人機 */
     --clay:#B5402B;     /* 砍 ／ 風險 */
     --display:'Fraunces','Noto Serif TC',serif;
     --serif:'Fraunces','Noto Serif TC',serif;
-    --mono:'IBM Plex Mono','Noto Serif TC',monospace;
+    --mono:ui-monospace,'SF Mono',Menlo,'Noto Serif TC',monospace;
     --maxw:920px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -33,7 +33,7 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   }
   a{color:inherit}
-  ::selection{background:var(--paper-sink)}
+  ::selection{background:var(--paper-card)}
 
   /* ============ LAYOUT ============ */
   .shell{display:flex; min-height:100vh}
@@ -41,7 +41,7 @@
   /* ---- sidebar ---- */
   .nav{
     width:300px; flex:none; position:fixed; top:0; left:0; bottom:0;
-    background:var(--paper-sink); border-right:1px solid var(--rule);
+    background:var(--paper-card); border-right:1px solid var(--rule);
     padding:42px 0 36px; overflow-y:auto; z-index:40;
   }
   .nav-brand{padding:0 32px 26px; border-bottom:1px solid var(--rule); margin-bottom:10px}
@@ -190,7 +190,7 @@
   .chain-sub{font-size:14.5px; opacity:.9; margin-top:8px; line-height:1.6}
   .chain-rows{padding:8px 28px 24px}
   .crow{padding:20px 0}
-  .crow+.crow{border-top:1px solid var(--rule-soft)}
+  .crow+.crow{border-top:1px solid var(--rule)}
   .crow .lbl{font-size:15px; color:var(--ink-faint); margin-bottom:8px}
   .crow .val{font-size:17.5px; line-height:1.62}
   .crow .val b{font-weight:700}
@@ -242,7 +242,7 @@
     flex:1; min-width:260px}
   .find-sum{font-size:18px; line-height:1.84; color:var(--ink-soft)}
   .find-sum b{color:var(--ink); font-weight:700}
-  .find-key{margin-top:24px; padding:22px 26px; background:var(--paper-sink);
+  .find-key{margin-top:24px; padding:22px 26px; background:var(--paper-card);
     border-radius:11px; font-size:17px; line-height:1.74}
   .find-key .kl{font-family:var(--mono); font-size:13px; letter-spacing:.08em;
     color:var(--clay); font-weight:600; display:block; margin-bottom:6px}
@@ -254,11 +254,11 @@
   .l-end{font-family:var(--mono); font-size:13px; color:var(--ink-faint); padding-left:50px}
   .l-end.bot{margin-top:10px}
   .rung{display:flex; gap:22px; padding:22px 0; position:relative}
-  .rung+.rung{border-top:1px solid var(--rule-soft)}
+  .rung+.rung{border-top:1px solid var(--rule)}
   .rung::before{content:""; position:absolute; left:13px; top:0; bottom:0; width:2px;
     background:var(--rule)}
-  .rung:first-of-type::before{top:35px}
-  .rung:last-of-type::before{bottom:auto; height:35px}
+  .l-end.top + .rung::before{top:35px}
+  .rung:has(+ .l-end.bot)::before{bottom:auto; height:35px}
   .rung-node{flex:none; width:28px; display:flex; justify-content:center; padding-top:5px;
     position:relative; z-index:2}
   .rung-node::before{content:""; width:16px; height:16px; border-radius:50%;
@@ -287,7 +287,7 @@
   .tbars{display:flex; flex-direction:column; gap:16px}
   .tbar-row{display:flex; align-items:center; gap:18px}
   .tbar-lab{font-size:16px; width:120px; flex:none; color:var(--ink-soft)}
-  .tbar-track{flex:1; background:var(--paper-sink); border-radius:5px; height:38px;
+  .tbar-track{flex:1; background:var(--paper-card); border-radius:5px; height:38px;
     position:relative; overflow:hidden}
   .tbar-fill{height:100%; border-radius:5px; width:0;
     transition:width 1.1s cubic-bezier(.2,.7,.2,1);
@@ -336,7 +336,7 @@
     font-weight:500; margin-right:12px}
   .lf p{margin:18px 0; font-size:18.5px; line-height:1.92}
   .lf p b{font-weight:700}
-  .lf .em{font-weight:700; background:var(--paper-sink); padding:1px 5px; border-radius:3px}
+  .lf .em{font-weight:700; background:var(--paper-card); padding:1px 5px; border-radius:3px}
   .lf .cf-item{margin:18px 0; padding:24px 28px; background:var(--paper-card);
     border:1px solid var(--rule); border-radius:12px}
   .lf-cf{counter-reset:cf}
@@ -361,7 +361,7 @@
 
   /* ============ SOURCES ============ */
   .src-grid{display:grid; grid-template-columns:1fr 1fr; gap:0 36px}
-  .src{padding:16px 0; border-bottom:1px solid var(--rule-soft); font-size:15px;
+  .src{padding:16px 0; border-bottom:1px solid var(--rule); font-size:15px;
     line-height:1.6; display:flex; gap:14px}
   .src .sid{font-family:var(--mono); font-size:12px; color:var(--clay); flex:none;
     font-weight:600; padding-top:2px; width:38px}
@@ -413,23 +413,22 @@
   <!-- ================= SIDEBAR ================= -->
   <nav class="nav" id="nav">
     <div class="nav-brand">
-      <a href="../" style="display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);text-decoration:none;margin-bottom:18px">← weichen&#x27;s Research</a>
       <div class="nav-kicker">研究定位備忘錄</div>
-      <div class="nav-title">軍購砍 <b>4700 億</b>後的<br>西進壓力與非紅供應鏈</div>
+      <div class="nav-title">軍購砍 <b>4700 億</b>後的西進壓力與非紅供應鏈</div>
       <div class="nav-scope">以無人機產業及其上游工具機為例</div>
       <div class="nav-meta">台灣國防供應鏈 · 2026 / 05</div>
     </div>
     <ol>
-      <li class="nav-grp">四種閱讀深度</li>
-      <li><a href="#tldr"><span class="ix">01</span>三十秒摘要</a></li>
+      <li class="nav-grp">主要內容</li>
+      <li><a href="#tldr"><span class="ix">01</span>摘要</a></li>
       <li><a href="#framing"><span class="ix">02</span>雙鏈分析</a></li>
-      <li><a href="#findings"><span class="ix">03</span>五項發現</a></li>
-      <li><a href="#finding-1" class="sub">F1　被砍的 4700 億是什麼</a></li>
-      <li><a href="#finding-2" class="sub">F2　工具機西進是存量事實</a></li>
-      <li><a href="#finding-3" class="sub">F3　砍案到西進是壓力非事實</a></li>
+      <li><a href="#findings"><span class="ix">03</span>發現</a></li>
+      <li><a href="#finding-1" class="sub">F1　被砍的 4700 億：本土軍工與無人載具</a></li>
+      <li><a href="#finding-2" class="sub">F2　工具機西進的存量證據</a></li>
+      <li><a href="#finding-3" class="sub">F3　砍案到西進：壓力與條件</a></li>
       <li><a href="#finding-4" class="sub">F4　雙鏈差別待遇</a></li>
-      <li><a href="#finding-5" class="sub">F5　西進風險三層機制</a></li>
-      <li><a href="#longform"><span class="ix">04</span>完整分析</a></li>
+      <li><a href="#finding-5" class="sub">F5　西進風險三層</a></li>
+      <li><a href="#longform"><span class="ix">04</span>完整分析與限制</a></li>
       <li class="nav-grp">附錄</li>
       <li><a href="#sources"><span class="ix">05</span>資料來源</a></li>
     </ol>
@@ -440,8 +439,8 @@
     <header class="hero">
       <div class="hero-inner">
         <div class="hero-kicker">台灣國防供應鏈 · 產業結構分析</div>
-        <h1 class="hero-title">軍購砍 <span class="cut">4700 億</span>之後，<br>誰會西進，承諾會不會跳票</h1>
-        <p class="hero-scope">以無人機產業及其上游工具機聚落為例 —— 一個雙鏈分析</p>
+        <h1 class="hero-title">軍購砍 <span class="cut">4700 億</span>之後，誰會西進，承諾會不會跳票</h1>
+        <p class="hero-scope">主要結論：工具機西進是 5 家上市櫃廠財報坐實的結構性<b>存量</b>；砍案是疊加在既有趨勢上的<b>新推力</b>，不是已發生的因果。</p>
         <p class="hero-stand">
           2026 年 5 月，立法院把 1.25 兆國防特別預算砍到 7800 億。這段期間，兩個方向相反的訊號同時出現 ——
           <b>軍購被大砍</b>，<b>無人機外銷卻成長 21 倍</b>。這個表面上的矛盾，本備忘錄用「雙鏈分析」拆開：
@@ -470,7 +469,7 @@
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">01</span>
-          <h2 class="sec-title">三十秒摘要：軍購砍案的五個重點</h2>
+          <h2 class="sec-title">摘要：軍購砍案的五個重點</h2>
         </header>
         <div class="tldr-list">
           <div class="tldr rv">
@@ -497,7 +496,7 @@
           <div class="tldr rv">
             <div class="num">4</div>
             <div class="body">
-              <p>西進的具體風險有三層：<b>中國長臂管轄</b>（在華資產受中國法支配）、<b>美國 BIS Entity List 鎖出</b>（會穿透到設在台灣的中資關聯實體）、以及<b>製造能力與技術外洩</b>的長期國防代價。但風險是「有條件的」，不是所有西進一概而論。</p>
+              <p>西進的具體風險有三層：<b>中國長臂管轄</b>（在華資產受中國法支配）、<b>美國商務部 BIS（產業安全局）Entity List 鎖出</b>（會穿透到設在台灣的中資關聯實體）、以及<b>製造能力與技術外洩</b>的長期國防代價。但風險是「有條件的」，不是所有西進一概而論。</p>
               <div class="tag">詳見發現 5</div>
             </div>
           </div>
@@ -578,7 +577,7 @@
         </div>
 
         <div class="block rv">
-          <h3 class="sub-h">被衝擊的廠商有三條 hedge 路徑</h3>
+          <h3 class="sub-h">被衝擊的廠商有三條對沖（hedge）路徑</h3>
           <div class="paths">
             <div class="path">
               <div class="path-no">路徑 01</div>
@@ -629,7 +628,7 @@
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">03</span>
-          <h2 class="sec-title">五項發現：軍購砍案如何牽動西進</h2>
+          <h2 class="sec-title">發現：軍購砍案如何牽動西進</h2>
         </header>
 
         <article class="find rv" id="finding-1">
@@ -815,7 +814,7 @@
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">04</span>
-          <h2 class="sec-title">完整分析：論證、六個反框架與證據邊界</h2>
+          <h2 class="sec-title">完整分析與限制：論證、反框架與證據邊界</h2>
         </header>
 
         <div class="lf rv">
@@ -900,7 +899,7 @@
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">05</span>
-          <h2 class="sec-title">資料來源：本報告的證據基底</h2>
+          <h2 class="sec-title">資料來源</h2>
           <p class="sec-lead">其中 10 筆為 5 家上市櫃公司在公開資訊觀測站（MOPS）公開的財務報告。</p>
         </header>
         <div class="src-grid rv">
