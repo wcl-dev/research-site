@@ -1,0 +1,33 @@
+=== 160055 D3 inter-rater (n=400) ===
+claude rows=400 codex rows=400 aligned=400
+
+Cohen's kappa (D3, A/B/U) = 0.627   agreement = 81.2%   FAIL (<0.70)
+disagreements: 75
+  claude=B codex=U: 34
+  claude=U codex=A: 17
+  claude=U codex=B: 14
+  claude=B codex=A: 5
+  claude=A codex=B: 3
+  claude=A codex=U: 2
+
+binary A-vs-nonA kappa   = 0.776   agreement = 93.2%   PASS
+  (diagnosis: 3-way fail is localised to the B/U boundary; A vs non-A is reliable)
+
+=== D3 distribution (per-site, unweighted) ===
+  claude     A= 65 (16.2%)  B=277 (69.2%)  U= 58 (14.5%)
+  codex      A= 82 (20.5%)  B=255 (63.7%)  U= 63 (15.8%)
+  consensus  A= 60 (15.0%)  B=238 (59.5%)  U=102 (25.5%)
+
+=== 160055 per-site A/B/U estimate (consensus, n=400) ===
+  A: 15.0% ± 3.5%   -> ~1286 of 8574 sites [986-1586]
+  B: 59.5% ± 4.8%   -> ~5102 of 8574 sites [4689-5514]
+  U: 25.5% ± 4.3%   -> ~2186 of 8574 sites [1820-2553]
+
+=== 160055 CNT-weighted A/B/U estimate (consensus, sample CNT=5438) ===
+  (weights each sampled site by its report count — approximates the share of
+   the 104,834 total reports that involve A vs B sites)
+  A: 33.9%   bootstrap 95% CI [20.1%, 45.9%]
+  B: 40.0%   bootstrap 95% CI [30.6%, 51.3%]
+  U: 26.1%   bootstrap 95% CI [19.2%, 34.8%]
+
+wrote coding-160055-consensus.csv

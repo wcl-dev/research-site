@@ -1,0 +1,56 @@
+=== 176455 full classification ===
+raw rows: 48575   distinct hostnames: 48417   distinct registrable domains: 11683
+inflation: 4.2x rows per registrable domain
+
+top 12 domain farms (by distinct hostnames):
+  word1018.shop                 3006 hostnames   3008 rows
+  small1006.shop                3005 hostnames   3005 rows
+  hosting1023.shop              3005 hostnames   3005 rows
+  forless1116.shop              3005 hostnames   3005 rows
+  cheaps1224.shop               3005 hostnames   3005 rows
+  trans1017.shop                3005 hostnames   3005 rows
+  email1121.shop                3005 hostnames   3005 rows
+  bullionve.shop                3004 hostnames   3004 rows
+  dashdeexj.com                 3004 hostnames   3004 rows
+  dyshangcheng.top              3004 hostnames   3007 rows
+  search1211.site               3004 hostnames   3006 rows
+  greter.cc                     3003 hostnames   3005 rows
+
+D3 (per registrable domain, v1.2 A-vs-nonA):
+  A (typosquat-confirmed impersonation, LOWER BOUND): 1048 (9.0%)
+  non-A: 10635 (91.0%)
+
+D4 (from 網站性質, per registrable domain):
+  SHOP       6222 (53.3%)
+  INVEST     3696 (31.6%)
+  UNK        1632 (14.0%)
+  IMPGOV      133 (1.1%)
+
+impersonated targets among A registrable domains (1048 total):
+   637  7-ELEVEN 賣貨便
+    88  全家 FamilyMart
+    85  財政部電子發票
+    47  Kerry 嘉里大榮
+    34  東森購物
+    11  Saxo
+    11  政府機關 gov.tw
+     9  OKX
+     9  中信 CTBC
+     7  監理服務 MVDIS
+     7  Bybit
+     6  BigONE
+     6  Mitrade
+     6  Shopee 蝦皮
+     6  eToro
+     6  Gate.io
+     5  AliExpress
+     5  Amazon
+     5  LINE
+     5  Lazada
+     4  MEXC
+     4  Crypto.com
+     4  OANDA
+     4  中華電信 CHT
+     3  eBay
+
+網站性質 raw distribution (rows): {'金融保險': 37034, '電子商務': 8625, '資訊服務': 1579, '運輸倉儲': 1032, '政府機構與國營事業': 168, '抽獎博弈': 71, '釣魚網站': 47, '假交友網站': 9, '虛擬通貨': 7, '金融投資': 1, '不詳': 1, '假貸款網站': 1}

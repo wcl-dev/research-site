@@ -1,0 +1,51 @@
+loaded 83 brands, 104 tokens
+
+=== VALIDATE on 160055 pilot (n=40, domain-only vs gold labels) ===
+gold A=18  gold non-A=22
+algo flagged A=7  ->  TP=7 FP=0 FN=11 TN=22
+PRECISION=1.00  RECALL=0.39
+
+catches (7):
+  160055-06    vitex111.top                     -> VITEX [substring]
+  160055-08    www.webseanos.com                -> Websea [substring]
+  160055-17    www.jubiweb.com                  -> Jubi 聚幣 [substring]
+  160055-22    blackrockplus.net                -> BlackRock [substring]
+  160055-27    mex58.bitmexx02.com              -> BitMEX [substring]
+  160055-31    trademaxus.com                   -> TMGM Trademax [substring]
+  160055-36    www.cosmedvipbonusrewards.com    -> 康是美 Cosmed [substring]
+
+false positives (0):
+
+missed gold-A (11) — domain carries no detectable brand:
+  160055-02    www.kytudt.com
+  160055-03    www.carrfurnergrio.com
+  160055-07    app.nmckke.com
+  160055-11    pmp.marketjrv.com
+  160055-23    www.oiwqiiq.com
+  160055-24    www.harordn.com
+  160055-28    app-eth.com
+  160055-32    www.tkglobaluo.com
+  160055-33    uniwaiop.cyou
+  160055-38    granthicod.com
+  160055-39    www.htigerglobalgj.com
+
+loaded 83 brands, 104 tokens
+
+=== APPLY on 176455 300-row random sample ===
+rows: 300
+distinct registrable domains: 86  (top farms: search1211×26, trans1017×25, cheaps1224×22, hosting1023×22, greter×21, small1006×18)
+
+flagged A (rescued from U): 11  = 3.7% of rows
+  duge.cathay-tw.com                 -> 國泰 Cathay (FIN) [substring]
+  myship7-11-tw-tw.shop              -> 7-ELEVEN 賣貨便 (LOGI) [substring]
+  myship-7-11-gjvn.top               -> 7-ELEVEN 賣貨便 (LOGI) [substring]
+  tw.cat-bbt.top                     -> 黑貓宅急便 (LOGI) [substring]
+  tw.kerry-me.top                    -> Kerry 嘉里大榮 (LOGI) [substring]
+  mexctiuk.com                       -> MEXC (FIN) [substring]
+  bigoneucg.com                      -> BigONE (FIN) [substring]
+  tw.one-boy.online                  -> OneBoy (ECOM) [substring]
+  tw.myship7-11-fc.cyou              -> 7-ELEVEN 賣貨便 (LOGI) [substring]
+  einvoice-tus-natgov-tw.com         -> 財政部電子發票 (GOV) [substring]
+  gtop.amazon-taiwan.shop            -> Amazon (ECOM) [substring]
+
+flagged distinct registrable domains: 11 of 86 = 12.8%

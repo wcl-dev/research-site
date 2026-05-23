@@ -1,0 +1,238 @@
+project: scam-fake-website-tw
+version: v1
+year_from: 2023
+languages: [zh-TW, en]
+
+brief_type:
+  intent: surveillance          # 現況規模與佔比盤點;A-vs-B 對照為次結構
+  horizon: current              # 主資料集中 2024-2026;2021+ 僅供 RPZ 縱貫基期
+
+# ─────────────────────────────────────────────────────────────
+# I3 — Concept ontology (research_focus = A∪B; A/B 互斥共構全集, C 為方法論軸)
+# ─────────────────────────────────────────────────────────────
+concept_ontology:
+  - id: A
+    label: "冒名型詐騙網站／假冒網域 (impersonation-type)"
+    definition: >-
+      網站或網域刻意冒充一個真實存在的機構、品牌、政府單位或知名人物;
+      技術上常以 typosquatting、近似網域、複製官網外觀達成。狹義的
+      「假冒網域」。
+    type: entity
+    layer: impersonation
+    examples_in:
+      - "假冒衛福部的 mogov.tw(真站為 mohw.gov.tw)"
+      - "假冒財政部『普發一萬』的釣魚網站"
+      - "假冒元大銀行 / 國泰世華的登入頁"
+      - "假冒黑貓宅急便 / 7-11 的取貨繳費頁"
+      - "假冒蝦皮 / 露天的登入釣魚頁"
+      - "假冒台積電 / 財經名人的投資招攬頁"
+    examples_out:
+      - "自創品牌名稱、不冒充任何真實對象的假投資交易平台(屬 B)"
+      - "不模仿任何真站的自創名稱假購物商城(屬 B)"
+
+  - id: B
+    label: "非冒名型詐騙網站 (purpose-built, non-impersonating)"
+    definition: >-
+      專為詐騙而架設、但不冒充任何特定真實品牌的網站;以自創名稱與
+      外觀運作。廣義「假網站」中扣除 A 的部分。
+    type: entity
+    layer: purpose_built
+    examples_in:
+      - "自創名稱的假投資 / 虛擬貨幣交易平台"
+      - "自創名稱的假購物商城 / 假特賣網站"
+      - "假博弈 / 假娛樂城網站"
+      - "假抽獎、假問卷領獎的一頁式網站"
+    examples_out:
+      - "真實電商平台(蝦皮、FB Marketplace)上的假賣場 / 假帳號 — 那是真網站上的詐騙帳號, 不是一個假網站"
+      - "純 LINE 投資群組『喊單』— 無網站"
+      - "純語音 / 純簡訊詐騙 — 無網站"
+
+  - id: C
+    label: "分類軸:詐騙『手法／類型』 vs 『媒介／工具』"
+    definition: >-
+      官方(165、內政部)按詐騙手法／類型分類(假投資、網購、假交友…);
+      「假網站」是橫跨多種類型的媒介／工具, 不被官方獨立計數。此軸是
+      「為何沒有單一佔比數字」的根因, 貫穿全 brief 作為方法論濾鏡。
+    type: concept_axis
+    examples_in:
+      - "手法軸範例值:假投資詐騙、網路購物詐騙、釣魚連結詐騙(假冒機構)、假交友"
+      - "媒介軸範例值:假網站、惡意簡訊連結、假冒 APP、社群假廣告、純語音電話"
+    examples_out:
+      - "受害者年齡 / 性別 / 縣市分布 — 那是 victim 軸, 非本研究的分類軸"
+
+research_focus: "A∪B"   # 詐騙網站全集;brief 核心要求 A、B 各自佔比拆開測量並對照;C 軸為方法論濾鏡
+
+# ─────────────────────────────────────────────────────────────
+# Queries (Collector 逐字執行;object 形式帶 concept_target)
+# ─────────────────────────────────────────────────────────────
+queries:
+  # A — 冒名型 / 假冒網域
+  - text: "假冒政府機關 詐騙網站 釣魚 停止解析 件數"
+    concept_target: A
+  - text: "假冒銀行 釣魚網站 詐騙 統計 台灣"
+    concept_target: A
+  - text: "假冒物流 簡訊 釣魚網址 黑貓 7-11 詐騙 比例"
+    concept_target: A
+  - text: "brand impersonation phishing domain Taiwan statistics"
+    concept_target: A
+  - text: "165 釣魚連結詐騙 假冒機構 受理案件 財損"
+    concept_target: A
+
+  # B — 非冒名型詐騙網站
+  - text: "假投資平台 詐騙網站 165 件數 財損 佔比"
+    concept_target: B
+  - text: "假購物網站 詐騙 網路購物詐騙 獨立假網站 比例"
+    concept_target: B
+  - text: "詐騙網站 一頁式廣告 假商城 數量 台灣"
+    concept_target: B
+
+  # A∪B — 生態 / 佔比 / 攔阻 / 趨勢(不綁單一概念)
+  - "165打詐儀表板 詐騙手法 類型 佔比 件數 年度"
+  - "數位發展部 網路詐騙通報查詢網 詐騙網站 下架 成效報告"
+  - "TWNIC DNS RPZ 停止解析 詐騙網域 數量 透明度報告"
+  - "Whoscall 年度防詐報告 惡意連結 網路釣魚網站 佔比"
+  - "趨勢科技 詐騙網站 假冒品牌 台灣 調查 比例"
+  - "台灣數位信任協會 冒名詐騙報告書 量化"
+  - "詐欺犯罪危害防制條例 詐騙網站 下架 網域 平台義務"
+  - "phishing scam website share Taiwan fraud loss statistics"
+
+# ─────────────────────────────────────────────────────────────
+# Keyword expansions
+# ─────────────────────────────────────────────────────────────
+keyword_expansions:
+  synonyms:
+    - 假網站
+    - 詐騙網站
+    - 釣魚網站
+    - 假冒網站
+    - 偽冒網站
+    - 假網址
+    - 詐騙網址
+    - 惡意網址
+    - 假冒網域
+    - fake website
+    - phishing site
+    - scam website
+    - fraudulent website
+    - spoofed domain
+
+  adjacent_concepts:
+    - 假投資平台
+    - 假購物網站
+    - 假博弈網站
+    - 一頁式網站
+    - 一頁式廣告
+    - 釣魚簡訊
+    - 釣魚連結
+    - 惡意連結
+    - 短網址
+    - 假冒 APP
+    - 假登入頁
+    - 假繳費頁
+    - 社群假廣告
+    - 詐騙廣告
+    - typosquatting
+    - 域名搶註
+
+  technical_jargon:
+    - DNS RPZ
+    - 停止解析
+    - 回應政策區域
+    - Response Policy Zone
+    - 網域名稱
+    - WHOIS
+    - SSL 憑證
+    - 防詐儀表板
+    - 165 打詐儀表板
+    - 網路詐騙通報查詢網
+    - fraudbuster
+    - PhishingCheck
+    - TWCERT/CC
+    - 詐欺犯罪危害防制條例
+    - 打詐四法
+    - 詐騙樣態分析
+
+  metrics_vocab:
+    - 受理件數
+    - 財損金額
+    - 佔比
+    - 下架件數
+    - 攔阻數
+    - 辨識量
+    - 通報則數
+    - 暴露率
+    - 破獲率
+
+  counter_framings:
+    - 詐騙多發生在真平台假賣場
+    - 電話簡訊才是詐騙主力
+    - 攔阻量不等於受害佔比
+    - 假投資多為純 LINE 群組
+
+# G4 / audit #16 — counter_framings 為句子型, 提供短關鍵字供 substring match
+counter_framing_keywords:
+  real_platform_not_fake_site: ["真平台", "蝦皮", "Marketplace", "假賣場", "假帳號", "平台假"]
+  voice_sms_primary: ["電話詐騙", "語音", "簡訊詐騙", "猜猜我是誰", "假檢警", "解除分期"]
+  supply_not_demand: ["攔阻", "下架", "停止解析", "通報量", "供給端"]
+  line_group_variant: ["LINE 群組", "投資群組", "喊單", "通訊軟體", "加 LINE"]
+
+# audit #1 — 資料持有機構分層;Collector Track 4 portal fan-out 依宣告順序展開
+actor_layers:
+  gov_data_holders:
+    - 內政部警政署刑事警察局 165
+    - 內政部警政署 165 打詐儀表板
+    - 數位發展部數位產業署
+    - 法務部調查局
+    - 財政部
+    - 金融監督管理委員會
+  infrastructure:
+    - TWNIC 台灣網路資訊中心
+    - TWCERT/CC
+  industry:
+    - 趨勢科技 Trend Micro
+    - Whoscall (Gogolook 走著瞧股份有限公司)
+    - 台灣數位信任協會
+  platform:
+    - Meta
+    - LINE
+    - Google
+
+exclusion_terms:
+  - accounting fraud
+  - financial statement fraud
+  - healthcare fraud
+  - insurance fraud
+  - credit card fraud detection algorithm
+  - astrophysics
+
+source_priorities:
+  must_include:
+    - 165 打詐儀表板 (內政部警政署)
+    - 內政部警政署刑事警察局
+    - name: 數位發展部數位產業署 網路詐騙通報查詢網
+      fetch_fallback: secondary_citation_acceptable
+    - name: TWNIC DNS RPZ 透明度報告
+      fetch_fallback: secondary_citation_acceptable
+    - Whoscall / Gogolook 年度防詐報告
+    - name: 趨勢科技 資安報告與防詐調查
+      fetch_fallback: secondary_citation_acceptable
+    - 台灣數位信任協會
+    - name: 法務部調查局
+      fetch_fallback: skip_with_flag
+  deprioritize:
+    - 法律事務所 / 資安廠商 SEO 衛教部落格
+    - 純網路聲量排行 (KEYPO / 網路溫度計)
+    - 防詐產品行銷頁與產品發表稿
+    - 單一受害者現身說法
+    - 不含台灣量化數據的國際 phishing 概論
+
+seek_direct:
+  - https://165dashboard.tw/
+  - https://rpz.twnic.tw/
+  - https://fraudbuster.digiat.org.tw/accessibility/statistics/chart
+  - https://dtatw.org/news/
+  - https://moda.gov.tw/ADI/news/latest-news
+
+review:
+  mode: multi_model
+  fidelity_level: high

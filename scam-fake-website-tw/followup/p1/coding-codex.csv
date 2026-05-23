@@ -1,0 +1,101 @@
+uid,D3,D4,D5,confidence,note
+165027-7,A,SHOP,ECOM,H,desc names fake Lexin shop
+165027-413,A,SHOP,ECOM,H,desc names fake Shopee
+165027-1004,A,SHOP,ECOM,H,desc names fake Lexin Creative
+165027-1198,A,OTHER,OTHER,H,desc names fake LINE account
+165027-456,A,SHOP,ECOM,H,desc names fake Lexin Creative
+165027-136,A,SHOP,ECOM,H,desc names fake Lexin shop
+165027-1308,A,SHOP,ECOM,H,desc names fake Meiwuhen shop
+165027-78,A,SHOP,ECOM,H,desc names fake Lexin shop
+165027-1093,U,OTHER,,L,generic ad platform only
+165027-822,A,SHOP,ECOM,H,desc names fake Lexin Creative
+165027-160,A,SHOP,ECOM,H,desc names fake Lexin shop
+165027-941,A,SHOP,ECOM,M,desc says fake ecommerce
+165027-312,A,SHOP,ECOM,H,desc names fake Lexin Creative
+165027-472,A,SHOP,ECOM,H,desc names fake Rakuten
+165027-680,A,SHOP,ECOM,M,desc says fake ecommerce
+165027-1338,A,SHOP,OTHER,M,desc names fake Signal shop
+165027-1134,A,SHOP,ECOM,H,desc names fake Shin Kong Mitsukoshi
+165027-1250,A,SHOP,ECOM,H,desc names fake Meiwuhen shop
+165027-909,A,SHOP,ECOM,H,desc names fake Rakuten
+165027-356,A,SHOP,ECOM,H,desc names fake Shopee
+165027-187,A,SHOP,ECOM,H,desc names fake Lexin shop
+165027-656,A,SHOP,ECOM,M,desc says fake ecommerce
+165027-650,A,SHOP,ECOM,M,desc says fake ecommerce
+165027-323,U,SHOP,,L,generic customized tech shop
+165027-1194,A,OTHER,OTHER,H,desc names fake LINE account
+165027-1070,A,SHOP,ECOM,H,desc names fake ETMall
+165027-1020,A,SHOP,ECOM,H,desc names fake Lexin Creative
+165027-1409,A,SHOP,OTHER,H,desc names fake EasyCard company
+165027-804,A,SHOP,ECOM,M,desc says fake ecommerce
+165027-1156,A,SHOP,ECOM,H,desc names fake Lexin Creative
+160055-01,B,INVEST,,M,brand appears self-invented
+160055-02,A,INVEST,FIN,H,named Yuanta? no SinoPac Securities
+160055-03,A,SHOP,ECOM,H,named Carrefour
+160055-04,A,INVEST,OTHER,M,SRE Group named entity
+160055-05,B,INVEST,,M,name appears self-invented
+160055-06,A,INVEST,FIN,M,VITEX exchange name
+160055-07,A,INVEST,OTHER,M,named Advantech
+160055-08,A,INVEST,FIN,M,Websea exchange name
+160055-09,B,INVEST,,M,name appears self-invented
+160055-10,B,INVEST,,M,crypto brand appears self-invented
+160055-11,A,INVEST,FIN,M,TMX exchange name
+160055-12,U,INVEST,,L,generic crypto name
+160055-13,B,INVEST,,M,self-invented investment name
+160055-14,B,INVEST,,M,self-invented platform name
+160055-15,B,SHOP,,M,self-invented shopping name
+160055-16,B,INVEST,,M,self-invented exchange name
+160055-17,A,INVEST,FIN,M,Jubi exchange name
+160055-18,B,INVEST,,M,self-invented bullion name
+160055-19,B,INVEST,,M,self-invented FX name
+160055-20,B,JOB,,M,generic recruitment site name
+160055-21,U,INVEST,,L,ambiguous Chaseth name
+160055-22,A,INVEST,FIN,H,named BlackRock
+160055-23,A,INVEST,FIN,M,Huatai financial name
+160055-24,A,SHOP,ECOM,H,named Harrods
+160055-25,U,INVEST,,L,ambiguous USS name
+160055-26,B,INVEST,,M,generic offshore wind theme
+160055-27,A,INVEST,FIN,H,named BitMEX
+160055-28,A,INVEST,FIN,H,named eToro
+160055-29,B,INVEST,,M,self-invented international name
+160055-30,B,INVEST,,M,self-invented asset name
+160055-31,A,INVEST,FIN,H,named TMGM broker
+160055-32,B,INVEST,,M,self-invented international name
+160055-33,A,INVEST,FIN,H,named Uniswap
+160055-34,B,INVEST,,M,self-invented name
+160055-35,B,INVEST,,M,self-invented English name
+160055-36,A,SHOP,ECOM,H,named COSMED
+160055-37,B,SHOP,,M,generic shopping brand
+160055-38,A,INVEST,OTHER,M,named semiconductor association
+160055-39,B,INVEST,,M,self-invented international name
+160055-40,B,SHOP,,M,shop domain self-invented
+176455-01,U,SHOP,,L,domain only ecommerce tag
+176455-02,U,INVEST,,L,domain only financial tag
+176455-03,U,INVEST,,L,domain only financial tag
+176455-04,U,INVEST,,L,domain only financial tag
+176455-05,U,INVEST,,L,domain only financial tag
+176455-06,U,INVEST,,L,domain only financial tag
+176455-07,U,INVEST,,L,domain only financial tag
+176455-08,U,INVEST,,L,domain only financial tag
+176455-09,U,INVEST,,L,domain only financial tag
+176455-10,U,INVEST,,L,domain only financial tag
+176455-11,U,INVEST,,L,domain only financial tag
+176455-12,U,INVEST,,L,domain only financial tag
+176455-13,U,INVEST,,L,domain only financial tag
+176455-14,U,INVEST,,L,domain only financial tag
+176455-15,U,SHOP,,L,domain only ecommerce tag
+176455-16,U,INVEST,,L,domain only financial tag
+176455-17,U,INVEST,,L,domain only financial tag
+176455-18,U,INVEST,,L,domain only financial tag
+176455-19,U,SHOP,,L,domain only ecommerce tag
+176455-20,U,INVEST,,L,domain only financial tag
+176455-21,U,INVEST,,L,domain only financial tag
+176455-22,U,INVEST,,L,domain only financial tag
+176455-23,U,INVEST,,L,domain only financial tag
+176455-24,U,INVEST,,L,domain only financial tag
+176455-25,U,INVEST,,L,domain only financial tag
+176455-26,U,INVEST,,L,domain only financial tag
+176455-27,U,UNK,,L,domain only info tag
+176455-28,U,INVEST,,L,domain only financial tag
+176455-29,U,UNK,,L,domain only info tag
+176455-30,U,UNK,,L,domain only info tag

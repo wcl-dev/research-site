@@ -1,0 +1,401 @@
+idx,D3,note
+1,B,invented crypto name
+2,A,中華電信 real telco
+3,B,generic shop name
+4,B,constructed financial name
+5,B,invented crypto
+6,B,invented crypto
+7,U,plausible unverifiable CN name
+8,U,plausible unverifiable CN name
+9,B,invented exchange
+10,B,invented invest app
+11,U,plausible unverifiable CN name
+12,A,Mitrade real broker
+13,B,generic word
+14,B,gibberish
+15,B,invented
+16,A,Worldpay real payment co
+17,B,invented options name
+18,U,too short/generic
+19,B,invented
+20,B,generic descriptive
+21,U,plausible CN financial co
+22,B,gibberish/invented
+23,B,invented
+24,B,constructed generic
+25,B,gibberish
+26,U,Hub Culture obscure-real
+27,B,generic descriptive
+28,B,invented
+29,A,新濠影匯 Studio City Macau real
+30,A,匯豐中華 (HSBC) real
+31,U,too short
+32,B,generic phrase
+33,U,plausible CN securities
+34,B,invented
+35,B,gibberish
+36,B,generic word
+37,B,generic word forex
+38,B,generic word
+39,B,invented
+40,A,Filpkart typosquat Flipkart
+41,A,快手小店 Kuaishou Shop real
+42,B,generic word
+43,B,constructed generic
+44,B,invented
+45,U,plausible CN name
+46,A,Fastex real exchange
+47,B,invented + Capital
+48,A,聖淘沙 Sentosa real
+49,U,plausible CN asset mgmt
+50,A,發發奇 Farfetch CN name
+51,B,invented entertainment
+52,B,gibberish
+53,U,invokes SBI constructed
+54,B,gibberish
+55,B,generic descriptive invented
+56,B,constructed shop
+57,B,invented eth+refund
+58,U,invokes Tech Data
+59,B,generic word
+60,B,gibberish
+61,U,plausible CN name
+62,B,gibberish
+63,B,gibberish
+64,B,generic word
+65,B,gibberish/invented
+66,B,invented co+lend
+67,B,invented
+68,B,gibberish
+69,U,plausible CN company
+70,U,plausible CN name
+71,B,constructed shop
+72,B,invented invest app
+73,B,constructed generic
+74,A,Morgan Stanley real bank
+75,U,信達 borderline real
+76,B,invented fan+btc+tw
+77,B,gibberish
+78,A,Mizuho real megabank
+79,B,invented securities name
+80,B,invented English
+81,U,SAFEX obscure
+82,U,invokes TRX/Tron constructed
+83,A,中銀國際 BOC International real
+84,B,invented constructed
+85,B,invented CN company
+86,B,garbled invented
+87,B,generic state-capital
+88,A,impersonates eBay
+89,B,generic/mythological
+90,U,領峰 borderline real broker
+91,A,IG Global real broker
+92,B,generic word/token
+93,A,Pictet real Swiss bank
+94,B,invented casino name
+95,B,gibberish
+96,B,constructed shop
+97,B,gibberish
+98,B,gibberish
+99,B,generic word
+100,B,gibberish
+101,A,宏遠證券 real TW securities
+102,A,Raknten typosquat Rakuten
+103,B,gibberish
+104,B,generic constructed
+105,B,generic descriptive
+106,A,麥格理 Macquarie real
+107,B,gibberish
+108,A,CIBC real Canadian bank
+109,A,聯博 AllianceBernstein CN name
+110,B,invented EOS+snap
+111,A,考拉 Kaola real CN e-commerce
+112,A,Tezos real blockchain
+113,U,豐隆 borderline real
+114,B,constructed
+115,B,invented CN wealth name
+116,B,invented exchange (no real entity)
+117,B,constructed
+118,B,gibberish
+119,B,gibberish
+120,U,plausible CN name
+121,A,元大期貨 real TW futures
+122,B,gibberish
+123,B,generic invented
+124,B,short/generic
+125,A,OKX real crypto exchange
+126,B,constructed shop
+127,B,gibberish
+128,U,invokes IEX constructed
+129,B,invented
+130,B,invented
+131,B,gibberish
+132,B,constructed small-shop
+133,A,永利皇宮 Wynn Palace real casino
+134,B,plausible invented
+135,B,gibberish
+136,A,SEMI industry assoc real
+137,B,gibberish
+138,B,constructed Bing+coins
+139,B,gibberish
+140,U,invokes UBS
+141,B,invented exchange
+142,B,gibberish
+143,B,generic
+144,U,OTTO Market borderline
+145,B,short
+146,U,德盛 borderline real
+147,B,invented shop
+148,B,gibberish
+149,B,generic word
+150,B,constructed
+151,B,invented entertainment
+152,U,plausible TW securities
+153,U,BabySwap real-ish DeFi
+154,U,時富金融 borderline real
+155,B,constructed mall
+156,B,invented exchange
+157,B,generic quant-tech
+158,B,plausible invented
+159,B,invented marketplace
+160,B,gibberish
+161,A,阿里巴巴 Alibaba real
+162,B,invented
+163,B,generic word
+164,B,generic antiques
+165,B,invented misspelled
+166,U,plausible CN name
+167,U,plausible CN name
+168,B,plausible invented
+169,B,gibberish
+170,B,invented club
+171,A,HKEX real exchange
+172,B,invented loan
+173,A,CLSA real broker
+174,B,invented entertainment
+175,B,constructed
+176,B,gibberish
+177,B,generic constructed
+178,B,invented
+179,B,gibberish
+180,B,gibberish
+181,U,Bitonic real-ish
+182,B,constructed
+183,B,constructed
+184,B,gibberish
+185,B,invented
+186,A,invokes Binance
+187,U,華盛 borderline real
+188,U,IFC ambiguous
+189,B,invented
+190,B,constructed
+191,B,gibberish
+192,B,gibberish
+193,B,gibberish
+194,B,invented
+195,B,invented
+196,B,generic CN
+197,A,Mercado Livre real e-commerce
+198,B,gibberish
+199,B,gibberish
+200,B,invented casino
+201,B,short
+202,A,IG Group real broker
+203,B,invented casino
+204,U,plausible TW securities
+205,B,generic store
+206,A,第一證券 Firstrade CN name
+207,B,gibberish
+208,B,gibberish
+209,A,賣貨便 7-11 real
+210,B,gibberish
+211,U,BizBilla obscure-real
+212,B,invented
+213,U,plausible CN name
+214,A,大華銀行 UOB CN name
+215,A,Bakkt real platform
+216,B,gibberish
+217,B,invented gaming
+218,A,Kraken real crypto exchange
+219,B,invented exchange
+220,B,invented
+221,B,gibberish
+222,B,invented exchange
+223,B,generic shop name
+224,B,invented
+225,B,gibberish
+226,B,gibberish
+227,B,invented
+228,B,gibberish
+229,U,plausible gold-trading firm
+230,B,invented
+231,B,generic word
+232,B,generic word
+233,B,invented
+234,B,invented lottery
+235,B,constructed OK+bit
+236,U,柏瑞 PineBridge borderline
+237,B,gibberish
+238,B,generic constructed
+239,U,AEX ambiguous exchange
+240,B,short
+241,A,托克國際 Trafigura real
+242,B,invented
+243,B,constructed
+244,B,invented
+245,B,gibberish/token
+246,A,Warner Bros real
+247,B,constructed
+248,B,constructed shop
+249,B,invented
+250,B,AuroraChain invented-ish
+251,B,gibberish
+252,U,IOOF obscure-real
+253,B,invented
+254,B,gibberish
+255,A,Belkin real electronics brand
+256,B,gibberish
+257,B,invented
+258,U,陽信 borderline real
+259,B,invented
+260,B,gibberish
+261,U,invokes HP 惠普 constructed
+262,B,generic recruitment net
+263,B,generic phrase
+264,B,generic word
+265,B,gibberish
+266,U,plausible CN name
+267,A,樂天證券 Rakuten Securities real
+268,B,gibberish
+269,B,gibberish
+270,B,woot obscure
+271,U,plausible CN name
+272,B,invented
+273,A,中國航天 China Aerospace real
+274,B,short/generic
+275,B,invented
+276,B,constructed mall
+277,B,gibberish
+278,A,NASDAQ real
+279,B,constructed forex
+280,B,gibberish
+281,U,plausible CN name
+282,A,LIFFE real (historical) exchange
+283,U,plausible TW securities
+284,B,plausible invented
+285,A,7-11賣貨便 real
+286,B,invented
+287,B,generic/Mina
+288,B,invented
+289,B,Arch Linux odd non-financial
+290,B,invented
+291,B,invented
+292,U,Showroomprive obscure-real
+293,B,gibberish
+294,U,Fusion Markets borderline
+295,B,constructed
+296,B,invented coin+finance
+297,B,generic term web3
+298,B,generic staff-area
+299,B,constructed forex
+300,B,generic CN
+301,B,invented mall
+302,B,gibberish
+303,B,constructed
+304,A,JD-STORE invokes JD.com
+305,A,IWC real luxury watch brand
+306,B,invented
+307,B,constructed
+308,A,復華投信 Fuh Hwa real TW
+309,A,BitKeep real crypto wallet
+310,U,PG Mall borderline real
+311,B,gibberish
+312,B,gibberish
+313,B,invented
+314,A,新加坡聖淘沙 Sentosa real
+315,B,generic finance-info
+316,U,plausible CN name
+317,B,gibberish
+318,U,三芳 borderline real listed co
+319,A,富達金融 invokes Fidelity
+320,B,gibberish
+321,B,invented
+322,B,generic word ginkgo
+323,B,invented
+324,B,invented
+325,B,gibberish
+326,B,gibberish
+327,B,generic CN
+328,B,generic descriptive
+329,B,constructed
+330,B,short DCA
+331,B,invented foundation
+332,B,constructed
+333,B,invented
+334,B,gibberish
+335,B,generic CN
+336,B,invented
+337,A,國泰綜合醫院 Cathay hospital real
+338,B,invented
+339,U,plausible CN name
+340,U,plausible real small co
+341,B,generic word
+342,B,gibberish
+343,B,gibberish
+344,U,plausible CN name
+345,A,興證國際 real CN securities
+346,B,invented
+347,B,constructed mall
+348,B,gibberish
+349,A,Coinbase real crypto exchange
+350,B,generic descriptive
+351,B,gibberish
+352,B,invented
+353,B,invented
+354,A,Morningstar real
+355,B,generic CN
+356,A,Tiki real VN e-commerce
+357,B,generic CN
+358,B,Ant Design framework non-financial
+359,B,generic shopping
+360,A,嘉信證券 Charles Schwab CN name
+361,B,invented
+362,A,Bursa Malaysia real exchange
+363,A,Santander real bank
+364,B,gibberish
+365,B,gibberish
+366,B,constructed
+367,B,invented
+368,B,gibberish
+369,B,generic shopping net
+370,U,遠通 FETC borderline
+371,B,generic CN
+372,B,invented foundation
+373,A,唐吉訶德 Don Quijote real retailer
+374,U,EU ETS scheme name
+375,B,constructed forex
+376,B,invented
+377,B,invented
+378,B,gibberish
+379,B,short
+380,B,invented defi+ai
+381,B,invented
+382,A,保德信 Prudential PGIM CN name
+383,B,constructed mall
+384,U,Kwai Mall borderline
+385,B,invented green-energy theme
+386,B,generic descriptive
+387,B,invented forex
+388,B,gibberish
+389,B,generic descriptive
+390,B,generic word
+391,B,gibberish
+392,B,short
+393,U,plausible CN name
+394,B,COSS obscure
+395,B,constructed shop
+396,A,Yahoo購物 real
+397,B,Hindi generic foreign-trade
+398,A,IBM real
+399,B,gibberish
+400,A,國泰君安 Guotai Junan real broker

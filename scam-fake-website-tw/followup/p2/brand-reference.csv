@@ -1,0 +1,138 @@
+# 品牌參照清單 v1 — 供 typosquat_detect.py 比對。
+# canonical = 顯示名;d5 = D5 冒名對象類別;strict = 1 表示 token 只能 whole-label/hyphen-segment 比對(常用詞風險);tokens = ;分隔的小寫 ASCII 比對詞。
+canonical,d5,strict,tokens
+PChome,ECOM,0,pchome
+Shopee 蝦皮,ECOM,0,shopee;shoppe
+Rakuten 樂天,ECOM,0,rakuten
+momo購物,ECOM,1,momoshop;momomall
+東森購物,ECOM,0,etmall;ehsmall
+新光三越,ECOM,1,skm;skmplay
+Carrefour 家樂福,ECOM,0,carrefour
+全聯,ECOM,0,pxmart
+屈臣氏 Watsons,ECOM,0,watsons
+Amazon,ECOM,0,amazon
+eBay,ECOM,1,ebay
+Costco,ECOM,0,costco
+康是美 Cosmed,ECOM,0,cosmed
+Uniqlo,ECOM,0,uniqlo
+lativ,ECOM,0,lativ
+OneBoy,ECOM,0,oneboy;one-boy
+露天 Ruten,ECOM,1,ruten
+IKEA,ECOM,1,ikea
+Binance 幣安,FIN,0,binance
+OKX,FIN,1,okx
+Coinbase,FIN,0,coinbase
+Kraken,FIN,0,kraken
+Bybit,FIN,0,bybit
+BitMEX,FIN,0,bitmex
+MEXC,FIN,0,mexc
+BigONE,FIN,0,bigone
+Gate.io,FIN,0,gateio
+KuCoin,FIN,0,kucoin
+BitoPro 幣託,FIN,0,bitopro
+MaiCoin MAX,FIN,0,maicoin
+Bitget,FIN,0,bitget
+Huobi HTX,FIN,0,huobi
+eToro,FIN,0,etoro
+Saxo,FIN,0,saxo;saxobank;saxotrader
+OANDA,FIN,0,oanda
+TMGM Trademax,FIN,0,tmgm;trademax
+BlackRock,FIN,0,blackrock
+Vanguard,FIN,0,vanguard
+JPMorgan,FIN,0,jpmorgan
+Goldman Sachs,FIN,0,goldman
+HSBC,FIN,1,hsbc
+Citibank,FIN,0,citibank
+Fidelity,FIN,0,fidelity
+永豐金 SinoPac,FIN,0,sinopac
+元大 Yuanta,FIN,0,yuanta
+富邦 Fubon,FIN,0,fubon
+國泰 Cathay,FIN,0,cathay
+玉山 E.SUN,FIN,1,esunbank
+中信 CTBC,FIN,1,ctbc
+凱基 KGI,FIN,1,kgi
+兆豐 Mega,FIN,0,megabank;megaintl
+台新 Taishin,FIN,0,taishin
+第一銀行,FIN,0,firstbank
+Websea,FIN,0,websea
+Jubi 聚幣,FIN,0,jubi
+VITEX,FIN,0,vitex
+Uniswap,FIN,0,uniswap
+Gemini Exchange,FIN,0,geminiex
+黑貓宅急便,LOGI,0,tcat;t-cat;cat-bbt;blackcat
+新竹物流 HCT,LOGI,1,hct
+7-ELEVEN 賣貨便,LOGI,0,myship;seveneleven;7-11;711
+全家 FamilyMart,LOGI,0,famiport;familymart
+Kerry 嘉里大榮,LOGI,0,kerry
+中華郵政,LOGI,0,postgov;ctt-post
+FedEx,LOGI,0,fedex
+UPS,LOGI,1,ups
+DHL,LOGI,1,dhl
+財政部電子發票,GOV,0,einvoice
+政府機關 gov.tw,GOV,0,natgov;nat-gov;gov-tw;govtw
+健保署 NHI,GOV,1,nhi
+衛福部 MOHW,GOV,0,mohw
+財政部 MOF,GOV,1,mofgov
+國稅局 etax,GOV,0,etaxgov;etax-tw
+監理服務 MVDIS,GOV,0,mvdis
+台電 Taipower,GOV,0,taipower
+數位部 moda,GOV,1,modagov
+LINE,TELCO,1,line
+Signal,TELCO,1,signal
+Telegram,TELCO,0,telegram
+WhatsApp,TELCO,0,whatsapp
+中華電信 CHT,TELCO,1,cht
+台灣大哥大,TELCO,1,twmobile
+遠傳 FET,TELCO,0,fetnet
+# ── v2 擴充(2026-05-22):160055 n=400 樣本 + 165027 描述欄產出的真實品牌 ──
+Alibaba 阿里巴巴,ECOM,0,alibaba
+AliExpress,ECOM,0,aliexpress
+Don Quijote 唐吉訶德,ECOM,0,donquijote;donki
+Flipkart,ECOM,0,flipkart
+Farfetch 發發奇,ECOM,0,farfetch
+Kaola 考拉,ECOM,0,kaola
+MercadoLibre,ECOM,0,mercadolibre;mercadolivre
+JD.com 京東,ECOM,1,jd-com;jdstore
+Kuaishou 快手,ECOM,0,kuaishou;kwai
+Tiki,ECOM,1,tiki
+Temu,ECOM,0,temu
+Shein,ECOM,0,shein
+Lazada,ECOM,0,lazada
+Yahoo購物,ECOM,0,yahoo
+博客來,ECOM,0,bookscom
+Mitrade,FIN,0,mitrade
+Worldpay,FIN,0,worldpay
+Morgan Stanley,FIN,0,morganstanley;morgan-stanley
+Mizuho,FIN,0,mizuho
+CIBC,FIN,1,cibc
+Macquarie 麥格理,FIN,0,macquarie
+AllianceBernstein 聯博,FIN,0,alliancebernstein
+CLSA,FIN,1,clsa
+Bakkt,FIN,0,bakkt
+NASDAQ,FIN,0,nasdaq
+HKEX 香港交易所,FIN,1,hkex
+Morningstar,FIN,0,morningstar
+Bursa Malaysia,FIN,0,bursamalaysia
+Santander,FIN,0,santander
+Firstrade 第一證券,FIN,0,firstrade
+Charles Schwab 嘉信,FIN,0,charlesschwab
+Interactive Brokers,FIN,0,interactivebrokers
+UOB 大華銀行,FIN,1,uob-bank
+FXCM,FIN,1,fxcm
+Pictet,FIN,0,pictet
+Tezos,FIN,0,tezos
+Bitfinex,FIN,0,bitfinex
+Bitstamp,FIN,0,bitstamp
+Crypto.com,FIN,0,cryptocom
+Pionex,FIN,0,pionex
+Phemex,FIN,0,phemex
+Fastex,FIN,0,fastex
+BitKeep,FIN,0,bitkeep
+Belkin,OTHER,0,belkin
+Warner Bros,MEDIA,0,warnerbros
+IBM,OTHER,1,ibm-corp
+Netflix,MEDIA,0,netflix
+一卡通 iPASS,FIN,0,ipass-tw
+悠遊卡 EasyCard,FIN,0,easycard
+ECPay 綠界,FIN,0,ecpay
+Gogolook Whoscall,OTHER,0,gogolook;whoscall

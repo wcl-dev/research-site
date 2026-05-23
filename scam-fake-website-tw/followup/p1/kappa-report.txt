@@ -1,0 +1,38 @@
+=== P1 inter-rater reliability (Claude vs Codex) ===
+rows aligned: 100  |  claude=100 codex=100  |  unmatched uids: 0
+
+D3: kappa=0.814  agreement=88.0%  n=100  PASS
+  12 disagreements:
+    160055-04: claude=B        codex=A       
+    160055-12: claude=B        codex=U       
+    160055-21: claude=B        codex=U       
+    160055-25: claude=B        codex=U       
+    160055-32: claude=A        codex=B       
+    160055-39: claude=A        codex=B       
+    165027-1093: claude=A        codex=U       
+    165027-323: claude=A        codex=U       
+    165027-650: claude=B        codex=A       
+    165027-656: claude=B        codex=A       
+    165027-680: claude=B        codex=A       
+    165027-804: claude=B        codex=A       
+  [165027] kappa=-0.047 agreement=80.0% n=30
+  [160055] kappa=0.719 agreement=85.0% n=40
+  [176455] kappa=1.000 agreement=100.0% n=30
+
+D4: kappa=0.925  agreement=96.0%  n=100  PASS
+  4 disagreements:
+    160055-03: claude=INVEST   codex=SHOP    
+    160055-24: claude=INVEST   codex=SHOP    
+    160055-36: claude=INVEST   codex=SHOP    
+    160055-40: claude=INVEST   codex=SHOP    
+
+D5 (on rows both coded A): kappa=0.782  agreement=87.5%  n=40  PASS
+    165027-1194: claude=TELCO    codex=OTHER   
+    165027-1198: claude=TELCO    codex=OTHER   
+    165027-1338: claude=ECOM     codex=OTHER   
+    165027-1409: claude=FIN      codex=OTHER   
+    165027-941: claude=FIN      codex=ECOM    
+
+=== D3 distribution ===
+  claude: A=44 B=26 U=30
+  codex: A=45 B=20 U=35

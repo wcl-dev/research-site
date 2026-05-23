@@ -1,0 +1,401 @@
+idx,D3,note
+1,B,invented finance name
+2,A,known telecom brand
+3,B,generic shop name
+4,U,plausible finance entity
+5,B,invented crypto name
+6,B,invented crypto name
+7,U,obscure Chinese name
+8,B,generic short name
+9,B,invented crypto name
+10,B,invented platform name
+11,U,obscure Chinese name
+12,A,known trading broker
+13,B,generic word brand
+14,B,gibberish letters
+15,B,invented brand
+16,A,known payments brand
+17,B,invented trading name
+18,B,ambiguous initials
+19,B,invented quote name
+20,B,generic system name
+21,U,obscure finance name
+22,B,invented brand
+23,B,invented brand
+24,U,plausible company name
+25,B,gibberish letters
+26,A,known network brand
+27,B,generic system name
+28,B,invented welfare shop
+29,A,known Macau resort
+30,A,HSBC China reference
+31,B,ambiguous initials
+32,B,generic phrase
+33,U,plausible securities name
+34,B,generic task name
+35,B,invented brand
+36,B,generic word brand
+37,B,generic forex term
+38,B,generic word brand
+39,B,invented abbreviation
+40,A,Flipkart misspelling
+41,A,known Kuaishou shop
+42,B,generic word brand
+43,B,generic shop name
+44,B,invented trade name
+45,U,obscure Chinese name
+46,B,invented brand
+47,B,invented finance name
+48,A,known Sentosa brand
+49,U,obscure asset name
+50,B,invented brand
+51,B,generic entertainment name
+52,B,invented abbreviation
+53,A,SBI brand mimic
+54,B,invented abbreviation
+55,B,generic tech phrase
+56,B,generic shopping name
+57,B,invented crypto name
+58,U,plausible tech name
+59,B,generic word brand
+60,B,gibberish letters
+61,U,obscure Chinese name
+62,B,gibberish letters
+63,B,invented brand
+64,B,generic word brand
+65,B,broken generic name
+66,B,invented brand
+67,B,invented payment name
+68,B,gibberish letters
+69,U,obscure company name
+70,U,obscure company name
+71,B,invented shop name
+72,B,generic profit name
+73,B,generic mall name
+74,A,known investment bank
+75,A,known financial brand
+76,B,invented crypto name
+77,B,gibberish letters
+78,A,known bank brand
+79,U,obscure securities name
+80,B,generic phrase brand
+81,B,generic exchange name
+82,B,generic crypto token
+83,A,known BOC International
+84,B,invented mall name
+85,U,obscure software name
+86,B,generic job portal
+87,B,generic capital phrase
+88,A,known eBay brand
+89,B,generic myth name
+90,A,known metals broker
+91,A,known IG broker
+92,B,generic word brand
+93,A,known Pictet brand
+94,B,generic casino name
+95,B,gibberish letters
+96,B,invented shop name
+97,B,gibberish brand
+98,B,invented crypto name
+99,B,generic meme term
+100,B,gibberish letters
+101,A,known securities firm
+102,A,Rakuten misspelling
+103,B,ambiguous initials
+104,B,generic shop name
+105,B,generic marketing platform
+106,A,known Macquarie brand
+107,B,gibberish brand
+108,A,known bank brand
+109,A,known AllianceBernstein name
+110,B,invented crypto name
+111,A,known Kaola brand
+112,A,known blockchain brand
+113,U,obscure company name
+114,B,invented exchange name
+115,B,generic wealth name
+116,U,plausible exchange name
+117,B,generic shop name
+118,B,invented brand
+119,B,invented brand
+120,U,obscure Chinese name
+121,A,known futures firm
+122,B,invented brand
+123,B,generic trading name
+124,B,ambiguous initials
+125,A,known crypto exchange
+126,B,generic shopping name
+127,B,invented brand
+128,B,invented ecommerce name
+129,U,obscure platform name
+130,B,invented shop platform
+131,B,ambiguous initials
+132,B,generic small shop
+133,A,known Macau resort
+134,U,obscure company name
+135,B,gibberish letters
+136,A,known industry association
+137,B,invented brand
+138,B,invented crypto name
+139,B,invented brand
+140,B,ambiguous initials
+141,B,invented exchange name
+142,B,ambiguous initials
+143,B,generic phrase brand
+144,B,generic market name
+145,B,ambiguous initials
+146,A,known Allianz name
+147,B,invented shopping name
+148,B,invented brand
+149,B,generic word brand
+150,B,generic city name
+151,B,generic entertainment name
+152,A,known securities firm
+153,B,invented crypto name
+154,A,known financial group
+155,B,generic mall name
+156,B,invented exchange name
+157,B,generic tech phrase
+158,U,obscure investment name
+159,B,generic groupbuy name
+160,B,invented brand
+161,A,known Alibaba brand
+162,B,invented betting name
+163,B,generic word brand
+164,B,generic antiques phrase
+165,B,invented finance name
+166,U,obscure Chinese name
+167,U,obscure Chinese name
+168,U,obscure asset name
+169,B,ambiguous initials
+170,B,generic club name
+171,A,known exchange brand
+172,B,generic loan name
+173,A,known brokerage brand
+174,B,generic entertainment name
+175,B,generic data name
+176,B,gibberish initials
+177,B,generic trade name
+178,U,obscure asset name
+179,B,invented abbreviation
+180,B,gibberish brand
+181,B,generic crypto brand
+182,B,generic phrase brand
+183,B,invented mall name
+184,B,ambiguous initials
+185,U,obscure finance name
+186,A,known crypto exchange
+187,U,obscure company name
+188,B,ambiguous initials
+189,U,obscure company name
+190,B,generic shop name
+191,B,invented crypto name
+192,B,gibberish initials
+193,B,gibberish initials
+194,U,obscure Chinese name
+195,B,invented trade name
+196,U,obscure Chinese name
+197,A,known ecommerce brand
+198,B,invented exchange name
+199,B,invented crypto name
+200,B,generic casino name
+201,B,ambiguous initials
+202,A,known IG Group
+203,B,generic casino name
+204,U,obscure securities name
+205,B,generic marketplace name
+206,A,known securities firm
+207,B,gibberish letters
+208,B,gibberish letters
+209,A,known logistics service
+210,B,gibberish letters
+211,B,invented brand
+212,B,invented exchange name
+213,U,obscure Chinese name
+214,A,known UOB bank
+215,A,known Bakkt brand
+216,B,gibberish letters
+217,B,generic game city
+218,A,known crypto exchange
+219,B,invented exchange name
+220,B,generic investor name
+221,U,plausible trading firm
+222,B,invented exchange name
+223,B,generic shop name
+224,B,invented shop name
+225,B,invented brand
+226,B,gibberish letters
+227,B,invented brand
+228,B,ambiguous initials
+229,A,known gold broker
+230,B,invented exchange name
+231,B,generic word brand
+232,B,generic word brand
+233,U,obscure investment name
+234,B,generic lottery name
+235,B,invented crypto name
+236,A,known asset manager
+237,B,gibberish letters
+238,B,generic copytrading phrase
+239,A,known crypto exchange
+240,B,ambiguous initials
+241,U,obscure company name
+242,B,invented crypto name
+243,U,plausible company name
+244,B,generic crypto lottery
+245,B,gibberish letters
+246,A,known media brand
+247,B,generic mall name
+248,B,generic shopping name
+249,B,generic tech name
+250,A,known blockchain project
+251,B,gibberish letters
+252,A,known financial group
+253,B,invented crypto name
+254,B,ambiguous initials
+255,A,known electronics brand
+256,B,gibberish initials
+257,B,invented finance name
+258,A,known securities firm
+259,B,invented crypto name
+260,B,gibberish brand
+261,A,HP finance reference
+262,B,generic recruitment name
+263,B,generic phrase brand
+264,B,generic word brand
+265,B,invented brand
+266,U,obscure Chinese name
+267,A,known securities firm
+268,B,gibberish initials
+269,B,ambiguous initials
+270,A,known Amazon retailer
+271,U,obscure Chinese name
+272,B,invented crypto name
+273,A,known space brand
+274,B,ambiguous initials
+275,B,invented brand
+276,B,generic mall name
+277,B,gibberish initials
+278,A,known exchange brand
+279,B,invented forex name
+280,B,gibberish initials
+281,U,obscure Chinese name
+282,A,known futures exchange
+283,U,obscure securities name
+284,U,obscure finance name
+285,A,known 7-Eleven service
+286,B,generic name variant
+287,B,generic name brand
+288,B,invented crypto name
+289,A,known Linux project
+290,B,invented crypto name
+291,B,invented Chinese brand
+292,A,known ecommerce brand
+293,B,invented brand
+294,A,known forex broker
+295,B,generic phrase brand
+296,B,invented crypto name
+297,B,generic web term
+298,B,generic staff area
+299,B,generic forex name
+300,U,obscure Chinese name
+301,B,invented mall name
+302,B,gibberish letters
+303,B,generic shopping name
+304,B,generic store name
+305,A,known watch brand
+306,B,generic Chinese name
+307,B,generic shop name
+308,A,known fund manager
+309,A,known wallet brand
+310,B,generic mall name
+311,B,invented brand
+312,B,invented crypto name
+313,U,obscure investment name
+314,A,known Sentosa brand
+315,U,obscure finance media
+316,U,obscure Chinese name
+317,B,invented brand
+318,U,obscure Chinese name
+319,U,obscure finance name
+320,B,invented brand
+321,B,invented payment name
+322,B,generic word brand
+323,B,invented brand
+324,B,generic startup name
+325,B,invented exchange name
+326,B,gibberish letters
+327,U,obscure Chinese name
+328,B,generic content name
+329,B,generic capital name
+330,B,ambiguous initials
+331,U,obscure foundation name
+332,U,plausible company name
+333,U,obscure investment name
+334,B,invented exchange name
+335,U,obscure Chinese name
+336,B,generic brand name
+337,A,known hospital
+338,B,invented payment name
+339,U,obscure Chinese name
+340,U,obscure company name
+341,B,generic word brand
+342,B,invented exchange name
+343,B,gibberish letters
+344,U,obscure Chinese name
+345,A,known securities firm
+346,B,generic crypto name
+347,B,invented mall name
+348,B,gibberish brand
+349,A,known crypto exchange
+350,B,generic system name
+351,B,gibberish brand
+352,B,invented crypto name
+353,B,invented brand
+354,A,known financial data brand
+355,U,obscure Chinese name
+356,A,known Tiki ecommerce
+357,U,obscure Chinese name
+358,A,known software project
+359,B,generic shopping name
+360,A,known Schwab name
+361,B,generic project name
+362,A,known stock exchange
+363,A,known bank brand
+364,B,invented brand
+365,B,gibberish letters
+366,B,generic gold name
+367,U,obscure investment name
+368,B,invented brand
+369,B,generic shopping site
+370,U,plausible company name
+371,U,obscure Chinese name
+372,U,obscure foundation name
+373,A,known retail brand
+374,A,known emissions scheme
+375,B,generic forex name
+376,U,obscure company name
+377,U,obscure holdings name
+378,B,invented exchange name
+379,B,ambiguous initials
+380,B,generic defi name
+381,B,invented coin name
+382,A,known PGIM brand
+383,B,generic mall name
+384,A,known Kuaishou brand
+385,U,obscure power company
+386,B,generic system name
+387,B,invented markets name
+388,B,gibberish letters
+389,B,generic tech phrase
+390,B,generic word brand
+391,B,invented crypto name
+392,B,ambiguous initials
+393,B,invented Chinese name
+394,A,known crypto exchange
+395,B,invented shopping name
+396,A,known Yahoo shopping
+397,B,generic foreign trade
+398,A,known technology brand
+399,B,invented brand
+400,A,known securities firm

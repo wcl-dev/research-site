@@ -1,0 +1,240 @@
+# Curated sources for scam-fake-website-tw.
+#
+# Used by the Collector alongside academic APIs (OpenAlex, Semantic Scholar).
+# Schema: tools/insight-pipeline/schemas/sources.schema.json
+#
+# Seeded from a pre-interview deep-research round (2026-05-21). Most core
+# sources are NOT in tools/insight-pipeline/sources_seed.yaml (which skews
+# FIMI / children-media) — note for post-project back-promotion via
+# promote_sources.py. Cherry-picked from seed: moda, NCC, MyGoPen,
+# 台灣事實查核中心.
+#
+# verify: true means the URL was WebFetch-confirmed during the deep-research
+# round (verified_date set). Unverified URLs carry no verify flag — Collector
+# confirms on first run.
+
+sources:
+
+  # ── Government — primary data holders ────────────────────────────────────
+
+  - name: 165 打詐儀表板 (內政部警政署)
+    type: gov
+    content_style: primary_data_portal
+    focus: 詐騙手法／類型別受理件數、財損金額、月度與縣市數據 — 佔比推算的主分母
+    fetch: scrape
+    url: https://165dashboard.tw/
+    verify: true
+    verified_date: "2026-05-21"
+    portal_url_pattern: https://165dashboard.tw/scam-tactic
+    required_ticker_field: keyword_expansions.metrics_vocab
+    notes: |
+      JS-rendered SPA — WebFetch 只取得標題。Collector 須改用 twinkle-hub
+      fetch_url_as_markdown 或找警政署開放資料 / 新聞稿二手轉述。
+      詐騙手法是「類型」分類, 不直接給「假網站」媒介佔比 (C 軸問題核心)。
+
+  - name: 內政部警政署刑事警察局
+    type: gov
+    content_style: primary_doc
+    focus: 165 全民防騙網、詐騙手法話術解析、阻斷詐騙網站／下架詐騙廣告統計、新聞資料
+    fetch: scrape
+    url: https://www.cib.npa.gov.tw/ch/app/folder/2853
+    homepage: https://www.cib.npa.gov.tw/
+    notes: |
+      刑事局新聞稿常含「過去 N 個月阻斷詐騙網站 X 件」這類 supply-side 數字。
+      與 165 打詐儀表板互補。
+
+  - name: 內政部警政署 統計通報 / 詐欺案件概況
+    type: gov
+    content_style: primary_doc
+    focus: 年度／季度詐欺案件統計通報、詐騙手法分布、破獲率
+    fetch: scrape
+    url: https://www.npa.gov.tw/ch/app/data/list?module=wg057&id=2218
+    homepage: https://www.npa.gov.tw/
+    notes: 警政署統計室定期通報 — 較 165 儀表板穩定可引用的官方序列。
+
+  - name: 內政部 新聞發布 (高額詐欺財損趨勢分析)
+    type: gov
+    content_style: primary_doc
+    focus: 季度高額財損集中度分析、假投資／網購詐騙路徑描述
+    fetch: scrape
+    url: https://www.moi.gov.tw/News.aspx?n=4&sms=9009
+    homepage: https://www.moi.gov.tw/
+    notes: |
+      內政部新聞稿曾明述假投資路徑「臉書廣告→LINE 群組→詐騙網站」—
+      對 Q3 (B 是否經由獨立網站) 是關鍵質性證據。
+
+  - name: 數位發展部數位產業署 網路詐騙通報查詢網
+    type: gov
+    content_style: primary_doc
+    focus: 通報則數、確認詐騙、各平台下架量、「詐騙網站下架」件數、最常被仿冒公眾人物
+    fetch: scrape
+    url: https://moda.gov.tw/ADI/news/latest-news
+    homepage: https://fraudbuster.digiat.org.tw/accessibility/index
+    verify: true
+    verified_date: "2026-05-21"
+    notes: |
+      《成效報告》PDF (114/6/12) 已於 deep-research 取得:通報 219,616、
+      下架 122,119、其中詐騙網站下架 1,621。注意此管道以社群假廣告為主
+      (Meta 佔 96%), 「詐騙網站」1.3% 是 channel-specific, 會低估假網站。
+
+  - name: 數位發展部 moda (新聞稿 / 政策)
+    type: regulator
+    content_style: primary_doc
+    focus: 詐騙樣態分析、AI 防詐雷達、通報 TWNIC 停止解析、打詐政策
+    fetch: scrape
+    url: https://moda.gov.tw/press/press-releases
+    homepage: https://moda.gov.tw/
+    notes: Cherry-picked from sources_seed.yaml (seen_in dropped per §7a).
+
+  - name: 法務部調查局
+    type: gov
+    content_style: mixed
+    focus: 假冒網站／釣魚／網路犯罪相關偵查與出版品 — 須查證是否含量化內容
+    fetch: scrape
+    url: https://www.mjib.gov.tw/news
+    homepage: https://www.mjib.gov.tw/
+    notes: |
+      operator 指名來源。deep-research 顯示調查局在「假網站佔比」上量化資料
+      偏少;must_include 設 fetch_fallback: skip_with_flag — 若無相關材料,
+      Drafter 於「資料缺口」明說, 不阻擋 pipeline。
+
+  - name: 財政部 / 財政部關務署 (釣魚詐騙公告)
+    type: gov
+    content_style: news
+    focus: 假冒財政部網站事件 (如「普發一萬」釣魚)、停止解析案例
+    fetch: scrape
+    url: https://www.mof.gov.tw/singlehtml/285
+    homepage: https://www.mof.gov.tw/
+    notes: 假冒公務機關網站的具體案例來源 (A 概念)。
+
+  - name: 金融監督管理委員會 防詐專區
+    type: regulator
+    content_style: mixed
+    focus: 假投資冒名金融機構／名人、金融業偽冒詐騙、投資詐騙警示
+    fetch: scrape
+    url: https://www.fsc.gov.tw/ch/home.jsp?id=96&parentpath=0,2
+    homepage: https://www.fsc.gov.tw/
+    notes: 假投資網站冒名上市公司 / 投信的對照 (A 概念)。
+
+  # ── Internet infrastructure ──────────────────────────────────────────────
+
+  - name: TWNIC DNS RPZ 透明度報告
+    type: primary_doc
+    content_style: primary_doc
+    focus: DNS RPZ 停止解析的詐騙網域數量、分類別 (詐騙網站／假冒公務機關／電商聯防)、年度序列
+    fetch: scrape
+    url: https://rpz.twnic.tw/
+    verify: true
+    verified_date: "2026-05-21"
+    notes: |
+      停止解析量是攔阻假網站最直接的 supply-side 量化序列
+      (2021-2022: 2,975;2023-2024/4: 44,903)。注意 supply ≠ demand。
+      頁面可能為動態 — Collector 改用 twinkle-hub markdown 抓取。
+
+  - name: TWNIC 部落格 / 電子報
+    type: primary_doc
+    content_style: mixed
+    focus: DNS RPZ 機制說明、年度攔阻統計、緊急案件類型
+    fetch: scrape
+    url: https://blog.twnic.tw/
+    notes: TWNIC RPZ 透明度報告的敘述性補充。
+
+  - name: TWCERT/CC PhishingCheck
+    type: gov
+    content_style: mixed
+    focus: 釣魚網站通報服務、通報量、處理流程
+    fetch: scrape
+    url: https://www.twcert.org.tw/
+    notes: 釣魚網站通報的另一條 supply-side 管道。
+
+  # ── Industry — quantitative annual reports ───────────────────────────────
+
+  - name: Whoscall / Gogolook 年度防詐報告
+    type: blog
+    content_style: methodology
+    focus: 惡意連結組成 (網路釣魚網站佔比)、簡訊詐騙類型、詐騙辨識量、年度趨勢
+    fetch: scrape
+    url: https://whoscall.com/zh-hant/blog
+    homepage: https://whoscall.com/
+    verify: true
+    verified_date: "2026-05-21"
+    notes: |
+      operator 指名來源。2025 報告:惡意連結中網路釣魚網站 30.52% —
+      最接近「假網站佔比」的單一量化 (分母為惡意連結, 非全部詐騙案件)。
+      含原始調查數據, 屬可用 methodology 來源。
+
+  - name: 趨勢科技 Trend Micro — 資安報告與防詐調查
+    type: think_tank
+    content_style: methodology
+    focus: 詐騙網站生命週期 (96% 24h 消失)、假冒品牌詐騙暴露率、台灣消費者防詐調查
+    fetch: scrape
+    url: https://www.trendmicro.com/zh_tw/security-intelligence/threat-report.html
+    homepage: https://www.trendmicro.com/zh_tw/
+    verify: true
+    verified_date: "2026-05-21"
+    notes: |
+      operator 指名來源。新聞稿可被 WebFetch 403 擋 — 改用 twinkle-hub
+      fetch_url_as_markdown。台灣調查樣本 1,015 人, 區分台灣 vs 全球數據。
+
+  - name: 台灣數位信任協會 (DTA)
+    type: ngo_report
+    content_style: publication_index
+    focus: 冒名詐騙報告書、社群冒名詐騙報告書、詐騙追蹤器、數位信任產業地圖
+    fetch: scrape
+    url: https://dtatw.org/news/
+    homepage: https://dtatw.org/
+    verify: true
+    verified_date: "2026-05-21"
+    notes: |
+      operator 指名來源。國內首個專注打詐的民間組織, 設詐騙研究工作小組。
+      《冒名詐騙報告書》(與電腦稽核協會) 對 A 概念直接相關。
+
+  # ── Fact-check (cherry-picked from sources_seed.yaml) ────────────────────
+
+  - name: MyGoPen
+    type: fact_check
+    content_style: case_study
+    focus: 釣魚網站、假冒政府／品牌網站、LINE／社群流傳詐騙連結查核
+    fetch: scrape
+    url: https://www.mygopen.com/
+    notes: |
+      Cherry-picked from sources_seed.yaml. 提供假冒網站的具體案例與
+      網址比對 (如 mogov.tw vs mohw.gov.tw) — A 概念的質性佐證。
+
+  - name: 台灣事實查核中心
+    type: fact_check
+    content_style: case_study
+    focus: 假冒政府機關網站、紓困／補助釣魚網站查核
+    fetch: scrape
+    url: https://tfc-taiwan.org.tw/
+    notes: Cherry-picked from sources_seed.yaml. 假冒公務機關網站的查核案例。
+
+  # ── MCP-backed primary-data portals (Collector Track 4) ──────────────────
+
+  - name: 司法院裁判書 (taiwan-legal-db MCP)
+    type: primary_doc
+    content_style: mcp_portal
+    focus: 詐欺案件裁判書中對「假網站／假投資平台／釣魚網域」的事實認定與描述
+    fetch: mcp
+    mcp_server: taiwan-legal-db
+    mcp_tools:
+      - search_judgments
+      - get_judgment
+    notes: |
+      裁判書是假網站如何運作的一手事實來源 (法院認定的詐騙網站、網域、
+      金流)。查詢「詐欺」+「假網站／投資平台／釣魚」交集。質性為主,
+      不期待佔比數字, 但能驗證 A/B 型態的真實樣貌。
+
+  - name: 政府開放資料平台 (twinkle-hub opendata MCP)
+    type: gov
+    content_style: mcp_portal
+    focus: 165 詐騙統計、警政署詐欺案件、詐騙網址公告等開放資料集
+    fetch: mcp
+    mcp_server: twinkle-hub
+    mcp_tools:
+      - opendata-search_datasets
+      - opendata-get_dataset
+      - opendata-query_rows
+    notes: |
+      搜尋「詐騙」「詐欺」「165」相關 dataset — 若有結構化的逐月／逐類型
+      資料, 比新聞二手轉述更可靠。亦可用 fetch_url_as_markdown 處理被擋頁面。

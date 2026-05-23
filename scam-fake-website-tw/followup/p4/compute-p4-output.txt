@@ -1,0 +1,31 @@
+=== P4 — prevalence-weighted fake-website share ===
+weight basis: 嘉義 52459, 113年, 2461 詐欺 cases (case-level)
+6 P3 strata cover 1431 cases = 58% of all 詐欺 cases
+
+per-手法 M1 (獨立假網站) rate, and 52459 weight:
+  假投資       w= 577  M1 rate= 11.4%  M1+M3= 65.7%  (n=70, M0=24)
+  網購        w= 305  M1 rate=  5.6%  M1+M3=  5.6%  (n=71, M0=5)
+  假冒物流      w= 231  M1 rate= 48.2%  M1+M3= 48.2%  (n=56, M0=29)
+  解除分期      w=   6  M1 rate=  0.0%  M1+M3=  0.0%  (n=22, M0=0)
+  假交友       w= 229  M1 rate=  5.9%  M1+M3=  5.9%  (n=34, M0=17)
+  假冒機構      w=  83  M1 rate=  0.0%  M1+M3=  0.0%  (n=57, M0=0)
+
+--- WEIGHTED estimates for the covered ~58% of 詐欺 cases ---
+
+M1 獨立假網站（狹義「假網站」）:
+  S1 全分母（M0 計入分母、不視為 M1）:        14.5%
+  S2 medium-known（排除 M0 分母）:            26.3%
+  S3 物流 M0 視為 M1（subagent 判斷）:        22.9%
+  → 狹義假網站 案件加權區間 ≈ 15–23%
+
+M1+M3（含假冒/詐騙集團自建 APP）:
+  S1 全分母:                                 36.4%
+  S2 medium-known:                           59.6%
+  → 含假冒APP 案件加權區間 ≈ 36–60%
+
+M2 真平台假帳號（明確非假網站）:
+  全分母: 18.3%   medium-known: 19.7%
+M5 純電話:
+  全分母: 6.2%   medium-known: 6.2%
+M0 判決未述:
+  全分母: 31.7%
