@@ -49,6 +49,12 @@ h1::after {
   margin: 0 0 .2em;
   line-height: 1.4;
 }
+.project h2 a {
+  color: var(--text);
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s;
+}
+.project h2 a:hover { border-bottom-color: var(--accent); }
 .project .pdesc {
   color: var(--muted);
   font-size: .95em;
@@ -74,19 +80,26 @@ a:hover {
 <h1>weichen&#x27;s Research</h1>
 <p class="desc">跨越 AI、資訊環境、數位議題與政策的研究筆記與報告。</p>
 <section class="project">
-<h2>軍購砍 4700 億後的西進壓力</h2>
-<p class="pdesc">砍掉 4700 億本土軍工訂單後，工具機與無人機兩條產業鏈各自承受什麼樣的西進壓力 —— 一個雙鏈分析。</p>
+<h2><a href="./ai-sycophancy-attack-surface-tw/">諂媚的縫隙 —— AI 諂媚作為攻擊面</a></h2>
+<p class="pdesc">當受害者帶著被詐騙集團或謠言夯實過的決心走到 AI 面前 —— AI 會是斷路器，還是免費認證？對 ChatGPT 與 Gemini 跑 384 次 zh-TW 對話，回應 Cheng et al. 2026 Science 報告 47% 平均，找到平均之下、可定位的結構性縫隙。</p>
 <ul>
-<li><a href="./defense-cut-supply-chain-pivot-tw/">研究定位備忘錄：以無人機產業及其上游工具機為例</a></li>
+<li><a href="./ai-sycophancy-attack-surface-tw/">當受害者問 AI 求救，它會在哪些座標下幫倒忙</a></li>
 </ul>
 </section>
 <section class="project">
-<h2>LLM 使用者端偏誤</h2>
+<h2><a href="./llm-user-side-bias/">LLM 使用者端偏誤</a></h2>
 <p class="pdesc">AI 在面對不同使用者背景時，是否給出不同答案？</p>
 <ul>
 <li><a href="./llm-user-side-bias/pilot/report.html">前導研究報告</a></li>
 <li><a href="./llm-user-side-bias/advocacy/index.html">當中國 AI 認得你是台灣人，它選擇隱匿你的歷史</a></li>
 <li><a href="./llm-user-side-bias/multiturn/index.html">當中國 AI 認得你越多，它告訴你的真相越少</a></li>
+</ul>
+</section>
+<section class="project">
+<h2><a href="./scam-fake-website-tw/">假網站佔詐騙多少？</a></h2>
+<p class="pdesc">台灣的詐騙統計按手法分類、假網站是橫跨手法的「媒介」——結構上不被計數。本研究跨 9.5 萬列政府開放資料、325 筆判決被害人逐筆編碼，把這條缺失的測量軸建出來。</p>
+<ul>
+<li><a href="./scam-fake-website-tw/medium-axis-paper.html">假網站佔詐騙多少？沒有單一答案 — 但這條軸可以被建出來</a></li>
 </ul>
 </section>
 </body>
