@@ -3,111 +3,245 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>weichen&#x27;s Research</title>
+<title>weichen's Research</title>
 <style>
+/* Aligned with ~/.claude/skills/generate-research-html/shared/brand-tokens.css
+   Landing uses Template-A-family aesthetic (Iowan + cool paper) as the site's
+   editorial baseline; per-project sections carry their report's family color
+   on the left border + a small monospace tag. */
 :root {
-  --accent: #7a3e2a;
-  --text: #1a1a1a;
-  --muted: #6a6a6a;
-  --bg: #fbfaf6;
+  /* canvas */
+  --c-paper:        #fbfaf6;
+  --c-paper-card:   #f5f0e6;
+  --c-ink:          #141414;
+  --c-ink-soft:     #4a4845;
+  --c-ink-faint:    #7a7770;
+  --c-rule:         #d8d2c0;
+
+  /* family role colors (used ONLY in tags + left borders on landing) */
+  --c-rust:         #b03a2e;  /* Template A — narrative */
+  --c-navy:         #1B4A66;  /* Template B — sidebar modular */
+  --c-orange:       #b45309;  /* Template C — advocacy */
+
+  /* fonts */
+  --ff-narrative:   "Iowan Old Style","Source Serif Pro","Charter","Noto Serif TC","Songti TC",Georgia,serif;
+  --ff-mono:        "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
-* { box-sizing: border-box; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: "Iowan Old Style", "Source Serif Pro", Charter,
-               "Noto Serif TC", "Songti TC", Georgia, serif;
-  background: var(--bg);
-  color: var(--text);
+  font-family: var(--ff-narrative);
+  background: var(--c-paper);
+  color: var(--c-ink);
   max-width: 680px;
   margin: 0 auto;
-  padding: 4em 1.2em 6em;
-  line-height: 1.65;
+  padding: 4em 1.4em 6em;
+  line-height: 1.7;
   font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
-h1 {
-  font-size: 2.2em;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  margin: 0 0 .2em;
-}
-h1::after {
+
+/* subtle paper grain — matches the texture readers will see inside reports */
+body::before {
   content: "";
-  display: block;
-  width: 2.5em;
-  height: 2px;
-  background: var(--accent);
-  margin: .55em 0 0;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .28;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+
+/* ---------- masthead ---------- */
+.masthead { margin-bottom: 3.2em; }
+h1 {
+  font-size: 2.4em;
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  line-height: 1.1;
+  margin: 0 0 .35em;
+}
+.tag-site {
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+  margin-bottom: 1.4em;
 }
 .desc {
-  color: var(--muted);
-  font-size: 1.02em;
-  margin: 1em 0 2.8em;
+  color: var(--c-ink-soft);
+  font-size: 1.05em;
+  line-height: 1.7;
+  max-width: 540px;
 }
-.project { margin-bottom: 2.4em; }
-.project h2 {
-  font-size: 1.2em;
+
+/* ---------- project section ---------- */
+.project {
+  margin: 2.6em 0;
+  padding: .1em 0 .1em 1.1em;
+  border-left: 3px solid var(--c-rule);
+}
+.project.A { border-left-color: var(--c-rust); }
+.project.B { border-left-color: var(--c-navy); }
+.project.C { border-left-color: var(--c-orange); }
+.project.legacy { border-left-color: var(--c-ink-faint); border-left-style: dotted; }
+
+.project .family-tag {
+  font-family: var(--ff-mono);
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
   font-weight: 600;
-  margin: 0 0 .2em;
+  margin-bottom: .4em;
+}
+.project.A .family-tag { color: var(--c-rust); }
+.project.B .family-tag { color: var(--c-navy); }
+.project.C .family-tag { color: var(--c-orange); }
+
+.project h2 {
+  font-size: 1.22em;
+  font-weight: 600;
+  margin: 0 0 .3em;
   line-height: 1.4;
 }
 .project h2 a {
-  color: var(--text);
+  color: var(--c-ink);
+  text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color .15s;
 }
-.project h2 a:hover { border-bottom-color: var(--accent); }
+.project h2 a:hover { border-bottom-color: var(--c-ink); }
+
 .project .pdesc {
-  color: var(--muted);
-  font-size: .95em;
-  margin: 0 0 .7em;
+  color: var(--c-ink-soft);
+  font-size: .96em;
+  line-height: 1.7;
+  margin: 0 0 .9em;
 }
-ul { padding-left: 1.4em; margin: 0; }
-li { margin: .35em 0; }
-a { color: var(--accent); text-decoration: none; }
-a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
+
+.project ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
-.back { font-size: .9em; margin-bottom: 1.8em; }
-.back a {
-  color: var(--muted);
-  border-bottom: 1px dotted var(--muted);
+.project li {
+  margin: .35em 0;
+  padding-left: 1.1em;
+  position: relative;
+  font-size: .98em;
+  line-height: 1.55;
 }
-.back a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.project li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--c-ink-faint);
+  font-family: var(--ff-mono);
+}
+.project li a {
+  color: var(--c-ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--c-rule);
+  transition: border-color .15s;
+}
+.project li a:hover { border-bottom-color: var(--c-ink); }
+.project li .li-tag {
+  font-family: var(--ff-mono);
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+  margin-left: .6em;
+  font-weight: 500;
+}
+
+/* ---------- footer key (very small, explains the colored borders) ---------- */
+.legend {
+  margin-top: 4em;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--c-rule);
+  font-family: var(--ff-mono);
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--c-ink-faint);
+  line-height: 1.9;
+}
+.legend-row { display: flex; gap: .6em; align-items: baseline; flex-wrap: wrap; }
+.legend-swatch {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  flex: none;
+  transform: translateY(1px);
+}
+.legend-swatch.A { background: var(--c-rust); }
+.legend-swatch.B { background: var(--c-navy); }
+.legend-swatch.C { background: var(--c-orange); }
+.legend-swatch.legacy { background: var(--c-ink-faint); opacity: .5; }
+.legend-row span { color: var(--c-ink-soft); }
 </style>
 </head>
 <body>
-<h1>weichen&#x27;s Research</h1>
-<p class="desc">跨越 AI、資訊環境、數位議題與政策的研究筆記與報告。</p>
-<section class="project">
-<h2><a href="./defense-cut-supply-chain-pivot-tw/">軍購砍 4700 億後的西進壓力</a></h2>
-<p class="pdesc">2026 年 5 月立法院把 1.25 兆國防特別預算砍到 7800 億後，工具機與無人機兩條產業鏈各自承受什麼壓力。用 5 家上市櫃廠 MOPS 一手財報坐實「西進是早於砍案的存量」，把美國 BIS Entity List 與中國長臂管轄寫成三層風險機制 —— 一個雙鏈分析。</p>
-<ul>
-<li><a href="./defense-cut-supply-chain-pivot-tw/index.html">軍購砍 4700 億之後，誰會西進，承諾會不會跳票</a></li>
-</ul>
+
+<header class="masthead">
+  <div class="tag-site">weichen · research notes</div>
+  <h1>weichen's Research</h1>
+  <p class="desc">跨越 AI、資訊環境、數位議題與政策的研究筆記與報告。</p>
+</header>
+
+<section class="project B">
+  <div class="family-tag">B · 模組化分析</div>
+  <h2><a href="./defense-cut-supply-chain-pivot-tw/">軍購砍 4700 億後的西進壓力</a></h2>
+  <p class="pdesc">2026 年 5 月立法院把 1.25 兆國防特別預算砍到 7800 億後，工具機與無人機兩條產業鏈各自承受什麼壓力。用 5 家上市櫃廠 MOPS 一手財報坐實「西進是早於砍案的存量」，把美國 BIS Entity List 與中國長臂管轄寫成三層風險機制 —— 一個雙鏈分析。</p>
+  <ul>
+    <li><a href="./defense-cut-supply-chain-pivot-tw/index.html">軍購砍 4700 億之後，誰會西進，承諾會不會跳票</a></li>
+  </ul>
 </section>
-<section class="project">
-<h2><a href="./scam-fake-website-tw/">假網站佔詐騙多少？</a></h2>
-<p class="pdesc">台灣的詐騙統計按手法分類、假網站是橫跨手法的「媒介」——結構上不被計數。本研究跨 9.5 萬列政府開放資料、325 筆判決被害人逐筆編碼，把這條缺失的測量軸建出來。</p>
-<ul>
-<li><a href="./scam-fake-website-tw/index.html">假網站佔詐騙多少？沒有單一答案 — 但這條軸可以被建出來</a></li>
-</ul>
+
+<section class="project B">
+  <div class="family-tag">B · 模組化分析</div>
+  <h2><a href="./scam-fake-website-tw/">假網站佔詐騙多少？</a></h2>
+  <p class="pdesc">台灣的詐騙統計按手法分類、假網站是橫跨手法的「媒介」——結構上不被計數。本研究跨 9.5 萬列政府開放資料、325 筆判決被害人逐筆編碼，把這條缺失的測量軸建出來。</p>
+  <ul>
+    <li><a href="./scam-fake-website-tw/index.html">假網站佔詐騙多少？沒有單一答案 — 但這條軸可以被建出來</a></li>
+  </ul>
 </section>
-<section class="project">
-<h2><a href="./ai-sycophancy-attack-surface-tw/">諂媚的縫隙 —— AI 諂媚作為攻擊面</a></h2>
-<p class="pdesc">當受害者帶著被詐騙集團或謠言夯實過的決心走到 AI 面前 —— AI 會是斷路器，還是免費認證？對 ChatGPT 與 Gemini 跑 384 次 zh-TW 對話，回應 Cheng et al. 2026 Science 報告 47% 平均，找到平均之下、可定位的結構性縫隙。</p>
-<ul>
-<li><a href="./ai-sycophancy-attack-surface-tw/index.html">當受害者問 AI 求救，它會在哪些座標下幫倒忙</a></li>
-</ul>
+
+<section class="project A">
+  <div class="family-tag">A · 敘事報告</div>
+  <h2><a href="./ai-sycophancy-attack-surface-tw/">諂媚的縫隙 —— AI 諂媚作為攻擊面</a></h2>
+  <p class="pdesc">當受害者帶著被詐騙集團或謠言夯實過的決心走到 AI 面前 —— AI 會是斷路器，還是免費認證？對 ChatGPT 與 Gemini 跑 384 次 zh-TW 對話，回應 Cheng et al. 2026 Science 報告 47% 平均，找到平均之下、可定位的結構性縫隙。</p>
+  <ul>
+    <li><a href="./ai-sycophancy-attack-surface-tw/index.html">當受害者問 AI 求救，它會在哪些座標下幫倒忙</a></li>
+  </ul>
 </section>
-<section class="project">
-<h2><a href="./llm-user-side-bias/">LLM 使用者端偏誤</a></h2>
-<p class="pdesc">AI 在面對不同使用者背景時，是否給出不同答案？</p>
-<ul>
-<li><a href="./llm-user-side-bias/pilot/report.html">前導研究報告</a></li>
-<li><a href="./llm-user-side-bias/advocacy/index.html">當中國 AI 認得你是台灣人，它選擇隱匿你的歷史</a></li>
-<li><a href="./llm-user-side-bias/multiturn/index.html">當中國 AI 認得你越多，它告訴你的真相越少</a></li>
-</ul>
+
+<section class="project C">
+  <div class="family-tag">C · AI 對照倡議</div>
+  <h2><a href="./llm-user-side-bias/">LLM 使用者端偏誤</a></h2>
+  <p class="pdesc">AI 在面對不同使用者背景時，是否給出不同答案？以中國 LLM 為對象，分四層揭露：服務平台、權重對齊、底層模型能力、對話層。三篇公開文章 + 一個前導實驗。</p>
+  <ul>
+    <li><a href="./llm-user-side-bias/advocacy/index.html">當中國 AI 認得你是台灣人，它選擇隱匿你的歷史</a></li>
+    <li><a href="./llm-user-side-bias/multiturn/index.html">當中國 AI 認得你越多，它告訴你的真相越少</a></li>
+    <li><a href="./llm-user-side-bias/pilot/report.html">前導研究報告<span class="li-tag">早期版型</span></a></li>
+  </ul>
 </section>
+
+<footer class="legend">
+  <div class="legend-row">
+    視覺家族：
+    <span><span class="legend-swatch A"></span> A 敘事</span>
+    <span><span class="legend-swatch B"></span> B 模組化</span>
+    <span><span class="legend-swatch C"></span> C 對照倡議</span>
+    <span><span class="legend-swatch legacy"></span> 早期版型</span>
+  </div>
+</footer>
+
 </body>
 </html>
