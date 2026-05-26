@@ -7,16 +7,14 @@
 <style>
 /* Aligned with ~/.claude/skills/generate-research-html/shared/brand-tokens.css */
 :root {
-  --c-paper:        #e9e6df;   /* brighter cement */
+  --c-paper:        #e9e6df;
+  --c-paper-card:   #f1eee7;   /* slightly lighter than page for card surface */
   --c-ink:          #141414;
   --c-ink-soft:     #4a4845;
   --c-ink-faint:    #7a7770;
   --c-rule:         #c4c0b6;
   --c-accent:       #1B4A66;
 
-  /* Two-script aware pairing — sans heading vs serif body works for CJK too.
-     Previous Fraunces stack failed CJK fallback (both display & body landed
-     on Noto Serif TC for Chinese characters → no visible difference). */
   --ff-display:     "Helvetica Neue","PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
   --ff-narrative:   "Iowan Old Style","Source Serif Pro","Charter","Noto Serif TC","Songti TC",Georgia,serif;
   --ff-mono:        "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -27,9 +25,9 @@ body {
   font-family: var(--ff-narrative);
   background: var(--c-paper);
   color: var(--c-ink);
-  max-width: 680px;
+  max-width: 920px;        /* wider than v2 to host 3-card grid */
   margin: 0 auto;
-  padding: 4em 1.4em 6em;
+  padding: 4em 1.6em 6em;
   line-height: 1.7;
   font-size: 17px;
   -webkit-font-smoothing: antialiased;
@@ -49,9 +47,10 @@ body::before {
 
 /* ---------- masthead ---------- */
 .masthead {
-  margin-bottom: 3.4em;
+  margin-bottom: 3.6em;
   padding-bottom: 1.8em;
   border-bottom: 1px solid var(--c-rule);
+  max-width: 680px;        /* keep reading width for masthead text */
 }
 .tag-site {
   display: inline-block;
@@ -63,7 +62,7 @@ body::before {
   margin-bottom: 1.2em;
 }
 h1 {
-  font-family: var(--ff-display);     /* ← sans display, distinct from serif body */
+  font-family: var(--ff-display);
   font-size: 2.4em;
   font-weight: 700;
   letter-spacing: -0.022em;
@@ -77,12 +76,18 @@ h1 {
   max-width: 540px;
 }
 
-/* ---------- project section ---------- */
-.project { margin: 2.8em 0; }
+/* ---------- project section (now a CONTAINER, not a card) ---------- */
+.project {
+  margin: 3em 0;
+}
+.project + .project {
+  padding-top: 2.2em;
+  border-top: 1px solid var(--c-rule);
+}
 
-.project h2 {
-  font-family: var(--ff-display);     /* ← sans display */
-  font-size: 1.28em;
+.project-title {
+  font-family: var(--ff-display);
+  font-size: 1.3em;
   font-weight: 700;
   margin: 0 0 .4em;
   line-height: 1.4;
@@ -90,39 +95,64 @@ h1 {
   color: var(--c-accent);
 }
 
-.project .pdesc {
+.project-desc {
   color: var(--c-ink-soft);
   font-size: .96em;
   line-height: 1.72;
-  margin: 0 0 1em;
+  margin: 0 0 1.4em;
+  max-width: 680px;
 }
 
-.project ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
+/* ---------- report card grid (always 3 columns; empty cells convey structure) ---------- */
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
 }
-.project li {
-  margin: .42em 0;
-  padding-left: 1.2em;
-  position: relative;
-  font-size: .98em;
-  line-height: 1.55;
-}
-.project li::before {
-  content: "→";
-  position: absolute;
-  left: 0;
-  color: var(--c-ink-faint);
-  font-family: var(--ff-mono);
-}
-.project li a {
-  color: var(--c-ink);
+
+a.report-card {
+  display: flex;
+  flex-direction: column;
+  gap: .7em;
+  padding: 1.3em 1.2em 1.2em;
+  background: var(--c-paper-card);
+  border: 1px solid var(--c-rule);
+  border-radius: 3px;
   text-decoration: none;
-  border-bottom: 1px solid var(--c-accent);
+  color: inherit;
+  transition: border-color .15s, background .15s;
+  min-height: 7em;
+}
+a.report-card:hover {
+  border-color: var(--c-accent);
+  background: #f7f4ed;
+}
+.rc-title {
+  font-family: var(--ff-narrative);
+  font-size: 1.02em;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--c-ink);
+  letter-spacing: -0.003em;
   transition: color .15s;
 }
-.project li a:hover { color: var(--c-accent); }
+a.report-card:hover .rc-title { color: var(--c-accent); }
+.rc-meta {
+  font-family: var(--ff-mono);
+  font-size: 10.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--c-ink-faint);
+  line-height: 1.6;
+  margin-top: auto;       /* push meta to bottom of card */
+}
+
+/* ---------- mobile / narrow ---------- */
+@media (max-width: 720px) {
+  body { max-width: 100%; padding: 3em 1.2em 4em; }
+  .report-grid { grid-template-columns: 1fr; }
+  a.report-card { min-height: auto; }
+}
 
 /* ---------- site footer ---------- */
 .site-footer {
@@ -134,6 +164,7 @@ h1 {
   color: var(--c-ink-faint);
   line-height: 1.95;
   letter-spacing: .04em;
+  max-width: 680px;
 }
 .site-footer .ft-row { display: block; }
 .site-footer .ft-label {
@@ -163,37 +194,55 @@ h1 {
 </header>
 
 <section class="project">
-  <h2>諂媚的縫隙 —— AI 諂媚作為攻擊面</h2>
-  <p class="pdesc">當受害者帶著被詐騙集團或謠言夯實過的決心走到 AI 面前 —— AI 會是斷路器，還是免費認證？對 ChatGPT 與 Gemini 跑 384 次 zh-TW 對話，回應 Cheng et al. 2026 Science 報告 47% 平均，找到平均之下、可定位的結構性縫隙。</p>
-  <ul>
-    <li><a href="./ai-sycophancy-attack-surface-tw/index.html">當受害者問 AI 求救，它會在哪些座標下幫倒忙</a></li>
-  </ul>
+  <h2 class="project-title">諂媚的縫隙 —— AI 諂媚作為攻擊面</h2>
+  <p class="project-desc">當受害者帶著被詐騙集團或謠言夯實過的決心走到 AI 面前 —— AI 會是斷路器，還是免費認證？回應 Cheng et al. 2026 Science 報告 47% 平均，找到平均之下、可定位的結構性縫隙。</p>
+  <div class="report-grid">
+    <a class="report-card" href="./ai-sycophancy-attack-surface-tw/index.html">
+      <div class="rc-title">當受害者問 AI 求救，它會在哪些座標下幫倒忙</div>
+      <div class="rc-meta">ChatGPT + Gemini · 384 zh-TW 對話</div>
+    </a>
+  </div>
 </section>
 
 <section class="project">
-  <h2>假網站佔詐騙多少？</h2>
-  <p class="pdesc">台灣的詐騙統計按手法分類、假網站是橫跨手法的「媒介」——結構上不被計數。本研究跨 9.5 萬列政府開放資料、325 筆判決被害人逐筆編碼，把這條缺失的測量軸建出來。</p>
-  <ul>
-    <li><a href="./scam-fake-website-tw/index.html">假網站佔詐騙多少？沒有單一答案 — 但這條軸可以被建出來</a></li>
-  </ul>
+  <h2 class="project-title">假網站佔詐騙多少？</h2>
+  <p class="project-desc">台灣的詐騙統計按手法分類、假網站是橫跨手法的「媒介」——結構上不被計數。本研究把這條缺失的測量軸建出來。</p>
+  <div class="report-grid">
+    <a class="report-card" href="./scam-fake-website-tw/index.html">
+      <div class="rc-title">假網站佔詐騙多少？沒有單一答案 — 但這條軸可以被建出來</div>
+      <div class="rc-meta">9.5 萬列開放資料 + 325 筆判決</div>
+    </a>
+  </div>
 </section>
 
 <section class="project">
-  <h2>軍購砍 4700 億後的西進壓力</h2>
-  <p class="pdesc">2026 年 5 月立法院把 1.25 兆國防特別預算砍到 7800 億後，工具機與無人機兩條產業鏈各自承受什麼壓力。用 5 家上市櫃廠 MOPS 一手財報坐實「西進是早於砍案的存量」，把美國 BIS Entity List 與中國長臂管轄寫成三層風險機制 —— 一個雙鏈分析。</p>
-  <ul>
-    <li><a href="./defense-cut-supply-chain-pivot-tw/index.html">軍購砍 4700 億之後，誰會西進，承諾會不會跳票</a></li>
-  </ul>
+  <h2 class="project-title">軍購砍 4700 億後的西進壓力</h2>
+  <p class="project-desc">2026 年 5 月立法院把 1.25 兆國防特別預算砍到 7800 億後，工具機與無人機兩條產業鏈各自承受什麼壓力。把美國 BIS Entity List 與中國長臂管轄寫成三層風險機制。</p>
+  <div class="report-grid">
+    <a class="report-card" href="./defense-cut-supply-chain-pivot-tw/index.html">
+      <div class="rc-title">軍購砍 4700 億之後，誰會西進，承諾會不會跳票</div>
+      <div class="rc-meta">5 家上市櫃廠 MOPS 財報 · 雙鏈分析</div>
+    </a>
+  </div>
 </section>
 
 <section class="project">
-  <h2>LLM 使用者端偏誤</h2>
-  <p class="pdesc">AI 在面對不同使用者背景時，是否給出不同答案？以中國 LLM 為對象，分四層揭露：服務平台、權重對齊、底層模型能力、對話層。從前導實驗到兩篇文章。</p>
-  <ul>
-    <li><a href="./llm-user-side-bias/advocacy/index.html">當中國 AI 認得你是台灣人，它選擇隱匿你的歷史</a></li>
-    <li><a href="./llm-user-side-bias/multiturn/index.html">當中國 AI 認得你越多，它告訴你的真相越少</a></li>
-    <li><a href="./llm-user-side-bias/pilot/report.html">前導研究報告</a></li>
-  </ul>
+  <h2 class="project-title">LLM 使用者端偏誤</h2>
+  <p class="project-desc">AI 在面對不同使用者背景時，是否給出不同答案？以中國 LLM 為對象，分四層揭露：服務平台、權重對齊、底層模型能力、對話層。從前導實驗到兩篇文章。</p>
+  <div class="report-grid">
+    <a class="report-card" href="./llm-user-side-bias/advocacy/index.html">
+      <div class="rc-title">當中國 AI 認得你是台灣人，它選擇隱匿你的歷史</div>
+      <div class="rc-meta">30 cells × 3 模型雲端對照</div>
+    </a>
+    <a class="report-card" href="./llm-user-side-bias/multiturn/index.html">
+      <div class="rc-title">當中國 AI 認得你越多，它告訴你的真相越少</div>
+      <div class="rc-meta">16 多輪對話 × 8 設計</div>
+    </a>
+    <a class="report-card" href="./llm-user-side-bias/pilot/report.html">
+      <div class="rc-title">前導研究報告</div>
+      <div class="rc-meta">30 cells 雲端先導實驗 · 早期版型</div>
+    </a>
+  </div>
 </section>
 
 <footer class="site-footer">
