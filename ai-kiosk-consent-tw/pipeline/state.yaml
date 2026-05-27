@@ -1,0 +1,18 @@
+project: ai-kiosk-consent-tw
+tool: insight-pipeline
+current_stage: done
+status: done
+brief_path: pipeline/brief.md
+brief_expanded_path: pipeline/brief_expanded.yaml
+sources_path: pipeline/sources.yaml
+candidates_path: pipeline/collect/candidates.jsonl
+coverage_path: pipeline/collect/coverage.md
+gate_output_path: pipeline/gate/accepted.jsonl
+gate_rejected_path: pipeline/gate/rejected.jsonl
+extracts_output_path: pipeline/extracts/
+synthesize_output_path: pipeline/synthesize/
+draft_output_path: pipeline/draft/insight_v1.md
+review_output_path: pipeline/review/review.md
+review_mode: multi_model
+review_meta_merge: 2-senior-fallback  # Gemini absent (3× MCP timeout); Claude + Codex both senior, both usable per integrity_check
+last_handoff_ts: "2026-05-27T12:00:00Z"

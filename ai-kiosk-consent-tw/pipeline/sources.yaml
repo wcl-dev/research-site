@@ -1,0 +1,234 @@
+# sources.yaml — ai-kiosk-consent-tw
+#
+# Source library for Collector. Cherry-picked from sources_seed.yaml
+# (2 entries) + 18 fresh entries specific to this brief.
+# `seen_in` field dropped from seed entries per §7a protocol.
+#
+# Coverage:
+#   - 監管/政府 (5): PDPC, 法務部 (via taiwan-legal-db MCP), 消保處, moda, 公平會
+#   - 法律/裁判 (2): taiwan-legal-db MCP (regulations + judgments)
+#   - 業者/部署方 (5): WiXtar, 金色三麥, 雙月食品社, Berry AI, 銓幻元
+#   - 品質媒體 (5): iThome, TechNews, 數位時代, CIO Taiwan, foodnext, 中央社
+#   - 消費者組織 (1): 消基會
+#   - 國際對照 (3): EDPB/GDPR primary doc, BIPA primary doc, EU AI Act
+#   - 國際學術 (1): ACM Digital Library
+
+sources:
+  # ─── 監管 / 政府 (Taiwan) ───
+  - name: 個人資料保護委員會籌備處 (PDPC)
+    type: regulator
+    content_style: primary_doc
+    focus: 個資法主管機關;函釋、解釋、公告;2023/12/05 籌備處成立,2025/11 修法後將設正式委員會
+    fetch: scrape
+    url: https://www.pdpc.gov.tw/
+    homepage: https://www.pdpc.gov.tw/
+    verify: true
+    verified_date: "2026-05-26"
+    notes: "本案核心 must_include source;對人臉/生物特徵的函釋是 Q4 法律 framing 拆解的關鍵"
+
+  - name: 全國法規資料庫 (法務部)
+    type: regulator
+    content_style: mcp_portal
+    focus: 個資法、施行細則、相關判決;via taiwan-legal-db MCP server
+    fetch: mcp
+    verify: true
+    verified_date: "2026-05-26"
+    mcp_server: taiwan-legal-db
+    mcp_tools:
+      - search_regulations
+      - query_regulation
+      - get_pcode
+
+  - name: 司法院裁判書系統 (via taiwan-legal-db MCP)
+    type: regulator
+    content_style: mcp_portal
+    focus: 個資法、生物特徵、消費場所相關判決
+    fetch: mcp
+    verify: true
+    verified_date: "2026-05-26"
+    mcp_server: taiwan-legal-db
+    mcp_tools:
+      - search_judgments
+      - get_judgment
+
+  - name: 行政院消費者保護處
+    type: regulator
+    content_style: primary_doc
+    focus: 消費者申訴統計、消費爭議調處、餐飲場所消費者權益
+    fetch: scrape
+    url: https://cpc.ey.gov.tw/
+    verify: true
+    verified_date: "2026-05-26"
+
+  - name: 數位發展部 moda (Taiwan)
+    type: regulator
+    content_style: publication_index
+    focus: 數位發展政策、AI 治理政策、平台監管;cherry-picked from sources_seed
+    fetch: scrape
+    url: https://moda.gov.tw/
+    homepage: https://moda.gov.tw/
+    verify: true
+    verified_date: "2026-05-26"
+
+  - name: 公平會
+    type: gov
+    content_style: primary_doc
+    focus: 反不公平競爭;若餐廳同意機制構成不實揭露可涉公平法;cherry-picked from sources_seed
+    fetch: scrape
+    url: https://www.ftc.gov.tw/internet/main/index.aspx
+    verify: true
+    verified_date: "2026-05-26"
+
+  # ─── 業者 / 部署方 (Taiwan F&B AI Kiosk 廠商與部署案場) ───
+  - name: WiXtar 星益欣 (官網)
+    type: blog
+    content_style: case_study
+    focus: 3-in-1 AI Kiosk 廠商;雙月食品社部署;2026 餐飲 AI 應用趨勢部落格
+    fetch: scrape
+    url: https://www.wixtar.com/
+    homepage: https://www.wixtar.com/
+    verify: true
+    verified_date: "2026-05-26"
+    notes: "業者側 primary source — Q1b 雙月 case showcase 的廠商一手資料"
+
+  - name: 金色三麥 LE BLE D'OR (官網)
+    type: blog
+    content_style: case_study
+    focus: AI 餐酒實驗室部署;會員系統公告;隱私政策
+    fetch: scrape
+    url: https://www.lebledor.com/
+    homepage: https://www.lebledor.com/
+    verify: true
+    verified_date: "2026-05-26"
+    notes: "Q1b 候選 case showcase 之二;Q7 隱私政策實體分析素材"
+
+  - name: 雙月食品社 (官網或新聞報導集)
+    type: blog
+    content_style: case_study
+    focus: 米其林必比登;WiXtar AI Kiosk 部署案場
+    fetch: manual
+    verify: false
+    notes: "雙月本身可能無強官網,以新聞報導 + WiXtar 案例頁為主要素材"
+
+  - name: Berry AI (官網)
+    type: blog
+    content_style: case_study
+    focus: 油炸熟度辨識 / 廚房監控 AI;間接相關但業者一手資料
+    fetch: scrape
+    url: https://berry-ai.com/
+    verify: false
+    notes: "邊緣相關;Berry AI 主打廚房 AI 而非 kiosk inference,但 wixtar/blog/18 提到屬產業 actor 之一"
+
+  - name: 銓幻元科技 MCS (官網)
+    type: blog
+    content_style: case_study
+    focus: 智取櫃人臉辨識(B 區對照);用於釐清 A vs B 區分
+    fetch: scrape
+    url: https://www.mcstation.ai/
+    verify: false
+    notes: "B 區對照素材;確保 Drafter 不把智取櫃部署算進 A 區"
+
+  # ─── 品質媒體 (Taiwan tech/F&B trade press) ───
+  - name: iThome
+    type: news
+    content_style: news
+    focus: 台灣科技媒體;AI Kiosk 部署、企業導入報導
+    fetch: scrape
+    url: https://www.ithome.com.tw/
+    verify: true
+    verified_date: "2026-05-26"
+
+  - name: TechNews 科技新報
+    type: news
+    content_style: news
+    focus: 台灣科技新聞;含星益欣 × 金色三麥 AI 餐酒實驗室報導(2025/05/21)
+    fetch: scrape
+    url: https://technews.tw/
+    verify: true
+    verified_date: "2026-05-26"
+
+  - name: 數位時代
+    type: news
+    content_style: news
+    focus: 台灣數位產業趨勢;AI 應用、企業導入案例
+    fetch: scrape
+    url: https://www.bnext.com.tw/
+    verify: true
+    verified_date: "2026-05-26"
+
+  - name: CIO Taiwan
+    type: news
+    content_style: news
+    focus: 企業 IT 導入案例;金色三麥 AI 餐酒實驗室原始報導(cio.com.tw/93910)
+    fetch: scrape
+    url: https://www.cio.com.tw/
+    verify: true
+    verified_date: "2026-05-26"
+
+  - name: foodnext 食力
+    type: news
+    content_style: news
+    focus: 台灣餐飲產業專業媒體;AI 餐飲應用報導
+    fetch: scrape
+    url: https://www.foodnext.net/
+    verify: true
+    verified_date: "2026-05-26"
+
+  - name: 中央社 CNA
+    type: news
+    content_style: news
+    focus: 國家通訊社;個資法修法、PDPC 設置等政策面報導
+    fetch: scrape
+    url: https://www.cna.com.tw/
+    verify: true
+    verified_date: "2026-05-26"
+
+  # ─── 消費者組織 ───
+  - name: 中華民國消費者文教基金會 (消基會)
+    type: ngo_report
+    content_style: news
+    focus: 消費者申訴調查;消費者報導月刊;隱私/個資相關倡議
+    fetch: scrape
+    url: https://www.consumers.org.tw/
+    verify: true
+    verified_date: "2026-05-26"
+
+  # ─── 國際對照 (Q5) ───
+  - name: European Data Protection Board (EDPB) + GDPR
+    type: regulator
+    content_style: primary_doc
+    focus: GDPR Art. 9 biometric data;EDPB guidelines on facial recognition;最低標準參照
+    fetch: scrape
+    url: https://www.edpb.europa.eu/
+    verify: true
+    verified_date: "2026-05-26"
+
+  - name: EU AI Act (official text + Commission guidelines)
+    type: primary_doc
+    content_style: primary_doc
+    focus: Art. 5 prohibited practices(emotion recognition / biometric categorisation);Art. 6 high-risk classification
+    fetch: scrape
+    url: https://artificialintelligenceact.eu/
+    verify: true
+    verified_date: "2026-05-26"
+    notes: "Q5 最低標準參照的核心國際 primary doc;特別 Art. 5 對 emotion recognition 限制"
+
+  - name: Illinois BIPA (legislation + case law summaries)
+    type: primary_doc
+    content_style: primary_doc
+    focus: Biometric Information Privacy Act;Rosenbach v. Six Flags 等指標訴訟;商業空間 biometric 同意先例
+    fetch: scrape
+    url: https://www.ilga.gov/legislation/ilcs/ilcs3.asp?ActID=3004
+    verify: true
+    verified_date: "2026-05-26"
+
+  # ─── 國際學術(retail biometric privacy) ───
+  - name: ACM Digital Library
+    type: primary_doc
+    content_style: publication_index
+    focus: CHI / CSCW / FAccT 對 retail biometric privacy 同儕審查研究
+    fetch: scrape
+    url: https://dl.acm.org/
+    verify: true
+    verified_date: "2026-05-26"
+    notes: "國際可比情境;Drafter 不可當台灣資料,僅 method/framing 引用"

@@ -1,0 +1,261 @@
+project: ai-kiosk-consent-tw
+version: v1
+year_from: 2023
+languages: [zh-TW, en]
+
+brief_type:
+  intent: surveillance     # 部署現況盤點 + 同意機制落差;comparative 是次結構
+  horizon: current         # 2023-2026 為主;2020+ 允許作技術/法規背景
+
+review:
+  mode: multi_model        # 公開政策報告;PDPC/立委/媒體可引用 → multi-model 平行 + meta-merge
+  fidelity_level: high
+
+# ─────────────────────────────────────────────────────────────
+# §6.5 — Concept ontology (research_focus = A∩D)
+# A/B/C 為 entity;D 為 concept_axis;research_focus 是 A∩D
+# B、C 仍列入 ontology 作為對照背景(避免 Drafter 誤把 B 的數字算進 A)
+# ─────────────────────────────────────────────────────────────
+concept_ontology:
+  - id: A
+    label: "即時生物特徵推論 (demographic inference)"
+    definition: >-
+      對人臉、聲音做即時分析,推測年齡、性別、語言、情緒等族群屬性;
+      技術上不必比對既有身分庫,可純 edge inference。雙月「先判斷年齡、
+      性別、語言」、金色三麥「按表情推薦啤酒」屬此層。業者常以此主張
+      「不識別個人,不算個資蒐集」。
+    type: entity
+    layer: inference_layer
+    examples_in:
+      - "雙月食品社 WiXtar Kiosk 開頭判斷年齡/性別/語言 → 切換虛擬服務員"
+      - "金色三麥 AI 餐酒實驗室人臉辨識按表情推薦啤酒"
+      - "AI Kiosk 偵測消費者猶豫狀態做加購提示"
+      - "餐廳桌面攝影機偵測情緒/年齡層做菜單動態調整"
+    examples_out:
+      - "人臉辨識會員登入(屬 B,需比對身分庫)"
+      - "智取櫃人臉辨識取餐(屬 B,身分驗證型)"
+      - "純 POS 點餐紀錄無生物特徵連結(屬 C)"
+
+  - id: B
+    label: "生物特徵身分識別 (biometric identification/verification)"
+    definition: >-
+      把人臉、聲紋與會員或既有資料庫比對,達成身分確認或會員識別。
+      與 A 的關鍵差異:必須有「比對」動作,目的是 identify 而非 categorise。
+      列入 ontology 作為對照背景,避免把 B 的部署數算進 A。
+    type: entity
+    layer: identification_layer
+    examples_in:
+      - "智取櫃人臉辨識取餐"
+      - "餐廳人臉辨識會員登入/結帳"
+      - "聲紋驗證會員身分"
+    examples_out:
+      - "demographic inference 不識別個人(屬 A)"
+      - "純 QR code 會員登入(無生物特徵)"
+
+  - id: C
+    label: "會員交易資料 (POS + member profile)"
+    definition: >-
+      被人臉/生物特徵綁定或推論結果累積後,進入會員 profile、消費歷史、
+      AI 推薦系統的 PII 資料流。列入 ontology 作為對照背景。
+    type: entity
+    layer: pii_data_layer
+    examples_in:
+      - "AI 推薦背後的會員消費歷史"
+      - "結合 inference 結果的客製化會員 profile"
+      - "上傳雲端做 cross-store 分析的點餐資料"
+    examples_out:
+      - "純現場 POS 紀錄、無生物特徵連結、無會員綁定"
+
+  - id: D
+    label: "知情同意機制 (consent mechanism) — concept_axis"
+    definition: >-
+      告知、選擇、撤回三層 axis;橫向貫穿 A/B/C,不是 entity。
+      研究焦點 A∩D 即「inference 型部署在同意 axis 上的實況」。
+    type: concept_axis
+    examples_in:
+      - "告知層: 店面公告 / kiosk 開頭畫面 / 隱私政策小字 / 無"
+      - "選擇層: 人工替代是否可用 / 退出成本"
+      - "撤回層: 已蒐集資料能否刪除"
+    examples_out:
+      - "消費者「使用即同意」的默示同意是業者 framing,不是真正的 D"
+
+research_focus: "A∩D"   # inference 型部署 × 同意機制 axis 的交集
+
+# ─────────────────────────────────────────────────────────────
+# Queries (Collector 逐字執行;object 形式帶 concept_target)
+# ─────────────────────────────────────────────────────────────
+queries:
+  # A — demographic inference 部署(Q1a/Q1b/Q7)
+  - text: "餐廳 kiosk 人臉辨識 年齡 性別 推測 台灣"
+    concept_target: A
+  - text: "餐飲業 AI 點餐機 表情辨識 情緒 推薦 部署"
+    concept_target: A
+  - text: "雙月食品社 WiXtar AI Kiosk 虛擬服務員 案例"
+    concept_target: A
+  - text: "金色三麥 AI 餐酒實驗室 人臉辨識 啤酒 推薦"
+    concept_target: A
+  - text: "拍檔科技 Berry AI 銓幻元 餐飲 AI Kiosk 部署"
+    concept_target: A
+  - text: "demographic inference biometric kiosk Taiwan restaurant deployment"
+    concept_target: A
+
+  # D — 同意機制(Q2/Q3)
+  - text: "餐廳 人臉辨識 告知 同意 隱私 個資法 消費者"
+    concept_target: D
+  - text: "AI kiosk consent disclosure restaurant biometric opt-out"
+    concept_target: D
+  - text: "餐飲業 隱私政策 生物特徵 告知 第8條"
+    concept_target: D
+
+  # A∩D / 法律框架(Q4)— 不綁單一概念,屬 shared
+  - "個資法 第6條 特種個資 人臉 生物特徵 修法 2025"
+  - "個人資料保護委員會 籌備處 PDPC 函釋 人臉 生物特徵"
+  - "biometric data Personal Data Protection Act Taiwan 2025 amendment"
+  - "個資法 修正案 立法理由 AI 資料治理 2025"
+
+  # 國際對照(Q5)
+  - "GDPR Article 9 biometric data emotion recognition AI Act Article 5"
+  - "Illinois BIPA biometric identifier consent litigation retail kiosk"
+  - "California CCPA biometric information consumer rights commercial"
+  - "Singapore PDPA biometric data commercial space consent guidelines"
+
+  # 執法/申訴(Q6)
+  - "消費者保護處 消基會 申訴 人臉辨識 生物特徵 餐廳"
+  - "司法院 裁判書 個資法 人臉 生物特徵 消費場所"
+
+# ─────────────────────────────────────────────────────────────
+# Keyword expansions
+# ─────────────────────────────────────────────────────────────
+keyword_expansions:
+  synonyms:
+    - 人臉辨識
+    - 臉部辨識
+    - 面部識別
+    - face recognition
+    - facial recognition
+    - 生物特徵
+    - biometric
+    - biometrics
+    - 聲紋辨識
+    - 聲音辨識
+    - voice recognition
+    - 影像辨識
+
+  adjacent_concepts:
+    - demographic inference
+    - 年齡推估
+    - 性別推估
+    - 情緒辨識
+    - emotion recognition
+    - affective computing
+    - 虛擬店員
+    - 虛擬服務員
+    - AI 推薦
+    - AI 客製化
+    - 點餐機
+    - kiosk
+    - 自助點餐
+    - 智取櫃
+    - 邊緣推論
+    - edge AI
+    - edge inference
+
+  key_actors:
+    # 業者/部署方
+    - WiXtar
+    - 星益欣
+    - Berry AI
+    - 銓幻元
+    - MCS
+    - 拍檔科技
+    - 雙月食品社
+    - 金色三麥
+    - LE BLE D'OR
+    - 瓦城
+    # 監管/政府/消費者組織
+    - 個人資料保護委員會
+    - PDPC
+    - 法務部
+    - 數位發展部
+    - moda
+    - 行政院消費者保護處
+    - 消保處
+    - 消基會
+    - 中華民國消費者文教基金會
+    - 公平會
+    - 司法院
+
+  technical_jargon:
+    - knowing consent
+    - 知情同意
+    - 明示同意
+    - 默示同意
+    - opt-in
+    - opt-out
+    - purpose limitation
+    - 目的拘束原則
+    - data minimization
+    - 最小蒐集原則
+    - retention
+    - 留存期限
+    - on-device
+    - cloud upload
+    - 雲端上傳
+    - 特種個資
+    - 第6條
+    - 第8條
+    - 個人資料蒐集
+    - 識別性
+    - 直接識別
+    - 間接識別
+    - biometric categorisation
+    - identification vs categorisation
+
+  counter_framings:
+    # 業者可能用來主張「我們不需要同意」的論證 — 全為短關鍵字 substring-matchable
+    - "inference 不算"
+    - "不識別個人"
+    - "不存"
+    - "立即刪除"
+    - "公告即同意"
+    - "默示同意"
+    - "使用即同意"
+    - "匿名"
+    - "非個資"
+
+# G4 audit #16 — counter_framings 全短關鍵字、可 substring-match
+# 仍補上 counter_framing_keywords map 以利 Synthesizer 跨指
+counter_framing_keywords:
+  inference_not_collection: ["inference 不算", "不算蒐集", "不算個資", "非個資"]
+  no_storage: ["不存", "立即刪除", "不留存", "本機處理"]
+  no_identification: ["不識別個人", "不對應個人", "匿名"]
+  implied_consent: ["公告即同意", "默示同意", "使用即同意"]
+
+# ─────────────────────────────────────────────────────────────
+# Exclusion terms
+# ─────────────────────────────────────────────────────────────
+exclusion_terms:
+  - "海關 人臉辨識"           # 機場海關不是餐飲零售
+  - "邊境 人臉辨識"
+  - "校園 人臉辨識"           # 教育場景
+  - "監視器 CCTV 通用"        # 跟 kiosk 點餐 inference 無關
+  - "深度偽造 deepfake"       # 攻擊角度非同意機制
+  - "人臉辨識原理 教學"       # SEO 衛教文
+
+# ─────────────────────────────────────────────────────────────
+# Source priorities
+# ─────────────────────────────────────────────────────────────
+source_priorities:
+  must_include:
+    - "個人資料保護委員會籌備處 PDPC"
+    - "法務部 / 全國法規資料庫"
+    - "WiXtar 星益欣"
+    - "金色三麥 LE BLE D'OR"
+    - "雙月食品社"
+    - "司法院裁判書系統"
+    - "EU AI Act / GDPR primary doc"
+
+  deprioritize:
+    - "純技術 SEO 教學文 (人臉辨識原理 1-2-3)"
+    - "廠商純行銷頁無實證資料"
+    - "深度偽造 / 資安攻擊角度的生物辨識討論"
