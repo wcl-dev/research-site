@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>從價格戰到認知基礎設施：一條因果鏈，逐環檢視證據 — weichen's Research</title>
+<meta name="description" content="一份證據審計：低價 → 採用 → 資訊入口 → 社會認知，這條四環因果鏈能成立到哪一步？結論——鏈的前段穩固，但在「個人說服」與「社會認知重構」之間斷裂。本報告不主張中國模型正在進行認知作戰。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/open-props/easings.min.css">
+<link rel="stylesheet" href="https://unpkg.com/open-props/sizes.min.css">
+
+<style>
+/* ===== brand-tokens.css ===== */
+:root{
+  --c-paper:#F4EFE2; --c-paper-card:#FCF9F1; --c-paper-sink:#E9E1CC;
+  --c-ink:#211F19; --c-ink-soft:#544F44; --c-ink-faint:#8A8473;
+  --c-rule:#D4CBB2; --c-rule-soft:#E2DAC4;
+  --c-navy:#1B4A66; --c-jade:#2B7458; --c-clay:#B5402B;
+  --role-primary:var(--c-navy); --role-method:var(--c-jade); --role-emphasis:var(--c-clay);
+  --ff-display:'Fraunces','Noto Serif TC',serif;
+  --ff-serif:'Fraunces','Noto Serif TC',serif;
+  --ff-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --maxw-prose:680px; --maxw-content:920px; --w-sidebar:300px;
+  --lh-tight:1.4; --lh-body-cjk:1.82; --lh-prose-cjk:1.9;
+}
+
+/* ===== base.css ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--c-paper);color:var(--c-ink);font-family:var(--ff-serif);
+  font-weight:400;font-size:19px;line-height:var(--lh-prose-cjk);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
+  opacity:.42;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")}
+a{color:inherit}
+::selection{background:var(--c-paper-card)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ===== template.css (Template B) ===== */
+.shell{display:flex;min-height:100vh}
+.nav{width:var(--w-sidebar);flex:none;position:fixed;top:0;left:0;bottom:0;
+  background:var(--c-paper-card);border-right:1px solid var(--c-rule);
+  padding:42px 0 36px;overflow-y:auto;z-index:40}
+.nav-brand{padding:0 32px 26px;border-bottom:1px solid var(--c-rule);margin-bottom:10px}
+.nav-kicker{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--role-emphasis);font-weight:600;margin-bottom:14px}
+.nav-title{font-family:var(--ff-display);font-weight:600;font-size:22px;line-height:1.42;color:var(--c-ink)}
+.nav-title b{color:var(--role-emphasis);font-weight:700}
+.nav-scope{font-size:14px;color:var(--c-ink-soft);line-height:1.55;margin-top:14px;
+  padding-left:12px;border-left:3px solid var(--role-primary)}
+.nav-meta{font-family:var(--ff-mono);font-size:12px;color:var(--c-ink-faint);margin-top:16px;letter-spacing:.02em}
+.nav ol{list-style:none;padding:20px 16px 0}
+.nav .nav-grp{font-family:var(--ff-mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--c-ink-faint);padding:20px 14px 9px;font-weight:600}
+.nav a{display:flex;gap:12px;align-items:baseline;text-decoration:none;padding:9px 14px;
+  border-radius:8px;color:var(--c-ink-soft);font-size:15.5px;line-height:1.5;transition:background .18s,color .18s}
+.nav a .ix{font-family:var(--ff-mono);font-size:12px;color:var(--c-ink-faint);flex:none;width:24px;font-weight:500}
+.nav a:hover{background:var(--c-paper-sink);color:var(--c-ink)}
+.nav a.sub{padding-left:30px;font-size:14.5px}
+.nav a.active{background:var(--c-ink);color:var(--c-paper-card)}
+.nav a.active .ix{color:var(--c-paper-card)}
+main{margin-left:var(--w-sidebar);flex:1;min-width:0}
+.wrap{max-width:var(--maxw-content);margin:0 auto;padding:0 48px}
+section{padding:96px 0;border-bottom:1px solid var(--c-rule)}
+section:last-of-type{border-bottom:none}
+.hero{border-bottom:4px double var(--c-rule);background:linear-gradient(180deg,var(--c-paper-card),transparent 72%)}
+.hero-inner{max-width:var(--maxw-content);margin:0 auto;padding:74px 48px 64px}
+.hero-kicker{font-family:var(--ff-mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--role-emphasis);font-weight:600;display:flex;align-items:center;gap:14px;margin-bottom:30px}
+.hero-kicker::after{content:"";flex:1;height:1px;background:var(--c-rule)}
+h1.hero-title{font-family:var(--ff-display);font-weight:600;font-size:clamp(34px,5.4vw,62px);
+  line-height:1.2;letter-spacing:-.012em;margin-bottom:28px}
+h1.hero-title .cut{color:var(--role-emphasis);font-weight:600}
+.hero-stand{font-size:21px;line-height:1.82;color:var(--c-ink-soft);max-width:var(--maxw-prose);margin-bottom:38px}
+.hero-stand b{color:var(--c-ink);font-weight:700}
+.hero-scope{font-family:var(--ff-display);font-weight:500;color:var(--c-ink);
+  font-size:clamp(20px,2.5vw,26px);line-height:1.46;margin:-6px 0 34px;
+  padding-left:20px;border-left:4px solid var(--role-primary)}
+.hero-foot{margin-top:34px;font-size:15px;color:var(--c-ink-soft);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hero-foot .dot{width:7px;height:7px;border-radius:50%;background:var(--role-emphasis);display:inline-block;flex:none}
+.sec-head{margin-bottom:52px}
+.sec-num{font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.14em;
+  color:var(--c-ink-faint);display:block;margin-bottom:16px}
+h2.sec-title{font-family:var(--ff-display);font-weight:600;font-size:clamp(28px,3.8vw,44px);line-height:1.26;letter-spacing:-.01em}
+.sec-lead{font-size:19px;color:var(--c-ink-soft);margin-top:20px;max-width:var(--maxw-prose);line-height:1.84}
+.sub-h{font-family:var(--ff-display);font-size:24px;font-weight:600;color:var(--c-ink);
+  margin:0 0 26px;padding-bottom:14px;border-bottom:2px solid var(--c-rule);line-height:1.4}
+.block{margin-top:64px}
+.cap{font-family:var(--ff-mono);font-size:13.5px;color:var(--c-ink-soft);margin-bottom:18px;font-weight:500;letter-spacing:.01em}
+.tldr-list{display:flex;flex-direction:column;gap:14px}
+.tldr{display:flex;gap:28px;padding:32px 34px;background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:12px;align-items:flex-start}
+.tldr .num{font-family:var(--ff-display);font-size:50px;font-weight:600;line-height:.85;color:var(--role-primary);flex:none;width:54px}
+.tldr .body p{font-size:18.5px;line-height:1.82}
+.tldr .body b{font-weight:700}
+.tldr .tag{font-family:var(--ff-mono);font-size:13px;color:var(--c-ink-faint);margin-top:14px}
+.find{background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:16px;padding:40px 42px;margin-bottom:24px}
+.find.break{border-color:var(--role-emphasis);border-width:2px}
+.find-top{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:20px}
+.find-no{font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.08em;
+  color:var(--c-paper-card);background:var(--c-ink);padding:7px 12px;border-radius:6px;flex:none}
+.find-no.em{background:var(--role-emphasis)}
+.find h3{font-family:var(--ff-display);font-size:24px;font-weight:600;line-height:1.42;flex:1;min-width:260px}
+.find-sum{font-size:18px;line-height:1.84;color:var(--c-ink-soft)}
+.find-sum+.find-sum{margin-top:16px}
+.find-sum b{color:var(--c-ink);font-weight:700}
+.find-sum .em{font-weight:700;background:var(--c-paper-sink);padding:1px 5px;border-radius:3px}
+.find-key{margin-top:24px;padding:22px 26px;background:var(--c-paper-sink);border-radius:11px;font-size:17px;line-height:1.74}
+.find-key .kl{font-family:var(--ff-mono);font-size:13px;letter-spacing:.08em;color:var(--role-emphasis);font-weight:600;display:block;margin-bottom:6px}
+.find-key b{font-weight:700}
+.find .block{margin-top:34px}
+/* strength chip */
+.chip{font-family:var(--ff-mono);font-size:11.5px;font-weight:600;letter-spacing:.06em;
+  padding:5px 10px;border-radius:20px;flex:none;align-self:center;white-space:nowrap}
+.chip.s{background:var(--role-primary);color:#fff}
+.chip.c{background:var(--role-method);color:#fff}
+.chip.k{background:var(--role-emphasis);color:#fff}
+/* prose blocks */
+.prose{max-width:var(--maxw-prose)}
+.prose p{font-size:19px;line-height:1.9;margin-bottom:24px;color:var(--c-ink)}
+.prose p:last-child{margin-bottom:0}
+.prose p b{font-weight:700}
+.prose p .em{font-weight:700;background:var(--c-paper-sink);padding:1px 5px;border-radius:3px}
+.prose .lead-pt{font-weight:700;color:var(--c-ink)}
+.prose-block{margin-top:38px}
+/* sources */
+.src-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 36px}
+.src{font-size:14.5px;line-height:1.62;color:var(--c-ink-soft);padding-bottom:13px;border-bottom:1px solid var(--c-rule-soft)}
+.src .sn{font-family:var(--ff-mono);font-size:12.5px;color:var(--c-ink-faint);font-weight:600;margin-right:8px}
+.src a{color:var(--role-primary);word-break:break-word}
+.src .sec{font-family:var(--ff-mono);font-size:11px;color:var(--c-ink-faint)}
+footer{background:var(--c-ink);color:var(--c-ink-faint);margin-left:var(--w-sidebar);padding:44px 48px;font-size:14px;line-height:2}
+footer b{color:var(--c-paper-card);font-weight:700}
+footer a{color:var(--c-paper-sink)}
+@media(max-width:1040px){
+  .nav{position:static;width:100%;height:auto;bottom:auto;border-right:none;border-bottom:2px solid var(--c-rule)}
+  .nav ol{display:flex;flex-wrap:wrap;padding:14px}
+  .nav .nav-grp{width:100%;padding:12px 14px 4px}
+  .nav a.sub{padding-left:14px}
+  main,footer{margin-left:0}
+  .shell{flex-direction:column}
+}
+@media(max-width:600px){
+  body{font-size:17.5px}
+  .wrap,.hero-inner{padding-left:24px;padding-right:24px}
+  section{padding:64px 0}
+  .hero-inner{padding-top:52px}
+  .find{padding:28px 24px}
+  .tldr{padding:24px;gap:18px}
+  .tldr .num{font-size:40px;width:42px}
+  .src-grid{grid-template-columns:1fr}
+  footer{padding:30px 24px}
+}
+
+/* ===== module: hero-numbers ===== */
+.hero-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:38px 0 8px;
+  border:1px solid var(--c-rule);border-radius:14px;overflow:hidden;background:var(--c-paper-card)}
+.hn-cell{padding:30px 28px}
+.hn-cell+.hn-cell{border-left:1px solid var(--c-rule)}
+.hn-big{font-family:var(--ff-display);font-size:32px;font-weight:600;line-height:1.1;color:var(--role-primary);margin-bottom:10px}
+.hn-big.zero{color:var(--role-emphasis)}
+.hn-big .unit{font-size:18px;color:var(--c-ink-soft);font-weight:500;margin-left:4px}
+.hn-lbl{font-family:var(--ff-mono);font-size:11.5px;color:var(--c-ink-faint);letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.hn-sub{font-size:14.5px;color:var(--c-ink-soft);line-height:1.6}
+@media(max-width:1040px){.hero-numbers{grid-template-columns:1fr}.hn-cell+.hn-cell{border-left:none;border-top:1px solid var(--c-rule)}}
+
+/* ===== module: flagship-table ===== */
+.flagship{margin-top:16px;padding:32px 30px;background:var(--c-ink);border-radius:16px;color:var(--c-paper-card)}
+.flag-lab{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--c-paper-sink);opacity:.7;margin-bottom:8px;font-weight:600}
+.flag-h{font-family:var(--ff-display);font-size:24px;font-weight:600;color:#fff;margin-bottom:22px;line-height:1.36}
+.flag-tbl{width:100%;border-collapse:collapse;font-size:15px;color:var(--c-paper-card)}
+.flag-tbl th,.flag-tbl td{padding:14px 10px;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)}
+.flag-tbl th{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-paper-sink);opacity:.75;font-weight:600;background:rgba(255,255,255,.04)}
+.flag-tbl th:first-child,.flag-tbl td:first-child{text-align:left;font-family:var(--ff-display);font-size:16px;font-weight:500;color:#fff;padding-left:14px}
+.flag-tbl tr.total td{font-weight:700;color:#fff;background:rgba(255,255,255,.05);border-bottom:none}
+.flag-tbl .dom{background:var(--role-emphasis);color:#fff;font-weight:700;border-radius:4px}
+.flag-tbl .pct{font-family:var(--ff-mono);font-size:11.5px;color:rgba(255,255,255,.55);display:block;margin-top:2px}
+.flag-note{font-size:14.5px;color:var(--c-paper-sink);opacity:.78;margin-top:18px;line-height:1.7}
+@media(max-width:600px){.flagship{padding:24px 18px}.flag-tbl{font-size:13px}.flag-tbl th,.flag-tbl td{padding:10px 6px}}
+
+/* ===== module: gaps-list ===== */
+.gaps{list-style:none}
+.gaps li{position:relative;padding:18px 22px 18px 56px;margin-bottom:12px;background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:11px;font-size:16.5px;line-height:1.76;color:var(--c-ink-soft)}
+.gaps li::before{content:"!";position:absolute;left:20px;top:18px;font-family:var(--ff-display);font-weight:700;font-size:19px;color:var(--role-emphasis);width:26px;height:26px;border:2px solid var(--role-emphasis);border-radius:50%;text-align:center;line-height:23px}
+.gaps li b{color:var(--c-ink);font-weight:700}
+
+/* ===== module: legs-roadmap ===== */
+.legs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.leg{border:1px solid var(--c-rule);border-radius:16px;overflow:hidden;background:var(--c-paper-card)}
+.leg-top{padding:24px 26px}
+.leg.A .leg-top{background:var(--role-primary)}
+.leg.B .leg-top{background:var(--role-method)}
+.leg.C .leg-top{background:var(--role-emphasis)}
+.leg-top *{color:#fff}
+.leg-tag{font-family:var(--ff-mono);font-size:13px;letter-spacing:.1em;opacity:.82;text-transform:uppercase}
+.leg-name{font-family:var(--ff-display);font-size:22px;font-weight:600;margin-top:7px}
+.leg-sub{font-size:14px;opacity:.9;margin-top:8px;line-height:1.6}
+.leg-body{padding:22px 26px 26px}
+.leg-row{padding:12px 0}
+.leg-row+.leg-row{border-top:1px solid var(--c-rule-soft)}
+.leg-row .lbl{font-size:13px;color:var(--c-ink-faint);margin-bottom:6px;font-family:var(--ff-mono);letter-spacing:.05em;text-transform:uppercase}
+.leg-row .val{font-size:16px;line-height:1.65;color:var(--c-ink)}
+.leg-row .val b{font-weight:700}
+@media(max-width:1040px){.legs{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">
+      <div class="nav-kicker">公開研究報告 · 證據審計</div>
+      <div class="nav-title">從價格戰到<b>認知基礎設施</b></div>
+      <div class="nav-scope">低價 → 採用 → 資訊入口 → 社會認知：四環因果鏈，逐環檢視證據</div>
+      <div class="nav-meta">AI 治理 · 資訊環境 · 2026 / 06</div>
+    </div>
+    <ol>
+      <li class="nav-grp">目次</li>
+      <li><a href="#tldr"><span class="ix">01</span>摘要</a></li>
+      <li><a href="#framing"><span class="ix">02</span>問題與邊界</a></li>
+      <li><a href="#chain"><span class="ix">03</span>逐環檢視證據</a></li>
+      <li><a href="#finding-1" class="sub"><span class="ix">·</span>第一環 · 價格與採用</a></li>
+      <li><a href="#finding-2" class="sub"><span class="ix">·</span>第二環 · 資訊入口</a></li>
+      <li><a href="#finding-3" class="sub"><span class="ix">·</span>第三環 · 輸出框架</a></li>
+      <li><a href="#finding-4" class="sub"><span class="ix">·</span>第四環 · 認知放大</a></li>
+      <li><a href="#break"><span class="ix">04</span>鏈在哪裡斷</a></li>
+      <li><a href="#counter"><span class="ix">05</span>為何不是反中警報</a></li>
+      <li><a href="#policy"><span class="ix">06</span>有條件的政策結論</a></li>
+      <li><a href="#gaps"><span class="ix">07</span>還不知道的事</a></li>
+      <li class="nav-grp">附錄</li>
+      <li><a href="#sources"><span class="ix">08</span>資料來源</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker">證據審計 · 不確定下的治理</div>
+        <h1 class="hero-title">從價格戰到認知基礎設施<span class="cut">——這條因果鏈，會在哪裡斷？</span></h1>
+        <p class="hero-scope">低價 → 採用 → 成為資訊入口 → 塑造社會認知：一條四環因果鏈，能成立到哪一步？</p>
+        <p class="hero-stand">
+          近來流行一種說法：中國模型用超低價搶占市場，會在不知不覺中重塑使用者的認知、形成新的「認知基礎設施」。本報告把這個說法拆成四環，逐一檢驗證據。<b>結論：鏈的前段相當穩固，但到了最關鍵的最後一環就斷了。本報告不主張中國模型正在進行認知作戰——它檢視證據能把這個說法推進到哪裡，並指出斷點。</b>
+        </p>
+
+        <div class="hero-numbers">
+          <div class="hn-cell">
+            <div class="hn-lbl">價差</div>
+            <div class="hn-big">51–460<span class="unit">倍</span></div>
+            <div class="hn-sub">最便宜中國開源模型 vs 美國旗艦（2026-06-08 一手快照）</div>
+          </div>
+          <div class="hn-cell">
+            <div class="hn-lbl">一年使用量佔比</div>
+            <div class="hn-big">1.2→13<span class="unit">%</span></div>
+            <div class="hn-sub">中國開源在 OpenRouter 的 token 佔比，約十倍成長</div>
+          </div>
+          <div class="hn-cell">
+            <div class="hn-lbl">社會層認知重構</div>
+            <div class="hn-big zero">0<span class="unit">直接證據</span></div>
+            <div class="hn-sub">「個人影響放大成社會層級認知」目前零實證</div>
+          </div>
+        </div>
+
+        <div class="hero-foot">
+          <span class="dot"></span><span>人為設計題目與框架、AI agent 執行檢索蒐證與綜述、人為審定 · 30 筆來源 · 2026 / 06</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= 01 · TL;DR ================= -->
+    <section id="tldr">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">摘要</h2>
+          <p class="sec-lead">這是一份證據盤點，不是一項指控。我們把「便宜中國模型會默默重塑認知」這個說法拆成一條四環因果鏈，逐一問：證據能走到哪裡？</p>
+        </header>
+        <div class="tldr-list">
+          <article class="tldr rv">
+            <div class="num">01</div>
+            <div class="body">
+              <p><b>本報告不主張中國模型正在進行認知作戰。</b>我們檢視證據能把這條鏈推進到哪裡，發現它在「<b>模型能說服個人</b>」與「<b>這種影響放大成社會層級的認知重構</b>」之間斷裂。</p>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">02</div>
+            <div class="body">
+              <p><b>第一環（低價帶動採用）在「採用正在快速擴張」這個事實上成立。</b>截至 2026 年 6 月 8 日，最便宜的中國開源模型與美國旗艦的價差約 51 到 460 倍；中國開源在 OpenRouter 的使用量佔比一年內從 1.2% 升到約 13%。但「是價格『造成』採用」這個因果關係仍有爭議——亮眼的數字只證明滲透，不能證明價格是主因。</p>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">03</div>
+            <div class="body">
+              <p><b>第三環（模型輸出帶有穩定、可量測的立場框架）是整條鏈最紮實的一環。</b>關鍵在於：這種偏向主要來自模型「上線前的對齊訓練」，而不是「訓練資料缺了什麼」——同一顆模型移除內建自我審查後，會主動講出原本被壓住的觀點。這把治理的著力點，從「管控訓練資料」移到「管控對齊與合規這一層」。</p>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">04</div>
+            <div class="body">
+              <p><b>第四環的關鍵一步（模型能改變個人信念）是真實、且被嚴謹證明的</b>——這部分印證了「模型能影響使用者」的直覺。但這種影響力是<b>有上限的</b>：最前沿的大模型，說服力幾乎不比小它一個數量級的模型更強；對民主社會構成的威脅，也沒有比既有的人為手段更大。</p>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">05</div>
+            <div class="body">
+              <p><b>第四環的最後一步（個人影響放大成社會層級認知）目前沒有任何直接證據</b>——只有概念框架、電腦模擬、與來自其他領域的類比。因此政策結論是<b>有條件的</b>：模型治理「如果最後一環成立，就會升格為主權與認知安全議題」——而證據顯示，最後一環目前還站不住。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 · FRAMING ================= -->
+    <section id="framing">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">為什麼問這個問題，以及它的邊界</h2>
+          <p class="sec-lead">一條鏈是否成立，取決於它最脆弱的那一環。本報告不證明整條鏈，而是逐環給出證據強度的判斷。</p>
+        </header>
+        <div class="prose rv">
+          <p>如果這條鏈真的成立，影響會很大：它會把「哪一國的模型便宜好用」這種單純的市場現象，一路升級成國家安全層級的議題。所以本報告把它拆成幾個可以分別檢驗的環節，逐一給出證據強度。我們也嚴守一條界線：<b>本研究不主張「中國便宜模型等於認知作戰」。</b>它的貢獻是一張清醒的「逐環證據地圖」，加上對「斷點究竟在哪裡」的定位。</p>
+          <p class="lead-pt">有三條範圍上的紀律，全文反覆援用，因為它們最容易被混淆：</p>
+          <p>一、<b>市場數據只能證明「採用」</b>，絕不能被偷渡成「認知被影響」的證據。二、<b>「模型輸出帶有立場」是關於模型「說」什麼</b>，不等於使用者「信」什麼。三、<b>「模型能說服個別使用者」是個人層次的能力</b>，不等於「整個社會的認知被重塑」。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 · CHAIN / FINDINGS ================= -->
+    <section id="chain">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">這條鏈，逐環檢視證據</h2>
+          <p class="sec-lead">四個環節的證據強度天差地遠。前三環逐步轉強，第四環則必須再拆成三步——而那正是說法想落腳、卻最薄弱的地方。</p>
+        </header>
+
+        <!-- F1 -->
+        <article id="finding-1" class="find rv">
+          <div class="find-top">
+            <span class="find-no">第一環</span>
+            <h3>價格戰下的滲透是真的，但「價格造成採用」尚無定論</h3>
+            <span class="chip s">證據：成立（但因果存疑）</span>
+          </div>
+          <p class="find-sum">價差確實是數十倍量級：截至 2026 年 6 月 8 日，直接從 OpenRouter 定價介面抓取的數字顯示，最便宜的中國開源模型（Qwen3.5-flash、DeepSeek-V4-flash）與美國前沿旗艦（GPT-5.5、Claude-Opus-4.8、GPT-5.5-pro）相比，價差約落在 <span class="em">51 到 460 倍</span> 之間 [1]。採用面也在快速上升：HuggingFace 下載榜前段由 Qwen 與 DeepSeek 主導 [2]；中國開源模型在 OpenRouter 的使用量佔比，一年間從 1.2% 升到約 <span class="em">13%（約十倍）</span> [3]。</p>
+          <p class="find-sum">真正可爭議的，是那個因果箭頭。採用上升，到底是「價格」驅動，還是「能力／開放權重／授權」驅動？有文獻指出，DeepSeek 以「前沿水準的一小部分成本」釋出、卻仍具競爭力——低價與高能力<b>同時出現</b>，很難把功勞單獨歸給價格 [4]；另有研究指出，同一個開源模型透過不同託管商使用時，其實是「會隨供應商與時間變動的服務」，讓「價格」難以被當成乾淨的單一變項 [5]。（[4][5] 為二手摘要。）</p>
+          <div class="find-key">
+            <span class="kl">把握度：中等</span>
+            一手快照對「滲透成立」給出高度把握；但「價格造成滲透」只靠兩筆二手文獻，因此保守。而這兩筆指向的「是能力、不是純價格」，本身就是刻意保留的反面聲音。
+          </div>
+          <div class="block">
+            <div class="flagship rv">
+              <div class="flag-lab">第一環 · 一手市場快照</div>
+              <div class="flag-h">價格與採用：擷取於 2026-06-08 的一手數字（僅證明「採用」，不證明「認知被影響」）</div>
+              <table class="flag-tbl">
+                <thead>
+                  <tr><th>指標</th><th>中國開源</th><th>美國旗艦</th><th>意義</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>每百萬 token 輸入價</td>
+                    <td class="dom">$0.065–0.098<span class="pct">Qwen3.5 / DeepSeek-V4</span></td>
+                    <td>$5–30<span class="pct" style="color:rgba(255,255,255,.55)">GPT-5.5 / Opus / pro</span></td>
+                    <td>價差 51–460×</td>
+                  </tr>
+                  <tr>
+                    <td>OpenRouter 使用量佔比</td>
+                    <td class="dom">1.2% → ~13%<span class="pct">一年，約十倍</span></td>
+                    <td>—</td>
+                    <td>滲透快速上升</td>
+                  </tr>
+                  <tr>
+                    <td>HuggingFace 下載榜</td>
+                    <td class="dom">Qwen / DeepSeek 主導<span class="pct">文字生成前段</span></td>
+                    <td>—</td>
+                    <td>開源採用集中</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p class="flag-note">資料來源：OpenRouter 定價 API、State of AI 2025、HuggingFace 下載 API（皆一手，擷取於 2026-06-08，會隨時間變動）[1][2][3]。提醒：2026 年部分媒體引用的「45–61%」屬較晚、不同時間窗口的數字，不可與上述約 13% 混用。</p>
+            </div>
+          </div>
+        </article>
+
+        <!-- F2 -->
+        <article id="finding-2" class="find rv">
+          <div class="find-top">
+            <span class="find-no">第二環</span>
+            <h3>AI 成為資訊入口的證據還很薄</h3>
+            <span class="chip c">證據：趨勢上升（薄）</span>
+          </div>
+          <p class="find-sum">最可靠的錨點是路透新聞學研究院的《2025 數位新聞報告》，因為它把兩種容易混淆的東西分開了：獨立的 AI 聊天工具用於新聞，整體比例仍小（每週 7%），但在 25 歲以下高得多（15%），印度樣本達 18%；而搜尋內嵌的「AI 摘要」用於新聞僅 4% [6]。這些數字支持的是「正在上升、且有年齡落差」的趨勢，而不是「搜尋已被取代」的事實 [6]。</p>
+          <p class="find-sum">至於模型把人導向哪些來源，美國智庫 FDD 的引用稽核發現：要求三大模型對三場衝突（含<b>台海</b>）附上來源時，<span class="em">有 57% 的回應出現國家對齊的官方宣傳來源</span> [7]。<b>但這個數字必須連同它的結構性解釋一起讀</b>：FDD 自己指出，原因是民主國家的優質媒體躲在付費牆後、封鎖爬蟲，而國家官媒內容自由流通——這是一個<b>「取得難易度」的經濟學解釋，不是蓄意認知作戰的證據</b> [7]。（搜尋導流下滑約 33–43% 的數字屬於 Chartbeat，且很可能由「搜尋內 AI 摘要」而非聊天式 AI 驅動 [8]，為二手摘要。）</p>
+          <div class="find-key">
+            <span class="kl">把握度：偏低</span>
+            只有兩筆深入分析的來源、零篇同儕審查。光是 7%（聊天式 AI）對 4%（搜尋內 AI 摘要）這麼低的絕對值，就提醒我們資訊入口的轉移仍在很早期。
+          </div>
+        </article>
+
+        <!-- F3 -->
+        <article id="finding-3" class="find rv">
+          <div class="find-top">
+            <span class="find-no">第三環</span>
+            <h3>模型輸出確實帶有穩定框架——最強的一環，而問題出在「對齊層」</h3>
+            <span class="chip s">證據：強</span>
+          </div>
+          <p class="find-sum">這是整條鏈唯一達到「強」的環節。Waight 等人發表於《自然》的研究，以六項子研究顯示：各國的政府媒體控制已透過訓練資料影響模型輸出 [9]。但範圍必須精確標定：作者明文寫道「<b>這個結果是相關性的</b>」——跨 37 國的稽核建立的是相關、不是因果；唯一的因果證據只在「訓練資料 → 模型輸出」這一層（對開源模型續訓），而且<b>完全沒有對「使用者信念」下任何結論</b> [9]。</p>
+          <p class="find-sum">本報告最關鍵的機制證據，來自我們先前的繁體中文實證：同一顆模型在「去對齊」（abliteration，移除模型內建拒答與自我審查機制的技術）後，會<b>主動引入</b>台灣主流史觀用語（「屠殺」「白色恐怖」），而原版則在推理中把這些視角斥為「顛倒黑白」並壓制——這「是訓練選擇，不是能力差異」[10]。換言之，<b>模型「知道但不說」；框架是上線前的對齊訓練植入的，不是訓練資料缺漏</b>。這把治理著力點，從「控制訓練資料」移向「控制對齊與合規這一層」。</p>
+          <p class="find-sum">為避免「只測了中國模型」的錯覺，這一環必須對稱呈現：<b>西方模型同樣帶有可量測的立場框架，只是「簽名」不同</b>。一項研究發現「即使只看美國的模型之間」也存在與進步派價值相關的顯著差異，偏向與「創建者的世界觀」相關，是雙向對稱的 [13]。另一項跨語言測試記錄到西方模型特有的「假平衡」——把證據清楚的事實當成「觀點」，「並沒有達成中立，而是在製造懷疑」[14]。</p>
+          <div class="find-key">
+            <span class="kl">把握度：高</span>
+            至少三個來源一致，機制從三個獨立角度收斂。<b>但邊界要守住</b>：這一環全是關於模型「輸出」的，完全沒有證明任何使用者因此改變了信念——那是下一環的事，強度不能外溢。
+          </div>
+        </article>
+
+        <!-- F4: the fourth link, three steps -->
+        <article id="finding-4" class="find rv">
+          <div class="find-top">
+            <span class="find-no">第四環</span>
+            <h3>立場框架會不會放大成「社會層級的認知」？拆成三步檢驗</h3>
+            <span class="chip k">關鍵環節</span>
+          </div>
+          <p class="find-sum">這是整個說法真正想落腳、也最薄弱的地方。要誠實檢驗，必須拆成三步：<b>(一)</b> 輸出會不會同質化？<b>(二)</b> 輸出能不能改變個人信念？<b>(三)</b> 個人層次的改變，會不會加總、放大成社會層級的認知重構？</p>
+
+          <div class="block">
+            <div class="sub-h">第一步：輸出會不會同質化——證據健康，但有反向證據</div>
+            <p class="find-sum">語言模型專屬的同質化證據確實存在：研究示範了「生成式單一文化」——模型輸出多樣性相對於可得訓練資料<b>明顯收窄</b>，而且「換抽樣或改提示這類簡單對策不足以緩解」，根因「很可能就嵌在模型的對齊流程裡」[11]。但它界定在「輸出多樣性」層次，不是「整個人口的認知變得同質」。<b>反向證據被刻意保留</b>：使用者其實會用很多種模型（各模型使用比例加總約 202%，意味多模型使用是常態）[16]；皮尤對美國青少年的母體資料也顯示「集中與分散並存」——ChatGPT 以 59% 領先，但使用仍分散 [17]。「單一模型支配」是真的，但<b>並不排他</b>。</p>
+          </div>
+
+          <div class="block">
+            <div class="sub-h">第二步：模型能改變個人信念——能力為真，但有上限</div>
+            <p class="find-sum"><b>個人層次的說服能力是真實、且被高度嚴謹證明的</b>——這部分印證了「模型能影響使用者」的直覺。最乾淨的一份直接證據（受試者 1,912 人、依美國人口比例抽樣）顯示：連「未經指示」的預設 AI 摘要，相較維基百科都讓讀者意見更偏自由派——<b>模型「未被指示的潛在框架」就能移動個人意見</b> [18]。另一份發表於《科學》的研究（2,190 人）證明，與 AI 對話可讓陰謀論信念<b>持久下降約 20%</b>，兩個月後仍維持 [19]。</p>
+            <p class="find-sum"><b>但每一份證據都把自己的效果框在「有上限」之內——這是整份報告的承重點。</b>一份近 26,000 人的隨機實驗發現「<b>目前最前沿的模型，說服力幾乎不比小它一個數量級以上的模型更強</b>」，「繼續把模型做大，並不會讓這類訊息更有說服力多少」[20]。而最容易被過度解讀的那份研究（人類受試樣本最大，10,417 人）標題雖帶「民主社會」，結論卻是<b>否定</b>社會層級威脅的：「目前的語言模型，透過大規模說服對民主社會構成的威脅，並沒有比既有的人為手段更大」，且「受到觸及規模的限制」——聊天機器人與真人效果幾乎相同（0.363 對 0.349）[21]。此外，說服優勢其實是一種「個人化、微目標」效應（沒有個人化時效果不顯著），<b>這恰恰與「一對多的同質化輸出」相反</b> [22]；而這條管道是價值中立的，被誘發的錯誤信念也能靠校正對話逆轉 [23]。</p>
+          </div>
+
+          <div class="block">
+            <div class="sub-h">第三步：放大成社會層級的認知——這格是空的</div>
+            <p class="find-sum"><b>沒有任何直接證據</b>，能把「單一支配的資訊中介所帶的框架」連結到「人口層級的認知位移」。這一格只有三類<b>間接</b>材料：一個只定義領域的概念框架（寫於 2020 年、與語言模型無關）[24]；一個用 AI 代理人（不是真人）做的模擬——研究者<b>必須刻意用提示工程去誘發確認偏誤</b>，才能讓模擬像人 [25]；以及一個來自社群媒體議程設定的<b>類比</b>（僅作類比，不能當成語言模型在社會層級的直接證據）[26]。</p>
+            <p class="find-sum"><b>這個空白格子本身就是發現</b>，所以本報告把它寫成研究議程，而不是結論。在能填補這一格的研究出現之前，任何「支配模型 → 社會認知重構」的陳述，都是推測，不是證據。</p>
+          </div>
+
+          <div class="find-key">
+            <span class="kl">把握度：第一步中等、第二步高、第三步零直接證據</span>
+            個人層次的有界說服已確立；社會層級的認知重構則從未被證明。連最接近的那個模擬，都得靠人工注入偏誤才像人——這反而削弱了天真外推的基礎。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 04 · BREAK POINT ================= -->
+    <section id="break">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">鏈在哪裡斷：從「能說服個人」到「重構社會認知」</h2>
+          <p class="sec-lead">這個斷點不是一個待驗證的假設，而是一個已經確立的發現。</p>
+        </header>
+        <article class="find break rv">
+          <div class="find-top">
+            <span class="find-no em">斷點</span>
+            <h3>個人層次的有界說服已確立；單一支配模型造成的人口層級認知重構，則從未被證明</h3>
+          </div>
+          <p class="find-sum">一側，有上限的個人層說服能力已被充分證明——說服力隨模型變大會飽和 [20]、對民主社會「威脅不比真人更大、受規模限制」[21]、效果小且只放大既有傾向 [18]。另一側，社會層級這一格是空的——只有概念框架 [24] 與模擬 [25]，零直接的人口層級證據。<b>這中間的一步，在現有證據上不成立。</b></p>
+          <p class="find-sum">方法論上，這一步還有一道明確的閘。一項用「世界價值觀調查」評估模型模擬公眾意見的研究發現<b>顯著的代表性落差</b>，作者明白主張：語言模型的輸出應該「與傳統方法<b>並用</b>」，而不是取代對真實母體的測量 [27]。換句話說，<b>連用模型去「模擬」民意都已經有系統性偏誤，更別說反過來從一個支配模型的框架去推斷真實人口的信念位移</b>——最後一環所需要的推論方向，在方法論上是不被支持的 [27]。</p>
+          <div class="find-key">
+            <span class="kl">斷點的本質：缺席加上限</span>
+            沒有任何來源直接反駁「鏈條成立」；反駁，是由每一份個人說服研究<b>自我設限其規模</b>，加上「模型輸出不等於母體意見」的方法論告誡，共同構成的。它把那個落地主張，從「事實」降級為「條件式」。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 05 · COUNTER-FRAMING ================= -->
+    <section id="counter">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">為什麼這份報告不能被讀成反中警報</h2>
+          <p class="sec-lead">這一節獨立存在、不埋藏，因為它是防止本報告被誤讀的結構性保障。</p>
+        </header>
+        <div class="prose rv">
+          <p><b>一、偏向來自「設計」，未必來自政治意圖。</b>有研究對「以人類回饋微調模型」（RLHF）這套做法提出批判，指出模型行為源自對齊目標（要有幫助、無害、誠實）之間「本就存在的緊張」——是<b>對齊流程的社會技術產物</b>，而非政治操弄的陰謀 [28]。這與前面的「去對齊」機制收斂：偏向的預設解釋是「對齊來源」，不是「意圖來源」。</p>
+          <p><b>二、框架是可變的，可歸因於資料失衡，而非固定政治意圖。</b>一項以 11 種語言探測 10 款模型的研究發現，殘餘偏向指向「一小組國家（荷蘭、德國、美國、日本）的價值」——可歸因於<b>訓練資料中西方／已開發國家的過度代表</b>，而且「所有受測模型，不分來源，都呈現驚人相似的模式」[12]。</p>
+          <p><b>三、「單一模型支配」這個前提本身就不穩固。</b>使用者其實會用很多種模型 [16]，母體資料也顯示「集中與分散並存」[17]——單一模型支配的前提並不牢靠。</p>
+          <p><b>四、最聳動的那個數字，有非陰謀的解釋。</b>前面「57% 官方宣傳引用」已配上它的結構性原因——民主國家的優質媒體躲在付費牆後、封鎖爬蟲，國家官媒卻自由流通 [7]。最像「認知作戰」的證據，其實有一個「取得難易度」的非意圖解釋。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 06 · POLICY ================= -->
+    <section id="policy">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">06</span>
+          <h2 class="sec-title">有條件的政策結論</h2>
+          <p class="sec-lead">模型治理「如果最後一環成立，就會升格為主權與認知安全議題」——而證據顯示，最後一環目前還站不住。因此政策不該建立在「鏈條已成立」的威脅斷言上。</p>
+        </header>
+        <div class="legs rv">
+          <article class="leg A">
+            <div class="leg-top">
+              <div class="leg-tag">現在可做 · 有證據支持</div>
+              <div class="leg-name">管控對齊／合規層</div>
+              <div class="leg-sub">當前唯一可行、且有證據支持的治理著力點</div>
+            </div>
+            <div class="leg-body">
+              <div class="leg-row">
+                <div class="lbl">依據</div>
+                <div class="val">偏向主要源自上線前的對齊訓練，而非訓練資料缺漏（去對齊實驗證實）。</div>
+              </div>
+              <div class="leg-row">
+                <div class="lbl">行動</div>
+                <div class="val">把治理焦點放在<b>對齊與合規義務</b>，而非難以觸及的訓練語料。</div>
+              </div>
+            </div>
+          </article>
+          <article class="leg B">
+            <div class="leg-top">
+              <div class="leg-tag">待補 · 研究議程</div>
+              <div class="leg-name">填補社會層缺口</div>
+              <div class="leg-sub">能把政策從「條件式」轉為「有依據」的關鍵研究</div>
+            </div>
+            <div class="leg-body">
+              <div class="leg-row">
+                <div class="lbl">行動</div>
+                <div class="val">設計長期／大規模研究，在控制其他資訊來源下，因果連結「暴露於支配中介的框架」與「母體信念分布的長期位移」。</div>
+              </div>
+              <div class="leg-row">
+                <div class="lbl">對應</div>
+                <div class="val">這正對應原始構想中的「觀測站」——把「無法證明」轉化為「如何去證明」。</div>
+              </div>
+            </div>
+          </article>
+          <article class="leg C">
+            <div class="leg-top">
+              <div class="leg-tag">條件式 · 尚待驗證</div>
+              <div class="leg-name">升格為認知安全議題</div>
+              <div class="leg-sub">只有在最後一環被證實後才成立的主張</div>
+            </div>
+            <div class="leg-body">
+              <div class="leg-row">
+                <div class="lbl">立場</div>
+                <div class="val">把「模型治理＝主權／認知安全議題」明白標示為<b>一個尚待最後一環驗證的條件式主張</b>，而非既成事實。</div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="prose prose-block rv">
+          <p>治理框架要用的詞彙是有文獻可循的（不是憑空借來的標籤）：「數位主權」有它自己的批判系譜，且該文獻本身就提醒不要過度使用這個概念 [29]；「演算法主權／安全依賴」把外國 AI 基礎設施與主權安全的依賴關係連結起來 [30]。這些可以用來<b>描述</b>「如果最後一環成立」時的政策語言，但它們本身<b>不能</b>為任何因果連結提供證據。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 07 · GAPS ================= -->
+    <section id="gaps">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">07</span>
+          <h2 class="sec-title">還不知道的事</h2>
+          <p class="sec-lead">把這份盤點自身的缺口與爭議點攤開——這些限制和上面的發現一樣重要。</p>
+        </header>
+        <ul class="gaps rv">
+          <li><b>社會層級這一環完全沒有直接證據（最大缺口）。</b>沒有任何長期或大規模研究，把單一資訊中介的框架連到人口層級的認知位移。這是刻意得出的發現，已寫成研究議程，沒有用薄弱推論去填補。</li>
+          <li><b>「AI 成為資訊入口」這一環極薄。</b>只有兩筆深入分析來源、零篇同儕審查；導流數字是二手轉述，且很可能由「搜尋內 AI 摘要」而非聊天式 AI 驅動。</li>
+          <li><b>第一環的因果箭頭未解。</b>價格 vs 能力／開放權重／授權的識別問題只靠兩筆二手文獻。「滲透成立」把握高，「價格造成滲透」把握低。</li>
+          <li><b>治理框架的學理深度偏薄。</b>實質的主權與「守門人」理論錨點都來自二手摘要，因此標示為「爭議中」；另有兩筆相關文獻因無法確認全文而未納入引用。</li>
+          <li><b>同質化的衝突未裁決。</b>「輸出在收窄」與「使用者用很多模型」方向相反，本報告兩者並陳但不裁決。</li>
+          <li><b>單一模型的限制。</b>「預設框架偏自由派」的方向來自單一模型（GPT-4o），作者自陳「可能因模型而異」，不可外推到所有模型。</li>
+          <li><b>市場快照會過時。</b>價格與佔比是 2026 年 6 月 8 日的一手快照；線上數據會變動，更新時需另立日期，不可直接覆蓋。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= 08 · SOURCES ================= -->
+    <section id="sources">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">08</span>
+          <h2 class="sec-title">資料來源</h2>
+          <p class="sec-lead">依首次引用順序。標註「二手摘要」者為未取得原文逐一核對的來源，在內文一律保守處理。</p>
+        </header>
+        <div class="src-grid rv">
+          <div class="src"><span class="sn">[1]</span>OpenRouter 即時定價介面：價差約 51–460 倍（擷取 2026-06-08）— <a href="https://openrouter.ai/api/v1/models">openrouter.ai/api/v1/models</a></div>
+          <div class="src"><span class="sn">[2]</span>HuggingFace 文字生成模型下載排行（Qwen／DeepSeek 主導，2026-06-08）— <a href="https://huggingface.co/api/models?pipeline_tag=text-generation&sort=downloads">huggingface.co/api/models</a></div>
+          <div class="src"><span class="sn">[3]</span>OpenRouter, State of AI 2025（百兆 token 使用研究；中國開源 1.2%→約 13%）— <a href="https://openrouter.ai/state-of-ai">openrouter.ai/state-of-ai</a></div>
+          <div class="src"><span class="sn">[4]</span><span class="sec">二手摘要 · </span>Mercer et al., DeepSeek's release of an open-weight frontier AI model (2025) — <a href="https://doi.org/10.70777/si.v2i1.11097">doi.org/10.70777/si.v2i1.11097</a></div>
+          <div class="src"><span class="sn">[5]</span><span class="sec">二手摘要 · </span>Li et al., When Is the Same Model Not the Same Service? (2026) — <a href="https://arxiv.org/abs/2605.02821">arxiv.org/abs/2605.02821</a></div>
+          <div class="src"><span class="sn">[6]</span>Reuters Institute, Digital News Report 2025 — Executive Summary — <a href="https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2025/dnr-executive-summary">reutersinstitute.politics.ox.ac.uk</a></div>
+          <div class="src"><span class="sn">[7]</span>FDD, AI-Amplified Narratives: Measuring Propaganda in LLM Citations (2026) — <a href="https://www.fdd.org/analysis/2026/03/03/ai-amplified-narratives-measuring-propaganda-in-llm-citations/">fdd.org</a></div>
+          <div class="src"><span class="sn">[8]</span><span class="sec">二手摘要 · </span>Search Engine Land（轉述 Chartbeat）, News publishers expect search traffic to drop 43% (2025) — <a href="https://searchengineland.com/news-publishers-search-referrals-drop-report-467408">searchengineland.com</a></div>
+          <div class="src"><span class="sn">[9]</span>Waight et al., State media control influences large language models (Nature, 2026) — <a href="https://doi.org/10.1038/s41586-026-10506-7">doi.org/10.1038/s41586-026-10506-7</a></div>
+          <div class="src"><span class="sn">[10]</span><span class="sec">本研究團隊一手 · </span>llm-user-side-bias（繁體中文實證；「去對齊」機制證據）— <a href="../llm-user-side-bias/">research-site/llm-user-side-bias</a></div>
+          <div class="src"><span class="sn">[11]</span>Wu, Black, Chandrasekaran, Generative Monoculture in Large Language Models (2024) — <a href="https://arxiv.org/abs/2407.02209">arxiv.org/abs/2407.02209</a></div>
+          <div class="src"><span class="sn">[12]</span>Bulte &amp; Rigouts Terryn, LLMs and Cultural Values (2025) — <a href="https://arxiv.org/abs/2511.03980">arxiv.org/abs/2511.03980</a></div>
+          <div class="src"><span class="sn">[13]</span>Buyl et al., Large language models reflect the ideology of their creators (npj AI) — <a href="https://arxiv.org/abs/2410.18417">arxiv.org/abs/2410.18417</a></div>
+          <div class="src"><span class="sn">[14]</span>Samokhodskyi / ELN, The AI lens of cognitive warfare: why LLMs' language bias is a security risk (2026) — <a href="https://europeanleadershipnetwork.org/commentary/the-ai-lens-of-cognitive-warfare-why-llms-language-bias-is-a-security-risk/">europeanleadershipnetwork.org</a></div>
+          <div class="src"><span class="sn">[15]</span>Kleinberg &amp; Raghavan, Algorithmic monoculture and social welfare (PNAS, 2021) — <a href="https://doi.org/10.1073/pnas.2018340118">doi.org/10.1073/pnas.2018340118</a></div>
+          <div class="src"><span class="sn">[16]</span>Elon University survey, 52% of U.S. adults use AI LLMs (2025) — <a href="https://www.elon.edu/u/news/2025/03/12/survey-52-of-u-s-adults-now-use-ai-large-language-models-like-chatgpt/">elon.edu</a></div>
+          <div class="src"><span class="sn">[17]</span>Pew Research Center, Teens, Social Media and AI Chatbots 2025 — <a href="https://www.pewresearch.org/internet/2025/12/09/teens-social-media-and-ai-chatbots-2025/">pewresearch.org</a></div>
+          <div class="src"><span class="sn">[18]</span>Shu, Karell, Okura, Davidson, How latent and prompting biases in AI-generated historical narratives influence opinions (PNAS Nexus, 2026) — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12954675/">pmc.ncbi.nlm.nih.gov</a></div>
+          <div class="src"><span class="sn">[19]</span>Costello, Pennycook, Rand, Durably reducing conspiracy beliefs through dialogues with AI (Science, 2024) — <a href="https://www.science.org/doi/10.1126/science.adq1814">science.org</a></div>
+          <div class="src"><span class="sn">[20]</span>Hackenburg et al., Scaling and the diminishing returns of single-message political persuasion (PNAS, 2025) — <a href="https://doi.org/10.1073/pnas.2413443122">doi.org/10.1073/pnas.2413443122</a></div>
+          <div class="src"><span class="sn">[21]</span>Chen, Kalla, Le, A Framework to Assess the Persuasion Risks of LLMs to Democratic Societies (J Exp Pol Sci, 2026) — <a href="https://doi.org/10.1017/xps.2026.10032">doi.org/10.1017/xps.2026.10032</a></div>
+          <div class="src"><span class="sn">[22]</span>Salvi et al., On the conversational persuasiveness of GPT-4 (Nature Human Behaviour, 2025) — <a href="https://doi.org/10.1038/s41562-025-02194-6">doi.org/10.1038/s41562-025-02194-6</a></div>
+          <div class="src"><span class="sn">[23]</span>Large language models can effectively convince people to believe conspiracies (arXiv, 2026) — <a href="https://arxiv.org/pdf/2601.05050">arxiv.org/pdf/2601.05050</a></div>
+          <div class="src"><span class="sn">[24]</span>Carley, Social cybersecurity: an emerging science (2020) — <a href="https://doi.org/10.1007/s10588-020-09322-9">doi.org/10.1007/s10588-020-09322-9</a></div>
+          <div class="src"><span class="sn">[25]</span>Chuang et al., Simulating Opinion Dynamics with Networks of LLM-based Agents (NAACL Findings, 2024) — <a href="https://doi.org/10.18653/v1/2024.findings-naacl.211">doi.org/10.18653/v1/2024.findings-naacl.211</a></div>
+          <div class="src"><span class="sn">[26]</span><span class="sec">僅作類比 · </span>Social Media's Role in the 2024 Pakistani Elections: An Agenda-Setting Perspective — semanticscholar.org</div>
+          <div class="src"><span class="sn">[27]</span>Qu &amp; Wang, Performance and biases of LLMs in public opinion simulation (Humanit Soc Sci Commun, 2024) — <a href="https://doi.org/10.1057/s41599-024-03609-x">doi.org/10.1057/s41599-024-03609-x</a></div>
+          <div class="src"><span class="sn">[28]</span>Dahlgren Lindström et al., Helpful, harmless, honest? Sociotechnical limits of RLHF (Ethics Inf Technol, 2025) — <a href="https://doi.org/10.1007/s10676-025-09837-2">doi.org/10.1007/s10676-025-09837-2</a></div>
+          <div class="src"><span class="sn">[29]</span><span class="sec">二手摘要 · </span>Pohle et al., Unthinking Digital Sovereignty (Policy &amp; Internet, 2024) — <a href="https://doi.org/10.1002/poi3.437">doi.org/10.1002/poi3.437</a></div>
+          <div class="src"><span class="sn">[30]</span><span class="sec">二手摘要 · </span>Abiade, Algorithmic Sovereignty and the New Security Dependencies (2025) — <a href="https://doi.org/10.30574/wjarr.2025.27.2.2845">doi.org/10.30574/wjarr.2025.27.2.2845</a></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <b>weichen's Research</b> · 從價格戰到認知基礎設施：一條因果鏈的證據審計 · 人為設計、AI agent 執行、人為審定 · <a href="../">回 research-site 首頁</a>
+</footer>
+
+<script>
+/* reveal.js */
+(function(){
+  const els=document.querySelectorAll('.rv');
+  if(!els.length||!('IntersectionObserver' in window)){els.forEach(el=>el.classList.add('in'));return;}
+  const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(el=>io.observe(el));
+})();
+/* sidebar scroll-spy */
+(function(){
+  const navLinks=document.querySelectorAll('.nav a[href^="#"]');
+  const sections=Array.from(navLinks).map(a=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);return el?{link:a,el}:null;}).filter(Boolean);
+  if(!sections.length)return;
+  function update(){const y=window.scrollY+120;let active=sections[0];for(const s of sections){if(s.el.offsetTop<=y)active=s;}sections.forEach(s=>s.link.classList.toggle('active',s===active));}
+  window.addEventListener('scroll',update,{passive:true});update();
+})();
+</script>
+</body>
+</html>
