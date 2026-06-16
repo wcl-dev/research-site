@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>動機合流與「認知破壞」 — 當似是而非的協同內容不再只為了政治、也不只為了錢</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* ---------- canvas (anchor, never overridden) ---------- */
+    --paper:#F4EFE2; --paper-card:#FCF9F1; --paper-sink:#E9E1CC;
+    --ink:#211F19; --ink-soft:#544F44; --ink-faint:#8A8473;
+    --rule:#D4CBB2; --rule-soft:#E2DAC4;
+
+    /* ---------- semantic roles (research-default palette) ---------- */
+    --navy:#1B4A66;   /* role-primary  : 結構／共用工業化基礎設施 */
+    --jade:#2B7458;   /* role-method   : 跨域防治／整合接口 */
+    --clay:#B5402B;   /* role-emphasis : 傷害／認知破壞／「最弱一環」警示 */
+
+    /* ---------- fonts ---------- */
+    --display:'Fraunces','Noto Serif TC',serif;
+    --serif:'Fraunces','Noto Serif TC',serif;
+    --mono:ui-monospace,'SF Mono',Menlo,'Noto Serif TC',monospace;
+
+    /* ---------- widths ---------- */
+    --maxw:920px; --maxw-prose:720px; --w-sidebar:300px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:var(--serif); font-weight:400; line-height:1.9;
+    font-size:19px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
+    opacity:.42; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  a{color:inherit}
+  ::selection{background:var(--paper-card)}
+
+  /* ============ LAYOUT ============ */
+  .shell{display:flex; min-height:100vh}
+
+  /* ---- sidebar ---- */
+  .nav{
+    width:var(--w-sidebar); flex:none; position:fixed; top:0; left:0; bottom:0;
+    background:var(--paper-card); border-right:1px solid var(--rule);
+    padding:42px 0 36px; overflow-y:auto; z-index:40;
+  }
+  .nav-brand{padding:0 32px 26px; border-bottom:1px solid var(--rule); margin-bottom:10px}
+  .nav-kicker{
+    font-family:var(--mono); font-size:12px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--clay); font-weight:600; margin-bottom:14px;
+  }
+  .nav-title{
+    font-family:var(--display); font-weight:600; font-size:22px; line-height:1.42;
+    color:var(--ink);
+  }
+  .nav-title b{color:var(--clay); font-weight:700}
+  .nav-scope{
+    font-size:14px; color:var(--ink-soft); line-height:1.55;
+    margin-top:14px; padding-left:12px; border-left:3px solid var(--navy);
+  }
+  .nav-meta{
+    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
+    margin-top:16px; letter-spacing:.02em;
+  }
+  .nav ol{list-style:none; padding:20px 16px 0}
+  .nav .nav-grp{
+    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--ink-faint); padding:20px 14px 9px; font-weight:600;
+  }
+  .nav a{
+    display:flex; gap:12px; align-items:baseline; text-decoration:none;
+    padding:9px 14px; border-radius:8px; color:var(--ink-soft);
+    font-size:15.5px; line-height:1.5; transition:background .18s,color .18s;
+  }
+  .nav a .ix{
+    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
+    flex:none; width:24px; font-weight:500;
+  }
+  .nav a:hover{background:var(--paper-sink); color:var(--ink)}
+  .nav a.sub{padding-left:30px; font-size:14.5px}
+  .nav a.active{background:var(--ink); color:var(--paper-card)}
+  .nav a.active .ix{color:var(--paper-card)}
+
+  /* ---- main ---- */
+  main{margin-left:var(--w-sidebar); flex:1; min-width:0}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 48px}
+  section{padding:96px 0; border-bottom:1px solid var(--rule)}
+  section:last-of-type{border-bottom:none}
+
+  /* ============ HERO ============ */
+  .hero{
+    border-bottom:4px double var(--rule);
+    background:linear-gradient(180deg,var(--paper-card),transparent 72%);
+  }
+  .hero-inner{max-width:var(--maxw); margin:0 auto; padding:74px 48px 64px}
+  .hero-kicker{
+    font-family:var(--mono); font-size:13px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--clay); font-weight:600;
+    display:flex; align-items:center; gap:14px; margin-bottom:30px;
+  }
+  .hero-kicker::after{content:""; flex:1; height:1px; background:var(--rule)}
+  h1.hero-title{
+    font-family:var(--display); font-weight:600; font-size:clamp(34px,5.4vw,62px);
+    line-height:1.2; letter-spacing:-.012em; margin-bottom:28px;
+  }
+  h1.hero-title .cut{color:var(--clay); font-weight:600}
+  .hero-scope{
+    font-family:var(--display); font-weight:500; color:var(--ink);
+    font-size:clamp(20px,2.5vw,26px); line-height:1.46;
+    margin:-6px 0 34px; padding-left:20px; border-left:4px solid var(--navy);
+  }
+  .hero-scope b{font-weight:700}
+  .hero-stand{
+    font-size:21px; line-height:1.82; color:var(--ink-soft);
+    max-width:var(--maxw-prose); margin-bottom:38px;
+  }
+  .hero-stand b{color:var(--ink); font-weight:700}
+
+  /* hero-tension (3-cell, converging) */
+  .hero-tension{
+    display:flex; margin:38px 0 8px; border:1px solid var(--rule);
+    border-radius:14px; overflow:hidden; background:var(--paper-card);
+  }
+  .ht-cell{flex:1; padding:28px 30px}
+  .ht-cell+.ht-cell{border-left:1px solid var(--rule)}
+  .ht-arrow{font-size:34px; line-height:1; margin-bottom:10px; display:block}
+  .ht-cell.a .ht-arrow{color:var(--clay)}
+  .ht-cell.b .ht-arrow{color:var(--clay)}
+  .ht-cell.c .ht-arrow{color:var(--navy)}
+  .ht-big{font-family:var(--display); font-size:25px; font-weight:600; line-height:1.34}
+  .ht-cell.c .ht-big .cd{color:var(--clay)}
+  .ht-sub{font-size:15px; color:var(--ink-faint); margin-top:8px; line-height:1.55}
+  .hero-foot{
+    margin-top:34px; font-size:15px; color:var(--ink-soft);
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .hero-foot .dot{width:7px;height:7px;border-radius:50%;background:var(--clay);
+    display:inline-block;flex:none}
+
+  /* ============ HONESTY CALLOUT (load-bearing, prominent) ============ */
+  .honesty{
+    background:var(--paper-card);
+    border:2px solid var(--clay);
+    border-radius:18px;
+    padding:40px 44px 36px;
+    box-shadow:0 2px 0 rgba(181,64,43,.10), 0 18px 40px -28px rgba(33,31,25,.5);
+  }
+  .honesty-kicker{
+    font-family:var(--mono); font-size:13px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--clay); font-weight:600;
+    display:flex; align-items:center; gap:12px; margin-bottom:14px;
+  }
+  .honesty-kicker .bang{
+    width:24px; height:24px; border:2px solid var(--clay); border-radius:50%;
+    font-family:var(--display); font-weight:700; font-size:16px; line-height:21px;
+    text-align:center; flex:none;
+  }
+  .honesty h2{
+    font-family:var(--display); font-size:clamp(24px,3vw,32px); font-weight:600;
+    line-height:1.3; letter-spacing:-.01em; margin-bottom:8px;
+  }
+  .honesty .lede{
+    font-size:18px; color:var(--ink-soft); line-height:1.78; margin-bottom:26px;
+    max-width:var(--maxw-prose);
+  }
+  .honesty ol{list-style:none; counter-reset:hc; display:flex; flex-direction:column; gap:14px}
+  .honesty li{
+    position:relative; padding:22px 26px 22px 64px;
+    background:var(--paper); border:1px solid var(--rule);
+    border-left:4px solid var(--clay); border-radius:0 12px 12px 0;
+    font-size:17px; line-height:1.76; color:var(--ink-soft);
+  }
+  .honesty li::before{
+    counter-increment:hc; content:counter(hc);
+    position:absolute; left:20px; top:21px;
+    font-family:var(--display); font-weight:700; font-size:19px; color:var(--clay);
+    width:28px; height:28px; border:2px solid var(--clay); border-radius:50%;
+    text-align:center; line-height:25px;
+  }
+  .honesty li b{color:var(--ink); font-weight:700}
+
+  /* ============ SECTION HEADERS ============ */
+  .sec-head{margin-bottom:52px}
+  .sec-num{
+    font-family:var(--mono); font-size:14px; font-weight:600; letter-spacing:.14em;
+    color:var(--ink-faint); display:block; margin-bottom:16px;
+  }
+  h2.sec-title{
+    font-family:var(--display); font-weight:600; font-size:clamp(28px,3.8vw,44px);
+    line-height:1.26; letter-spacing:-.01em;
+  }
+  .sec-lead{
+    font-size:19px; color:var(--ink-soft); margin-top:20px; max-width:var(--maxw-prose);
+    line-height:1.84;
+  }
+  .sub-h{
+    font-family:var(--display); font-size:23px; font-weight:600; color:var(--ink);
+    margin:0 0 22px; padding-bottom:14px; border-bottom:2px solid var(--rule);
+    line-height:1.4;
+  }
+  .block{margin-top:38px}
+
+  /* ============ TL;DR ============ */
+  .tldr-list{display:flex; flex-direction:column; gap:14px}
+  .tldr{
+    display:flex; gap:28px; padding:32px 34px;
+    background:var(--paper-card); border:1px solid var(--rule); border-radius:12px;
+    align-items:flex-start;
+  }
+  .tldr .num{
+    font-family:var(--display); font-size:50px; font-weight:600; line-height:.85;
+    color:var(--navy); flex:none; width:54px;
+  }
+  .tldr .body p{font-size:18.5px; line-height:1.82}
+  .tldr .body b{font-weight:700}
+  .tldr .tag{
+    font-family:var(--mono); font-size:13px; color:var(--ink-faint); margin-top:14px;
+  }
+
+  /* ============ FINDINGS (find-card) ============ */
+  .find{background:var(--paper-card); border:1px solid var(--rule);
+    border-radius:16px; padding:40px 42px; margin-bottom:24px}
+  .find-top{display:flex; gap:18px; align-items:flex-start; flex-wrap:wrap;
+    margin-bottom:20px}
+  .find-no{font-family:var(--mono); font-size:14px; font-weight:600; letter-spacing:.08em;
+    color:var(--paper-card); background:var(--ink); padding:7px 12px; border-radius:6px;
+    flex:none}
+  .find h3{font-family:var(--display); font-size:24px; font-weight:600; line-height:1.42;
+    flex:1; min-width:260px}
+  .find-sum{font-size:18px; line-height:1.86; color:var(--ink-soft)}
+  .find-sum + .find-sum{margin-top:18px}
+  .find-sum b{color:var(--ink); font-weight:700}
+  .find-sum .em{font-weight:700; background:var(--paper-sink); padding:1px 5px; border-radius:3px}
+  .find-key{margin-top:26px; padding:22px 26px; background:var(--paper-sink);
+    border-radius:11px; font-size:17px; line-height:1.74}
+  .find-key .kl{font-family:var(--mono); font-size:13px; letter-spacing:.08em;
+    color:var(--clay); font-weight:600; display:block; margin-bottom:6px}
+  .find-key b{font-weight:700}
+  .find .block{margin-top:34px}
+
+  /* ============ EVIDENCE-TIER REGISTERS ============ */
+  /* confirmed evidence ring — solid navy left rule (reads as "stands") */
+  .ring{
+    margin:18px 0; padding:22px 26px;
+    background:var(--paper); border:1px solid var(--rule);
+    border-left:4px solid var(--navy); border-radius:0 12px 12px 0;
+  }
+  .ring .ring-h{
+    font-family:var(--display); font-weight:600; font-size:18px; color:var(--ink);
+    margin-bottom:8px; line-height:1.5;
+  }
+  .ring .ring-tag{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--navy); border:1px solid var(--navy); border-radius:5px;
+    padding:2px 8px; margin-left:10px; font-weight:600; white-space:nowrap;
+  }
+  .ring p{font-size:16.5px; line-height:1.74; color:var(--ink-soft)}
+  .ring p b{color:var(--ink); font-weight:700}
+
+  /* speculative / inference register — muted, clay-tinted, lighter weight than a confirmed finding */
+  .spec{
+    margin:18px 0; padding:22px 26px 20px;
+    background:repeating-linear-gradient(135deg, var(--paper-card), var(--paper-card) 11px, var(--paper-sink) 11px, var(--paper-sink) 12px);
+    border:1px dashed var(--clay); border-radius:12px;
+    color:var(--ink-soft);
+  }
+  .spec .spec-h{
+    font-family:var(--mono); font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--clay); font-weight:600; display:flex; align-items:center; gap:10px;
+    margin-bottom:10px;
+  }
+  .spec .spec-h .glyph{
+    width:22px; height:22px; border:1.5px dashed var(--clay); border-radius:50%;
+    text-align:center; line-height:19px; font-family:var(--display); font-weight:700;
+    font-size:14px; flex:none;
+  }
+  .spec p{font-size:16.5px; line-height:1.76}
+  .spec p + p{margin-top:12px}
+  .spec p b{color:var(--ink); font-weight:700}
+  .spec strong.no-evi{color:var(--clay); font-weight:700}
+
+  /* inline marker for "(本研究的判讀/推論)" passages — subtler than confirmed data */
+  .hedge{
+    font-style:normal; color:var(--ink-faint);
+    border-bottom:1px dotted var(--clay);
+  }
+
+  /* ============ GAPS ============ */
+  .gaps{list-style:none}
+  .gaps li{position:relative; padding:20px 24px 20px 58px; margin-bottom:12px;
+    background:var(--paper-card); border:1px solid var(--rule);
+    border-radius:11px; font-size:16.5px; line-height:1.76; color:var(--ink-soft)}
+  .gaps li::before{content:"!"; position:absolute; left:20px; top:20px;
+    font-family:var(--display); font-weight:700; font-size:19px; color:var(--clay);
+    width:26px; height:26px; border:2px solid var(--clay); border-radius:50%;
+    text-align:center; line-height:23px}
+  .gaps li b{color:var(--ink); font-weight:700}
+  .nowrap{white-space:nowrap}
+
+  /* ============ LEGS-ROADMAP (actors) ============ */
+  .legs{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  .leg{border:1px solid var(--rule); border-radius:16px; overflow:hidden;
+    background:var(--paper-card)}
+  .leg-top{padding:24px 26px}
+  .leg.A .leg-top{background:var(--navy)}
+  .leg.B .leg-top{background:var(--jade)}
+  .leg.C .leg-top{background:var(--clay)}
+  .leg-top *{color:#fff}
+  .leg-tag{font-family:var(--mono); font-size:13px; letter-spacing:.1em;
+    opacity:.82; text-transform:uppercase}
+  .leg-name{font-family:var(--display); font-size:21px; font-weight:600; margin-top:7px; line-height:1.34}
+  .leg-sub{font-size:14px; opacity:.9; margin-top:8px; line-height:1.6}
+  .leg-body{padding:22px 26px 26px}
+  .leg-row{padding:14px 0}
+  .leg-row+.leg-row{border-top:1px solid var(--rule-soft)}
+  .leg-row .lbl{font-size:13px; color:var(--ink-faint); margin-bottom:6px;
+    font-family:var(--mono); letter-spacing:.05em; text-transform:uppercase}
+  .leg-row .val{font-size:16px; line-height:1.7; color:var(--ink)}
+  .leg-row .val b{font-weight:700}
+
+  /* ============ SOURCES ============ */
+  .src-grid{display:grid; grid-template-columns:1fr 1fr; gap:0 36px}
+  .src{padding:16px 0; border-bottom:1px solid var(--rule); font-size:15px;
+    line-height:1.62; display:flex; gap:14px}
+  .src .sid{font-family:var(--mono); font-size:12px; color:var(--clay); flex:none;
+    font-weight:600; padding-top:3px; width:30px}
+  .src .sx b{font-weight:700; color:var(--ink)}
+  .src .sx a{color:var(--navy); text-decoration:none; word-break:break-all;
+    font-family:var(--mono); font-size:11.5px}
+  .src .sx a:hover{text-decoration:underline}
+  .src .sx .pub{color:var(--ink-faint)}
+  .src-note{font-size:15px; color:var(--ink-soft); margin-top:26px; line-height:1.8}
+
+  /* ============ METHOD NOTE ============ */
+  .method-note{
+    margin-top:30px; padding:26px 30px; background:var(--paper-card);
+    border:1px solid var(--rule); border-left:4px solid var(--navy);
+    border-radius:0 12px 12px 0; font-size:15.5px; line-height:1.82; color:var(--ink-soft);
+  }
+  .method-note b{color:var(--ink); font-weight:700}
+
+  footer{background:var(--ink); color:var(--ink-faint); margin-left:var(--w-sidebar);
+    padding:44px 48px; font-size:14px; line-height:2}
+  footer b{color:var(--paper-card); font-weight:700}
+  footer a{color:var(--paper-card)}
+
+  /* reveal */
+  .rv{opacity:0; transform:translateY(22px);
+    transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1; transform:none}
+
+  /* ============ RESPONSIVE ============ */
+  @media(max-width:1040px){
+    .nav{position:static; width:100%; height:auto; bottom:auto;
+      border-right:none; border-bottom:2px solid var(--rule)}
+    .nav ol{display:flex; flex-wrap:wrap; padding:14px}
+    .nav .nav-grp{width:100%; padding:12px 14px 4px}
+    .nav a.sub{padding-left:14px}
+    main,footer{margin-left:0}
+    .shell{flex-direction:column}
+    .hero-tension{flex-direction:column}
+    .ht-cell+.ht-cell{border-left:none; border-top:1px solid var(--rule)}
+    .legs{grid-template-columns:1fr}
+    .src-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:600px){
+    body{font-size:17.5px}
+    .wrap,.hero-inner{padding-left:24px; padding-right:24px}
+    section{padding:64px 0}
+    .hero-inner{padding-top:52px}
+    .find{padding:28px 24px}
+    .honesty{padding:30px 24px 28px}
+    .honesty li{padding:20px 22px 20px 58px}
+    .tldr{padding:24px; gap:18px}
+    .tldr .num{font-size:40px; width:42px}
+    footer{padding:30px 24px}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">
+      <div class="nav-kicker">公開研究報告</div>
+      <div class="nav-title">動機合流與<b>認知破壞</b></div>
+      <div class="nav-scope">跨機關防治 · 平台治理 · 政策制定者</div>
+      <div class="nav-meta">資訊操弄 · 中文資訊環境 · 2026 / 06</div>
+    </div>
+    <ol>
+      <li class="nav-grp">目次</li>
+      <li><a href="#honesty"><span class="ix">★</span>三條誠實邊界</a></li>
+      <li><a href="#tldr"><span class="ix">01</span>重點速覽</a></li>
+      <li><a href="#problem"><span class="ix">02</span>問題：兩套解釋撞牆</a></li>
+      <li><a href="#section-1" class="sub">一　動機分類系統性失效</a></li>
+      <li><a href="#section-2" class="sub">二　共用工業化基礎設施</a></li>
+      <li><a href="#section-3" class="sub">三　生成式 AI 的規模效應</a></li>
+      <li><a href="#section-4" class="sub">四　認知破壞：傷害定位</a></li>
+      <li><a href="#section-5" class="sub">五　加乘效應（最弱一環）</a></li>
+      <li><a href="#section-6" class="sub">六　偵測方法的結構盲區</a></li>
+      <li><a href="#section-7" class="sub">七　跨域整合的交換接口</a></li>
+      <li><a href="#section-8" class="sub">八　兩個台灣案例</a></li>
+      <li><a href="#gaps"><span class="ix">03</span>我們還不知道的</a></li>
+      <li><a href="#actions"><span class="ix">04</span>防治方向</a></li>
+      <li class="nav-grp">附錄</li>
+      <li><a href="#sources"><span class="ix">05</span>主要來源（49 筆）</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker">資訊操弄 · 動機合流 · 認知破壞</div>
+        <h1 class="hero-title">當似是而非的協同內容，導向針對資訊環境的<span class="cut">認知破壞</span></h1>
+        <p class="hero-scope">給<b>跨機關防治、平台治理與政策制定者</b>：當「這是詐騙還是假訊息」的管轄之爭，正在變成操作者的庇護所。</p>
+        <p class="hero-stand">
+          網路上由 AI 大量生產、彼此協同的「似是而非內容」，已經很難用我們習慣的兩套框架——<b>政治攻擊</b>（看意圖與外國勢力）與<b>詐騙獲利</b>（看金流）——單獨解釋。本文主張這兩套框架正在同時失效：不同動機的操作<b>共用同一套工業化的基礎設施與手法</b>，動機只是這套基礎設施上可以替換的內容。而這類操作的首要傷害，不在於說服某個人或騙走某筆錢，而在於用海量內容淹沒資訊環境本身——本文把這種不挑對象、針對「認知共有財」的傷害稱為<b>「認知破壞」</b>。正因為它不挑對象，它讓後續每一個惡意操作都更容易得手。這是一個論點，不是定論；本文逐環標出哪裡有證據、哪裡只是推論。
+        </p>
+        <div class="hero-tension">
+          <div class="ht-cell a">
+            <span class="ht-arrow">↓</span>
+            <div class="ht-big">不只為了政治攻擊</div>
+            <div class="ht-sub">境外資訊操弄框架判斷核心是「意圖」與「外國勢力」</div>
+          </div>
+          <div class="ht-cell b">
+            <span class="ht-arrow">↓</span>
+            <div class="ht-big">不只為了詐騙獲利</div>
+            <div class="ht-sub">反詐框架判斷核心是「金流」</div>
+          </div>
+          <div class="ht-cell c">
+            <span class="ht-arrow">↘</span>
+            <div class="ht-big">共用工業化基礎設施 <span class="cd">→ 認知破壞</span></div>
+            <div class="ht-sub">動機是可替換內容；傷害落在資訊環境本身</div>
+          </div>
+        </div>
+        <div class="hero-foot">
+          <span class="dot"></span><span>政策／防治取向綜合研究 · 49 筆獨立來源 · 待驗證的可證偽假設，加乘效應一環缺第一手實證並已逐環標明</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= ★ HONESTY CALLOUT (prominent, load-bearing) ================= -->
+    <section id="honesty">
+      <div class="wrap">
+        <div class="honesty rv">
+          <div class="honesty-kicker"><span class="bang">!</span>先講清楚 · 載重的誠實邊界</div>
+          <h2>三條先講清楚的誠實邊界</h2>
+          <p class="lede">這份研究是一個論點，不是定論。在往下讀之前，三件事必須先說明白——它們界定了本文哪裡站得住、哪裡只是假設。</p>
+          <ol>
+            <li><b>「加乘效應」這一環是整個論點最弱的地方。</b>「資訊環境被淹沒 → 整個社會的信任基線下降 → 後續操作更容易成功」這條完整的因果鏈，<b>目前沒有任何第一手研究能直接證實</b>。本文會逐環標出哪裡有證據、哪裡只是推論。</li>
+            <li><b>「動機合流」是本研究的判讀，不是任何單一平台的立場。</b>例如 Meta 在 2026 上半年的威脅報告把「詐騙中心」與「影響力操作」列為<b>分開的</b>兩類執法對象，並未宣稱兩者共用基礎設施。本文的合流判讀來自其他獨立來源，不能掛在 Meta 名下。</li>
+            <li><b>「認知破壞」是一個可被證偽的假設。</b>它在資訊環境的傷害有供給端的結構證據（操作的規模、基礎設施），但「整個社會的辨識力是否真的下降」缺乏受眾端實證。本文歡迎被推翻或補強。</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 01 · TL;DR ================= -->
+    <section id="tldr">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">重點速覽</h2>
+          <p class="sec-lead">五個核心判讀。第一條是命題的骨架，後四條是它最硬與最弱的證據兩端。</p>
+        </header>
+        <div class="tldr-list">
+          <article class="tldr rv">
+            <div class="num">01</div>
+            <div class="body">
+              <p>兩套框架同時撞牆：<b>政治攻擊</b>（看意圖／外國性）與<b>詐騙獲利</b>（看金流）都無法單獨解釋 AI 量產的協同內容。不同動機的操作<b>共用同一套工業化基礎設施</b>，動機只是基礎設施上可替換的內容。</p>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">02</div>
+            <div class="body">
+              <p>最硬的單一證據：OSoMe 整理的 <b>1,420 個 GAN 假頭像 X 帳號</b>同時被用於詐騙、洗版與放大協同訊息，論文作者自己寫下「<b>動機仍然不明</b>」——「動機」這個分類軸在研究者手上就失效了。</p>
+              <div class="tag">來源 [1] OSoMe／印第安納大學</div>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">03</div>
+            <div class="body">
+              <p>基礎設施的規模有第一手測繪：EEAS 第三份威脅報告揭露約 <b>38,000 個頻道</b>、鎖定 90 國；北約 2025 實驗證明這套設施<b>花 121 歐元就能買到 17,442 則造假留言</b>——門檻極低、可商業購得。</p>
+              <div class="tag">來源 [9][10]</div>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">04</div>
+            <div class="body">
+              <p><b>「認知破壞」</b>是本文提出、針對資訊環境本身（而非個人）的傷害定位：以海量似是而非的協同內容淹沒「認知共有財」，壓低社會的辨識基線。它是一個可被證偽的假設，<b>受眾端實證仍付之闕如</b>。</p>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">05</div>
+            <div class="body">
+              <p>防治結論：以動機分工的體系（反詐／反假訊息／內容審核各管一塊）有<b>結構性盲區</b>，操作者就住在盲區交界。出路是<b>先評估傷害、再歸因動機</b>的跨機關前置流程，搭配已可運行的跨域情資交換接口（DISARM／STIX／IMS）。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 · PROBLEM FRAMING ================= -->
+    <section id="problem">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">問題：兩套解釋同時撞牆</h2>
+          <p class="sec-lead">公共討論與制度分工沿用兩條軸線——本文的論證，從這兩條軸線同時失靈的缺口出發。</p>
+        </header>
+        <div class="find rv">
+          <p class="find-sum">
+            過去面對可疑內容，分工沿用兩條軸線。<b>政治攻擊</b>軸對應事實查核、平台下架協同操作、國安與民主防衛，判定核心是<b>意圖與外國性</b>。<b>詐騙獲利</b>軸對應反詐騙、消費者保護、服務條款執法、金流阻斷，判定核心是<b>金流</b>。兩條軸線各有成熟的偵測方法與承辦機關。
+          </p>
+          <p class="find-sum">
+            問題是，當內容由 AI 大量生產、操作高度協同時，<span class="em">很多案例同時不符合任何一條軸線的判準，卻又明顯是有組織的惡意操作</span>。它們卡在兩套框架的中間：有獲利的解釋不了協同的同質、有協同的找不到政治動機也沒有金流。本文以下八節，就是從這個「兩套框架同時撞牆」的缺口出發。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 一 ================= -->
+    <section id="section-1">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">一</span>
+          <h2 class="sec-title">動機分類正在系統性失效——這是研究者自己撞到的牆</h2>
+        </header>
+        <article class="find rv">
+          <div class="find-top">
+            <span class="find-no">一</span>
+            <h3>當研究者面對同一批帳號，「動機」這個分類軸在他們手上就失效了</h3>
+          </div>
+          <p class="find-sum">
+            最硬的單一證據來自對 AI 假頭像帳號的系統分析。印第安納大學社群媒體觀測站（OSoMe）的研究者整理出 <span class="em">1,420 個</span>使用<b>生成對抗網路（GAN）</b>製作假頭像的 X 帳號，發現同一批帳號<b>同時</b>被用於散布詐騙、洗版垃圾訊息、以及放大協同訊息；論文直接寫下：「他們的動機仍然不明，因為被放大的內容性質非常雜駁」[1]。這不是外加的詮釋，而是論文作者本人面對同一個帳號群，<b>無法</b>判定單一動機。
+          </p>
+          <p class="find-sum">
+            手法跨領域挪用也有同儕審查的證據。一份哈佛甘迺迪學院《錯誤資訊評論》的研究發現：原本用於政治造謠的三件手法——「假人設、AI 生成影像、外包」——被原封不動地用於商業銷售引流（在 LinkedIn 上 1,003 個 GAN 假頭像帳號、橫跨 63 個以上的雇主），論文明文說這些操作「搭起了政治與經濟兩個領域的橋樑」[2]。一個在 X、跨詐騙／垃圾／影響力三種用途，一個在 LinkedIn、商業引流，兩者互補，構成「同一套假頭像基礎設施、跨平台跨用途」的雙重實證。
+          </p>
+          <p class="find-sum">
+            從產業結構看，歐盟對外事務部（EEAS）旗下的 EUvsDisinfo 把這個合流描述為「一場安靜的革命」：過去由威權政府與情報機構經營的操作，如今「外包給把造謠與欺騙當服務在賣的私人公司」；被揭露的「Team Jorge」客戶「包括政黨、企業，以及據稱有國家背景的行為者」[3]。詐騙這一端同樣是工業化生態：美中經濟與安全審查委員會（USCC）記錄東南亞詐騙中心 2023 年約有 <span class="em">438 億美元（$43.8B）</span>收入（約等於緬、柬、寮三國合計 GDP 的 40%）[4]。平台與 AI 供應商的揭露也記錄了跨動機共用的工具鏈：OpenAI 自 2024 年 2 月起破壞了 <b>40 個以上</b>的違規網絡，橫跨詐騙、惡意網路活動與隱蔽影響力操作 [5]；Google 威脅情資團隊觀察到生成式 AI 多被用於提升既有作業效率 [6]；Woolley 也指出同一套機器人與分身帳號工具跨政府、企業、網紅 [7]。
+          </p>
+          <div class="spec">
+            <div class="spec-h"><span class="glyph">~</span>需要平衡的相反讀法（本研究承認的邊界）</div>
+            <p>「共用同一個供應商，不等於同一個操作者」。有研究記錄到協同操作的偵測訊號其實高度碎裂、不同群體使用不同戰術，這可被讀成「各自獨立的行為者，而非統一操作」[8]。<b>本文主張的是「基礎設施與手法層」的合流，不是「行為者同一」</b>；而供應商層的共用，恰恰使「用動機歸因到行為者」更困難，不是更容易。</p>
+          </div>
+          <div class="find-key">
+            <span class="kl">關鍵發現</span>
+            <b>動機分類失效，不是外加的詮釋，而是研究者面對同一批帳號時自己撞到的牆</b>——這把「用動機切開詐騙與影響力」這個制度前提直接掏空。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 二 ================= -->
+    <section id="section-2">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">二</span>
+          <h2 class="sec-title">不同動機的操作，共用同一套工業化基礎設施</h2>
+        </header>
+        <article class="find rv">
+          <div class="find-top">
+            <span class="find-no">二</span>
+            <h3>多層、可拋棄、可商品化購得——基礎設施的規模與分層有第一手測繪</h3>
+          </div>
+          <p class="find-sum">
+            這套基礎設施的規模與分層，EEAS 的第三份境外資訊操弄威脅報告做了第一手測繪：套用「基礎設施矩陣」分析 2024 年 505 起事件，揭露約 <span class="em">38,000 個頻道</span>、鎖定 90 個國家、322 個組織 [9]。報告把基礎設施描述成<b>多層、各層分工</b>的網絡——「一個由威脅行為者公開控制的中央頻道網絡作為骨幹，再由多層、各自扮演不同角色的網絡組成」，而且這些資產「往往短命、可拋棄——只為單一行動存在，或很快被平台移除」，這種短暫性正是辨識困難的來源 [9]。
+          </p>
+          <p class="find-sum">
+            批量生產假身分的基礎設施，在不同動機的案例裡反覆出現。Team Jorge 的「AIMS」軟體「能建立並協調數以千計的假帳號，配上合成的照片、生平與背景故事」[3]；前述 X 的 1,420 個與 LinkedIn 的 1,003 個假頭像帳號，是同一類批量假身分基礎設施的量化指紋 [1][2]。北約戰略溝通卓越中心（NATO StratCom COE）2025 年的實驗更證明這套基礎設施<b>可商品化購得</b>：一次實驗就驅動「超過 <span class="em">10 萬次</span>不真實互動」、辨識出橫跨 7 個平台的 30,011 個不真實帳號，而且「花 <span class="em">121 歐元（€121）</span>，就收到 17,442 則留言」[10]——門檻極低、可向商業供應商直接買到。
+          </p>
+          <p class="find-sum">
+            跨案例與既有協同手法研究的對齊也有同儕審查支撐：一份《自然．通訊》的研究分析了 <b>1,400 萬則訊息、40 萬篇文章</b>，證明社群機器人在散布低可信度內容上扮演不成比例的角色 [11]；其他研究把資訊操作概念化為「協作工作」與生產線分工 [12][13]，並以參與者名單實證了假草根（astroturfing）的協同層 [14]。
+          </p>
+          <div class="spec">
+            <div class="spec-h"><span class="glyph">~</span>對齊的限度與相反讀法（本研究承認的邊界）</div>
+            <p>上述對齊<b>多屬政治場域，跨到純獲利場域的對齊仍部分靠推論</b>。同樣地，「共用基礎設施可能是共用供應商、多租戶，而非同一操作者」這個相反解讀本文是接受的——因為本文要的正是「基礎設施／供應商層共用」這個事實，它讓「用動機歸因行為者」更難，而非更容易。</p>
+          </div>
+          <div class="find-key">
+            <span class="kl">關鍵發現</span>
+            38,000 個頻道與「121 歐元買 17,442 則留言」，把「共用工業化基礎設施」從修辭變成<b>有規模測繪、可商業購得</b>的供給端事實。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 三 ================= -->
+    <section id="section-3">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">三</span>
+          <h2 class="sec-title">生成式 AI 讓基礎設施更便宜、更大、更多樣——但「量產不等於影響」</h2>
+        </header>
+        <article class="find rv">
+          <div class="find-top">
+            <span class="find-no">三</span>
+            <h3>AI 證實了「更便宜、更大、形態更多樣」，但沒有證實「量產會自動提升操作成效」</h3>
+          </div>
+          <p class="find-sum">
+            史丹佛網路觀測站、喬治城 CSET 與 OpenAI 的聯合報告是這個規模效應的奠基分析：「當生成式模型壓低了製造宣傳的成本，更多行為者會覺得發動影響力操作划算」，而且 AI 改變的不只是量、也是形態——「動態、個人化、即時生成的內容，例如一對一聊天機器人」[15]。EEAS 用一句鮮明的對照說同一件事：「過去需要一整棟聖彼得堡大樓的酸民工廠才能做的事，現在一台筆電就夠了」[3]。
+          </p>
+          <div class="ring">
+            <div class="ring-h">已被證實的部分<span class="ring-tag">供給端 · 結構證據</span></div>
+            <p>供給端的工業化生產有新聞與量測佐證：404 Media 追查到 Facebook 的「創作者獎金」機制——「按 1,000 個讚付你 100 美元」——驅動了印度、越南、菲律賓跨地域的 AI 垃圾內容量產 [16]；《MIT 科技評論》描述這類內容「為了遊戲搜尋演算法而最佳化，把優質內容埋在垃圾底下」[17]；一份研究首度系統量測了「由大型語言模型主導的網站」對整體網路內容的佔據，並指出「偵測 AI 生成文字的工具，表現遠不如宣稱的好」[18]；犯罪學綜述把 AI 對詐騙的影響定位為「讓欺騙工業化」[19]。</p>
+          </div>
+          <div class="spec">
+            <div class="spec-h"><span class="glyph">!</span>關鍵的閘門：效果端被明確列為未知數</div>
+            <p><b>同一份聯合報告也明確把「效果」列為關鍵未知數</b>：它以推測語氣處理「更多、更便宜的內容是否轉化為更大的影響」，並指出現有的效果證據僅止於 AI「能產出成功模仿人類文章風格與內容的文字」——是<b>模仿</b>，不是更強的說服 [15]。EEAS 也誠實標記：「AI 生成文字很可能已被用於境外資訊操弄，但偵測仍然困難」[9]。<strong class="no-evi">這是一道關鍵的閘門：AI 證實了「基礎設施更便宜、更大、形態更多樣」，但沒有證實「量產會自動提升操作成效」。</strong></p>
+            <p>相反論點也要平衡：「AI 垃圾內容只是演算法的副產物、或純粹為了獲利，不是協同操作」，反映的是共享的演算法誘因結構而非協同意圖 [20][21]。本文承認大量內容確實由變現誘因驅動——但這正是「動機（獲利）是基礎設施上可替換內容」的供給端版本，並不否證基礎設施層的合流。</p>
+          </div>
+          <div class="find-key">
+            <span class="kl">關鍵發現</span>
+            AI 的角色是放大<b>供給</b>（更便宜、更大、形態更多樣），<b>不是</b>已被證實的放大<b>效果</b>——量產與影響之間是一道未關上的閘門。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 四 ================= -->
+    <section id="section-4">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">四</span>
+          <h2 class="sec-title">「認知破壞」：一個動機無關、針對資訊環境本身的傷害定位</h2>
+        </header>
+        <article class="find rv">
+          <div class="find-top">
+            <span class="find-no">四</span>
+            <h3>傷害的對象是「認知共有財」，而不是被說服或被騙的某個人——一個可被證偽的假設</h3>
+          </div>
+          <p class="find-sum">
+            本文提出的<b>認知破壞</b>，定義是：以海量、似是而非、高度協同的內容<b>淹沒資訊環境本身</b>，系統性壓低整個社會的信任與辨識基線，傷害的對象是<b>「認知共有財」</b>（一個社會用來判斷「什麼可信、什麼可疑」的共享基礎設施），而不是被說服或被騙的某個人。以下把它逐一對位到既有框架，講清楚它補充了什麼、哪裡只是換個說法。
+          </p>
+          <p class="find-sum">
+            <b>對位「謊言洪流」（firehose of falsehood）。</b>RAND 的原典提供了「以量淹沒」最接近的既有理論——四個特徵：「高量且多管道、快速持續且重複、不在乎客觀真實、不在乎前後一致」[22]。認知破壞補充的位置是：謊言洪流仍然是<b>為了推某套敘事</b>；認知破壞主張傷害本身<b>獨立於任何特定敘事</b>——淹沒即傷害。<br>
+            <b>對位「資訊失序」（information disorder）。</b>Wardle 與 Derakhshan 的三分類仍以<b>單則內容加意圖</b>為分析單位 [23]；認知破壞的傷害不取決於單則內容的真假或行為者的意圖。<br>
+            <b>對位「說謊者紅利」（liar's dividend）。</b>Chesney 與 Citron 把傷害定位在「一個多疑的大眾，會被預先養成去懷疑真實影音證據的真實性」[24]——這幾乎就是認知破壞「壓低社會辨識基線」的法學前身。<br>
+            <b>對位「灌爆／以噪音審查」（flooding）。</b>Roberts 的「灌爆」是「以量稀釋、壓低碰到可信來源機率」的理論祖源 [25]；認知破壞主張同一機制可由<b>無特定行為者的工業化內容飽和</b>達成。
+          </p>
+          <div class="spec">
+            <div class="spec-h"><span class="glyph">~</span>對位的限度與必須克制之處（本研究的判讀）</div>
+            <p>在「認知破壞 vs 認知作戰」的對位上，本研究手上的來源不足以做嚴格定義橋接（採用的資料裡唯一標記認知作戰的一份，深讀後其實是「社群媒體對軍事人員的定向風險」）[26]；可用的替代橋接是「資訊失序通往認知作戰」[27] 與「噪音政治／敘事灌爆」[28]，嚴格的機構級定義對位仍待補。在「傷害集體知識而非個人」這一側，有一群同儕審查文獻可對接：機器人灌量造成的「知識重複計算」[29]、深偽傷害共享信任 [30]、生成式 AI 的「知識不正義」[31]、回聲室與知識泡泡的區分 [32]。</p>
+            <p>需要克制的是：哲學界也有反對誇大的聲音，批評把深偽說成「知識末日」式的預測過度 [33]。<b>認知破壞必須限縮在「特定生態位被飽和、來源判斷被掏空」，不可滑向「認知末日」。</b>「認知破壞補充了一個獨立新層」這個主張本身是<span class="hedge">本研究的詮釋</span>，需要被檢視哪些地方真有補充、哪些地方只是換個說法。</p>
+          </div>
+          <div class="find-key">
+            <span class="kl">關鍵發現</span>
+            認知破壞把四個既有框架的個案機制<b>一般化</b>成「基礎設施層、無特定行為者的無差別傷害」——但「它真的補上了一個獨立新層」仍是待檢視的詮釋，不是定論。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 五 (evidence-tier showcase) ================= -->
+    <section id="section-5">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">五</span>
+          <h2 class="sec-title">加乘效應：這是整個論點最弱的一環，必須誠實說</h2>
+          <p class="sec-lead">「認知破壞」的戰略價值在於它的加乘效應（force multiplier，本身不直接達成目的、卻放大後續每一個操作的成效）——但這條因果鏈的證據狀態必須逐環攤開。讀完本節，讀者應該確知這是本研究最弱、推論最多的一環。</p>
+        </header>
+        <article class="find rv">
+          <div class="find-top">
+            <span class="find-no">五</span>
+            <h3>第一環有證據、第二環有證據但帶反向邊界、第三環沒有第一手實證</h3>
+          </div>
+          <p class="find-sum">
+            加乘效應的構想是：先用無害內容養出信任與依賴，壓低社會的信任與辨識基線，使後續每一個操作更容易得手。以下逐環攤開證據狀態，並用視覺把「已被證實」與「仍是假設」分開。
+          </p>
+
+          <div class="ring">
+            <div class="ring-h">第一環（量 → 個人接受）<span class="ring-tag">有證據 · 止於個人信念</span></div>
+            <p>謊言洪流的有效性建立在個人說服心理學：多來源、重複曝光會提高個人對單一敘事的接受度 [22]。一份研究（樣本 <b>1,500 人</b>）也測到「接觸造謠與相信造謠正相關」[34]。<b>但兩者都停在「個人相信某一套敘事」，不涵蓋整個社會的信任基線，也不涵蓋跨領域的外溢。</b></p>
+          </div>
+
+          <div class="ring">
+            <div class="ring-h">第二環（說謊者紅利 → 逃避問責）<span class="ring-tag">有證據 · 帶反向邊界</span></div>
+            <p>一份《美國政治學評論》的五個調查實驗（樣本超過 <b>15,000 人</b>）證明：指控某報導是「假新聞」能跨黨派抬高政客支持度。但關鍵的邊界條件是：這些策略「對文字報導有效，<b>對影片證據幾乎無效，而且不會降低民眾對媒體的整體信任</b>」[35]。後者<b>直接反向約束</b>了加乘效應的核心假設——這個實證<b>沒有</b>觀察到整體媒體信任被拉低。</p>
+          </div>
+
+          <div class="spec">
+            <div class="spec-h"><span class="glyph">!</span>第三環（飽和 → 信任基線下降 → 後續操作更易）—— 無第一手實證</div>
+            <p>這是加乘效應的完整鏈，也是本文命題的核心。<strong class="no-evi">採用的資料裡，沒有任何一手研究能證實這條完整的鏈。</strong>前述樣本 1,500 人的研究經檢驗後確認<b>補不上</b>這個缺口——它測的是個人對單一敘事的相信，並未測跨領域外溢或社會信任基線；它甚至給出一個反向線索：「對主流媒體的信任，與相信造謠呈負相關」[34]。說謊者紅利的作者把紅利接到「對傳統新聞信任下降」的宏觀趨勢，但<b>沒有提供量測</b>，屬於<span class="hedge">推論</span> [24]。前述聯合報告則把效果端框為「關鍵未知數」[15]。</p>
+            <p>採用的資料裡<b>最接近</b>受眾端的一份探測，是關於「深偽是否侵蝕認知信任」的推文主題分析——但它是觀察性的主題分析，研究對象又是<b>深偽影片</b>（而前述實證已顯示說謊者紅利對影片無效），測的是圍繞深偽的信任<b>論述</b>，而非「飽和 → 信任基線下降 → 後續操作更容易」的因果鏈，因此它<b>逼近但補不上</b>第三環 [36]。<strong class="no-evi">第三環是假設，不是證據。</strong></p>
+          </div>
+
+          <p class="find-sum">
+            效果端的相反論點，本文也呈現其最強的版本。一份同儕審查研究指出造謠的「盛行與影響被高估」、「分享與按讚不等於相信」、假訊息只佔「美國人媒體攝取的 <span class="em">0.15%</span>」、「61% 的法國受訪者在 30 天內沒接觸任何不可靠來源」、連政治廣告都「只有微弱而間接的效果」[37]；Cato 研究所的政策版同源：效果「集中在本來就有強烈意見的人身上」[38]。其他研究進一步指出，對造謠的無差別警告本身會高估其危險、並產生「降低對真實資訊的信任」的負面下游效果 [40]，以及「從消費推論到接受會誇大負面效果」[41]；也有研究指出第三人效果（假設別人比自己更容易上當）[39]。
+          </p>
+          <div class="spec">
+            <div class="spec-h"><span class="glyph">~</span>本文最重要的約束，而非可略過的反例（相容切點）</div>
+            <p>認知破壞與這些相反論點的相容切點是：它們反的是<b>個人說服／消費層</b>——而認知破壞<b>不</b>主張個人被說服，主張的是整個社會在<b>特定生態位</b>辨識成本上升。前述 0.15% 是消費分布，並不否證「協同內容飽和搜尋與推薦生態位、壓低碰到可信來源機率」這個環境結構傷害。<b>但這個切點本身仍然需要受眾端的實證，才能從假設升級為結論。</b></p>
+          </div>
+          <div class="find-key">
+            <span class="kl">關鍵發現</span>
+            加乘效應的鏈：<b>第一環（個人接受）有證據、第二環（逃避問責）有證據但給出反向邊界、第三環（社會信任基線下降）沒有第一手實證</b>。第三環是假設，不是證據——這是全文最弱的承重點。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 六 ================= -->
+    <section id="section-6">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">六</span>
+          <h2 class="sec-title">每種偵測方法都有結構盲區，而操作者就住在盲區交界</h2>
+        </header>
+        <article class="find rv">
+          <div class="find-top">
+            <span class="find-no">六</span>
+            <h3>操作者不是隨機躲過偵測，而是住在每個領域偵測方法的盲區交界，並針對那些方法做工程</h3>
+          </div>
+          <p class="find-sum">
+            平台偵測的盲區有北約 2025 年實驗的硬量化：即使是「歷年最佳」的一輪，「平均仍只移除了 <span class="em">50.4%</span> 被辨識出的不真實帳號」——意即近半未被移除；逐平台來看，「Facebook 移除 39%，Instagram 與 TikTok 更低，分別只有 22% 與 4%」[10]。一個官方廣告渠道，就能用 121 歐元買到 17,442 則造假留言 [10]。
+          </p>
+          <p class="find-sum">
+            偵測方法之間的結構落差也有論述。把造謠情資導入資安交換格式的研究團隊指出：「資安領域已有成熟的威脅交換框架，但在造謠活動知識的自動化、可互通分享上，進展甚少」[42]——造謠情資無法像資安威脅那樣自動互通，本身就是盲區。
+          </p>
+          <p class="find-sum">
+            更關鍵的是，有操作者<b>針對特定偵測方法做對抗設計</b>的記錄。情資公司 Graphika 記錄到「GAN 拼貼」（混合盜用照片與 AI 生成成分）比純 AI 假臉更難偵測 [43]；前述假頭像研究自己的偵測法依賴 GAN 頭像「眼睛位置一致」這個破綻，作者明說 2024 年後改用擴散模型的頭像就不在涵蓋範圍——偵測法本身會被新的生成技術繞過 [1]；搜尋端也有研究量測了「以語言碰撞污染搜尋結果」的手法 [44]。
+          </p>
+          <div class="spec">
+            <div class="spec-h"><span class="glyph">~</span>一個獨立點出的覆蓋缺口（本研究承認的邊界）</div>
+            <p>反詐騙的主流方法是<b>追金流</b>，而一個近乎零變現、以影響力為導向的協同網絡，會讓金流線索直接歸零。這個機制在下節台灣案例裡有具體實例，但採用的資料裡針對「反詐金流盲區」的獨立文獻稀薄——<b>這是一個已知的覆蓋缺口。</b></p>
+          </div>
+          <div class="find-key">
+            <span class="kl">關鍵發現</span>
+            <b>50.4%</b>（近半未移除）、跨格式無法自動互通、針對偵測器的對抗工程——三者疊起來導出：以單一方法、單一領域去偵測，注定被繞過。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 七 ================= -->
+    <section id="section-7">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">七</span>
+          <h2 class="sec-title">跨域整合已經有可運行的交換接口——不是「應該合作」的口號</h2>
+        </header>
+        <article class="find rv">
+          <div class="find-top">
+            <span class="find-no">七</span>
+            <h3>具體、可運行的交換接口已經存在（DISARM ／ STIX ／ IMS），但仍在早期、尚未普及</h3>
+          </div>
+          <p class="find-sum">
+            把造謠手法導入資安交換格式的接口已被實證可運行：一個開源平台用 <b>DISARM</b>（一套描述資訊操弄手法的開放框架，對應資安界的 ATT&amp;CK）為事件建模，搭配以 <b>STIX</b>（資安情資的標準交換格式）為基礎的資料模型，並「以<span class="em">超過 100 起</span>造謠事件的交換來驗證平台」，跑在成熟的資安情資平台 OpenCTI 上 [45]；姊妹研究自陳這是「首個把造謠威脅整合進資安情資生態的學術與技術努力」[42]。
+          </p>
+          <p class="find-sum">
+            跨組織共用「同一張操作圖像」也有現成的機構接口：<b>資訊操弄集（IMS, Information Manipulation Set）</b>框架（由法國 VIGINUM 開發、與 EEAS 達成共識）把分析分成三層——「戰術層（事件級資料）、操作層（敘事與基礎設施）、戰略層（連到威脅行為者與意圖）」[46]。它的操作層把<b>基礎設施</b>與敘事並列為分析單位，這正是與本文「共用基礎設施」最接近的對接點；IMS 工作組成員（EU DisinfoLab、CheckFirst、VIGINUM、EEAS、DFRLab 等）本身就是「平台 × 研究者 × 公部門協調」的成功先例 [46]。EEAS 的基礎設施矩陣則是另一個分類接口 [9]。
+          </p>
+          <p class="find-sum">
+            把認知破壞從「描述」推進到「處置」，還需要跨過一道門檻：<b>可被援用、可制裁等級的證據</b>。具體的技術路徑，是把識別碼（追蹤碼、頻道 ID、AI 素材的雜湊值、上傳時間戳）變成可向平台申訴的標的，並以數位簽章、可信時戳與檔案指紋達到可制裁等級。北約的實驗也把解方指向跨平台的行為偵測——「轉向關注時間模式、帳號關係、跨平台協同活動」，並提到與歐盟制裁框架的法律掛鉤 [10]。受眾端的「預先接種」（prebunking）也有同儕審查支撐 [47]。
+          </p>
+          <div class="spec">
+            <div class="spec-h"><span class="glyph">~</span>誠實指出接口的覆蓋缺口（本研究承認的邊界）</div>
+            <p>DISARM、STIX、IMS 都是境外資訊操弄／造謠導向，<b>未涵蓋反詐金流端</b>——跨域整合「反詐 × 反假訊息 × 平台安全 × 執法」的拼圖中，反詐這一塊最薄。同時，本文把跨域整合定位在<b>基礎設施層的偵測、情資交換、針對行為者的可制裁證據</b>，而<b>不是</b>對言論內容真偽的審查——這也是對「反制可能滑向審查」這個自由意志主義式擔憂 [38] 的回應。</p>
+          </div>
+          <div class="find-key">
+            <span class="kl">關鍵發現</span>
+            跨域整合<b>不是口號</b>：超過 100 起事件已用 DISARM↔STIX 交換、IMS 三層框架已把「基礎設施」列為分析單位——接口已可運行，缺的是把它擴及反詐金流端。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 八 ================= -->
+    <section id="section-8">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">八</span>
+          <h2 class="sec-title">兩個台灣案例：作為命題的具體實例</h2>
+          <p class="sec-lead">以下兩個案例是本研究手上的台灣一手分析報告，在此僅作為具體實例佐證特定環節，並不是論證骨架。案例事實取自原報告，結論不外推超出原作者標明的信心等級。</p>
+        </header>
+        <article class="find rv">
+          <div class="find-top">
+            <span class="find-no">八</span>
+            <h3>Facebook 外連可疑站 ＋ YouTube 養生協同網——「兩端撞牆」「金流盲區」的在地實例</h3>
+          </div>
+          <div class="ring">
+            <div class="ring-h">案例一 · 2026 台灣 Facebook 外連可疑站<span class="ring-tag">佐證 共用手法 · 對抗偵測</span></div>
+            <p>原報告以數位資產層的指紋（共用的追蹤碼、廣告帳戶、私有內容傳遞節點、憑證簽發時序）整理出三個操作者群體，但作者自承這些指紋只能畫出「群體邊界」，畫不出「操作者邊界」；其中一群改用網址路徑本身（而非可剝除的參數）來辨別訪客，<b>繞過了「剝掉參數再比對」這個偵測偽裝的主流方法</b>——這是「針對特定偵測方法做對抗工程」的單案實例。其動機端（廣告與影音變現）看似純獲利，但獲利框架解釋不了「為何協同得如此同質」。</p>
+          </div>
+          <div class="ring">
+            <div class="ring-h">案例二 · 2026 台灣 YouTube 養生協同網<span class="ring-tag">佐證 兩端撞牆 · 認知破壞 · 金流盲區</span></div>
+            <p>原報告以事實查核中心標記的影片為種子、用標題相似度展開，識別出 <span class="em">83 個協同頻道</span>；其中 <span class="em">95% 以上</span>不開任何變現功能（零變現直接打破「商業內容農場」的獲利框架）、養生內容不違規（打破政治攻擊與內容審核）、又無法確認外國性——它<b>卡在政治與獲利兩套框架的正中間</b>，正是「動機分類失效」的在地實例；零變現也使反詐的金流線索歸零，是「金流盲區」的實例。報告觀察到「先建立信任、再硬轉向（養生內容突然變成色情、日文勵志或投資）」是內容可替換的單案線索。</p>
+          </div>
+          <div class="spec">
+            <div class="spec-h"><span class="glyph">~</span>案例的承重限度（本研究的推論層）</div>
+            <p>案例二報告也<b>明確承認，沒有養生受眾流動到極化頻道的證據</b>——這正對應第五節「加乘效應」第三環的缺口。在地脈絡有 Doublethink Lab 的補充：記錄針對台灣的中國資訊操作交織了內容農場、與境外媒體協同、由中港柬經營的 Facebook 頁面，2024 大選前記錄逾萬則可疑資訊 [48]。<b>兩案是單一在地報告、原報告自承歸因未完成、樣本不大；作為「實例」佐證特定論點是恰當的，但不能當作命題的獨立證據基礎</b>——命題的證據基礎是前面七節的廣泛來源。</p>
+          </div>
+          <div class="find-key">
+            <span class="kl">關鍵發現</span>
+            YouTube 養生網：<b>83 個協同頻道、95% 以上零變現</b>——零變現同時打破「商業內容農場」與「追金流」兩套框架，是「動機分類失效」與「金流盲區」最乾淨的在地實例。
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ================= 03 · GAPS ================= -->
+    <section id="gaps">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">我們還不知道的（證據邊界）</h2>
+          <p class="sec-lead">把本研究最該被檢視、最該被補強的地方一次列清。這不是免責聲明，是研究議程。</p>
+        </header>
+        <ul class="gaps rv">
+          <li><b>加乘效應是命題最弱的一環。</b>「資訊環境飽和 → 整個社會信任基線下降 → 後續操作更容易」這條完整鏈沒有第一手實證；最強可用的環止於個人信念層，而說謊者紅利的實證對「社會信任基線下降」還給出了反向證據（它不降低整體媒體信任）。要把論點從假設升級為結論，最需要補的是受眾端的縱貫研究——這類研究目前付之闕如。</li>
+          <li><b>「認知破壞」是詮釋性、可證偽的假設，不是已證實的事實。</b>它的環境層傷害有供給端的結構證據與機制推論，但沒有「整個社會的辨識力是否真的下降」的受眾端實證；它在哪些段落真有補充、哪些段落只是既有框架的換名，仍應被檢視。</li>
+          <li><b>「合流」是本研究的判讀，不是 Meta 的立場。</b>Meta 2026 上半年的報告把詐騙中心（<span class="nowrap">1,090 萬（10.9M）</span>個帳號，屬詐騙類別的數字）與隱蔽影響力操作（俄、伊朗、中三大來源）列為分開的執法類別，並未宣稱兩者共用手法或基礎設施 [49]。本文主張的合流，證據來自前述的獨立來源，不能掛在 Meta 名下。</li>
+          <li><b>「灌爆」理論的來源缺口。</b>Roberts 的著作全文未取得，本文僅以概念引用，不含逐字原文；若結論要逐字引用其定義，需另補原書 PDF。</li>
+          <li><b>認知破壞與認知作戰的對位來源不足；反詐金流的偵測與接口最薄。</b>嚴格的機構級定義對位、以及「反詐 × 反假訊息」整合中反詐這一塊，都仍待補。</li>
+          <li><b>外推範圍。</b>受眾端的效果實證多為美國、英、法樣本，對中文資訊環境不可直接外推；兩個台灣案例為單一在地報告，結論以中文資訊環境為主。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= 04 · ACTIONS / ROADMAP ================= -->
+    <section id="actions">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">防治方向（從前述論點導出）</h2>
+          <p class="sec-lead">如果動機只是可替換的內容、傷害是基礎設施層的認知破壞、操作者又住在各領域偵測方法的盲區交界，那麼以動機分工的防治體系就有結構性、可被預期利用的盲區。以下方向直接從前述論點導出，不引入新的證據主張。</p>
+        </header>
+        <div class="legs rv">
+          <article class="leg A">
+            <div class="leg-top">
+              <div class="leg-tag">行動者 A</div>
+              <div class="leg-name">給平台</div>
+              <div class="leg-sub">把行為一致性納入協同偵測，重設風險訊號的方向</div>
+            </div>
+            <div class="leg-body">
+              <div class="leg-row">
+                <div class="lbl">行動</div>
+                <div class="val">把「跨帳號的行為一致性」（命名模板化、變現設定一致、發布時序同步、AI 素材複用）納入<b>協同行為偵測</b>，而不只看單一帳號是否違規。</div>
+              </div>
+              <div class="leg-row">
+                <div class="lbl">關鍵翻轉</div>
+                <div class="val">把「零變現 ＋ 無害內容 ＋ 偽裝」這個組合視為<b>風險訊號</b>，而不是安全訊號。</div>
+              </div>
+            </div>
+          </article>
+          <article class="leg B">
+            <div class="leg-top">
+              <div class="leg-tag">行動者 B</div>
+              <div class="leg-name">給研究與情資社群</div>
+              <div class="leg-sub">對同一批證據交叉跑兩種分析、採用共同交換格式</div>
+            </div>
+            <div class="leg-body">
+              <div class="leg-row">
+                <div class="lbl">行動</div>
+                <div class="val">把<b>資產指紋型</b>分析與<b>行為協同型</b>分析對同一批證據交叉跑，採用共同交換格式（DISARM 手法標記、IMS 三層聚合、STIX 交換），讓反詐、反假訊息、平台安全的情資能互通。</div>
+              </div>
+              <div class="leg-row">
+                <div class="lbl">優先補上</div>
+                <div class="val">兩案共同缺的<b>受眾端研究</b>（信任侵蝕的量測、跨領域外溢的追蹤）。</div>
+              </div>
+            </div>
+          </article>
+          <article class="leg C">
+            <div class="leg-top">
+              <div class="leg-tag">行動者 C</div>
+              <div class="leg-name">給政策制定者</div>
+              <div class="leg-sub">先評估傷害、再歸因動機；別讓管轄之爭成為庇護所</div>
+            </div>
+            <div class="leg-body">
+              <div class="leg-row">
+                <div class="lbl">行動</div>
+                <div class="val">把「以非政治內容為載體的協同操作」納入資訊環境威脅評估；建立<b>先評估傷害、再歸因動機</b>的跨機關前置流程，別讓「這是詐騙還是假訊息」的管轄之爭變成操作者的庇護所。</div>
+              </div>
+              <div class="leg-row">
+                <div class="lbl">韌性</div>
+                <div class="val">對被鎖定的脆弱群體（中高齡、資訊管道受限者）強化<b>數位素養</b>。</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 · SOURCES ================= -->
+    <section id="sources">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">主要來源</h2>
+          <p class="sec-lead">49 筆獨立來源。命題的證據基礎是廣泛的一手與同儕審查文獻；部分次級來源引自摘要而非全文（已在文中標記），主要承重主張均以可逐字查核的一手來源支撐。</p>
+        </header>
+        <div class="src-grid rv">
+          <div class="src"><span class="sid">[1]</span><div class="sx"><b>Yang, Singh &amp; Menczer，〈使用 AI 生成臉孔的假社群帳號之特徵與盛行〉</b>（印第安納大學 OSoMe，2024）<a href="https://arxiv.org/pdf/2401.02627">arxiv.org/pdf/2401.02627</a></div></div>
+          <div class="src"><span class="sid">[2]</span><div class="sx"><b>〈This salesperson does not exist〉</b>（哈佛甘迺迪學院《錯誤資訊評論》，2022）<a href="https://misinforeview.hks.harvard.edu/article/research-note-this-salesperson-does-not-exist">misinforeview.hks.harvard.edu</a></div></div>
+          <div class="src"><span class="sid">[3]</span><div class="sx"><b>〈The rise of the disinformation-for-hire industry〉</b>（EUvsDisinfo／EEAS，2025）<a href="https://euvsdisinfo.eu/the-rise-of-the-disinformation-for-hire-industry/">euvsdisinfo.eu</a></div></div>
+          <div class="src"><span class="sid">[4]</span><div class="sx"><b>〈China's Exploitation of Scam Centers in Southeast Asia〉</b>（美中經濟與安全審查委員會 USCC，2025）<a href="https://www.uscc.gov/sites/default/files/2025-07/Chinas_Exploitation_of_Scam_Centers_in_Southeast_Asia.pdf">uscc.gov</a></div></div>
+          <div class="src"><span class="sid">[5]</span><div class="sx"><b>〈Disrupting malicious uses of AI: October 2025〉</b>（OpenAI）<a href="https://openai.com/global-affairs/disrupting-malicious-uses-of-ai-october-2025/">openai.com</a></div></div>
+          <div class="src"><span class="sid">[6]</span><div class="sx"><b>〈Adversarial Misuse of Generative AI〉</b>（Google GTIG，2025）<a href="https://cloud.google.com/blog/topics/threat-intelligence/adversarial-misuse-generative-ai">cloud.google.com</a></div></div>
+          <div class="src"><span class="sid">[7]</span><div class="sx"><b>Woolley，〈Digital Propaganda: The Power of Influencers〉</b>（《民主期刊》，2022）<a href="https://doi.org/10.1353/jod.2022.0027">doi.org/10.1353/jod.2022.0027</a></div></div>
+          <div class="src"><span class="sid">[8]</span><div class="sx"><b>〈Coordinated Inauthentic Behavior on TikTok: detection challenges〉</b>（arXiv，2025）<a href="https://arxiv.org/pdf/2505.10867">arxiv.org/pdf/2505.10867</a></div></div>
+          <div class="src"><span class="sid">[9]</span><div class="sx"><b>〈第三份 EEAS 境外資訊操弄（FIMI）威脅報告〉</b>（EEAS，2025）<a href="https://www.eeas.europa.eu/sites/default/files/documents/2025/EEAS-3nd-ThreatReport-March-2025-05-Digital-HD.pdf">eeas.europa.eu</a></div></div>
+          <div class="src"><span class="sid">[10]</span><div class="sx"><b>〈Social Media Manipulation for Sale: 2025 NATO Experiment〉</b>（NATO StratCom COE）<a href="https://stratcomcoe.org/publications/download/Social-Media-Manipulation-FINAL-FILE.pdf">stratcomcoe.org</a></div></div>
+          <div class="src"><span class="sid">[11]</span><div class="sx"><b>〈The spread of low-credibility content by social bots〉</b>（《自然．通訊》，2018）<a href="https://doi.org/10.1038/s41467-018-06930-7">doi.org/10.1038/s41467-018-06930-7</a></div></div>
+          <div class="src"><span class="sid">[12]</span><div class="sx"><b>Starbird, Arif &amp; Wilson，〈Disinformation as Collaborative Work〉</b>（2019）<a href="https://doi.org/10.1145/3359229">doi.org/10.1145/3359229</a></div></div>
+          <div class="src"><span class="sid">[13]</span><div class="sx"><b>Ong &amp; Cabañes，〈Architects of Networked Disinformation〉</b>（2019）<a href="https://doi.org/10.7275/2cq4-5396">doi.org/10.7275/2cq4-5396</a></div></div>
+          <div class="src"><span class="sid">[14]</span><div class="sx"><b>Keller, Schoch &amp; Stier，〈Political Astroturfing on Twitter〉</b>（2019）<a href="https://doi.org/10.1080/10584609.2019.1661888">doi.org/10.1080/10584609.2019.1661888</a></div></div>
+          <div class="src"><span class="sid">[15]</span><div class="sx"><b>〈Generative Language Models and Automated Influence Operations〉</b>（史丹佛網路觀測站／CSET／OpenAI，2023）<a href="https://arxiv.org/pdf/2301.04246">arxiv.org/pdf/2301.04246</a></div></div>
+          <div class="src"><span class="sid">[16]</span><div class="sx"><b>〈Where Facebook's AI Slop Comes From〉</b>（404 Media，2024）<a href="https://www.404media.co/where-facebooks-ai-slop-comes-from/">404media.co</a></div></div>
+          <div class="src"><span class="sid">[17]</span><div class="sx"><b>〈AI slop is flooding the internet〉</b>（《MIT 科技評論》，2025）<a href="https://www.technologyreview.com/2025/12/23/1130396/">technologyreview.com</a></div></div>
+          <div class="src"><span class="sid">[18]</span><div class="sx"><b>He, Ardi &amp; Govindan，〈DeGenTWeb: A First Look at LLM-dominant Websites〉</b>（2026）<a href="https://arxiv.org/abs/2605.00087">arxiv.org/abs/2605.00087</a></div></div>
+          <div class="src"><span class="sid">[19]</span><div class="sx"><b>Bailo et al.，〈Crime at Machine Speed: AI's Industrialisation of Deception〉</b>（2026）<a href="https://doi.org/10.3390/sci8030054">doi.org/10.3390/sci8030054</a></div></div>
+          <div class="src"><span class="sid">[20]</span><div class="sx"><b>Carrigan，〈理解 AI slop 必須理解互動農場〉</b>（2026）<a href="https://markcarrigan.net/2026/01/14/">markcarrigan.net</a></div></div>
+          <div class="src"><span class="sid">[21]</span><div class="sx"><b>〈Where AI slop fits into algorithmic visibility〉</b>（Digital Content Next，2026）<a href="https://digitalcontentnext.org/blog/2026/01/13/">digitalcontentnext.org</a></div></div>
+          <div class="src"><span class="sid">[22]</span><div class="sx"><b>〈The Russian "Firehose of Falsehood" Propaganda Model〉</b>（RAND PE-198，2016）<a href="https://www.rand.org/pubs/perspectives/PE198.html">rand.org/pubs/perspectives/PE198</a></div></div>
+          <div class="src"><span class="sid">[23]</span><div class="sx"><b>Wardle &amp; Derakhshan，〈Information Disorder〉</b>（歐洲委員會，2017）<a href="https://rm.coe.int/information-disorder-report-version-august-2018/16808c9c77">rm.coe.int</a></div></div>
+          <div class="src"><span class="sid">[24]</span><div class="sx"><b>Chesney &amp; Citron，〈Deep Fakes: A Looming Challenge〉</b>（《加州法律評論》，2019）<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3213954">papers.ssrn.com</a></div></div>
+          <div class="src"><span class="sid">[25]</span><div class="sx"><b>Roberts，《Censored: Distraction and Diversion Inside China's Great Firewall》</b>（2018，<span class="pub">全文未取得，概念引用</span>）<a href="https://www.amazon.com/Censored-Distraction-Diversion-Inside-Firewall/dp/0691178860">amazon.com</a></div></div>
+          <div class="src"><span class="sid">[26]</span><div class="sx"><b>NATO StratCom COE，〈The Current Digital Arena and its Risks to Serving Military Personnel〉</b>（2023）<a href="https://stratcomcoe.org/publications/the-current-digital-arena-and-its-risks-to-serving-military-personnel/102">stratcomcoe.org</a></div></div>
+          <div class="src"><span class="sid">[27]</span><div class="sx"><b>Pace &amp; Coelho，〈Information as a weapon of mass disruption: from information disorder to cognitive warfare〉</b>（2022）<a href="https://doi.org/10.21544/2359-3075.v28n3.g">doi.org/10.21544/2359-3075.v28n3.g</a></div></div>
+          <div class="src"><span class="sid">[28]</span><div class="sx"><b>Jovanovic-Harrington，〈Digital authoritarianism and the politics of noise〉</b>（2026）<a href="https://doi.org/10.2298/fid2601121j">doi.org/10.2298/fid2601121j</a></div></div>
+          <div class="src"><span class="sid">[29]</span><div class="sx"><b>Tanasoca，〈Against Bot Democracy: The Dangers of Epistemic Double-Counting〉</b>（2019）<a href="https://doi.org/10.1017/s1537592719001154">doi.org/10.1017/s1537592719001154</a></div></div>
+          <div class="src"><span class="sid">[30]</span><div class="sx"><b>de Ruiter，〈The Distinct Wrong of Deepfakes〉</b>（2021）<a href="https://doi.org/10.1007/s13347-021-00459-2">doi.org/10.1007/s13347-021-00459-2</a></div></div>
+          <div class="src"><span class="sid">[31]</span><div class="sx"><b>Kay, Kasirzadeh &amp; Mohamed，〈Epistemic Injustice in Generative AI〉</b>（2024）<a href="https://doi.org/10.1609/aies.v7i1.31671">doi.org/10.1609/aies.v7i1.31671</a></div></div>
+          <div class="src"><span class="sid">[32]</span><div class="sx"><b>Nguyen，〈Echo Chambers and Epistemic Bubbles〉</b>（2018）<a href="https://doi.org/10.1017/epi.2018.32">doi.org/10.1017/epi.2018.32</a></div></div>
+          <div class="src"><span class="sid">[33]</span><div class="sx"><b>Habgood-Coote，〈Deepfakes and the epistemic apocalypse〉</b>（2023）<a href="https://doi.org/10.1007/s11229-023-04097-3">doi.org/10.1007/s11229-023-04097-3</a></div></div>
+          <div class="src"><span class="sid">[34]</span><div class="sx"><b>〈Falling for Russian Propaganda〉</b>（《社群媒體與社會》，2023）<a href="https://doi.org/10.1177/20563051231220330">doi.org/10.1177/20563051231220330</a></div></div>
+          <div class="src"><span class="sid">[35]</span><div class="sx"><b>〈The Liar's Dividend〉</b>（《美國政治學評論》，2024）<a href="https://doi.org/10.1017/s0003055423001454">doi.org/10.1017/s0003055423001454</a></div></div>
+          <div class="src"><span class="sid">[36]</span><div class="sx"><b>Twomey, Ching &amp; Aylett，〈深偽影片是否侵蝕我們的認知信任？〉</b>（PLOS ONE，2023）<a href="https://doi.org/10.1371/journal.pone.0291668">doi.org/10.1371/journal.pone.0291668</a></div></div>
+          <div class="src"><span class="sid">[37]</span><div class="sx"><b>Altay, Berriche &amp; Acerbi，〈Misinformation on Misinformation〉</b>（2023）<a href="https://journals.sagepub.com/doi/10.1177/20563051221150412">journals.sagepub.com</a></div></div>
+          <div class="src"><span class="sid">[38]</span><div class="sx"><b>〈The Misleading Panic over Misinformation〉</b>（Cato 研究所，2024）<a href="https://www.cato.org/policy-analysis/misleading-panic-over-misinformation">cato.org</a></div></div>
+          <div class="src"><span class="sid">[39]</span><div class="sx"><b>Altay &amp; Acerbi，〈人們認為造謠是威脅，因為假設別人容易上當〉</b>（2023）<a href="https://doi.org/10.1177/14614448231153379">doi.org/10.1177/14614448231153379</a></div></div>
+          <div class="src"><span class="sid">[40]</span><div class="sx"><b>〈Negative Downstream Effects of Alarmist Disinformation Discourse〉</b>（《政治行為》，2024）<a href="https://link.springer.com/article/10.1007/s11109-024-09911-3">link.springer.com</a></div></div>
+          <div class="src"><span class="sid">[41]</span><div class="sx"><b>Adams et al.，〈(Why) Is Misinformation a Problem?〉</b>（《心理科學視角》，2023）<a href="https://journals.sagepub.com/doi/10.1177/17456916221141344">journals.sagepub.com</a></div></div>
+          <div class="src"><span class="sid">[42]</span><div class="sx"><b>〈Toward interoperable representation and sharing of disinformation incidents〉</b>（DISARM↔STIX 映射，2025）<a href="https://arxiv.org/pdf/2502.20997">arxiv.org/pdf/2502.20997</a></div></div>
+          <div class="src"><span class="sid">[43]</span><div class="sx"><b>Graphika，〈Portrait Mode: GAN Collages and Fake Personas〉</b>（2022）<a href="https://graphika.com/posts/portrait-mode-gan-collages-and-fake-personas">graphika.com</a></div></div>
+          <div class="src"><span class="sid">[44]</span><div class="sx"><b>〈Measuring and Analyzing Search Engine Poisoning of Linguistic Collisions〉</b>（IEEE S&amp;P，2019）<a href="https://doi.org/10.1109/sp.2019.00025">doi.org/10.1109/sp.2019.00025</a></div></div>
+          <div class="src"><span class="sid">[45]</span><div class="sx"><b>〈DISINFOX: open-source threat exchange platform〉</b>（2025）<a href="https://arxiv.org/pdf/2504.01803">arxiv.org/pdf/2504.01803</a></div></div>
+          <div class="src"><span class="sid">[46]</span><div class="sx"><b>〈Building a common operational picture of FIMI — IMS framework〉</b>（EU DisinfoLab，2026）<a href="https://www.disinfo.eu/building-a-common-operational-picture-of-fimi/">disinfo.eu</a></div></div>
+          <div class="src"><span class="sid">[47]</span><div class="sx"><b>〈Information Warfare: Lessons in Inoculation to Disinformation〉</b>（2022）<a href="https://doi.org/10.55540/0031-1723.3132">doi.org/10.55540/0031-1723.3132</a></div></div>
+          <div class="src"><span class="sid">[48]</span><div class="sx"><b>〈The Chinese Infodemic in Taiwan〉</b>（Doublethink Lab，2023）<a href="https://medium.com/doublethinklab/the-chinese-infodemic-in-taiwan-25e9ac3d941e">medium.com/doublethinklab</a></div></div>
+          <div class="src"><span class="sid">[49]</span><div class="sx"><b>〈Adversarial Threat Report / Integrity Reports, H1 2026〉</b>（Meta，<span class="pub">守門：非合流來源</span>）<a href="https://transparency.meta.com/reports/integrity-reports-h1-2026/">transparency.meta.com</a></div></div>
+        </div>
+        <div class="method-note">
+          <b>方法註：</b>本文為政策／防治取向的綜合研究，以數十份獨立來源論證一條命題鏈：<b>動機合流 → 共用工業化基礎設施 → 認知破壞（加乘效應）→ 跨域防治的結構必要性</b>。命題與素材由研究者提出，案例綜合、文獻論證與結構由 AI 協作完成。「認知破壞」與「加乘效應」為待驗證的可證偽假設，其中加乘效應這一環缺乏第一手實證，已在文中逐環標明。部分次級來源引自摘要而非全文，主要承重主張均以可逐字查核的一手來源支撐。
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <b>動機合流與「認知破壞」</b><br>
+  當似是而非的協同內容，不再只為了政治，也不只為了錢 · 政策／防治取向綜合研究 · 2026 年 6 月 · 對外公開版本<br>
+  立場：基礎設施層的偵測與情資交換，不是對言論內容真偽的審查 · 「認知破壞」「加乘效應」為待驗證假設，加乘效應一環缺第一手實證<br>
+  <a href="../">← 回 weichen's Research 首頁</a>
+</footer>
+
+<script>
+  // ---- scroll-spy active state ----
+  const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
+  const map = new Map();
+  navLinks.forEach(a=>{
+    const id = a.getAttribute('href').slice(1);
+    const el = document.getElementById(id);
+    if(el) map.set(el, a);
+  });
+  const spy = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        navLinks.forEach(a=>a.classList.remove('active'));
+        const a = map.get(e.target);
+        if(a) a.classList.add('active');
+      }
+    });
+  }, {rootMargin:'-15% 0px -75% 0px'});
+  map.forEach((a,el)=>spy.observe(el));
+
+  // ---- reveal-on-scroll (.rv) ----
+  const rev = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        rev.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach((el,i)=>{
+    el.style.transitionDelay = (Math.min(i,4)*0.06)+'s';
+    rev.observe(el);
+  });
+</script>
+</body>
+</html>
