@@ -22,78 +22,70 @@
 <!-- og:auto:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#F4EFE2; --paper-card:#FCF9F1; --paper-sink:#E9E1CC;
-    --ink:#211F19; --ink-soft:#544F44; --ink-faint:#8A8473;
+    --ink:#333; --ink-soft:#555; --ink-faint:#888;
     --rule:#D4CBB2; --rule-soft:#E2DAC4;
     --navy:#1B4A66;
     --jade:#2B7458;
     --clay:#B5402B;
-    --display:'Fraunces','Noto Serif TC',serif;
-    --serif:'Fraunces','Noto Serif TC',serif;
-    --mono:'IBM Plex Mono','Noto Serif TC',monospace;
+    --watermark:#aaa;
+    --display:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
+    --serif:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
+    --mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
     --maxw:920px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
   body{
     background:var(--paper); color:var(--ink);
-    font-family:var(--serif); font-weight:400; line-height:1.9;
-    font-size:19px; -webkit-font-smoothing:antialiased;
+    font-family:var(--serif); font-weight:400; line-height:1.65;
+    font-size:15.5px; -webkit-font-smoothing:antialiased;
   }
   body::before{
     content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
-    opacity:.42; mix-blend-mode:multiply;
+    opacity:.22; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   }
   a{color:inherit}
   ::selection{background:var(--paper-sink)}
 
-  /* LAYOUT */
-  .shell{display:flex; min-height:100vh}
-  .nav{
-    width:300px; flex:none; position:fixed; top:0; left:0; bottom:0;
-    background:var(--paper-sink); border-right:1px solid var(--rule);
-    padding:42px 0 36px; overflow-y:auto; z-index:40;
-  }
-  .nav-brand{padding:0 32px 26px; border-bottom:1px solid var(--rule); margin-bottom:10px}
-  .nav-kicker{
-    font-family:var(--mono); font-size:12px; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--clay); font-weight:600; margin-bottom:14px;
-  }
-  .nav-title{
-    font-family:var(--display); font-weight:600; font-size:22px; line-height:1.42;
-    color:var(--ink);
-  }
-  .nav-title b{color:var(--clay); font-weight:700}
-  .nav-meta{
-    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
-    margin-top:16px; letter-spacing:.02em;
-  }
-  .nav ol{list-style:none; padding:20px 16px 0}
-  .nav .nav-grp{
-    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--ink-faint); padding:20px 14px 9px; font-weight:600;
-  }
-  .nav a{
-    display:flex; gap:12px; align-items:baseline; text-decoration:none;
-    padding:9px 14px; border-radius:8px; color:var(--ink-soft);
-    font-size:15.5px; line-height:1.5; transition:background .18s,color .18s;
-  }
-  .nav a .ix{
-    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
-    flex:none; width:24px; font-weight:500;
-  }
-  .nav a:hover{background:var(--paper-card); color:var(--ink)}
-  .nav a.active{background:var(--ink); color:var(--paper-card)}
-  .nav a.active .ix{color:var(--paper-card)}
+  /* MERGED-A LAYOUT (sidebar dropped → linear scroll) */
+  .shell{display:block}
+  main{display:block}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+  section{padding:96px 0; position:relative}
+  section+section{border-top:1px solid var(--rule)}
 
-  main{margin-left:300px; flex:1; min-width:0}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 48px}
-  section{padding:96px 0; border-bottom:1px solid var(--rule)}
-  section:last-of-type{border-bottom:none}
+  /* sticky progress bar + scroll-spy badge (A chrome) */
+  .progress{
+    position:fixed; top:0; left:0; height:2px; width:0; background:var(--clay);
+    z-index:200; transition:width .12s linear;
+  }
+  .badge{
+    position:fixed; top:18px; right:24px; z-index:100;
+    font-size:14px; letter-spacing:.12em; text-transform:uppercase;
+    font-weight:600; color:var(--ink); opacity:0; transition:opacity .25s;
+    padding:8px 14px; background:var(--paper); border:1px solid var(--rule); border-radius:0;
+  }
+  .badge.show{opacity:.85}
+  .badge b{color:var(--clay); font-weight:700; margin-right:8px}
+
+  /* inline TOC (horizontal pill, after hero) */
+  .inline-toc{
+    max-width:var(--maxw); margin:0 auto; padding:36px 28px 0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .inline-toc a{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--ink-soft); padding:7px 12px;
+    border:1px solid var(--rule); background:var(--paper);
+    text-decoration:none; transition:background .12s,border-color .12s,color .12s;
+  }
+  .inline-toc a:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .inline-toc .ix{color:var(--ink-faint); margin-right:6px}
 
   /* HERO */
   .hero{
@@ -108,8 +100,8 @@
   }
   .hero-kicker::after{content:""; flex:1; height:1px; background:var(--rule)}
   h1.hero-title{
-    font-family:var(--display); font-weight:600; font-size:clamp(34px,5.2vw,58px);
-    line-height:1.2; letter-spacing:-.012em; margin-bottom:28px;
+    font-family:var(--display); font-weight:600; font-size:clamp(28px,4.4vw,52px);
+    line-height:1.25; letter-spacing:-.008em; margin-bottom:28px;
   }
   h1.hero-title .cut{color:var(--clay); font-weight:600}
   .hero-stand{
@@ -147,8 +139,9 @@
     color:var(--ink-faint); display:block; margin-bottom:16px;
   }
   h2.sec-title{
-    font-family:var(--display); font-weight:600; font-size:clamp(28px,3.7vw,42px);
-    line-height:1.26; letter-spacing:-.01em;
+    font-family:var(--display); font-weight:600; font-size:clamp(24px,3.2vw,36px);
+    line-height:1.3; letter-spacing:-.005em;
+    color:var(--watermark);
   }
   .sec-lead{
     font-size:19px; color:var(--ink-soft); margin-top:20px; max-width:720px;
@@ -299,19 +292,18 @@
 
   /* RESPONSIVE */
   @media(max-width:1040px){
-    .nav{position:static; width:100%; height:auto; bottom:auto;
-      border-right:none; border-bottom:2px solid var(--rule)}
-    .nav ol{display:flex; flex-wrap:wrap; padding:14px}
-    .nav .nav-grp{width:100%; padding:12px 14px 4px}
-    main,footer{margin-left:0}
-    .shell{flex-direction:column}
     .legs{grid-template-columns:1fr}
     .hero-numbers{grid-template-columns:1fr}
     .hn-cell+.hn-cell{border-left:none; border-top:1px solid var(--rule)}
     .src-grid{grid-template-columns:1fr}
   }
+  @media(max-width:720px){
+    .badge{display:none}
+    .wrap{padding:0 18px}
+    .inline-toc{padding:24px 18px 0}
+  }
   @media(max-width:600px){
-    body{font-size:17.5px}
+    body{font-size:15px}
     .wrap,.hero-inner{padding-left:24px; padding-right:24px}
     section{padding:64px 0}
     .hero-inner{padding-top:52px}
@@ -326,33 +318,16 @@
 </style>
 </head>
 <body>
-<div class="shell">
 
-  <nav class="nav" id="nav">
-    <div class="nav-brand">
-      <div class="nav-kicker">公開研究報告</div>
-      <div class="nav-title">AI 點餐機在判斷你的<b>年齡、性別、人種</b></div>
-      <div class="nav-meta">台灣 · 個資保護 · AI 治理 · 2026 / 05</div>
-    </div>
-    <ol>
-      <li class="nav-grp">目次</li>
-      <li><a href="#tldr"><span class="ix">01</span>摘要</a></li>
-      <li><a href="#whats-happening"><span class="ix">02</span>在發生什麼事</a></li>
-      <li><a href="#that-moment"><span class="ix">03</span>那一秒發生了什麼</a></li>
-      <li><a href="#consent-matrix"><span class="ix">04</span>業者實際做到的</a></li>
-      <li><a href="#legal-frame"><span class="ix">05</span>個資法與憲法</a></li>
-      <li><a href="#no-one-suing"><span class="ix">06</span>為什麼沒人在告</a></li>
-      <li><a href="#international"><span class="ix">07</span>國際對照</a></li>
-      <li><a href="#what-to-do"><span class="ix">08</span>該怎麼辦</a></li>
-      <li><a href="#limits"><span class="ix">09</span>限制</a></li>
-      <li class="nav-grp">附錄</li>
-      <li><a href="#sources"><span class="ix">10</span>資料來源</a></li>
-    </ol>
-  </nav>
+<!-- floating chrome (A) -->
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">00</b><span id="badgename">封面</span></div>
 
-  <main>
-    <header class="hero">
-      <div class="hero-inner">
+<main>
+
+  <!-- ================= HERO (as COVER) ================= -->
+  <section class="hero" data-num="00" data-name="封面">
+    <div class="hero-inner">
         <div class="hero-kicker">即時推測 × 同意機制 的灰色地帶</div>
         <h1 class="hero-title">AI 點餐機在判斷你的年齡、性別、人種<span class="cut">——但沒人需要告訴你</span></h1>
         <div class="hero-stand">
@@ -382,10 +357,24 @@
           <span class="dot"></span><span>2026 年 5 月 · 雙月公園店 2025 / 10 起部署、金色三麥 2025 / 05 起部署</span>
         </div>
       </div>
-    </header>
+    </section>
+
+    <!-- ================= INLINE TOC (橫向 pill) ================= -->
+    <nav class="inline-toc" aria-label="目次">
+      <a href="#tldr"><span class="ix">§01</span>摘要</a>
+      <a href="#whats-happening"><span class="ix">§02</span>在發生什麼事</a>
+      <a href="#that-moment"><span class="ix">§03</span>那一秒</a>
+      <a href="#consent-matrix"><span class="ix">§04</span>業者實際做到的</a>
+      <a href="#legal-frame"><span class="ix">§05</span>個資法與憲法</a>
+      <a href="#no-one-suing"><span class="ix">§06</span>為什麼沒人在告</a>
+      <a href="#international"><span class="ix">§07</span>國際對照</a>
+      <a href="#what-to-do"><span class="ix">§08</span>該怎麼辦</a>
+      <a href="#limits"><span class="ix">§09</span>限制</a>
+      <a href="#sources"><span class="ix">§10</span>資料來源</a>
+    </nav>
 
     <!-- 01 TL;DR -->
-    <section id="tldr">
+    <section id="tldr" data-num="01" data-name="摘要">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">01</span>
@@ -432,7 +421,7 @@
     </section>
 
     <!-- 02 在發生什麼事 -->
-    <section id="whats-happening">
+    <section id="whats-happening" data-num="02" data-name="在發生什麼事">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">02</span>
@@ -470,7 +459,7 @@
     </section>
 
     <!-- 03 那一秒發生了什麼 -->
-    <section id="that-moment">
+    <section id="that-moment" data-num="03" data-name="那一秒">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">03</span>
@@ -521,7 +510,7 @@
     </section>
 
     <!-- 04 業者實際做到的 -->
-    <section id="consent-matrix">
+    <section id="consent-matrix" data-num="04" data-name="業者實際做到的">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">04</span>
@@ -586,7 +575,7 @@
     </section>
 
     <!-- 05 個資法和憲法說了什麼 -->
-    <section id="legal-frame">
+    <section id="legal-frame" data-num="05" data-name="個資法與憲法">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">05</span>
@@ -627,7 +616,7 @@
     </section>
 
     <!-- 06 為什麼沒人在告 -->
-    <section id="no-one-suing">
+    <section id="no-one-suing" data-num="06" data-name="為什麼沒人在告">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">06</span>
@@ -670,7 +659,7 @@
     </section>
 
     <!-- 07 國際對照 -->
-    <section id="international">
+    <section id="international" data-num="07" data-name="國際對照">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">07</span>
@@ -703,7 +692,7 @@
     </section>
 
     <!-- 08 該怎麼辦 -->
-    <section id="what-to-do">
+    <section id="what-to-do" data-num="08" data-name="該怎麼辦">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">08</span>
@@ -771,7 +760,7 @@
     </section>
 
     <!-- 09 限制 -->
-    <section id="limits">
+    <section id="limits" data-num="09" data-name="限制">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">09</span>
@@ -792,7 +781,7 @@
     </section>
 
     <!-- 10 資料來源 -->
-    <section id="sources">
+    <section id="sources" data-num="10" data-name="資料來源">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">10</span>
@@ -841,7 +830,6 @@
     </section>
 
   </main>
-</div>
 
 <footer>
   <div class="ft-inner">
@@ -853,23 +841,30 @@
 </footer>
 
 <script>
-  const navLinks = [...document.querySelectorAll('.nav a')];
-  const map = new Map();
-  navLinks.forEach(a=>{
-    const id=a.getAttribute('href').slice(1);
-    const el=document.getElementById(id);
-    if(el) map.set(el,a);
-  });
-  const spy = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        navLinks.forEach(a=>a.classList.remove('active'));
-        const a=map.get(e.target);
-        if(a) a.classList.add('active');
+  /* progress bar + scroll-spy badge (A chrome) */
+  (function(){
+    const progress = document.getElementById('progress');
+    const badge = document.getElementById('badge');
+    const badgeNum = document.getElementById('badgenum');
+    const badgeName = document.getElementById('badgename');
+    const sections = Array.from(document.querySelectorAll('section[data-num]'));
+    function update(){
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = Math.min(100, (window.scrollY / docH) * 100);
+      if(progress) progress.style.width = pct + '%';
+      const y = window.scrollY + 120;
+      let active = sections[0];
+      for(const s of sections){ if(s.offsetTop <= y) active = s; }
+      if(active && badgeNum){
+        badgeNum.textContent = active.dataset.num;
+        badgeName.textContent = active.dataset.name || '';
+        if(window.scrollY > 240) badge.classList.add('show');
+        else badge.classList.remove('show');
       }
-    });
-  },{rootMargin:'-15% 0px -75% 0px'});
-  map.forEach((a,el)=>spy.observe(el));
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    update();
+  })();
 
   const rev = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
