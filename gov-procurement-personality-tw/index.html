@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>政府是什麼樣的採購者？把 5,577 個機關分成四種採購人格 — weichen's Research</title>
+<!-- og:auto:start -->
+<meta name="description" content="把全台 5,577 個政府機關當成「採購者」來分性格——用政府電子採購網約 4.7 萬筆決標公告，歸出四種採購人格（設備採買／委外比優／工程發包／勞務比價）。發現政府採購其實普遍競爭、錢卻極端集中在能源國營與地方建設；低競爭有「程序」（直接議價，多屬合法）與「結果」（公開招標卻贏家固定）兩張臉。再把鏡頭對準最集中的南投鄉鎮工程——資料證偽了圍標卡特爾的直覺，主因是偏鄉小工程市場太薄。定位為一面競爭健康度的篩檢鏡：標出該查哪裡，而非定罪。借鑑一篇政治學類型學論文，把分析單位從『貼文』換成『政府機關』。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="weichen&#x27;s Research">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="政府是什麼樣的採購者？四種採購人格與競爭健康度篩檢">
+<meta property="og:description" content="把全台 5,577 個政府機關當成「採購者」來分性格——用政府電子採購網約 4.7 萬筆決標公告，歸出四種採購人格（設備採買／委外比優／工程發包／勞務比價）。發現政府採購其實普遍競爭、錢卻極端集中在能源國營與地方建設；低競爭有「程序」（直接議價，多屬合法）與「結果」（公開招標卻贏家固定）兩張臉。再把鏡頭對準最集中的南投鄉鎮工程——資料證偽了圍標卡特爾的直覺，主因是偏鄉小工程市場太薄。定位為一面競爭健康度的篩檢鏡：標出該查哪裡，而非定罪。借鑑一篇政治學類型學論文，把分析單位從『貼文』換成『政府機關』。">
+<meta property="og:url" content="https://wcl-dev.github.io/research-site/gov-procurement-personality-tw/">
+<meta property="og:image" content="https://wcl-dev.github.io/research-site/gov-procurement-personality-tw/og.png?v=5">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="政府是什麼樣的採購者？四種採購人格與競爭健康度篩檢">
+<meta name="twitter:description" content="把全台 5,577 個政府機關當成「採購者」來分性格——用政府電子採購網約 4.7 萬筆決標公告，歸出四種採購人格（設備採買／委外比優／工程發包／勞務比價）。發現政府採購其實普遍競爭、錢卻極端集中在能源國營與地方建設；低競爭有「程序」（直接議價，多屬合法）與「結果」（公開招標卻贏家固定）兩張臉。再把鏡頭對準最集中的南投鄉鎮工程——資料證偽了圍標卡特爾的直覺，主因是偏鄉小工程市場太薄。定位為一面競爭健康度的篩檢鏡：標出該查哪裡，而非定罪。借鑑一篇政治學類型學論文，把分析單位從『貼文』換成『政府機關』。">
+<meta name="twitter:image" content="https://wcl-dev.github.io/research-site/gov-procurement-personality-tw/og.png?v=5">
+<!-- og:auto:end -->
+<meta name="description" content="用政府電子採購網 2022 下半年約 4.7 萬筆決標公告，把全台政府機關分成四種採購人格，並當成照出『競爭在哪裡缺席』的篩檢鏡。錢極端集中、低競爭有兩張臉、南投鄉鎮工程的競爭診斷。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/open-props/easings.min.css">
+<link rel="stylesheet" href="https://unpkg.com/open-props/sizes.min.css">
+
+<style>
+/* ===== brand-tokens.css (Template B subset) ===== */
+:root{
+  --c-paper:#F4EFE2; --c-paper-card:#FCF9F1; --c-paper-sink:#E9E1CC;
+  --c-ink:#211F19; --c-ink-soft:#544F44; --c-ink-faint:#8A8473;
+  --c-rule:#D4CBB2; --c-rule-soft:#E2DAC4;
+  --c-navy:#1B4A66; --c-jade:#2B7458; --c-clay:#B5402B;
+  --role-primary:var(--c-navy); --role-method:var(--c-jade); --role-emphasis:var(--c-clay);
+  --ff-display:'Fraunces','Noto Serif TC',serif;
+  --ff-serif:'Fraunces','Noto Serif TC',serif;
+  --ff-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --maxw-prose:680px; --maxw-content:920px; --w-sidebar:300px;
+  --lh-tight:1.4; --lh-body-cjk:1.82; --lh-prose-cjk:1.9;
+}
+/* ===== base.css ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--c-paper);color:var(--c-ink);font-family:var(--ff-serif);
+  font-weight:400;font-size:19px;line-height:var(--lh-prose-cjk);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
+  opacity:.42;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")}
+a{color:inherit}
+::selection{background:var(--c-paper-card)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+/* ===== template.css (Template B) ===== */
+.shell{display:flex;min-height:100vh}
+.nav{width:var(--w-sidebar);flex:none;position:fixed;top:0;left:0;bottom:0;
+  background:var(--c-paper-card);border-right:1px solid var(--c-rule);
+  padding:42px 0 36px;overflow-y:auto;z-index:40}
+.nav-brand{padding:0 32px 26px;border-bottom:1px solid var(--c-rule);margin-bottom:10px}
+.nav-kicker{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--role-emphasis);font-weight:600;margin-bottom:14px}
+.nav-title{font-family:var(--ff-display);font-weight:600;font-size:22px;
+  line-height:1.42;color:var(--c-ink)}
+.nav-title b{color:var(--role-emphasis);font-weight:700}
+.nav-scope{font-size:14px;color:var(--c-ink-soft);line-height:1.55;margin-top:14px;
+  padding-left:12px;border-left:3px solid var(--role-primary)}
+.nav-meta{font-family:var(--ff-mono);font-size:12px;color:var(--c-ink-faint);
+  margin-top:16px;letter-spacing:.02em}
+.nav ol{list-style:none;padding:20px 16px 0}
+.nav .nav-grp{font-family:var(--ff-mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--c-ink-faint);padding:20px 14px 9px;font-weight:600}
+.nav a{display:flex;gap:12px;align-items:baseline;text-decoration:none;padding:9px 14px;
+  border-radius:8px;color:var(--c-ink-soft);font-size:15.5px;line-height:1.5;
+  transition:background .18s,color .18s}
+.nav a .ix{font-family:var(--ff-mono);font-size:12px;color:var(--c-ink-faint);
+  flex:none;width:24px;font-weight:500}
+.nav a:hover{background:var(--c-paper-card);color:var(--c-ink)}
+.nav a.sub{padding-left:30px;font-size:14.5px}
+.nav a.active{background:var(--c-ink);color:var(--c-paper-card)}
+.nav a.active .ix{color:var(--c-paper-card)}
+main{margin-left:var(--w-sidebar);flex:1;min-width:0}
+.wrap{max-width:var(--maxw-content);margin:0 auto;padding:0 48px}
+section{padding:96px 0;border-bottom:1px solid var(--c-rule)}
+section:last-of-type{border-bottom:none}
+.hero{border-bottom:4px double var(--c-rule);
+  background:linear-gradient(180deg,var(--c-paper-card),transparent 72%)}
+.hero-inner{max-width:var(--maxw-content);margin:0 auto;padding:74px 48px 64px}
+.hero-kicker{font-family:var(--ff-mono);font-size:13px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--role-emphasis);font-weight:600;
+  display:flex;align-items:center;gap:14px;margin-bottom:30px}
+.hero-kicker::after{content:"";flex:1;height:1px;background:var(--c-rule)}
+h1.hero-title{font-family:var(--ff-display);font-weight:600;
+  font-size:clamp(34px,5.4vw,62px);line-height:1.2;letter-spacing:-.012em;margin-bottom:28px}
+h1.hero-title .cut{color:var(--role-emphasis);font-weight:600}
+.hero-scope{font-family:var(--ff-display);font-weight:500;color:var(--c-ink);
+  font-size:clamp(20px,2.5vw,26px);line-height:1.46;margin:-6px 0 34px;
+  padding-left:20px;border-left:4px solid var(--role-primary)}
+.hero-stand{font-size:21px;line-height:1.82;color:var(--c-ink-soft);
+  max-width:var(--maxw-prose);margin-bottom:38px}
+.hero-stand b{color:var(--c-ink);font-weight:700}
+.hero-foot{margin-top:34px;font-size:15px;color:var(--c-ink-soft);
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hero-foot .dot{width:7px;height:7px;border-radius:50%;background:var(--role-emphasis);
+  display:inline-block;flex:none}
+.sec-head{margin-bottom:52px}
+.sec-num{font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.14em;
+  color:var(--c-ink-faint);display:block;margin-bottom:16px}
+h2.sec-title{font-family:var(--ff-display);font-weight:600;
+  font-size:clamp(28px,3.8vw,44px);line-height:1.26;letter-spacing:-.01em}
+.sec-lead{font-size:19px;color:var(--c-ink-soft);margin-top:20px;
+  max-width:var(--maxw-prose);line-height:1.84}
+.sub-h{font-family:var(--ff-display);font-size:24px;font-weight:600;color:var(--c-ink);
+  margin:0 0 26px;padding-bottom:14px;border-bottom:2px solid var(--c-rule);line-height:1.4}
+.block{margin-top:64px}
+.cap{font-family:var(--ff-mono);font-size:13.5px;color:var(--c-ink-soft);
+  margin-bottom:18px;font-weight:500;letter-spacing:.01em}
+.prose p{margin-bottom:22px;max-width:var(--maxw-prose)}
+.prose p:last-child{margin-bottom:0}
+.prose b{color:var(--c-ink);font-weight:700}
+.prose .em{font-weight:700;background:var(--c-paper-sink);padding:1px 5px;border-radius:3px}
+.tldr-list{display:flex;flex-direction:column;gap:14px}
+.tldr{display:flex;gap:28px;padding:32px 34px;background:var(--c-paper-card);
+  border:1px solid var(--c-rule);border-radius:12px;align-items:flex-start}
+.tldr .num{font-family:var(--ff-display);font-size:50px;font-weight:600;line-height:.85;
+  color:var(--role-primary);flex:none;width:54px}
+.tldr .body p{font-size:18.5px;line-height:1.82}
+.tldr .body b{font-weight:700;color:var(--c-ink)}
+.tldr .tag{font-family:var(--ff-mono);font-size:13px;color:var(--c-ink-faint);margin-top:14px}
+.find{background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:16px;
+  padding:40px 42px;margin-bottom:24px}
+.find-top{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:20px}
+.find-no{font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.08em;
+  color:var(--c-paper-card);background:var(--c-ink);padding:7px 12px;border-radius:6px;flex:none}
+.find h3{font-family:var(--ff-display);font-size:24px;font-weight:600;line-height:1.42;
+  flex:1;min-width:260px}
+.find-sum{font-size:18px;line-height:1.84;color:var(--c-ink-soft)}
+.find-sum b{color:var(--c-ink);font-weight:700}
+.find-sum .em{font-weight:700;background:var(--c-paper-sink);padding:1px 5px;border-radius:3px}
+.find-key{margin-top:24px;padding:22px 26px;background:var(--c-paper-sink);
+  border-radius:11px;font-size:17px;line-height:1.74}
+.find-key .kl{font-family:var(--ff-mono);font-size:13px;letter-spacing:.08em;
+  color:var(--role-emphasis);font-weight:600;display:block;margin-bottom:6px}
+.find-key b{font-weight:700;color:var(--c-ink)}
+.find .block{margin-top:34px}
+footer{background:var(--c-ink);color:var(--c-ink-faint);margin-left:var(--w-sidebar);
+  padding:44px 48px;font-size:14px;line-height:2}
+footer b{color:var(--c-paper-card);font-weight:700}
+footer a{color:var(--c-paper-sink)}
+/* sources grid */
+.src-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.src{background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:11px;
+  padding:22px 24px;font-size:15.5px;line-height:1.7;color:var(--c-ink-soft)}
+.src .src-k{font-family:var(--ff-mono);font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--role-primary);font-weight:600;
+  display:block;margin-bottom:8px}
+.src b{color:var(--c-ink);font-weight:700}
+/* ===== module: hero-numbers ===== */
+.hero-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:38px 0 8px;
+  border:1px solid var(--c-rule);border-radius:14px;overflow:hidden;background:var(--c-paper-card)}
+.hn-cell{padding:30px 28px}
+.hn-cell+.hn-cell{border-left:1px solid var(--c-rule)}
+.hn-big{font-family:var(--ff-display);font-size:32px;font-weight:600;line-height:1.1;
+  color:var(--role-primary);margin-bottom:10px}
+.hn-big .unit{font-size:18px;color:var(--c-ink-soft);font-weight:500;margin-left:4px}
+.hn-lbl{font-family:var(--ff-mono);font-size:11.5px;color:var(--c-ink-faint);
+  letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.hn-sub{font-size:14.5px;color:var(--c-ink-soft);line-height:1.6}
+/* ===== module: schema-card ===== */
+.schema{background:var(--c-paper-card);border:2px solid var(--role-primary);
+  border-radius:14px;padding:32px 36px;margin-top:10px}
+.schema-h{font-family:var(--ff-display);font-size:22px;font-weight:600;
+  color:var(--role-primary);margin-bottom:6px}
+.schema-sub{font-family:var(--ff-mono);font-size:13px;color:var(--c-ink-faint);
+  letter-spacing:.06em;margin-bottom:24px}
+.schema-rows{display:flex;flex-direction:column;gap:0}
+.schema-row{display:grid;grid-template-columns:96px 150px 1fr;gap:18px;padding:16px 0;
+  align-items:start;border-top:1px solid var(--c-rule-soft)}
+.schema-row:first-child{border-top:none;padding-top:0}
+.schema-code{font-family:var(--ff-mono);font-size:13px;font-weight:700;color:#fff;
+  background:var(--role-primary);padding:5px 10px;border-radius:5px;text-align:center;
+  height:fit-content;letter-spacing:.04em;white-space:nowrap}
+.schema-name{font-family:var(--ff-display);font-size:17px;font-weight:600;color:var(--c-ink);
+  line-height:1.4;padding-top:3px}
+.schema-def{font-size:15.5px;line-height:1.7;color:var(--c-ink-soft);padding-top:3px}
+.schema-def b{color:var(--c-ink);font-weight:700}
+.schema-foot{margin-top:24px;padding-top:20px;border-top:1px solid var(--c-rule);
+  font-size:15px;line-height:1.74;color:var(--c-ink-soft)}
+.schema-foot b{color:var(--role-primary);font-weight:700}
+/* ===== module: spectrum-bar ===== */
+.spectrum{margin-top:18px}
+.sp-row{display:grid;grid-template-columns:170px 1fr 150px;gap:14px;align-items:center;padding:10px 0}
+.sp-row+.sp-row{border-top:1px dotted var(--c-rule)}
+.sp-name{font-size:15.5px;color:var(--c-ink)}
+.sp-track{height:24px;background:var(--c-paper-sink);border-radius:4px;position:relative;overflow:hidden}
+.sp-fill{height:100%;background:var(--role-emphasis);border-radius:4px;
+  transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.sp-val{font-family:var(--ff-mono);font-size:13px;color:var(--c-ink-soft);text-align:right;white-space:nowrap}
+.sp-val b{font-family:var(--ff-display);font-size:16px;color:var(--c-ink);font-weight:700;margin-right:6px}
+/* ===== module: dual-chain ===== */
+.chains{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.chain{border:1px solid var(--c-rule);border-radius:16px;overflow:hidden;background:var(--c-paper-card)}
+.chain-top{padding:26px 28px}
+.chain.A .chain-top{background:var(--role-primary)}
+.chain.B .chain-top{background:var(--role-method)}
+.chain-top *{color:#fff}
+.chain-tag{font-family:var(--ff-mono);font-size:13px;letter-spacing:.1em;opacity:.82;text-transform:uppercase}
+.chain-name{font-family:var(--ff-display);font-size:24px;font-weight:600;margin-top:7px}
+.chain-sub{font-size:14.5px;opacity:.9;margin-top:8px;line-height:1.6}
+.chain-rows{padding:8px 28px 24px}
+.crow{padding:18px 0}
+.crow+.crow{border-top:1px solid var(--c-rule)}
+.crow .lbl{font-size:14px;color:var(--c-ink-faint);margin-bottom:8px}
+.crow .val{font-size:16.5px;line-height:1.62}
+.crow .val b{font-weight:700;color:var(--c-ink)}
+/* ===== module: verify-table ===== */
+.verify{width:100%;border-collapse:collapse;font-size:15.5px;margin-top:14px}
+.verify th,.verify td{border-bottom:1px solid var(--c-rule);padding:14px 14px;
+  vertical-align:top;text-align:left}
+.verify th{font-family:var(--ff-mono);font-size:12px;color:var(--c-ink-faint);
+  letter-spacing:.06em;text-transform:uppercase;font-weight:600;background:var(--c-paper-sink)}
+.verify .vid{font-family:var(--ff-mono);font-weight:700;color:var(--role-primary);white-space:nowrap}
+.verify .ok{color:var(--role-method);font-weight:700;white-space:nowrap}
+.verify .upd{color:var(--role-emphasis);font-weight:700;white-space:nowrap}
+/* ===== module: flagship-table ===== */
+.flagship{margin-top:16px;padding:32px 30px;background:var(--c-ink);border-radius:16px;
+  color:var(--c-paper-card)}
+.flag-lab{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--c-paper-sink);opacity:.7;margin-bottom:8px;font-weight:600}
+.flag-h{font-family:var(--ff-display);font-size:24px;font-weight:600;color:#fff;
+  margin-bottom:22px;line-height:1.36}
+.flag-tbl{width:100%;border-collapse:collapse;font-size:15px;color:var(--c-paper-card)}
+.flag-tbl th,.flag-tbl td{padding:13px 10px;text-align:right;border-bottom:1px solid rgba(255,255,255,.1)}
+.flag-tbl th{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--c-paper-sink);opacity:.75;font-weight:600;background:rgba(255,255,255,.04)}
+.flag-tbl th:first-child,.flag-tbl td:first-child{text-align:left;font-family:var(--ff-display);
+  font-size:15.5px;font-weight:500;color:#fff;padding-left:14px}
+.flag-tbl tr.total td{font-weight:700;color:#fff;background:rgba(255,255,255,.05);border-bottom:none}
+.flag-tbl .dom{background:var(--role-emphasis);color:#fff;font-weight:700;border-radius:4px}
+.flag-note{font-size:14.5px;color:var(--c-paper-sink);opacity:.82;margin-top:18px;line-height:1.7}
+.flag-note b{color:#fff;font-weight:700}
+/* ===== module: gaps-list ===== */
+.gaps{list-style:none}
+.gaps li{position:relative;padding:18px 22px 18px 56px;margin-bottom:12px;
+  background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:11px;
+  font-size:16.5px;line-height:1.76;color:var(--c-ink-soft)}
+.gaps li::before{content:"!";position:absolute;left:20px;top:18px;font-family:var(--ff-display);
+  font-weight:700;font-size:19px;color:var(--role-emphasis);width:26px;height:26px;
+  border:2px solid var(--role-emphasis);border-radius:50%;text-align:center;line-height:23px}
+.gaps li b{color:var(--c-ink);font-weight:700}
+/* responsive */
+@media(max-width:1040px){
+  .nav{position:static;width:100%;height:auto;bottom:auto;border-right:none;
+    border-bottom:2px solid var(--c-rule)}
+  .nav ol{display:flex;flex-wrap:wrap;padding:14px}
+  .nav .nav-grp{width:100%;padding:12px 14px 4px}
+  .nav a.sub{padding-left:14px}
+  main,footer{margin-left:0}
+  .shell{flex-direction:column}
+  .hero-numbers{grid-template-columns:1fr}
+  .hn-cell+.hn-cell{border-left:none;border-top:1px solid var(--c-rule)}
+  .chains{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  body{font-size:17.5px}
+  .wrap,.hero-inner{padding-left:24px;padding-right:24px}
+  section{padding:64px 0}
+  .hero-inner{padding-top:52px}
+  .find{padding:28px 24px}
+  .tldr{padding:24px;gap:18px}
+  .tldr .num{font-size:40px;width:42px}
+  .schema{padding:24px 20px}
+  .schema-row{grid-template-columns:1fr;gap:8px}
+  .schema-code{width:fit-content}
+  .src-grid{grid-template-columns:1fr}
+  .sp-row{grid-template-columns:110px 1fr 70px;gap:10px}
+  .flagship{padding:24px 18px}
+  .flag-tbl{font-size:13px}
+  .flag-tbl th,.flag-tbl td{padding:10px 6px}
+  footer{padding:30px 24px}
+}
+</style>
+</head>
+
+<body>
+<div class="shell">
+
+  <!-- ================= SIDEBAR ================= -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">
+      <div class="nav-kicker">公開研究報告</div>
+      <div class="nav-title">政府採購人格<br>與<b>競爭健康度</b></div>
+      <div class="nav-scope">把政府機關當「採購者」分性格；當成競爭篩檢鏡——標出值得查核的訊號，而非定罪。</div>
+      <div class="nav-meta">台灣 · 政府採購開放資料 · 2026 / 06</div>
+    </div>
+    <ol>
+      <li class="nav-grp">目次</li>
+      <li><a href="#tldr"><span class="ix">01</span>摘要</a></li>
+      <li><a href="#section-02"><span class="ix">02</span>緣起與方法</a></li>
+      <li><a href="#section-03"><span class="ix">03</span>四種採購人格</a></li>
+      <li><a href="#section-04"><span class="ix">04</span>錢的集中 ＆ 兩張低競爭的臉</a></li>
+      <li><a href="#section-05"><span class="ix">05</span>部會的真面目</a></li>
+      <li><a href="#section-06"><span class="ix">06</span>地方：壟斷還是市場太小？</a></li>
+      <li><a href="#section-07"><span class="ix">07</span>能說與不能說</a></li>
+      <li class="nav-grp">附錄</li>
+      <li><a href="#sources"><span class="ix">08</span>資料來源</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker">政府採購開放資料 · 類型學</div>
+        <h1 class="hero-title">把全台 5,577 個政府機關，當成「採購者」來<span class="cut">分性格</span></h1>
+        <p class="hero-scope">用政府電子採購網 2022 下半年約 4.7 萬筆決標公告，歸納出四種「採購人格」，並把它當成一面照出「競爭在哪裡缺席」的篩檢鏡。</p>
+        <p class="hero-stand">
+          台灣政府採購其實<b>普遍競爭</b>，錢卻<b>極端集中</b>在能源國營與地方建設兩大引擎；真正的低競爭分成兩張臉。這份研究的價值，是用公開資料就能把政府擬人化，並標出任何單一指標都會漏看、<b>值得進一步查核</b>的關注點——而不是看到集中就喊綁標。
+        </p>
+
+        <div class="hero-numbers">
+          <div class="hn-cell">
+            <div class="hn-lbl">分型對象</div>
+            <div class="hn-big">5,577<span class="unit">個機關</span></div>
+            <div class="hn-sub">以決標件數前 150 大機關為分型對象</div>
+          </div>
+          <div class="hn-cell">
+            <div class="hn-lbl">金額集中</div>
+            <div class="hn-big">91.4<span class="unit">%</span></div>
+            <div class="hn-sub">窗內金額集中在 16 個「巨額」機關</div>
+          </div>
+          <div class="hn-cell">
+            <div class="hn-lbl">結構，不是弊端</div>
+            <div class="hn-big">0<span class="unit">件</span></div>
+            <div class="hn-sub">南投鄉鎮 643 件工程無一破百萬 → 市場太薄</div>
+          </div>
+        </div>
+
+        <div class="hero-foot">
+          <span class="dot"></span><span>資料：政府電子採購網半月公開資料 · 窗口 2022-06～12 · 訊號非定罪</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= 01 · TL;DR ================= -->
+    <section id="tldr">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">摘要：五句話看完</h2>
+          <p class="sec-lead">把政府機關當成「採購者」，依「買什麼、怎麼決標、廠商多不多」分性格，會看到什麼。</p>
+        </header>
+        <div class="tldr-list">
+          <div class="tldr rv"><div class="num">1</div><div class="body">
+            <p>全台政府機關依採購行為，可歸成<b>四種採購人格</b>：<b>設備採買型</b>（醫院、大學買財物）、<b>委外比優型</b>（文化與政策機關買服務）、<b>工程發包型</b>（鄉鎮公所造橋鋪路）、<b>勞務比價型</b>（國防、銀行的標準化服務）。</p>
+          </div></div>
+          <div class="tldr rv"><div class="num">2</div><div class="body">
+            <p>台灣政府採購<b>多數是競爭性的</b>——絕大多數機關幾乎 100% 走公開招標。低競爭是少數機關的「特質」，不是常態。</p>
+          </div></div>
+          <div class="tldr rv"><div class="num">3</div><div class="body">
+            <p>但<b>錢極端集中</b>：在分析的 150 個機關裡，16 個「巨額」機關（台電、中油、台水、公股銀行、大型醫院）吃掉約 <b>91%</b> 的決標金額。多數機關做的是大量小額採購——「件數」與「金額」是兩個世界。</p>
+          </div></div>
+          <div class="tldr rv"><div class="num">4</div><div class="body">
+            <p>低競爭有<b>兩張臉</b>：一是「程序低競爭」（直接找廠商議價，常見於國營與研究機構，但多屬合法獨家）；二是「結果低競爭」（公開招標、卻同幾家廠商重複得標，集中在偏鄉工程）。只看招標方式，會整群漏掉後者。</p>
+          </div></div>
+          <div class="tldr rv"><div class="num">5</div><div class="body">
+            <p>把鏡頭對準最集中的南投鄉鎮工程，資料<b>證偽了「圍標卡特爾」的直覺</b>：廠商不跨鄉鎮、工程平均只有 44 萬。主因是偏鄉小工程市場太薄。研究的價值因此不是定罪，而是一面<b>指出該去查哪裡</b>的競爭健康篩檢鏡。</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 02 · 緣起與方法 ================= -->
+    <section id="section-02">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">緣起：把一篇政治學的「類型學」搬到政府身上</h2>
+          <p class="sec-lead">類型學不是要「分幾型」就好，而是逼你誠實面對資料的範圍與盲點。</p>
+        </header>
+        <div class="prose rv">
+          <p>靈感來自 2026 年一篇政治學期刊論文，用「<b>類型學</b>」把一大群同類行為，按概念維度歸納成幾種型。原文分析的是社群媒體上的「抵制呼籲」貼文；本研究把分析單位從「一則貼文」換成「<b>一個政府機關</b>」，把維度換成它的採購行為——等於把政府擬人化，看每個機關是什麼樣的採購者。</p>
+          <p>資料用的是<b>政府電子採購網</b>的半月公開資料，共約 16 萬筆招標／決標公告。但要老實說一件事：實測後發現這份公開資料<span class="em">各年份的收錄密度差很多</span>，只有 <b>2022 年 6 到 12 月</b>接近「全都收錄」；跨年硬合併，會混到範圍不一致的資料而失真。</p>
+          <p>所以本研究刻意只取這個乾淨的橫切面當快照：約 <b>4.6 萬筆決標</b>。代價是——它是 <b>2022 下半年的相片，不是即時現況</b>。但類型學本來就是橫切面的工作，這個取捨划算，而且誠實。</p>
+        </div>
+        <div class="block rv">
+          <div class="sub-h">四個觀察機關「性格」的維度</div>
+          <div class="prose">
+            <p>每個機關用四件事來描述：<b>① 競爭開放度</b>（是公開招標，還是直接找廠商議價）；<b>② 決標原則</b>（比價、挑最低價，還是「比品質」挑最有利標）；<b>③ 買的東西</b>（工程／財物／服務）；<b>④ 廠商集中度</b>（得標廠商是雨露均霑，還是同幾家重複拿）。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 03 · 四種採購人格 ================= -->
+    <section id="section-03">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">四種採購人格</h2>
+          <p class="sec-lead">最能區分機關的，其實是兩件事：買什麼、用什麼方式決標。競爭開放度反而不太能分群——因為大家幾乎都公開招標。</p>
+        </header>
+
+        <div class="schema rv">
+          <div class="schema-h">採購人格分型</div>
+          <div class="schema-sub">機關佔比 · 決標金額佔比（前 150 大機關，2022 下半年）</div>
+          <div class="schema-rows">
+            <div class="schema-row">
+              <div class="schema-code">設備採買</div>
+              <div class="schema-name">設備採買型</div>
+              <div class="schema-def"><b>58% 機關 · 68% 金額。</b>買財物、挑最低價。醫院（各大醫院買藥材設備）、大學、捷運。規格明確 → 比價最有效率。是數量與金額的雙重主力。</div>
+            </div>
+            <div class="schema-row">
+              <div class="schema-code">委外比優</div>
+              <div class="schema-name">委外比優型</div>
+              <div class="schema-def"><b>19% 機關 · 13% 金額。</b>買服務、挑「最有利標」（比品質）。縣市政府委辦案、文化機關（如美術館有 95% 用比品質）、教育與政策行政。品質難以用價格衡量 → 比品質。</div>
+            </div>
+            <div class="schema-row">
+              <div class="schema-code">工程發包</div>
+              <div class="schema-name">工程發包型</div>
+              <div class="schema-def"><b>13% 機關 · 僅 2% 金額。</b>發小工程、挑最低價。鄉鎮市區公所、部分縣府。造橋、鋪路、修溝。件數不少但每案很小——「多而散」的基層建設。</div>
+            </div>
+            <div class="schema-row">
+              <div class="schema-code">勞務比價</div>
+              <div class="schema-name">勞務比價型</div>
+              <div class="schema-def"><b>10% 機關 · 17% 金額。</b>買服務、但用最低價。國防部各司令部、農田水利署、公私銀行（IT／保全／維運外包）。服務內容標準化到可比價。</div>
+            </div>
+          </div>
+          <div class="schema-foot">
+            <b>怎麼分的：</b>以「主要買什麼 × 怎麼決標」兩軸歸納，分界門檻取自 150 個機關的實際分布（先有概念、再讓資料校準），不是憑空設定。
+          </div>
+        </div>
+
+        <div class="block rv">
+          <div class="cap">各人格佔機關數比例</div>
+          <div class="spectrum">
+            <div class="sp-row rv"><div class="sp-name">設備採買型</div>
+              <div class="sp-track"><div class="sp-fill" style="width:58%"></div></div>
+              <div class="sp-val"><b>58%</b>· 68% 金額</div></div>
+            <div class="sp-row rv"><div class="sp-name">委外比優型</div>
+              <div class="sp-track"><div class="sp-fill" style="width:19%"></div></div>
+              <div class="sp-val"><b>19%</b>· 13% 金額</div></div>
+            <div class="sp-row rv"><div class="sp-name">工程發包型</div>
+              <div class="sp-track"><div class="sp-fill" style="width:13%"></div></div>
+              <div class="sp-val"><b>13%</b>· 2% 金額</div></div>
+            <div class="sp-row rv"><div class="sp-name">勞務比價型</div>
+              <div class="sp-track"><div class="sp-fill" style="width:10%"></div></div>
+              <div class="sp-val"><b>10%</b>· 17% 金額</div></div>
+          </div>
+          <div class="prose" style="margin-top:24px">
+            <p>注意「工程發包型」：佔了 13% 的機關數，卻只佔 <span class="em">2%</span> 的金額——這已經預告了下一節的主題：在政府採購裡，<b>件數多的不等於花錢多</b>。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 04 · 兩個跨類型特質 ================= -->
+    <section id="section-04">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">錢的集中，與兩張低競爭的臉</h2>
+          <p class="sec-lead">有兩個特質會橫跨上面四種人格而存在——一個關於錢、一個關於競爭。</p>
+        </header>
+
+        <div class="find rv">
+          <div class="find-top">
+            <span class="find-no">特質一</span>
+            <h3>金額高度集中：16 個機關，吃掉九成的錢</h3>
+          </div>
+          <div class="find-sum">
+            <p>在分析的 150 個機關裡，<b>16 個「巨額」機關</b>（平均每案逾 2,000 萬）就佔了窗內 <span class="em">91.4%</span> 的決標金額；其餘 134 個機關合計分不到 9%。平均單案金額最高的是內政部營建署（每案約 3.7 億）、台電、中油（每案約 2.6–2.8 億）。</p>
+          </div>
+          <div class="find-key">
+            <span class="kl">重點</span>
+            <b>政府採購的「件數」與「金額」是兩個世界。</b>絕大多數機關做的是大量小額採購；真正的資本支出，集中在少數公用事業、基礎建設、銀行與大型醫院手上。
+          </div>
+        </div>
+
+        <div class="find rv">
+          <div class="find-top">
+            <span class="find-no">特質二</span>
+            <h3>低競爭有兩張臉：程序的 vs 結果的</h3>
+          </div>
+          <div class="find-sum">
+            <p>「競爭不足」其實是兩群完全不同的機關、兩種完全不同的成因。把它們分開，是這份研究最有用的一刀。</p>
+          </div>
+          <div class="block">
+            <div class="chains">
+              <article class="chain A rv">
+                <div class="chain-top">
+                  <div class="chain-tag">第一張臉 · 程序</div>
+                  <div class="chain-name">程序的低競爭</div>
+                  <div class="chain-sub">直接找特定廠商議價，跳過公開競爭</div>
+                </div>
+                <div class="chain-rows">
+                  <div class="crow"><div class="lbl">是誰</div><div class="val">中央研究院、台電、中油、中華郵政、臺鐵、公路養護單位</div></div>
+                  <div class="crow"><div class="lbl">機制</div><div class="val">用「限制性招標」直接議價（中研院達 <b>44%</b>、中華郵政 27%）</div></div>
+                  <div class="crow"><div class="lbl">廠商多樣性</div><div class="val"><b>高</b>——中研院雖直接議價，得標廠商卻很分散（88% 都是不同家）</div></div>
+                  <div class="crow"><div class="lbl">多半合法？</div><div class="val">科研獨家儀器、能源專屬機料常屬法律允許的單一來源採購</div></div>
+                </div>
+              </article>
+              <article class="chain B rv">
+                <div class="chain-top">
+                  <div class="chain-tag">第二張臉 · 結果</div>
+                  <div class="chain-name">結果的低競爭</div>
+                  <div class="chain-sub">照公開招標走，但贏家固定</div>
+                </div>
+                <div class="chain-rows">
+                  <div class="crow"><div class="lbl">是誰</div><div class="val">偏鄉鄉鎮公所的工程採購（南投最明顯）</div></div>
+                  <div class="crow"><div class="lbl">機制</div><div class="val">程序完全合規、公開招標，<b>但同幾家在地廠商重複得標</b></div></div>
+                  <div class="crow"><div class="lbl">廠商多樣性</div><div class="val"><b>極低</b>——中寮鄉 100 件工程，只給了 7 家廠商</div></div>
+                  <div class="crow"><div class="lbl">風險型態？</div><div class="val">需查：是「市場太薄沒人來投」，還是「在地輪流得標」</div></div>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="find-key">
+            <span class="kl">為什麼重要</span>
+            <b>只盯著「招標方式」這一個指標，會整群漏掉第二張臉。</b>它的程序毫無瑕疵，低競爭藏在結果裡——唯有加上「廠商集中度」這第二隻眼才看得見。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 05 · 部會真面目 ================= -->
+    <section id="section-05">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">部會的真面目：把國營、大學、榮總歸位之後</h2>
+          <p class="sec-lead">台灣最大的採購者，在原始資料裡都不掛部會的名字。不先把它們歸位，會嚴重看錯哪個部會在花錢。</p>
+        </header>
+        <div class="prose rv" style="margin-bottom:32px">
+          <p>台電、中油叫「台灣電力公司」「台灣中油公司」，不叫「經濟部台電」；台大、成大叫「國立臺灣大學」，不叫「教育部台大」；各榮總屬退輔會。若只照名稱前綴去歸部會，這些大戶會全部漏掉。把它們歸回主管機關後，政府的錢真正流向才浮現：</p>
+        </div>
+
+        <div class="flagship rv">
+          <div class="flag-lab">決標金額 · 主管機關歸屬（2022 下半年）</div>
+          <div class="flag-h">真正的「錢流引擎」：能源國營 ＋ 地方建設</div>
+          <table class="flag-tbl">
+            <thead>
+              <tr><th>主管機關（含所屬國營／大學／醫療）</th><th>決標件數</th><th>決標金額</th><th>主要買的</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>經濟部（含台電／中油／台水／台糖）</td><td>2,592</td><td class="dom">1,695 億</td><td>財物·服務</td></tr>
+              <tr><td>地方政府（縣市＋鄉鎮）</td><td>16,871</td><td>1,117 億</td><td>工程偏多</td></tr>
+              <tr><td>交通部（含郵政／港務／機場）</td><td>1,342</td><td>735 億</td><td>服務</td></tr>
+              <tr><td>財政部（含公股銀行）</td><td>514</td><td>234 億</td><td>服務</td></tr>
+              <tr><td>內政部</td><td>329</td><td>190 億</td><td>服務</td></tr>
+              <tr><td>退輔會（含各榮總）</td><td>917</td><td>173 億</td><td>財物</td></tr>
+              <tr><td>教育部（含國立大學）</td><td>6,174</td><td>150 億</td><td>財物</td></tr>
+            </tbody>
+          </table>
+          <p class="flag-note"><b>歸位前 vs 歸位後：</b>若只看名稱掛「經濟部」的單位，經濟部採購只有約 135 億；把台電、中油等國營歸回後，暴增到 <b>1,695 億</b>——足足十二倍。教育部也從 7 億（本部）跳到 150 億（含大學）。<b>「整個部會在買什麼」的問題，必須先把這些單位歸位才能回答。</b></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 06 · 地方診斷 ================= -->
+    <section id="section-06">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">06</span>
+          <h2 class="sec-title">把鏡頭對準地方：南投鄉鎮工程是壟斷，還是市場太小？</h2>
+          <p class="sec-lead">「結果的低競爭」最集中在偏鄉工程。但同一個現象，有兩種完全相反的解釋——研究要做的，是把它們拆開。</p>
+        </header>
+        <div class="prose rv" style="margin-bottom:30px">
+          <p>南投縣中寮鄉公所，2022 下半年發了 100 件工程，<b>只給了 7 家廠商</b>。聽起來像綁標。但「低競爭」可能是<b>競爭被人為壓制（圍標）</b>，也可能只是<b>偏鄉根本沒幾家營造廠能投標（市場太薄）</b>。下面用可被推翻的檢驗，逐一測試：</p>
+        </div>
+
+        <table class="verify rv">
+          <thead>
+            <tr><th style="width:120px">假設</th><th>檢驗方式</th><th style="width:230px">資料怎麼說</th><th style="width:96px">結果</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="vid">全縣圍標</td>
+              <td>看大贏家是否「跨多個鄉鎮」得標（區域型卡特爾）</td>
+              <td>最大贏家 54 件，<b>全部集中在 1 個鄉鎮</b>；廠商幾乎都不跨鄉鎮</td>
+              <td class="upd">證偽</td>
+            </tr>
+            <tr>
+              <td class="vid">化整為零</td>
+              <td>看工程金額是否擠在某個門檻上限（把大案切小）</td>
+              <td>643 件工程<b>無一破百萬</b>、平均僅 44 萬、近 99 萬上限者僅 21 件</td>
+              <td class="upd">不成立</td>
+            </tr>
+            <tr>
+              <td class="vid">市場太薄</td>
+              <td>看集中度是否隨「工程占比 × 偏鄉程度」升高</td>
+              <td>南投（工程 75%）集中度最高；都會、低工程的臺北、新北最分散</td>
+              <td class="ok">支持</td>
+            </tr>
+            <tr>
+              <td class="vid">在地輪標</td>
+              <td>需要「每案有幾家來投標」才能分辨——本資料缺此欄位</td>
+              <td>最薄市場（中寮、仁愛、信義、名間）無法以本資料清白或定罪</td>
+              <td class="upd">待查</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="find rv" style="margin-top:40px">
+          <div class="find-top">
+            <span class="find-no">判定</span>
+            <h3>結構解釋掉大部分，戲劇性的卡特爾敘事被資料打掉</h3>
+          </div>
+          <div class="find-sum">
+            <p>真相是：鄉鎮公所的工程有個「<b>每案低於 100 萬</b>」的核定權限上限，案子本來就小 → 只有最小一級的「土木包工業」能投標 → 偏鄉沒幾家這種廠商 → 自然由少數幾家包辦。這是<b>市場結構</b>，不是縣級卡特爾，也不是把大案切小。</p>
+          </div>
+          <div class="find-key">
+            <span class="kl">這才是篩檢鏡的正確用法</span>
+            用結構解釋掉大部分集中、證偽聳動的指控，再交出一份<b>窄而具體、附「下一步需要什麼資料」的優先觀察名單</b>（南投最薄的幾個鄉鎮，需要「投標家數」才能判斷）——而不是看到集中就喊綁標。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 07 · 限制 ================= -->
+    <section id="section-07">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">07</span>
+          <h2 class="sec-title">這面鏡子能說什麼、不能說什麼</h2>
+          <p class="sec-lead">把界線寫在前面，是這類研究該有的誠實。</p>
+        </header>
+        <ul class="gaps rv">
+          <li><b>這是 2022 下半年的快照。</b>不是即時現況，也不含時間趨勢——因為這份公開資料各年份的收錄範圍不一致，跨年不可比。</li>
+          <li><b>這份公開資料是抽樣、不是普查。</b>「金額集中 91%」這類數字，是「分析的 150 個機關之內」的相對陳述，不是全國普查排名。</li>
+          <li><b>「低競爭／直接議價」是訊號，不是弊端。</b>《政府採購法》第 22 條對限制性招標有明列的合法事由（獨家、緊急、後續擴充）；任何不當與否的判斷，都需個案查核決標明細。</li>
+          <li><b>機關歸部會用的是規則式對照。</b>會有邊界誤差（例如「國立」會誤把故宮、傳藝中心歸到教育部）；大戶已人工核對，但精細比較仍需更嚴謹的對照表。</li>
+          <li><b>最關鍵的一個欄位，公開資料裡沒有：「每案有幾家來投標」。</b>少了它，就無法分辨偏鄉的重複得標是「沒人來投」還是「輪流得標」。這是本研究最想要、卻拿不到的資料。</li>
+          <li><b>把機關「擬人化」是一種簡化。</b>同一機關可能跨多種行為；對買的東西很混合的機關，單一標籤會脆弱。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ================= 08 · SOURCES ================= -->
+    <section id="sources">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">08</span>
+          <h2 class="sec-title">資料來源與再現材料</h2>
+        </header>
+        <div class="src-grid">
+          <div class="src">
+            <span class="src-k">主要資料</span>
+            <b>政府電子採購網半月公開資料</b>（行政院公共工程委員會）。約 16 萬筆招標／決標公告，經 twinkle-hub 正規化彙整。授權：政府網站資料開放宣告，可自由使用、須註明出處。
+          </div>
+          <div class="src">
+            <span class="src-k">分析窗口</span>
+            2022-06-01 ～ 2022-12-31 的<b>決標公告</b>，約 4.6 萬筆。選此窗口的理由見第 02 節：它是覆蓋密度接近普查、內部一致的橫切面。
+          </div>
+          <div class="src">
+            <span class="src-k">方法靈感</span>
+            O'Brien &amp; Kasianenko (2026), <i>International Political Science Review</i>，社群媒體政治消費行為的類型學（DOI 10.1177/01925121261442380）。本研究把單位從「貼文」換成「機關」。
+          </div>
+          <div class="src">
+            <span class="src-k">再現材料</span>
+            機關行為指紋表、分型腳本、機關→主管機關對照規則、地方競爭診斷資料（JSON／CSV／Python）均公開於本研究的 randomfindings 專案目錄，可逐步重跑。
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <b>weichen's Research</b> · 人發想、agent 執行的對等協作 · <a href="../">回 research-site 首頁</a>
+</footer>
+
+<script>
+/* reveal.js */
+(function(){
+  const els=document.querySelectorAll('.rv');
+  if(!els.length||!('IntersectionObserver' in window)){els.forEach(el=>el.classList.add('in'));return;}
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(el=>io.observe(el));
+})();
+/* sidebar scroll-spy */
+(function(){
+  const navLinks=document.querySelectorAll('.nav a[href^="#"]');
+  const sections=Array.from(navLinks).map(a=>{
+    const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);
+    return el?{link:a,el}:null;}).filter(Boolean);
+  if(!sections.length)return;
+  function update(){
+    const y=window.scrollY+120;let active=sections[0];
+    for(const s of sections){if(s.el.offsetTop<=y)active=s;}
+    sections.forEach(s=>s.link.classList.toggle('active',s===active));
+  }
+  window.addEventListener('scroll',update,{passive:true});update();
+})();
+</script>
+</body>
+</html>
