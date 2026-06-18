@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>weichen's Research</title>
-<!-- og:auto:start -->
 <meta name="description" content="跨越 AI、資訊環境、數位議題與政策的研究筆記與報告。">
+<title>weichen's Research</title>
+
+<!-- Open Graph / Twitter Card -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="weichen&#x27;s Research">
 <meta property="og:locale" content="zh_TW">
@@ -19,154 +20,135 @@
 <meta name="twitter:title" content="weichen&#x27;s Research">
 <meta name="twitter:description" content="跨越 AI、資訊環境、數位議題與政策的研究筆記與報告。">
 <meta name="twitter:image" content="https://wcl-dev.github.io/research-site/og.png?v=2">
-<!-- og:auto:end -->
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-
-/* Aligned with ~/.claude/skills/generate-research-html/shared/brand-tokens.css */
+/* Hardcore mono — inspired by blog.unitedheroes.net/5751
+   Path A: Latin mono (IBM Plex Mono) + CJK sans fallback (PingFang TC).
+   Headings in #ccc watermark — content is the protagonist, not chrome. */
 :root {
-  --c-paper:        #e9e6df;
-  --c-paper-card:   #f1eee7;   /* slightly lighter than page for card surface */
-  --c-ink:          #141414;
-  --c-ink-soft:     #4a4845;
-  --c-ink-faint:    #7a7770;
-  --c-rule:         #c4c0b6;
-  --c-accent:       #15803D;   /* grass-green accent (was navy #1B4A66) */
+  --c-paper:        #fafaf9;
+  --c-ink:          #333;
+  --c-ink-soft:     #555;
+  --c-ink-faint:    #888;
+  --c-rule:         #ddd;
+  --c-watermark:    #ccc;       /* 標題浮水印灰 */
+  --c-hover-bg:     #eee;       /* hover 反白填底 */
 
-  --ff-display:     "Helvetica Neue","PingFang TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
-  --ff-narrative:   "Iowan Old Style","Source Serif Pro","Charter","Noto Serif TC","Songti TC",Georgia,serif;
-  --ff-mono:        "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
-  /* heading-serif: 載入 Noto Serif TC weight 900 (Google Fonts) 作為粗明朝顯示體；
-     Latin 落 Iowan/Source Serif Pro 自動同步加粗 */
-  --ff-heading:     "Noto Serif TC","Iowan Old Style","Source Serif Pro","Charter","Songti TC",Georgia,serif;
+  --ff-mono:        "IBM Plex Mono","PingFang TC","Microsoft JhengHei","Noto Sans TC",ui-monospace,"SF Mono",Menlo,monospace;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  font-family: var(--ff-narrative);
+  font-family: var(--ff-mono);
   background: var(--c-paper);
   color: var(--c-ink);
-  max-width: 920px;        /* wider than v2 to host 3-card grid */
+  max-width: 920px;
   margin: 0 auto;
   padding: 4em 1.6em 6em;
-  line-height: 1.7;
-  font-size: 17px;
+  line-height: 1.6;
+  font-size: 14.5px;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  opacity: .22;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-}
-
 /* ---------- masthead ---------- */
 .masthead {
-  margin-bottom: 3.6em;
-  padding-bottom: 1.8em;
+  margin-bottom: 3.4em;
+  padding-bottom: 1.6em;
   border-bottom: 1px solid var(--c-rule);
-  max-width: 680px;        /* keep reading width for masthead text */
+  max-width: 680px;
 }
 .tag-site {
   display: inline-block;
-  font-family: var(--ff-mono);
   font-size: 11px;
-  letter-spacing: .18em;
+  letter-spacing: .08em;
   text-transform: uppercase;
   color: var(--c-ink-faint);
   margin-bottom: 1.2em;
 }
 h1 {
-  font-family: var(--ff-display);
-  font-size: 2.4em;
+  font-family: var(--ff-mono);
+  font-size: 2.1em;
   font-weight: 700;
-  letter-spacing: -0.022em;
-  line-height: 1.1;
+  color: var(--c-watermark);      /* 浮水印 — reference 的 punchline */
+  letter-spacing: 0;
+  line-height: 1.15;
   margin: 0 0 .55em;
 }
 .desc {
   color: var(--c-ink-soft);
-  font-size: 1.05em;
-  line-height: 1.7;
+  font-size: 1em;
+  line-height: 1.65;
   max-width: 540px;
 }
 
-/* ---------- project section (now a CONTAINER, not a card) ---------- */
-.project {
-  margin: 3em 0;
-}
+/* ---------- project section ---------- */
+.project { margin: 2.8em 0; }
 .project + .project {
   padding-top: 2.2em;
   border-top: 1px solid var(--c-rule);
 }
 
 .project-title {
-  font-family: var(--ff-heading);        /* Noto Serif TC weight 900 — 粗明朝 */
-  font-size: 1.4em;
-  font-weight: 900;
-  margin: 0 0 .4em;
-  line-height: 1.35;
-  letter-spacing: -0.008em;
-  color: var(--c-accent);
+  font-family: var(--ff-mono);
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--c-watermark);      /* 同浮水印灰 */
+  margin: 0 0 .45em;
+  line-height: 1.4;
+  letter-spacing: 0;
 }
 
 .project-desc {
   color: var(--c-ink-soft);
-  font-size: .96em;
-  line-height: 1.72;
+  font-size: .95em;
+  line-height: 1.65;
   margin: 0 0 1.4em;
   max-width: 680px;
 }
 
-/* ---------- report card grid (always 3 columns; empty cells convey structure) ---------- */
+/* ---------- report card grid ---------- */
 .report-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  gap: 12px;
 }
 
 a.report-card {
   display: flex;
   flex-direction: column;
-  gap: .7em;
-  padding: 1.3em 1.2em 1.2em;
-  background: var(--c-paper-card);
+  gap: .6em;
+  padding: 1.1em 1em;
+  background: var(--c-paper);
   border: 1px solid var(--c-rule);
-  border-radius: 3px;
+  border-radius: 0;               /* sharp — no radius */
   text-decoration: none;
   color: inherit;
-  transition: border-color .15s, background .15s;
-  min-height: 7em;
+  transition: background .12s;
+  min-height: 6.5em;
 }
 a.report-card:hover {
-  border-color: var(--c-accent);
-  background: #f7f4ed;
+  background: var(--c-hover-bg);  /* hover 反白填底 */
 }
 .rc-title {
-  font-family: var(--ff-narrative);
-  font-size: 1.02em;
+  font-family: var(--ff-mono);
+  font-size: .98em;
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--c-ink);
-  letter-spacing: -0.003em;
-  transition: color .15s;
+  letter-spacing: 0;
 }
-a.report-card:hover .rc-title { color: var(--c-accent); }
 .rc-meta {
   font-family: var(--ff-mono);
-  font-size: 12.5px;
-  letter-spacing: .04em;
-  color: var(--c-ink-soft);
+  font-size: 12px;
+  letter-spacing: 0;
+  color: var(--c-ink-faint);
   line-height: 1.55;
-  margin-top: auto;       /* push meta to bottom of card */
+  margin-top: auto;
 }
 
 /* ---------- mobile / narrow ---------- */
@@ -179,19 +161,17 @@ a.report-card:hover .rc-title { color: var(--c-accent); }
 /* ---------- site footer ---------- */
 .site-footer {
   margin-top: 5em;
-  padding-top: 1.6em;
+  padding-top: 1.5em;
   border-top: 1px solid var(--c-rule);
-  font-family: var(--ff-mono);
   font-size: 11.5px;
   color: var(--c-ink-faint);
-  line-height: 1.95;
-  letter-spacing: .04em;
+  line-height: 1.85;
   max-width: 680px;
 }
 .site-footer .ft-row { display: block; }
 .site-footer .ft-label {
   text-transform: uppercase;
-  letter-spacing: .14em;
+  letter-spacing: .08em;
   color: var(--c-ink-faint);
   margin-right: .5em;
 }
@@ -199,11 +179,10 @@ a.report-card:hover .rc-title { color: var(--c-accent); }
   color: var(--c-ink-soft);
   text-decoration: none;
   border-bottom: 1px solid var(--c-rule);
-  transition: color .15s, border-color .15s;
+  transition: background .12s;
 }
 .site-footer a:hover {
-  color: var(--c-accent);
-  border-bottom-color: var(--c-accent);
+  background: var(--c-hover-bg);
 }
 </style>
 </head>
@@ -214,39 +193,6 @@ a.report-card:hover .rc-title { color: var(--c-accent); }
   <h1>weichen's Research</h1>
   <p class="desc">跨越 AI、資訊環境、數位議題與政策的研究筆記與報告。</p>
 </header>
-
-<section class="project">
-  <h2 class="project-title">當網路操弄不再只為政治、也不只為錢</h2>
-  <p class="project-desc">似是而非的協同 AI 內容，已無法用「政治攻擊」或「詐騙獲利」單獨解釋——不同動機共用同一套工業化基礎設施，動機只是可替換的內容；首要傷害是對資訊環境本身的無差別「認知破壞」，作為後續所有惡意操作的加乘效應。以數十份獨立來源（學術、各國威脅情報、平台揭露）論證動機合流，並誠實標出最弱一環：加乘效應缺第一手實證。</p>
-  <div class="report-grid">
-    <a class="report-card" href="./cognitive-disruption-tw/index.html">
-      <div class="rc-title">動機合流與「認知破壞」：工業化基礎設施、環境層傷害與跨域防治</div>
-      <div class="rc-meta">動機合流 → 認知破壞 → 跨域防治 · 49 筆引用</div>
-    </a>
-  </div>
-</section>
-
-<section class="project">
-  <h2 class="project-title">超低價中國 AI 會默默重塑你的認知嗎？</h2>
-  <p class="project-desc">中國模型用數十倍低價搶市，有一種流行說法：這會形成新的「認知基礎設施」、在不知不覺中重塑使用者。本研究把它拆成「低價→採用→資訊入口→社會認知」四環因果鏈，逐環檢視證據，發現它斷在「能說服個人」與「重構社會認知」之間——前者已被嚴謹證明、但有上限，後者零直接證據。不主張中國模型在進行認知作戰，而是指出證據的斷點。</p>
-  <div class="report-grid">
-    <a class="report-card" href="./ai-cognitive-infrastructure-tw/index.html">
-      <div class="rc-title">中國 AI 用超低價滲透是真的，重塑社會認知卻零證據 —— 鏈斷在哪裡</div>
-      <div class="rc-meta">四環因果鏈證據審計 · 30 筆來源 · 價差 51–460×</div>
-    </a>
-  </div>
-</section>
-
-<section class="project">
-  <h2 class="project-title">AI 點餐機在判斷你的年齡、性別、人種</h2>
-  <p class="project-desc">台灣餐飲業正在部署 AI 點餐機，會在你站到機器前的瞬間推測你的年齡、性別、人種。但無論業者新聞稿、媒體報導、隱私政策、業者自家影片畫面 —— 10 個對外管道都沒有人需要告訴你。司法、申訴系統、修法分析、民間倡議四個系統都看不到這件事。「沒有資料」本身就是發現。</p>
-  <div class="report-grid">
-    <a class="report-card" href="./ai-kiosk-consent-tw/index.html">
-      <div class="rc-title">AI 點餐機在判斷你的年齡、性別、人種 —— 但沒人需要告訴你</div>
-      <div class="rc-meta">雙月 × WiXtar + 金色三麥 × 星益欣 · 即時推測 × 同意機制</div>
-    </a>
-  </div>
-</section>
 
 <section class="project">
   <h2 class="project-title">諂媚的縫隙 —— AI 諂媚作為攻擊面</h2>
