@@ -836,9 +836,12 @@ Qwen3 相對中性的觀察不等同於 Qwen3 「乾淨」。它仍是中國法�
 </section>
 
 <footer>
-  <strong>研究方法</strong>　第一階段以 Playwright 自動化對 chat.deepseek.com 等雲端服務跑 35 cells（30 格先導 + 5 格機制隔離；先導原設計 36 格，ChatGPT 香港 6 格因 VPN IP 被服務阻擋未納入有效對照）；第二階段以 Ollama 0.24.0 對 5 個本地模型（deepseek-r1:8b、qwen3:8b、glm4:9b 及 huihui_ai 的兩個解除對齊版本）跑 55 cells。<br>
-  <strong>研究限制</strong>　單一主題（二二八）；單一模型尺寸（7-9B）；GLM-4 缺解除對齊對照；未測中國以外之模型對照組；未測多輪對話與身份信號梯度。<br>
-  <strong>資料公開</strong>　所有 prompt 與回應、思考鏈、分析腳本皆於公開 GitHub 儲存庫釋出。
+  <div class="ft-inner">
+    <b>當中國 AI 認得你是台灣人，它選擇隱匿你的歷史</b><br>
+    30 cells × 3 模型雲端對照 + 5 cells 機制隔離 + 55 cells 地端跨模型 · LLM 使用者端偏誤研究 · 2026 年 5 月<br>
+    立場：揭露結構性偏誤，不是對開發商的指控<br>
+    研究儲存庫 · <a href="https://github.com/wcl-dev/research-site">wcl-dev/research-site</a> · <a href="../../">回 weichen's Research 首頁</a>
+  </div>
 </footer>
 
 </div>
