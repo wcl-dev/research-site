@@ -1,0 +1,16 @@
+victim_uid,judgment,D1,D4,note
+v01,TPDM-113-金訴-35-附表1,M0,INVEST,假投資海外不動產;實體公司面對面;無線上媒介(codebook 缺實體類別→暫 M0)
+v02,TPDM-113-金訴-35-附表2,M0,INVEST,假投資博弈事業;口頭話術面交;無線上媒介→暫 M0
+v03,TPDM-113-金訴-35-金善鈺,M0,OTHER,假冒機構代售靈骨塔;面對面簽約;無線上媒介→暫 M0
+v05,TPDM-111-金訴-48,M3,INVEST,雲錢包 Cloud Token;詐騙集團自建投資APP
+v06,PCDM-114-金訴-3632,M0,INVEST,LINE接觸+面交;判決未述核心介面;資訊不足
+v08,PCDM-114-金訴-3424,M1,INVEST,判決明文不具名投資網站;歸 M1 獨立假網站
+v09,PCDM-114-金訴-2968,M0,INVEST,TikTok接觸+不具名商店投資;資訊不足
+v10,TCDM-114-金訴-3885,M0,INVEST,METAMASK 真實APP轉幣;投資介面未述(真APP不合M3)→M0
+v11,TCDM-114-金訴-2289,M0,INVEST,LINE接觸+不具名介面;資訊不足
+v12,TCDM-114-金訴-3593,M4,INVEST,LINE群組喊單+假冒投資公司偽造文件面交;無網站
+v13,TCDM-114-金訴-3752,M4,INVEST,LINE群組投顧+假冒券商偽造文件面交;無網站
+v14,KSDM-114-金訴-48,M4,INVEST,LINE接觸+入股香港公司;冒用券商名但無冒名網站
+v15,KSDM-114-金訴-494,M0,INVEST,假冒券商偽造文件面交;觸及不明;無網站→M0
+v16,KSDM-114-金訴-170,M5,OTHER,電話冒充親友+LINE借款;非假冒機構
+v17,KSDM-113-金訴-559,M4,INVEST,臉書+LINE投資群組喊單+假冒投資公司偽造文件面交;無網站

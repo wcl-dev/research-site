@@ -1,0 +1,147 @@
+project: cognitive-disruption-tw
+version: v1
+year_from: 2016
+languages: [en, zh-TW]
+
+brief_type:
+  intent: exploratory      # 測繪並論證一個新興合流現象 + 提出 harm model
+  horizon: emerging        # 2023+ 生成式 AI slop 帶來的形態轉變
+
+# ─────────────────────────────────────────────────────────────
+# 命題鏈：(P ∪ S) 失效 → I 共用工業化基礎設施 → CD 認知破壞(FM 倍增器) → XD 跨域防治
+# research_focus = I→CD→XD 這條鏈；P/S 作為被取代的舊框架對照
+# ─────────────────────────────────────────────────────────────
+research_focus: >-
+  研究焦點是 I→CD→XD：協同操作共用工業化基礎設施(I)、其首要傷害是對資訊環境本身的
+  無差別「認知破壞」(CD，作為 force multiplier FM)、防治需跨域整合(XD)。P(政治攻擊框架)
+  與 S(詐騙獲利框架)列入 ontology 作為「被取代的舊分類軸」對照，避免 Drafter 退回二分法或
+  以手上兩案(kwara/FIMI)為組織骨架。
+
+concept_ontology:
+  - id: P
+    label: "政治攻擊框架 (political-attack / influence-ops frame)"
+    definition: >-
+      以意圖與外國性為判定核心的解釋框架：FIMI、認知作戰、影響力操作、選舉干預、假訊息。
+      列入作為「被取代的舊分類軸」對照——本研究主張此框架單獨無法解釋零變現但無政治內容、
+      或外國性無法歸因的協同操作。
+    type: concept_axis
+    examples_in:
+      - "EEAS FIMI 定義(意圖性/協調性/操弄性)"
+      - "選舉期間的境外影響力操作歸因"
+      - "認知作戰 narrative 敘事分析"
+    examples_out:
+      - "純廣告變現的內容農場(屬 S)"
+      - "共用 tracker/帳號農場的基礎設施分析(屬 I)"
+  - id: S
+    label: "詐騙獲利框架 (scam / financially-motivated frame)"
+    definition: >-
+      以金流與獲利模式為判定核心的解釋框架：內容農場、廣告變現、SEO spam、釣魚詐騙。
+      列入作為對照——本研究主張此框架單獨無法解釋近乎零變現卻投入大量資源的協同操作。
+    type: concept_axis
+    examples_in:
+      - "賺廣告分潤的商業內容農場"
+      - "詐騙中心 scam center 金流"
+      - "ad arbitrage / engagement farming"
+    examples_out:
+      - "零變現的影響力導向帳號群(打破 S)"
+      - "政治敘事注入(屬 P)"
+  - id: I
+    label: "共用工業化基礎設施與 TTP (shared industrialized infrastructure)"
+    definition: >-
+      跨動機可複用的操作基礎設施與手法層：批量帳號建立、AI 生成人設/影像、cloaking/偽裝、
+      跨語言帳號供應鏈(account farm)、資產輪替與重新分配、中介者(bulletproof hosting/
+      amplification/SSP)、針對主流偵測方法的對抗工程。本研究主張這層才是穩定威脅本體，
+      動機是其上可替換的 payload。
+    type: entity
+    layer: infrastructure_layer
+    examples_in:
+      - "GAN/AI 生成頭像跨帳號複用"
+      - "bulk-created account farm 跨語言供應"
+      - "cloaking 對爬蟲 vs 真人回不同內容"
+      - "共用 GTM/GA4/Pixel/CDN 樞紐"
+    examples_out:
+      - "單一帳號的孤立貼文(無協同基礎設施)"
+      - "個別假訊息的真偽判定(屬內容層)"
+  - id: CD
+    label: "認知破壞 (cognitive disruption) — 本研究提出的 harm model"
+    definition: >-
+      以海量似是而非協同內容飽和資訊環境本身、系統性壓低整個母體的信任與辨識基線的
+      無差別、基礎設施層傷害。傷害對象是「認知共有財(epistemic commons)」而非被說服/
+      被騙的個人。需與既有框架(information disorder/epistemic security/firehose/
+      liar's dividend)對位釐清異同。
+    type: concept_axis
+    examples_in:
+      - "同質內容飽和搜尋/推薦生態位、壓低碰到可信來源的機率"
+      - "真假混雜 + cloaking 掏空『來源看起來正常』的判斷依據"
+      - "資訊環境劣化本身(非特定信念位移、非特定交易)"
+    examples_out:
+      - "針對特定個人的精準說服(屬 P 的效果端)"
+      - "騙走特定金額的單次詐騙(屬 S 的效果端)"
+  - id: FM
+    label: "加乘效應機制 (force multiplier)"
+    definition: >-
+      認知破壞如何降低後續『所有』惡意操作的 kill chain 成本：先以無害內容建立信任/養成
+      依賴(audience capture)，壓低母體信任與辨識基線，使每個後續差別化攻擊(詐騙/政治/
+      釣魚)成功率上升。本研究最弱的一環——須逐環標記實證 vs 推論。
+    type: concept_axis
+    examples_in:
+      - "先建信任、後注入敘事(pre-positioning)"
+      - "trust baseline 下降提高詐騙成功率"
+      - "cross-domain spillover 受眾流動"
+    examples_out:
+      - "一次性、無後續利用的孤立操作"
+  - id: XD
+    label: "跨域整合防治 (cross-domain integration / defense)"
+    definition: >-
+      以多套偵測方法疊加(資產指紋×行為協同×內容語意×金流×受眾脆弱性)收斂單一方法盲區、
+      並以共用交換接口(DISARM/STIX/IMS/可制裁等級證據)讓反詐×反假訊息×平台安全×執法
+      協作。本研究主張這是合流威脅的結構性必要反制。
+    type: concept_axis
+    examples_in:
+      - "DISARM TTP 作為跨域共同語言"
+      - "STIX/TAXII 跨組織情資交換"
+      - "識別碼即可申訴接口(tracker/channel_id/素材雜湊)"
+      - "HMAC/RFC3161 可制裁等級證據"
+    examples_out:
+      - "單一機關/單一方法獨力歸因(被對抗工程繞過)"
+
+queries:
+  - {text: "coordinated inauthentic behavior financially motivated influence operations convergence", concept_target: "I"}
+  - {text: "disinformation for profit content farms influence operations overlap blurred", concept_target: "S"}
+  - {text: "generative AI scaled influence operations content production marginal cost", concept_target: "I"}
+  - {text: "AI generated content spam slop information environment flooding", concept_target: "CD"}
+  - {text: "information disorder misinformation disinformation malinformation framework", concept_target: "CD"}
+  - {text: "epistemic security information environment threat democracy", concept_target: "CD"}
+  - {text: "firehose of falsehood Russian propaganda model RAND", concept_target: "FM"}
+  - {text: "liar's dividend trust erosion synthetic media deepfakes", concept_target: "FM"}
+  - {text: "platform manipulation detection evasion coordinated networks adversarial", concept_target: "I"}
+  - {text: "influence operations taxonomy ABCDE disinformation analysis framework", concept_target: "XD"}
+  - {text: "DISARM framework disinformation TTP threat sharing STIX TAXII", concept_target: "XD"}
+  - {text: "cognitive warfare information environment NATO StratCom", concept_target: "CD"}
+  - {text: "content farm SEO spam cloaking detection web", concept_target: "I"}
+  - {text: "audience capture trust degradation cross-domain spillover information operations", concept_target: "FM"}
+  - {text: "censorship through noise information abundance attention manipulation", concept_target: "CD"}
+  - {text: "account farm sockpuppet bulk created persona AI profile picture GAN", concept_target: "I"}
+
+keyword_expansions:
+  motive_frames: [政治攻擊, 影響力操作, 認知作戰, FIMI, 詐騙, 內容農場, 廣告變現, financially-motivated, influence operation, scam, content farm, profit-driven, propaganda]
+  shared_infrastructure: [批量帳號, AI 生成人設, cloaking, 偽裝, 跨語言, 帳號農場, account farm, bulk creation, synthetic persona, infrastructure reuse, GAN profile, intermediary, bulletproof hosting, sockpuppet, repurposed asset]
+  ai_slop: [AI slop, generative AI, AI-generated, synthetic content, LLM spam, scaled content, deepfake, synthetic media]
+  harm_model: [epistemic security, information disorder, cognitive infrastructure, 認知共有財, trust erosion, firehose of falsehood, flooding, liar's dividend, information pollution, epistemic commons, censorship through noise, 資訊環境劣化]
+  force_multiplier: [audience capture, prebunking, trust baseline, spillover, force multiplier, priming, pre-positioning, sleeper account, minimal effects]
+  detection_blindspots: [CIB detection, content moderation, financial trail, digital asset fingerprint, detection evasion, adversarial, blind spot, behavioral indicator]
+  cross_domain_interfaces: [DISARM, STIX, TAXII, IMS, EU DisinfoLab, EEAS, ABCDE, SCOTCH, BEND, threat sharing, attribution, liability, sanctions, STIX bundle]
+  cases_tw: [養生, FB 短連結, YouTube 協同頻道, 台灣事實查核, 認知作戰台灣, IORG, Doublethink Lab]
+
+# G4 — counter-framings the Drafter MUST seek evidence for, to avoid one-sided thesis
+counter_framing_keywords:
+  just_spam: [低品質, spam, 垃圾內容, 無意圖, 演算法副產物, engagement farming, clickbait]
+  just_profit: [純獲利, 廣告分潤, 商業模式, ad arbitrage, monetization]
+  no_measurable_effect: [無效果, minimal effects, 說服力有限, no measurable impact, backfire, overstated]
+  shared_vendor_not_actor: [各自獨立, 不同行為者, coincidence, shared vendor, shared playbook, multi-tenant]
+
+exclusion_terms: [SEO 教學, 純行銷文, AI 倫理泛論, 地緣政治評論, 單則查核]
+
+review:
+  mode: single
+  fidelity_level: high

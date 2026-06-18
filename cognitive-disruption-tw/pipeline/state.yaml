@@ -1,0 +1,14 @@
+project: cognitive-disruption-tw
+tool: insight-pipeline
+version: v1
+current_stage: done
+status: done
+brief_path: projects/cognitive-disruption-tw/pipeline/brief.md
+brief_expanded_path: projects/cognitive-disruption-tw/pipeline/brief_expanded.yaml
+collect_output_path: projects/cognitive-disruption-tw/pipeline/collect/candidates.jsonl
+gate_output_path: projects/cognitive-disruption-tw/pipeline/gate/accepted.jsonl
+gate_rejected_path: projects/cognitive-disruption-tw/pipeline/gate/rejected.jsonl
+extracts_output_path: projects/cognitive-disruption-tw/pipeline/extracts/
+draft_output_path: projects/cognitive-disruption-tw/pipeline/draft/insight_v1.md
+review_output_path: projects/cognitive-disruption-tw/pipeline/review/review.md
+last_handoff_ts: "2026-06-16T03:19:01Z"

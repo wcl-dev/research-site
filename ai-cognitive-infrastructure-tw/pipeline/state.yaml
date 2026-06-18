@@ -1,0 +1,19 @@
+project: ai-cognitive-infrastructure-tw
+tool: insight-pipeline
+current_stage: done
+status: done
+brief_path: pipeline/brief.md
+brief_expanded_path: pipeline/brief_expanded.yaml
+# sources_path omitted — no sources.yaml (Track 2/Track 4 skipped); schema requires string-or-absent, not null
+candidates_path: pipeline/collect/candidates.jsonl
+coverage_path: pipeline/collect/coverage.md
+collect_output_path: pipeline/collect/candidates.jsonl
+gate_output_path: pipeline/gate/accepted.jsonl
+gate_rejected_path: pipeline/gate/rejected.jsonl
+extracts_output_path: pipeline/extracts/
+synthesize_output_path: pipeline/synthesize/
+draft_output_path: pipeline/draft/insight_v1.md
+review_output_path: pipeline/review/review.md
+tracks_run: [T1_academic, T3_web_primary]
+candidate_count: 44
+last_handoff_ts: "2026-06-08T18:30:00Z"

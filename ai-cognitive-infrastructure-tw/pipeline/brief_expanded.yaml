@@ -1,0 +1,198 @@
+project: ai-cognitive-infrastructure-tw
+stage: pipeline
+
+core_question: >
+  The source spec proposes a four-link causal chain (low-cost model strategy →
+  developer/market penetration → information intermediation → cognitive-infrastructure
+  formation). This pipeline does NOT try to prove the chain; it audits the published
+  evidence link-by-link, assigns each link a strength tier, and identifies where the
+  chain breaks — so the spec's policy claim (model governance = sovereignty / cognitive-
+  security issue) can be stated CONDITIONALLY on the weakest load-bearing link.
+
+research_frame: governance-under-uncertainty (NOT threat-assertion)
+target_output: Traditional-Chinese evidence-audit report, per-link strength tiers, conditional policy conclusion
+audience: Taiwan policy community + informed public; downstream pipeline-to-publication → generate-research-html
+
+scope_decision:
+  why_not_wp2: >
+    RQ3/H3 (models have stable framing) is already covered empirically by this repo's
+    llm-user-side-bias (3 stages) and touched by ai-sycophancy-attack-surface-tw.
+    Re-running a multi-model framing experiment would duplicate existing findings.
+    WP1 is dashboard engineering; WP2 is an experiment (must run models); WP3/WP4 are
+    framework-building. None drops into a synthesis pipeline as-is.
+  what_is_novel: >
+    The causal chain ITSELF — the coupling claim that price-driven penetration amplifies
+    framing into societal cognition (RQ4/H4) — is the spec's distinctive, un-done,
+    pipeline-runnable contribution. This brief audits the evidence the coupling depends on.
+
+chain_links:
+  - id: L1
+    claim: "Price down -> developer/market adoption up (RQ1/H1)"
+    expected_strength: contested
+    audit_task: >
+      Gather usage/share/pricing evidence. Causal-identification problem: is adoption
+      driven by PRICE, or by capability / open-weights / licensing? Correlation is easy;
+      the causal arrow is the contested part.
+  - id: L2
+    claim: "Adoption up -> users contact original sources less; AI answer replaces search (RQ2/H2)"
+    expected_strength: contested
+    audit_task: >
+      Gather zero-click / referral-decline / AI-as-entry evidence. GUARD: separate
+      'LLM chat replacing search' from 'AI Overviews inside search' — different mechanisms,
+      often conflated.
+  - id: L3
+    claim: "Model output carries stable, measurable knowledge framing (RQ3/H3)"
+    expected_strength: strong
+    audit_task: >
+      Strongest link. Anchor to existing empirical base incl. this repo's llm-user-side-bias,
+      Waight (Nature 2026), ELN/Samokhodskyi. Open question: how stable / cross-context-
+      reproducible is the framing?
+  - id: L4a
+    claim: "Single-model dominance -> output homogenization (algorithmic/model monoculture, model collapse)"
+    expected_strength: contested
+    audit_task: >
+      Find monoculture/homogenization evidence (Kleinberg & Raghavan + successors; model
+      collapse). Theory exists; LLM-specific empirics thin.
+  - id: L4b
+    claim: "Homogenized output -> shifts individual belief/framing (persuasion/framing effect)"
+    expected_strength: weak_analogical
+    audit_task: >
+      Find AI-specific persuasion/framing-effect evidence. Media-effects literature exists
+      but AI-specific is thin; likely only analogical support.
+  - id: L4c
+    claim: "Aggregated individual effects -> societal cognitive structure (the spec's landing claim)"
+    expected_strength: speculative
+    audit_task: >
+      Near-empty. The speculative leap. Mark speculative plainly; the chain most likely
+      breaks between L4b and L4c. Whole policy claim is conditional on this.
+    handling_protocol:
+      - direct evidence first (esp. L4a)
+      - analogy evidence (search agenda-setting / social echo-chamber) labelled ONLY as analogy, never direct LLM evidence
+      - actively seek disconfirming evidence (multi-model use, rising diversity, cross-checking) — do not straw-man
+      - write the L4c gap as a research agenda (what study design would close it) -> feeds spec's Observatory idea
+
+anchor_literature:
+  - id: llm_user_side_bias_repo
+    citation: "This repo — projects/llm-user-side-bias"
+    link: L3
+    relationship: primary evidence / intertextual self-citation
+  - id: waight2026
+    citation: "Waight et al., Nature 2026"
+    link: L3
+    relationship: training-side framing mechanism
+  - id: samokhodskyi2026
+    citation: "Samokhodskyi / ELN 2026"
+    link: L3
+    relationship: language-side framing mechanism (cross-lingual)
+  - id: kleinberg_monoculture
+    citation: "Kleinberg & Raghavan — algorithmic monoculture"
+    link: L4
+    relationship: closest existing theory for L4; test whether extended to LLMs
+
+clusters:
+  - name: l4_amplification_decomposed
+    priority: 1
+    description: >
+      L4 decomposed into L4a (homogenization), L4b (individual belief shift), L4c (societal
+      aggregation). Do NOT treat as one claim. Each sub-claim gets its own tier; the chain
+      most likely breaks between L4b and L4c. Analogy evidence (search/social) labelled as
+      analogy only. Seek disconfirming evidence too.
+    search_queries:
+      # L4a homogenization
+      - '"algorithmic monoculture" OR "model monoculture" LLM'
+      - '"model collapse" homogenization language model'
+      - '"homogenization" "language model" output OR opinion'
+      # L4b individual belief shift
+      - 'LLM OR chatbot persuasion "belief change" OR "opinion shift" experiment'
+      - '"framing effect" AI assistant OR chatbot user belief'
+      # L4c societal aggregation (expect near-empty)
+      - '"information intermediary" cognition OR belief population'
+      - '"single source" epistemic AI population scale'
+      - 'AI "agenda setting" OR "issue salience" societal large-scale'
+      # disconfirming / analogy
+      - 'users "multiple LLMs" OR "multiple chatbots" diversity choice'
+      - 'search engine OR social media "agenda setting" "echo chamber" mechanism evidence'
+
+  - name: l2_ai_information_entry
+    priority: 1
+    description: >
+      L2 — AI replacing search as information entry. Zero-click, referral decline, users
+      not clicking through after an AI answer. Must separate chat-LLM substitution from
+      in-search AI summaries.
+    search_queries:
+      - '"zero-click" search 2024 OR 2025 OR 2026'
+      - '"AI Overviews" referral traffic decline study'
+      - '"LLM" replacing search engine user behavior empirical'
+      - '"Google Zero" OR "search referral" publisher decline'
+      - 'ChatGPT OR "AI assistant" "information seeking" replace search'
+
+  - name: l1_price_adoption
+    priority: 2
+    description: >
+      L1 — price-driven adoption. TWO evidence types kept separate:
+      (a) PRIMARY MARKET-DATA SNAPSHOT — collector WebFetches actual numbers from primary
+      dashboards (not papers). Stamp every figure as-of 2026-06-07; fetch primary source,
+      never a vendor's/media's restated number (per feedback-aio-vendor-framing). Becomes a
+      dated, source-linked quantitative block. CONTAINMENT: market numbers prove L1 only,
+      must not be smuggled into L4.
+      (b) LITERATURE on the causal arrow: price vs capability vs open-weights vs licensing.
+    market_data_sources:
+      - "OpenRouter — token-share / model rankings (fetch live)"
+      - "Artificial Analysis — pricing table, price per Mtok across providers (the tens-of-X spread)"
+      - "HuggingFace — download counts for open-weight models"
+      - "GitHub — dependency / star signals for model SDKs"
+    search_queries:
+      - 'OpenRouter token share model usage 2025 2026'
+      - '"Artificial Analysis" pricing benchmark LLM cost per token'
+      - 'DeepSeek OR Qwen OR MiniMax price war API cost 2024 2025 2026'
+      - 'LLM adoption drivers price vs capability open-weight'
+      - 'open-weight model adoption HuggingFace downloads GitHub dependency'
+
+  - name: cognitive_infra_frameworks
+    priority: 2
+    description: >
+      Real sources behind the spec's borrowed labels (FIMI Exposure Matrix, Information
+      Ecosystem, Platform Governance, Cognitive Security) + the search/social/OS-as-
+      infrastructure historical analogy + information/AI sovereignty + gatekeeper/DMA.
+    search_queries:
+      - '"cognitive security" framework FIMI EU EEAS'
+      - '"DISARM" framework information manipulation'
+      - '"digital sovereignty" OR "information sovereignty" AI'
+      - '"gatekeeper" "Digital Markets Act" AI OR platform'
+      - 'platform "essential facility" information infrastructure theory'
+      - 'search engine OR platform "information infrastructure" governance'
+
+  - name: counter_evidence_section6
+    priority: 3
+    description: >
+      Operationalizes the spec's §6 incorrect-inference warnings. Evidence that BREAKS the
+      chain: adoption from capability not price; bias from training/RLHF/safety/commercial
+      not political intent; single answer != systemic effect; critiques of AI-cognitive-
+      warfare overclaiming.
+    search_queries:
+      - 'critique "AI cognitive warfare" overclaim'
+      - 'LLM bias source RLHF OR "training data" OR "safety" not political'
+      - 'methodological caution inferring societal effect single output AI'
+      - '"cheap" Chinese model adoption capability not price'
+      - 'overstating AI influence public opinion evidence weak'
+
+acceptance_criteria:
+  accept:
+    - Peer-reviewed papers or credible institutional reports (Stanford HAI, RAND, Reuters Institute, Pew, EU EEAS, Citizen Lab, Freedom House, Artificial Analysis, OpenRouter data)
+    - Published 2020-2026 (prefer 2024+ given how fast the market moves)
+    - Directly addresses one of the four chain links OR the cognitive-infrastructure frameworks OR counter-evidence
+    - Sources that let a link be assigned a defensible strength tier (strong / contested / speculative)
+  reject:
+    - General NLP bias papers with no link to penetration / intermediation / cognition
+    - Pure marketing / vendor blog claims about adoption with no data (unless flagged as vendor framing per repo norms — WebFetch the primary source, never trust an AI summary of a vendor claim)
+    - Sources that assert "Chinese model = cognitive warfare" without evidence (this is exactly the inference the spec disclaims)
+    - Paywalled with no accessible abstract
+    - Conflating AI Overviews with chat-LLM substitution without distinguishing them
+
+success_looks_like:
+  - A per-link strength map: L1 contested (+ dated market-data snapshot), L2 contested-trending, L3 strong, L4a contested / L4b weak-analogical / L4c speculative (or whatever the evidence actually shows)
+  - A dated, source-linked quantitative market block (OpenRouter / Artificial Analysis / HF / GitHub, as-of 2026-06-07) that proves L1 without overreaching into L4
+  - Explicit identification of WHERE the chain breaks (most likely L4b->L4c) and the research design that would be needed to close L4c
+  - The cognitive-infrastructure frameworks grounded in real sources, not borrowed labels
+  - A conditional policy conclusion: "model governance becomes a sovereignty/cognitive-security issue IF L4 holds — and here is why it does not yet hold"
+  - Counter-evidence cluster strong enough that the report cannot be read as anti-China alarmism
