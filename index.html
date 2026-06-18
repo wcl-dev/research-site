@@ -36,6 +36,7 @@
   --c-rule:         #ddd;
   --c-watermark:    #ccc;       /* 標題浮水印灰 */
   --c-hover-bg:     #eee;       /* hover 反白填底 */
+  --c-sony:         #FF6F00;    /* Sony Walkman 鮮橘 — 卡片標題 */
 
   --ff-mono:        "IBM Plex Mono","PingFang TC","Microsoft JhengHei","Noto Sans TC",ui-monospace,"SF Mono",Menlo,monospace;
 }
@@ -72,11 +73,11 @@ body {
 }
 h1 {
   font-family: var(--ff-mono);
-  font-size: 2.1em;
+  font-size: 1.8em;
   font-weight: 700;
   color: var(--c-watermark);      /* 浮水印 — reference 的 punchline */
   letter-spacing: 0;
-  line-height: 1.15;
+  line-height: 1.4;               /* 多行 CJK 需要更鬆的行高 */
   margin: 0 0 .55em;
 }
 .desc {
@@ -139,7 +140,7 @@ a.report-card:hover {
   font-size: .98em;
   font-weight: 600;
   line-height: 1.5;
-  color: var(--c-ink);
+  color: var(--c-sony);
   letter-spacing: 0;
 }
 .rc-meta {
@@ -190,8 +191,8 @@ a.report-card:hover {
 
 <header class="masthead">
   <div class="tag-site">weichen · research notes</div>
-  <h1>weichen's Research</h1>
-  <p class="desc">跨越 AI、資訊環境、數位議題與政策的研究筆記與報告。</p>
+  <h1>跨越 AI、資訊環境、數位議題與政策的研究筆記與報告。</h1>
+  <p class="desc">cowork with claude code.</p>
 </header>
 
 <section class="project">
