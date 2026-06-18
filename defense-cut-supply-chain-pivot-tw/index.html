@@ -49,108 +49,98 @@
   }
   body::before{
     content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
-    opacity:.22; mix-blend-mode:multiply;
+    opacity:.15; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   }
-  a{color:inherit}
+  a{color:inherit; transition:background .12s}
+  a:hover{background:var(--paper-card)}
   ::selection{background:var(--paper-card)}
 
-  /* ============ LAYOUT ============ */
-  .shell{display:flex; min-height:100vh}
+  /* ============ MERGED-A CHROME (sidebar dropped → linear scroll) ============ */
+  .shell{display:block}      /* legacy wrapper, no longer flex */
+  main{display:block}        /* no sidebar margin */
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+  section{padding:96px 0; position:relative}
+  section+section{border-top:1px solid var(--rule)}
 
-  /* ---- sidebar ---- */
-  .nav{
-    width:300px; flex:none; position:fixed; top:0; left:0; bottom:0;
-    background:var(--paper-card); border-right:1px solid var(--rule);
-    padding:42px 0 36px; overflow-y:auto; z-index:40;
+  /* sticky progress bar + scroll-spy badge (A chrome) */
+  .progress{
+    position:fixed; top:0; left:0; height:2px; width:0; background:var(--clay);
+    z-index:200; transition:width .12s linear;
   }
-  .nav-brand{padding:0 32px 26px; border-bottom:1px solid var(--rule); margin-bottom:10px}
-  .nav-kicker{
-    font-family:var(--mono); font-size:12px; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--clay); font-weight:600; margin-bottom:14px;
+  .badge{
+    position:fixed; top:18px; right:24px; z-index:100;
+    font-size:14px; letter-spacing:.12em; text-transform:uppercase;
+    font-weight:600; color:var(--ink); opacity:0; transition:opacity .25s;
+    padding:8px 14px; background:var(--paper); border:1px solid var(--rule); border-radius:0;
   }
-  .nav-title{
-    font-family:var(--display); font-weight:600; font-size:23px; line-height:1.4;
-    color:var(--ink);
-  }
-  .nav-title b{color:var(--clay); font-weight:700}
-  .nav-scope{
-    font-size:14px; color:var(--ink-soft); line-height:1.55;
-    margin-top:14px; padding-left:12px; border-left:3px solid var(--navy);
-  }
-  .nav-meta{
-    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
-    margin-top:16px; letter-spacing:.02em;
-  }
-  .nav ol{list-style:none; padding:20px 16px 0}
-  .nav .nav-grp{
-    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--ink-faint); padding:20px 14px 9px; font-weight:600;
-  }
-  .nav a{
-    display:flex; gap:12px; align-items:baseline; text-decoration:none;
-    padding:9px 14px; border-radius:8px; color:var(--ink-soft);
-    font-size:15.5px; line-height:1.5; transition:background .18s,color .18s;
-  }
-  .nav a .ix{
-    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
-    flex:none; width:24px; font-weight:500;
-  }
-  .nav a:hover{background:var(--paper-card); color:var(--ink)}
-  .nav a.sub{padding-left:30px; font-size:14.5px}
-  .nav a.active{background:var(--ink); color:var(--paper-card)}
-  .nav a.active .ix{color:var(--paper-card)}
+  .badge.show{opacity:.85}
+  .badge b{color:var(--clay); font-weight:700; margin-right:8px}
 
-  /* ---- main ---- */
-  main{margin-left:300px; flex:1; min-width:0}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 48px}
-  section{padding:96px 0; border-bottom:1px solid var(--rule)}
-  section:last-of-type{border-bottom:none}
-
-  /* ============ HERO ============ */
-  .hero{
-    border-bottom:4px double var(--rule);
-    background:linear-gradient(180deg,var(--paper-card),transparent 72%);
+  /* ============ COVER (replaces hero, A-style) ============ */
+  .cover{
+    min-height:88vh; padding:0; display:flex; align-items:center;
+    border-bottom:1px solid var(--rule);
   }
-  .hero-inner{max-width:var(--maxw); margin:0 auto; padding:74px 48px 64px}
-  .hero-kicker{
-    font-family:var(--mono); font-size:13px; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--clay); font-weight:600;
-    display:flex; align-items:center; gap:14px; margin-bottom:30px;
+  .cover-inner{max-width:760px; margin:0 auto; padding:80px 28px 70px; width:100%}
+  .meta{
+    font-family:var(--mono); font-size:12px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--ink); opacity:.5; font-weight:600; margin-bottom:54px;
+    display:flex; align-items:center; gap:14px;
   }
-  .hero-kicker::after{content:""; flex:1; height:1px; background:var(--rule)}
-  h1.hero-title{
-    font-family:var(--display); font-weight:600; font-size:clamp(38px,5.6vw,64px);
-    line-height:1.18; letter-spacing:-.012em; margin-bottom:28px;
+  .meta::after{content:""; flex:1; max-width:240px; height:1px; background:var(--rule)}
+  h1.title{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(40px,8vw,84px);
+    line-height:1.05; letter-spacing:-.022em; margin-bottom:28px; color:var(--ink);
   }
-  h1.hero-title .cut{color:var(--clay); font-style:italic; font-weight:500}
-  .hero-stand{
-    font-size:21px; line-height:1.82; color:var(--ink-soft);
-    max-width:720px; margin-bottom:38px;
-  }
-  .hero-stand b{color:var(--ink); font-weight:700}
-  .hero-scope{
-    font-family:var(--display); font-weight:500; color:var(--ink);
+  h1.title .cut{color:var(--clay); font-weight:700}
+  .subtitle{
+    font-family:var(--display); font-weight:500;
     font-size:clamp(20px,2.5vw,26px); line-height:1.46;
-    margin:-6px 0 34px; padding-left:20px; border-left:4px solid var(--navy);
+    margin-bottom:28px; padding-left:16px; border-left:4px solid var(--navy);
+    color:var(--ink-soft);
   }
-  .hero-tension{
-    display:flex; margin:38px 0 8px; border:1px solid var(--rule);
-    border-radius:14px; overflow:hidden; background:var(--paper-card);
+  .subtitle b{color:var(--ink); font-weight:700}
+  .cover-lead{
+    font-size:17px; line-height:1.78; color:var(--ink); opacity:.85;
+    max-width:680px;
   }
-  .ht-cell{flex:1; padding:28px 30px}
-  .ht-cell+.ht-cell{border-left:1px solid var(--rule)}
-  .ht-arrow{font-size:36px; line-height:1; margin-bottom:10px; display:block}
-  .ht-cell.down .ht-arrow{color:var(--clay)}
-  .ht-cell.up .ht-arrow{color:var(--jade)}
-  .ht-big{font-family:var(--display); font-size:27px; font-weight:600; line-height:1.32}
-  .ht-sub{font-size:15px; color:var(--ink-faint); margin-top:8px}
-  .hero-foot{
-    margin-top:34px; font-size:15px; color:var(--ink-soft);
+  .cover-lead b{font-weight:700; opacity:1}
+  .cover-lead .ref{
+    display:block; margin-top:24px; padding-top:18px; border-top:1px solid var(--rule);
+    font-size:14px; line-height:1.65; opacity:.6;
     display:flex; align-items:center; gap:10px;
   }
-  .hero-foot .dot{width:7px;height:7px;border-radius:50%;background:var(--clay);
+  .cover-lead .ref .dot{width:7px;height:7px;background:var(--clay);
     display:inline-block;flex:none}
+
+  /* hero-tension preserved as a content module (placed inside cover or below) */
+  .hero-tension{
+    display:flex; margin:36px 0 6px; border:1px solid var(--rule);
+    background:var(--paper-card);
+  }
+  .ht-cell{flex:1; padding:24px 26px}
+  .ht-cell+.ht-cell{border-left:1px solid var(--rule)}
+  .ht-arrow{font-size:32px; line-height:1; margin-bottom:8px; display:block; font-family:var(--mono)}
+  .ht-cell.down .ht-arrow{color:var(--clay)}
+  .ht-cell.up .ht-arrow{color:var(--jade)}
+  .ht-big{font-family:var(--display); font-size:20px; font-weight:600; line-height:1.32}
+  .ht-sub{font-size:13.5px; color:var(--ink-faint); margin-top:6px; font-family:var(--mono)}
+
+  /* ============ INLINE TOC (horizontal pill row, placed after cover) ============ */
+  .inline-toc{
+    max-width:var(--maxw); margin:0 auto; padding:36px 28px 0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .inline-toc a{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--ink-soft); padding:7px 12px;
+    border:1px solid var(--rule); background:var(--paper);
+    text-decoration:none; transition:background .12s,border-color .12s,color .12s;
+  }
+  .inline-toc a:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .inline-toc .ix{color:var(--ink-faint); margin-right:6px}
 
   /* ============ SECTION HEADERS ============ */
   .sec-head{margin-bottom:52px}
@@ -399,74 +389,55 @@
     transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
   .rv.in{opacity:1; transform:none}
 
+  /* ============ HARDCORE — 全部 border-radius 沖 0 ============ */
+  :where(.find,.find-no,.find-key,.tldr,.chain,.path,.ptag,.bbar,.budget-note,
+    .stat,.gaps li,.hero-tension,.lf-toc a,.lf-cf,.src,.src-note,.cf,
+    .ft-bottom,.flagship,.flag-tbl .dom,.flag-tbl .pct,
+    .mini-tbl,.kappa-table){border-radius:0}
+
   /* ============ RESPONSIVE ============ */
   @media(max-width:1040px){
-    .nav{position:static; width:100%; height:auto; bottom:auto;
-      border-right:none; border-bottom:2px solid var(--rule)}
-    .nav ol{display:flex; flex-wrap:wrap; padding:14px}
-    .nav .nav-grp{width:100%; padding:12px 14px 4px}
-    .nav a.sub{padding-left:14px}
-    main,footer{margin-left:0}
-    .shell{flex-direction:column}
     .chains,.paths{grid-template-columns:1fr}
     .src-grid{grid-template-columns:1fr}
   }
+  @media(max-width:760px){
+    .cover{min-height:60vh}
+    .cover-inner{padding:60px 22px 48px}
+    .badge{display:none}        /* 手機隱藏 floating badge，內容空間優先 */
+    .inline-toc{padding:24px 22px 0}
+    .inline-toc a{font-size:11.5px; padding:6px 10px}
+  }
   @media(max-width:600px){
-    body{font-size:17.5px}
-    .wrap,.hero-inner{padding-left:24px; padding-right:24px}
+    body{font-size:14.5px}
+    .wrap{padding-left:22px; padding-right:22px}
     section{padding:64px 0}
-    .hero-inner{padding-top:52px}
+    .cover-inner{padding-top:46px}
     .hero-tension{flex-direction:column}
     .ht-cell+.ht-cell{border-left:none; border-top:1px solid var(--rule)}
     .find{padding:28px 24px}
     .tldr{padding:24px; gap:18px}
     .tldr .num{font-size:40px; width:42px}
     .bseg .bv{font-size:18px}
-    .rlayer{flex-direction:column}
-    .rlayer .rn{width:100%; height:48px}
     footer{padding:30px 24px}
   }
 </style>
 </head>
 <body>
-<div class="shell">
 
-  <!-- ================= SIDEBAR ================= -->
-  <nav class="nav" id="nav">
-    <div class="nav-brand">
-      <div class="nav-kicker">研究定位備忘錄</div>
-      <div class="nav-title">軍購砍 <b>4700 億</b>後的西進壓力與非紅供應鏈</div>
-      <div class="nav-scope">以無人機產業及其上游工具機為例</div>
-      <div class="nav-meta">台灣國防供應鏈 · 2026 / 05</div>
-    </div>
-    <ol>
-      <li class="nav-grp">主要內容</li>
-      <li><a href="#tldr"><span class="ix">01</span>摘要</a></li>
-      <li><a href="#framing"><span class="ix">02</span>雙鏈分析</a></li>
-      <li><a href="#findings"><span class="ix">03</span>發現</a></li>
-      <li><a href="#finding-1" class="sub">F1　被砍的 4700 億：本土軍工與無人載具</a></li>
-      <li><a href="#finding-2" class="sub">F2　工具機西進的存量證據</a></li>
-      <li><a href="#finding-3" class="sub">F3　砍案到西進：壓力與條件</a></li>
-      <li><a href="#finding-4" class="sub">F4　雙鏈差別待遇</a></li>
-      <li><a href="#finding-5" class="sub">F5　西進風險三層</a></li>
-      <li><a href="#longform"><span class="ix">04</span>完整分析與限制</a></li>
-      <li class="nav-grp">附錄</li>
-      <li><a href="#sources"><span class="ix">05</span>資料來源</a></li>
-    </ol>
-  </nav>
+<!-- floating chrome (A) -->
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">01</b><span id="badgename">摘要</span></div>
 
-  <main>
-    <!-- ================= HERO ================= -->
-    <header class="hero">
-      <div class="hero-inner">
-        <div class="hero-kicker">台灣國防供應鏈 · 產業結構分析</div>
-        <h1 class="hero-title">軍購砍 <span class="cut">4700 億</span>之後，誰會西進，承諾會不會跳票</h1>
-        <p class="hero-scope">主要結論：工具機西進是 5 家上市櫃廠財報坐實的結構性<b>存量</b>；砍案是疊加在既有趨勢上的<b>新推力</b>，不是已發生的因果。</p>
-        <p class="hero-stand">
-          2026 年 5 月，立法院把 1.25 兆國防特別預算砍到 7800 億。這段期間，兩個方向相反的訊號同時出現 ——
-          <b>軍購被大砍</b>，<b>無人機外銷卻成長 21 倍</b>。這個表面上的矛盾，本備忘錄用「雙鏈分析」拆開：
-          上游工具機與中下游無人機，受到的衝擊本來就不一樣。
-        </p>
+<main>
+
+  <!-- ================= COVER ================= -->
+  <section class="cover" data-num="00" data-name="封面">
+    <div class="cover-inner">
+      <div class="meta">研究定位備忘錄 · 台灣國防供應鏈 · 2026/05</div>
+      <h1 class="title">軍購砍 <span class="cut">4700 億</span>之後，誰會西進，承諾會不會跳票</h1>
+      <p class="subtitle">主要結論：工具機西進是 5 家上市櫃廠財報坐實的結構性<b>存量</b>；砍案是疊加在既有趨勢上的<b>新推力</b>，不是已發生的因果。</p>
+      <div class="cover-lead">
+        <p>2026 年 5 月，立法院把 1.25 兆國防特別預算砍到 7800 億。這段期間，兩個方向相反的訊號同時出現 —— <b>軍購被大砍</b>，<b>無人機外銷卻成長 21 倍</b>。這個表面上的矛盾，本備忘錄用「雙鏈分析」拆開：上游工具機與中下游無人機，受到的衝擊本來就不一樣。</p>
         <div class="hero-tension">
           <div class="ht-cell down">
             <span class="ht-arrow">↓</span>
@@ -479,14 +450,24 @@
             <div class="ht-sub">2025 外銷產值 29.5 億，買方 36 國</div>
           </div>
         </div>
-        <div class="hero-foot">
+        <div class="ref">
           <span class="dot"></span><span>立場：產業結構分析，不是政治批判</span>
         </div>
       </div>
-    </header>
+    </div>
+  </section>
+
+  <!-- ================= INLINE TOC (橫向 pill) ================= -->
+  <nav class="inline-toc" aria-label="目次">
+    <a href="#tldr"><span class="ix">§01</span>摘要</a>
+    <a href="#framing"><span class="ix">§02</span>雙鏈分析</a>
+    <a href="#findings"><span class="ix">§03</span>發現</a>
+    <a href="#longform"><span class="ix">§04</span>完整分析與限制</a>
+    <a href="#sources"><span class="ix">§05</span>資料來源</a>
+  </nav>
 
     <!-- ================= 01 · TL;DR ================= -->
-    <section id="tldr">
+    <section id="tldr" data-num="01" data-name="摘要">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">01</span>
@@ -533,7 +514,7 @@
     </section>
 
     <!-- ================= 02 · 雙鏈 framing ================= -->
-    <section id="framing">
+    <section id="framing" data-num="02" data-name="雙鏈分析">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">02</span>
@@ -645,7 +626,7 @@
     </section>
 
     <!-- ================= 03 · FINDINGS ================= -->
-    <section id="findings">
+    <section id="findings" data-num="03" data-name="發現">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">03</span>
@@ -831,7 +812,7 @@
     </section>
 
     <!-- ================= 04 · LONGFORM ================= -->
-    <section id="longform">
+    <section id="longform" data-num="04" data-name="完整分析與限制">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">04</span>
@@ -916,7 +897,7 @@
     </section>
 
     <!-- ================= 05 · SOURCES ================= -->
-    <section id="sources">
+    <section id="sources" data-num="05" data-name="資料來源">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">05</span>
@@ -947,7 +928,6 @@
       </div>
     </section>
   </main>
-</div>
 
 <footer>
   <b>軍購砍 4700 億後，台灣國防供應鏈的西進壓力與「非紅供應鏈」承諾</b><br>
@@ -957,23 +937,30 @@
 </footer>
 
 <script>
-  const navLinks = [...document.querySelectorAll('.nav a')];
-  const map = new Map();
-  navLinks.forEach(a=>{
-    const id=a.getAttribute('href').slice(1);
-    const el=document.getElementById(id);
-    if(el) map.set(el,a);
-  });
-  const spy = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        navLinks.forEach(a=>a.classList.remove('active'));
-        const a=map.get(e.target);
-        if(a) a.classList.add('active');
+  /* progress bar + scroll-spy badge (A chrome) */
+  (function(){
+    const progress = document.getElementById('progress');
+    const badge = document.getElementById('badge');
+    const badgeNum = document.getElementById('badgenum');
+    const badgeName = document.getElementById('badgename');
+    const sections = Array.from(document.querySelectorAll('section[data-num]'));
+    function update(){
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = Math.min(100, (window.scrollY / docH) * 100);
+      if(progress) progress.style.width = pct + '%';
+      const y = window.scrollY + 120;
+      let active = sections[0];
+      for(const s of sections){ if(s.offsetTop <= y) active = s; }
+      if(active && badgeNum){
+        badgeNum.textContent = active.dataset.num;
+        badgeName.textContent = active.dataset.name || '';
+        if(window.scrollY > 240) badge.classList.add('show');
+        else badge.classList.remove('show');
       }
-    });
-  },{rootMargin:'-15% 0px -75% 0px'});
-  map.forEach((a,el)=>spy.observe(el));
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    update();
+  })();
 
   const rev = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
