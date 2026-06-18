@@ -20,13 +20,19 @@
 <meta name="twitter:description" content="AI 在面對不同使用者背景時，是否給出不同答案？以中國 LLM 為對象，分四層揭露：服務平台、權重對齊、底層模型能力、對話層。從前導實驗到兩篇文章。">
 <meta name="twitter:image" content="https://wcl-dev.github.io/research-site/llm-user-side-bias/og.png?v=2">
 <!-- og:auto:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* Hardcore mono — shared DNA with sycophancy + scam + defense-cut + landing
+     advocacy 個性保留：cool paper #fbfaf5、orange thread accent + refuse red 雙色語意、
+     窄欄 720px、compare cards sans-serif（模擬 AI chat UI）、threat-stack dark closing */
   :root {
-    --ink: #14172a;
-    --ink-soft: #2e314a;
+    --ink: #333;
+    --ink-soft: #555;
     --paper: #fbfaf5;
     --line: #d4cfc4;
-    --muted: #5b5e69;
+    --muted: #888;
     --accent: #b45309;
     --accent-soft: #fef3e2;
     --accent-soft-2: #f9e7c8;
@@ -34,15 +40,17 @@
     --warn-soft: #fae8e7;
     --warn-soft-2: #f5d4d3;
     --quote-bg: #f3efe5;
+    --watermark: #aaa;
+    --mono: "IBM Plex Mono","PingFang TC","Microsoft JhengHei","Noto Sans TC",ui-monospace,"SF Mono",Menlo,monospace;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
-    font-family: "Noto Serif TC", "PingFang TC", "Songti TC", serif;
+    font-family: var(--mono);
     background: var(--paper);
     color: var(--ink);
-    line-height: 1.85;
-    font-size: 17px;
+    line-height: 1.65;
+    font-size: 15px;
   }
   .wrap {
     max-width: 720px;
@@ -77,11 +85,12 @@
     margin: 0;
   }
   h2 {
-    font-family: "Noto Serif TC", "PingFang TC", serif;
-    font-size: 25px;
+    font-family: var(--mono);
+    font-size: 22px;
+    font-weight: 600;
     margin-top: 64px;
     margin-bottom: 18px;
-    color: var(--ink);
+    color: var(--watermark);     /* 浮水印灰 */
     padding-top: 24px;
     border-top: 1px solid var(--line);
     letter-spacing: -0.005em;
