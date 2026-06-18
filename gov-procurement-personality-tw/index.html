@@ -54,8 +54,17 @@ a{color:inherit}
 ::selection{background:var(--c-paper-card)}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
-/* ===== template.css (Template B) ===== */
-.shell{display:flex;min-height:100vh}
+/* ===== linear chrome (progress / badge / inline-toc) — 對齊全站無側欄版面 ===== */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--role-emphasis);z-index:200;transition:width .12s linear}
+.badge{position:fixed;top:18px;right:24px;z-index:100;font-size:14px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--c-ink);opacity:0;transition:opacity .25s;padding:8px 14px;background:var(--c-paper);border:1px solid var(--c-rule)}
+.badge.show{opacity:.85}
+.badge b{color:var(--role-emphasis);font-weight:700;margin-right:8px}
+.inline-toc{max-width:var(--maxw-content);margin:0 auto;padding:36px 48px 0;display:flex;flex-wrap:wrap;gap:8px}
+.inline-toc a{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-ink-soft);padding:7px 12px;border:1px solid var(--c-rule);background:var(--c-paper);text-decoration:none;transition:background .12s,border-color .12s,color .12s}
+.inline-toc a:hover{background:var(--c-ink);color:var(--c-paper);border-color:var(--c-ink)}
+.inline-toc .ix{color:var(--c-ink-faint);margin-right:6px}
+/* ===== template.css (Template B → linear) ===== */
+.shell{display:block}
 .nav{width:var(--w-sidebar);flex:none;position:fixed;top:0;left:0;bottom:0;
   background:var(--c-paper-card);border-right:1px solid var(--c-rule);
   padding:42px 0 36px;overflow-y:auto;z-index:40}
@@ -81,7 +90,7 @@ a{color:inherit}
 .nav a.sub{padding-left:30px;font-size:14.5px}
 .nav a.active{background:var(--c-ink);color:var(--c-paper-card)}
 .nav a.active .ix{color:var(--c-paper-card)}
-main{margin-left:var(--w-sidebar);flex:1;min-width:0}
+main{display:block}
 .wrap{max-width:var(--maxw-content);margin:0 auto;padding:0 48px}
 section{padding:96px 0;border-bottom:1px solid var(--c-rule)}
 section:last-of-type{border-bottom:none}
@@ -145,7 +154,7 @@ h2.sec-title{font-family:var(--ff-display);font-weight:600;color:var(--c-waterma
   color:var(--role-emphasis);font-weight:600;display:block;margin-bottom:6px}
 .find-key b{font-weight:700;color:var(--c-ink)}
 .find .block{margin-top:34px}
-footer{background:var(--c-ink);color:var(--c-ink-faint);margin-left:var(--w-sidebar);
+footer{background:var(--c-ink);color:var(--c-ink-faint);margin-left:0;
   padding:44px 48px;font-size:14px;line-height:2}
 footer b{color:var(--c-paper-card);font-weight:700}
 footer a{color:var(--c-paper-sink)}
@@ -264,7 +273,9 @@ footer a{color:var(--c-paper-sink)}
   .chains{grid-template-columns:1fr}
 }
 @media(max-width:600px){
-  body{font-size:17.5px}
+  body{font-size:14.5px}
+  .badge{display:none}
+  .inline-toc{padding:24px 24px 0}
   .wrap,.hero-inner{padding-left:24px;padding-right:24px}
   section{padding:64px 0}
   .hero-inner{padding-top:52px}
@@ -285,30 +296,11 @@ footer a{color:var(--c-paper-sink)}
 </head>
 
 <body>
+<!-- floating chrome（無側欄 linear，對齊 research-site 全站）-->
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">01</b><span id="badgename">摘要</span></div>
+
 <div class="shell">
-
-  <!-- ================= SIDEBAR ================= -->
-  <nav class="nav" id="nav">
-    <div class="nav-brand">
-      <div class="nav-kicker">公開研究報告</div>
-      <div class="nav-title">政府採購人格<br>與<b>競爭健康度</b></div>
-      <div class="nav-scope">把政府機關當「採購者」分性格；當成競爭篩檢鏡——標出值得查核的訊號，而非定罪。</div>
-      <div class="nav-meta">台灣 · 政府採購開放資料 · 2026 / 06</div>
-    </div>
-    <ol>
-      <li class="nav-grp">目次</li>
-      <li><a href="#tldr"><span class="ix">01</span>摘要</a></li>
-      <li><a href="#section-02"><span class="ix">02</span>緣起與方法</a></li>
-      <li><a href="#section-03"><span class="ix">03</span>四種採購人格</a></li>
-      <li><a href="#section-04"><span class="ix">04</span>錢的集中 ＆ 兩張低競爭的臉</a></li>
-      <li><a href="#section-05"><span class="ix">05</span>部會的真面目</a></li>
-      <li><a href="#section-06"><span class="ix">06</span>地方：壟斷還是市場太小？</a></li>
-      <li><a href="#section-07"><span class="ix">07</span>能說與不能說</a></li>
-      <li class="nav-grp">附錄</li>
-      <li><a href="#sources"><span class="ix">08</span>資料來源</a></li>
-    </ol>
-  </nav>
-
   <main>
     <!-- ================= HERO ================= -->
     <header class="hero">
@@ -344,8 +336,20 @@ footer a{color:var(--c-paper-sink)}
       </div>
     </header>
 
+    <!-- ================= INLINE TOC（橫向 pill）================= -->
+    <nav class="inline-toc" aria-label="目次">
+      <a href="#tldr"><span class="ix">§01</span>摘要</a>
+      <a href="#section-02"><span class="ix">§02</span>緣起與方法</a>
+      <a href="#section-03"><span class="ix">§03</span>四種採購人格</a>
+      <a href="#section-04"><span class="ix">§04</span>兩個特質</a>
+      <a href="#section-05"><span class="ix">§05</span>部會真面目</a>
+      <a href="#section-06"><span class="ix">§06</span>地方競爭診斷</a>
+      <a href="#section-07"><span class="ix">§07</span>能說與不能說</a>
+      <a href="#sources"><span class="ix">§08</span>資料來源</a>
+    </nav>
+
     <!-- ================= 01 · TL;DR ================= -->
-    <section id="tldr">
+    <section id="tldr" data-num="01" data-name="摘要">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">01</span>
@@ -373,7 +377,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 02 · 緣起與方法 ================= -->
-    <section id="section-02">
+    <section id="section-02" data-num="02" data-name="緣起與方法">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">02</span>
@@ -395,7 +399,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 03 · 四種採購人格 ================= -->
-    <section id="section-03">
+    <section id="section-03" data-num="03" data-name="四種採購人格">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">03</span>
@@ -457,7 +461,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 04 · 兩個跨類型特質 ================= -->
-    <section id="section-04">
+    <section id="section-04" data-num="04" data-name="兩個特質">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">04</span>
@@ -526,7 +530,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 05 · 部會真面目 ================= -->
-    <section id="section-05">
+    <section id="section-05" data-num="05" data-name="部會真面目">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">05</span>
@@ -560,7 +564,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 06 · 地方診斷 ================= -->
-    <section id="section-06">
+    <section id="section-06" data-num="06" data-name="地方競爭診斷">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">06</span>
@@ -620,7 +624,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 07 · 限制 ================= -->
-    <section id="section-07">
+    <section id="section-07" data-num="07" data-name="能說與不能說">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">07</span>
@@ -639,7 +643,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 08 · SOURCES ================= -->
-    <section id="sources">
+    <section id="sources" data-num="08" data-name="資料來源">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">08</span>
@@ -674,7 +678,28 @@ footer a{color:var(--c-paper-sink)}
 </footer>
 
 <script>
-/* reveal.js */
+/* progress bar + scroll-spy badge（無側欄 linear chrome）*/
+(function(){
+  const progress=document.getElementById('progress');
+  const badge=document.getElementById('badge');
+  const badgeNum=document.getElementById('badgenum');
+  const badgeName=document.getElementById('badgename');
+  const sections=Array.from(document.querySelectorAll('section[data-num]'));
+  function update(){
+    const docH=document.documentElement.scrollHeight-window.innerHeight;
+    const pct=docH>0?Math.min(100,(window.scrollY/docH)*100):0;
+    if(progress)progress.style.width=pct+'%';
+    const y=window.scrollY+120;let active=sections[0];
+    for(const s of sections){if(s.offsetTop<=y)active=s;}
+    if(active&&badgeNum){
+      badgeNum.textContent=active.dataset.num;
+      badgeName.textContent=active.dataset.name||'';
+      if(window.scrollY>240)badge.classList.add('show');else badge.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll',update,{passive:true});update();
+})();
+/* reveal-on-scroll */
 (function(){
   const els=document.querySelectorAll('.rv');
   if(!els.length||!('IntersectionObserver' in window)){els.forEach(el=>el.classList.add('in'));return;}
@@ -682,20 +707,6 @@ footer a{color:var(--c-paper-sink)}
     entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
   els.forEach(el=>io.observe(el));
-})();
-/* sidebar scroll-spy */
-(function(){
-  const navLinks=document.querySelectorAll('.nav a[href^="#"]');
-  const sections=Array.from(navLinks).map(a=>{
-    const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);
-    return el?{link:a,el}:null;}).filter(Boolean);
-  if(!sections.length)return;
-  function update(){
-    const y=window.scrollY+120;let active=sections[0];
-    for(const s of sections){if(s.el.offsetTop<=y)active=s;}
-    sections.forEach(s=>s.link.classList.toggle('active',s===active));
-  }
-  window.addEventListener('scroll',update,{passive:true});update();
 })();
 </script>
 </body>
