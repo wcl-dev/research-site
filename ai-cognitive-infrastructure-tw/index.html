@@ -24,86 +24,88 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/open-props/easings.min.css">
 <link rel="stylesheet" href="https://unpkg.com/open-props/sizes.min.css">
 
 <style>
-/* ===== brand-tokens.css ===== */
+/* ===== brand-tokens.css — hardcore mono (Phase 3+4 merged) ===== */
 :root{
   --c-paper:#F4EFE2; --c-paper-card:#FCF9F1; --c-paper-sink:#E9E1CC;
-  --c-ink:#211F19; --c-ink-soft:#544F44; --c-ink-faint:#8A8473;
+  --c-ink:#333; --c-ink-soft:#555; --c-ink-faint:#888;
   --c-rule:#D4CBB2; --c-rule-soft:#E2DAC4;
   --c-navy:#1B4A66; --c-jade:#2B7458; --c-clay:#B5402B;
+  --c-watermark:#aaa;
   --role-primary:var(--c-navy); --role-method:var(--c-jade); --role-emphasis:var(--c-clay);
-  --ff-display:'Fraunces','Noto Serif TC',serif;
-  --ff-serif:'Fraunces','Noto Serif TC',serif;
+  --ff-display:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
+  --ff-serif:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
   --ff-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
-  --maxw-prose:680px; --maxw-content:920px; --w-sidebar:300px;
-  --lh-tight:1.4; --lh-body-cjk:1.82; --lh-prose-cjk:1.9;
+  --maxw-prose:680px; --maxw-content:920px;
+  --lh-tight:1.4; --lh-body-cjk:1.7; --lh-prose-cjk:1.78;
 }
 
 /* ===== base.css ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--c-paper);color:var(--c-ink);font-family:var(--ff-serif);
-  font-weight:400;font-size:19px;line-height:var(--lh-prose-cjk);
+  font-weight:400;font-size:15.5px;line-height:1.65;
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
-  opacity:.42;mix-blend-mode:multiply;
+  opacity:.22;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")}
 a{color:inherit}
 ::selection{background:var(--c-paper-card)}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.in{opacity:1;transform:none}
 
-/* ===== template.css (Template B) ===== */
-.shell{display:flex;min-height:100vh}
-.nav{width:var(--w-sidebar);flex:none;position:fixed;top:0;left:0;bottom:0;
-  background:var(--c-paper-card);border-right:1px solid var(--c-rule);
-  padding:42px 0 36px;overflow-y:auto;z-index:40}
-.nav-brand{padding:0 32px 26px;border-bottom:1px solid var(--c-rule);margin-bottom:10px}
-.nav-kicker{font-family:var(--ff-mono);font-size:12px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--role-emphasis);font-weight:600;margin-bottom:14px}
-.nav-title{font-family:var(--ff-display);font-weight:600;font-size:22px;line-height:1.42;color:var(--c-ink)}
-.nav-title b{color:var(--role-emphasis);font-weight:700}
-.nav-scope{font-size:14px;color:var(--c-ink-soft);line-height:1.55;margin-top:14px;
-  padding-left:12px;border-left:3px solid var(--role-primary)}
-.nav-meta{font-family:var(--ff-mono);font-size:12px;color:var(--c-ink-faint);margin-top:16px;letter-spacing:.02em}
-.nav ol{list-style:none;padding:20px 16px 0}
-.nav .nav-grp{font-family:var(--ff-mono);font-size:11px;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--c-ink-faint);padding:20px 14px 9px;font-weight:600}
-.nav a{display:flex;gap:12px;align-items:baseline;text-decoration:none;padding:9px 14px;
-  border-radius:8px;color:var(--c-ink-soft);font-size:15.5px;line-height:1.5;transition:background .18s,color .18s}
-.nav a .ix{font-family:var(--ff-mono);font-size:12px;color:var(--c-ink-faint);flex:none;width:24px;font-weight:500}
-.nav a:hover{background:var(--c-paper-sink);color:var(--c-ink)}
-.nav a.sub{padding-left:30px;font-size:14.5px}
-.nav a.active{background:var(--c-ink);color:var(--c-paper-card)}
-.nav a.active .ix{color:var(--c-paper-card)}
-main{margin-left:var(--w-sidebar);flex:1;min-width:0}
-.wrap{max-width:var(--maxw-content);margin:0 auto;padding:0 48px}
-section{padding:96px 0;border-bottom:1px solid var(--c-rule)}
-section:last-of-type{border-bottom:none}
+/* ===== template.css (merged A — sidebar dropped → linear scroll) ===== */
+.shell{display:block}
+main{display:block}
+.wrap{max-width:var(--maxw-content);margin:0 auto;padding:0 28px}
+section{padding:96px 0;position:relative}
+section+section{border-top:1px solid var(--c-rule)}
+
+/* sticky progress bar + scroll-spy badge (A chrome) */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--c-clay);
+  z-index:200;transition:width .12s linear}
+.badge{position:fixed;top:18px;right:24px;z-index:100;
+  font-size:14px;letter-spacing:.12em;text-transform:uppercase;
+  font-weight:600;color:var(--c-ink);opacity:0;transition:opacity .25s;
+  padding:8px 14px;background:var(--c-paper);border:1px solid var(--c-rule);border-radius:0}
+.badge.show{opacity:.85}
+.badge b{color:var(--c-clay);font-weight:700;margin-right:8px}
+
+/* inline TOC (horizontal pill, after hero) */
+.inline-toc{max-width:var(--maxw-content);margin:0 auto;padding:36px 28px 0;
+  display:flex;flex-wrap:wrap;gap:8px}
+.inline-toc a{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--c-ink-soft);padding:7px 12px;
+  border:1px solid var(--c-rule);background:var(--c-paper);
+  text-decoration:none;transition:background .12s,border-color .12s,color .12s}
+.inline-toc a:hover{background:var(--c-ink);color:var(--c-paper);border-color:var(--c-ink)}
+.inline-toc .ix{color:var(--c-ink-faint);margin-right:6px}
+
 .hero{border-bottom:4px double var(--c-rule);background:linear-gradient(180deg,var(--c-paper-card),transparent 72%)}
-.hero-inner{max-width:var(--maxw-content);margin:0 auto;padding:74px 48px 64px}
+.hero-inner{max-width:var(--maxw-content);margin:0 auto;padding:74px 28px 64px}
 .hero-kicker{font-family:var(--ff-mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--role-emphasis);font-weight:600;display:flex;align-items:center;gap:14px;margin-bottom:30px}
 .hero-kicker::after{content:"";flex:1;height:1px;background:var(--c-rule)}
-h1.hero-title{font-family:var(--ff-display);font-weight:600;font-size:clamp(34px,5.4vw,62px);
-  line-height:1.2;letter-spacing:-.012em;margin-bottom:28px}
+h1.hero-title{font-family:var(--ff-display);font-weight:600;font-size:clamp(28px,4.4vw,52px);
+  line-height:1.25;letter-spacing:-.008em;margin-bottom:28px}
 h1.hero-title .cut{color:var(--role-emphasis);font-weight:600}
-.hero-stand{font-size:21px;line-height:1.82;color:var(--c-ink-soft);max-width:var(--maxw-prose);margin-bottom:38px}
+.hero-stand{font-size:18px;line-height:1.78;color:var(--c-ink-soft);max-width:var(--maxw-prose);margin-bottom:38px}
 .hero-stand b{color:var(--c-ink);font-weight:700}
 .hero-scope{font-family:var(--ff-display);font-weight:500;color:var(--c-ink);
-  font-size:clamp(20px,2.5vw,26px);line-height:1.46;margin:-6px 0 34px;
-  padding-left:20px;border-left:4px solid var(--role-primary)}
-.hero-foot{margin-top:34px;font-size:15px;color:var(--c-ink-soft);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  font-size:clamp(18px,2.2vw,22px);line-height:1.5;margin:-6px 0 34px;
+  padding-left:16px;border-left:4px solid var(--role-primary)}
+.hero-foot{margin-top:34px;font-size:14px;color:var(--c-ink-soft);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 .hero-foot .dot{width:7px;height:7px;border-radius:50%;background:var(--role-emphasis);display:inline-block;flex:none}
 .sec-head{margin-bottom:52px}
 .sec-num{font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.14em;
   color:var(--c-ink-faint);display:block;margin-bottom:16px}
-h2.sec-title{font-family:var(--ff-display);font-weight:600;font-size:clamp(28px,3.8vw,44px);line-height:1.26;letter-spacing:-.01em}
-.sec-lead{font-size:19px;color:var(--c-ink-soft);margin-top:20px;max-width:var(--maxw-prose);line-height:1.84}
+h2.sec-title{font-family:var(--ff-display);font-weight:600;font-size:clamp(24px,3.2vw,36px);
+  line-height:1.3;letter-spacing:-.005em;color:var(--c-watermark)}
+.sec-lead{font-size:18px;color:var(--c-ink-soft);margin-top:20px;max-width:var(--maxw-prose);line-height:1.78}
 .sub-h{font-family:var(--ff-display);font-size:24px;font-weight:600;color:var(--c-ink);
   margin:0 0 26px;padding-bottom:14px;border-bottom:2px solid var(--c-rule);line-height:1.4}
 .block{margin-top:64px}
@@ -155,16 +157,13 @@ footer b{color:var(--c-paper-card);font-weight:700}
 footer a{color:var(--c-paper-card);border-bottom:1px solid rgba(255,255,255,.25)}
 footer b{color:var(--c-paper-card);font-weight:700}
 footer a{color:var(--c-paper-sink)}
-@media(max-width:1040px){
-  .nav{position:static;width:100%;height:auto;bottom:auto;border-right:none;border-bottom:2px solid var(--c-rule)}
-  .nav ol{display:flex;flex-wrap:wrap;padding:14px}
-  .nav .nav-grp{width:100%;padding:12px 14px 4px}
-  .nav a.sub{padding-left:14px}
-  main,footer{margin-left:0}
-  .shell{flex-direction:column}
+@media(max-width:720px){
+  .badge{display:none}
+  .wrap{padding:0 18px}
+  .inline-toc{padding:24px 18px 0}
 }
 @media(max-width:600px){
-  body{font-size:17.5px}
+  body{font-size:15px}
   .wrap,.hero-inner{padding-left:24px;padding-right:24px}
   section{padding:64px 0}
   .hero-inner{padding-top:52px}
@@ -229,38 +228,16 @@ footer a{color:var(--c-paper-sink)}
 </head>
 
 <body>
-<div class="shell">
 
-  <!-- ================= SIDEBAR ================= -->
-  <nav class="nav" id="nav">
-    <div class="nav-brand">
-      <div class="nav-kicker">公開研究報告 · 證據審計</div>
-      <div class="nav-title">從價格戰到<b>認知基礎設施</b></div>
-      <div class="nav-scope">低價 → 採用 → 資訊入口 → 社會認知：四環因果鏈，逐環檢視證據</div>
-      <div class="nav-meta">AI 治理 · 資訊環境 · 2026 / 06</div>
-    </div>
-    <ol>
-      <li class="nav-grp">目次</li>
-      <li><a href="#tldr"><span class="ix">01</span>摘要</a></li>
-      <li><a href="#framing"><span class="ix">02</span>問題與邊界</a></li>
-      <li><a href="#chain"><span class="ix">03</span>逐環檢視證據</a></li>
-      <li><a href="#finding-1" class="sub"><span class="ix">·</span>第一環 · 價格與採用</a></li>
-      <li><a href="#finding-2" class="sub"><span class="ix">·</span>第二環 · 資訊入口</a></li>
-      <li><a href="#finding-3" class="sub"><span class="ix">·</span>第三環 · 輸出框架</a></li>
-      <li><a href="#finding-4" class="sub"><span class="ix">·</span>第四環 · 認知放大</a></li>
-      <li><a href="#break"><span class="ix">04</span>鏈在哪裡斷</a></li>
-      <li><a href="#counter"><span class="ix">05</span>為何不是反中警報</a></li>
-      <li><a href="#policy"><span class="ix">06</span>有條件的政策結論</a></li>
-      <li><a href="#gaps"><span class="ix">07</span>還不知道的事</a></li>
-      <li class="nav-grp">附錄</li>
-      <li><a href="#sources"><span class="ix">08</span>資料來源</a></li>
-    </ol>
-  </nav>
+<!-- floating chrome (A) -->
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">00</b><span id="badgename">封面</span></div>
 
-  <main>
-    <!-- ================= HERO ================= -->
-    <header class="hero">
-      <div class="hero-inner">
+<main>
+
+  <!-- ================= HERO (as COVER) ================= -->
+  <section class="hero" data-num="00" data-name="封面">
+    <div class="hero-inner">
         <div class="hero-kicker">證據審計 · 不確定下的治理</div>
         <h1 class="hero-title">從價格戰到認知基礎設施<span class="cut">——這條因果鏈，會在哪裡斷？</span></h1>
         <p class="hero-scope">低價 → 採用 → 成為資訊入口 → 塑造社會認知：一條四環因果鏈，能成立到哪一步？</p>
@@ -290,10 +267,22 @@ footer a{color:var(--c-paper-sink)}
           <span class="dot"></span><span>人為設計題目與框架、AI agent 執行檢索蒐證與綜述、人為審定 · 30 筆來源 · 2026 / 06</span>
         </div>
       </div>
-    </header>
+    </section>
+
+    <!-- ================= INLINE TOC (橫向 pill) ================= -->
+    <nav class="inline-toc" aria-label="目次">
+      <a href="#tldr"><span class="ix">§01</span>摘要</a>
+      <a href="#framing"><span class="ix">§02</span>問題與邊界</a>
+      <a href="#chain"><span class="ix">§03</span>逐環檢視證據</a>
+      <a href="#break"><span class="ix">§04</span>鏈在哪裡斷</a>
+      <a href="#counter"><span class="ix">§05</span>為何不是反中警報</a>
+      <a href="#policy"><span class="ix">§06</span>政策結論</a>
+      <a href="#gaps"><span class="ix">§07</span>還不知道的事</a>
+      <a href="#sources"><span class="ix">§08</span>資料來源</a>
+    </nav>
 
     <!-- ================= 01 · TL;DR ================= -->
-    <section id="tldr">
+    <section id="tldr" data-num="01" data-name="摘要">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">01</span>
@@ -336,7 +325,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 02 · FRAMING ================= -->
-    <section id="framing">
+    <section id="framing" data-num="02" data-name="問題與邊界">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">02</span>
@@ -352,7 +341,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 03 · CHAIN / FINDINGS ================= -->
-    <section id="chain">
+    <section id="chain" data-num="03" data-name="逐環檢視證據">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">03</span>
@@ -473,7 +462,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 04 · BREAK POINT ================= -->
-    <section id="break">
+    <section id="break" data-num="04" data-name="鏈在哪裡斷">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">04</span>
@@ -496,7 +485,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 05 · COUNTER-FRAMING ================= -->
-    <section id="counter">
+    <section id="counter" data-num="05" data-name="為何不是反中警報">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">05</span>
@@ -513,7 +502,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 06 · POLICY ================= -->
-    <section id="policy">
+    <section id="policy" data-num="06" data-name="政策結論">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">06</span>
@@ -576,7 +565,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 07 · GAPS ================= -->
-    <section id="gaps">
+    <section id="gaps" data-num="07" data-name="還不知道的事">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">07</span>
@@ -596,7 +585,7 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
     <!-- ================= 08 · SOURCES ================= -->
-    <section id="sources">
+    <section id="sources" data-num="08" data-name="資料來源">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">08</span>
@@ -639,7 +628,6 @@ footer a{color:var(--c-paper-sink)}
     </section>
 
   </main>
-</div>
 
 <footer>
   <div class="ft-inner">
@@ -651,6 +639,31 @@ footer a{color:var(--c-paper-sink)}
 </footer>
 
 <script>
+/* progress bar + scroll-spy badge (A chrome) */
+(function(){
+  const progress = document.getElementById('progress');
+  const badge = document.getElementById('badge');
+  const badgeNum = document.getElementById('badgenum');
+  const badgeName = document.getElementById('badgename');
+  const sections = Array.from(document.querySelectorAll('section[data-num]'));
+  function update(){
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = Math.min(100, (window.scrollY / docH) * 100);
+    if(progress) progress.style.width = pct + '%';
+    const y = window.scrollY + 120;
+    let active = sections[0];
+    for(const s of sections){ if(s.offsetTop <= y) active = s; }
+    if(active && badgeNum){
+      badgeNum.textContent = active.dataset.num;
+      badgeName.textContent = active.dataset.name || '';
+      if(window.scrollY > 240) badge.classList.add('show');
+      else badge.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+
 /* reveal.js */
 (function(){
   const els=document.querySelectorAll('.rv');
