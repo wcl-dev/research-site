@@ -58,57 +58,47 @@
   a{color:inherit}
   ::selection{background:var(--paper-card)}
 
-  /* ============ LAYOUT ============ */
-  .shell{display:flex; min-height:100vh}
+  /* ============ MERGED-A CHROME (sidebar dropped → linear scroll) ============ */
+  .shell{display:block}
+  main{display:block}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+  section{padding:96px 0; position:relative}
+  section+section{border-top:1px solid var(--rule)}
 
-  /* ---- sidebar ---- */
-  .nav{
-    width:var(--w-sidebar); flex:none; position:fixed; top:0; left:0; bottom:0;
-    background:var(--paper-card); border-right:1px solid var(--rule);
-    padding:42px 0 36px; overflow-y:auto; z-index:40;
+  /* sticky progress bar + scroll-spy badge (A chrome) */
+  .progress{
+    position:fixed; top:0; left:0; height:2px; width:0; background:var(--clay);
+    z-index:200; transition:width .12s linear;
   }
-  .nav-brand{padding:0 32px 26px; border-bottom:1px solid var(--rule); margin-bottom:10px}
-  .nav-kicker{
-    font-family:var(--mono); font-size:12px; letter-spacing:.16em;
-    text-transform:uppercase; color:var(--clay); font-weight:600; margin-bottom:14px;
+  .badge{
+    position:fixed; top:18px; right:24px; z-index:100;
+    font-size:14px; letter-spacing:.12em; text-transform:uppercase;
+    font-weight:600; color:var(--ink); opacity:0; transition:opacity .25s;
+    padding:8px 14px; background:var(--paper); border:1px solid var(--rule); border-radius:0;
   }
-  .nav-title{
-    font-family:var(--display); font-weight:600; font-size:22px; line-height:1.42;
-    color:var(--ink);
-  }
-  .nav-title b{color:var(--clay); font-weight:700}
-  .nav-scope{
-    font-size:14px; color:var(--ink-soft); line-height:1.55;
-    margin-top:14px; padding-left:12px; border-left:3px solid var(--navy);
-  }
-  .nav-meta{
-    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
-    margin-top:16px; letter-spacing:.02em;
-  }
-  .nav ol{list-style:none; padding:20px 16px 0}
-  .nav .nav-grp{
-    font-family:var(--mono); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
-    color:var(--ink-faint); padding:20px 14px 9px; font-weight:600;
-  }
-  .nav a{
-    display:flex; gap:12px; align-items:baseline; text-decoration:none;
-    padding:9px 14px; border-radius:8px; color:var(--ink-soft);
-    font-size:15.5px; line-height:1.5; transition:background .18s,color .18s;
-  }
-  .nav a .ix{
-    font-family:var(--mono); font-size:12px; color:var(--ink-faint);
-    flex:none; width:24px; font-weight:500;
-  }
-  .nav a:hover{background:var(--paper-sink); color:var(--ink)}
-  .nav a.sub{padding-left:30px; font-size:14.5px}
-  .nav a.active{background:var(--ink); color:var(--paper-card)}
-  .nav a.active .ix{color:var(--paper-card)}
+  .badge.show{opacity:.85}
+  .badge b{color:var(--clay); font-weight:700; margin-right:8px}
 
-  /* ---- main ---- */
-  main{margin-left:var(--w-sidebar); flex:1; min-width:0}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 48px}
-  section{padding:96px 0; border-bottom:1px solid var(--rule)}
-  section:last-of-type{border-bottom:none}
+  /* inline TOC (horizontal pill, after hero) */
+  .inline-toc{
+    max-width:var(--maxw); margin:0 auto; padding:36px 28px 0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .inline-toc a{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--ink-soft); padding:7px 12px;
+    border:1px solid var(--rule); background:var(--paper);
+    text-decoration:none; transition:background .12s,border-color .12s,color .12s;
+  }
+  .inline-toc a:hover{background:var(--ink); color:var(--paper); border-color:var(--ink)}
+  .inline-toc .ix{color:var(--ink-faint); margin-right:6px}
+
+  @media (max-width: 720px){
+    .badge{display:none}
+    .wrap{padding:0 18px}
+    .inline-toc{padding:24px 18px 0}
+    section{padding:64px 0}
+  }
 
   /* ============ HERO ============ */
   .hero{
@@ -375,13 +365,6 @@
 
   /* ============ RESPONSIVE ============ */
   @media(max-width:1040px){
-    .nav{position:static; width:100%; height:auto; bottom:auto;
-      border-right:none; border-bottom:2px solid var(--rule)}
-    .nav ol{display:flex; flex-wrap:wrap; padding:14px}
-    .nav .nav-grp{width:100%; padding:12px 14px 4px}
-    .nav a.sub{padding-left:14px}
-    main,footer{margin-left:0}
-    .shell{flex-direction:column}
     .hero-tension{flex-direction:column}
     .ht-cell+.ht-cell{border-left:none; border-top:1px solid var(--rule)}
     .legs{grid-template-columns:1fr}
@@ -402,40 +385,16 @@
 </style>
 </head>
 <body>
-<div class="shell">
 
-  <!-- ================= SIDEBAR ================= -->
-  <nav class="nav" id="nav">
-    <div class="nav-brand">
-      <div class="nav-kicker">公開研究報告</div>
-      <div class="nav-title">動機合流與<b>認知破壞</b></div>
-      <div class="nav-scope">跨機關防治 · 平台治理 · 政策制定者</div>
-      <div class="nav-meta">資訊操弄 · 中文資訊環境 · 2026 / 06</div>
-    </div>
-    <ol>
-      <li class="nav-grp">目次</li>
-      <li><a href="#honesty"><span class="ix">★</span>三條誠實邊界</a></li>
-      <li><a href="#tldr"><span class="ix">01</span>重點速覽</a></li>
-      <li><a href="#problem"><span class="ix">02</span>問題：兩套解釋撞牆</a></li>
-      <li><a href="#section-1" class="sub">一　動機分類系統性失效</a></li>
-      <li><a href="#section-2" class="sub">二　共用工業化基礎設施</a></li>
-      <li><a href="#section-3" class="sub">三　生成式 AI 的規模效應</a></li>
-      <li><a href="#section-4" class="sub">四　認知破壞：傷害定位</a></li>
-      <li><a href="#section-5" class="sub">五　加乘效應（最弱一環）</a></li>
-      <li><a href="#section-6" class="sub">六　偵測方法的結構盲區</a></li>
-      <li><a href="#section-7" class="sub">七　跨域整合的交換接口</a></li>
-      <li><a href="#section-8" class="sub">八　兩個台灣案例</a></li>
-      <li><a href="#gaps"><span class="ix">03</span>我們還不知道的</a></li>
-      <li><a href="#actions"><span class="ix">04</span>防治方向</a></li>
-      <li class="nav-grp">附錄</li>
-      <li><a href="#sources"><span class="ix">05</span>主要來源（49 筆）</a></li>
-    </ol>
-  </nav>
+<!-- floating chrome (A) -->
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">00</b><span id="badgename">封面</span></div>
 
-  <main>
-    <!-- ================= HERO ================= -->
-    <header class="hero">
-      <div class="hero-inner">
+<main>
+
+  <!-- ================= HERO (as COVER) ================= -->
+  <section class="hero" data-num="00" data-name="封面">
+    <div class="hero-inner">
         <div class="hero-kicker">資訊操弄 · 動機合流 · 認知破壞</div>
         <h1 class="hero-title">當似是而非的協同內容，導向針對資訊環境的<span class="cut">認知破壞</span></h1>
         <p class="hero-scope">給<b>跨機關防治、平台治理與政策制定者</b>：當「這是詐騙還是假訊息」的管轄之爭，正在變成操作者的庇護所。</p>
@@ -463,10 +422,20 @@
           <span class="dot"></span><span>政策／防治取向綜合研究 · 49 筆獨立來源 · 待驗證的可證偽假設，加乘效應一環缺第一手實證並已逐環標明</span>
         </div>
       </div>
-    </header>
+    </section>
+
+    <!-- ================= INLINE TOC (橫向 pill) ================= -->
+    <nav class="inline-toc" aria-label="目次">
+      <a href="#honesty"><span class="ix">§★</span>誠實邊界</a>
+      <a href="#tldr"><span class="ix">§01</span>重點速覽</a>
+      <a href="#problem"><span class="ix">§02</span>問題</a>
+      <a href="#gaps"><span class="ix">§03</span>我們還不知道的</a>
+      <a href="#actions"><span class="ix">§04</span>防治方向</a>
+      <a href="#sources"><span class="ix">§05</span>主要來源</a>
+    </nav>
 
     <!-- ================= ★ HONESTY CALLOUT (prominent, load-bearing) ================= -->
-    <section id="honesty">
+    <section id="honesty" data-num="★" data-name="誠實邊界">
       <div class="wrap">
         <div class="honesty rv">
           <div class="honesty-kicker"><span class="bang">!</span>先講清楚 · 載重的誠實邊界</div>
@@ -482,7 +451,7 @@
     </section>
 
     <!-- ================= 01 · TL;DR ================= -->
-    <section id="tldr">
+    <section id="tldr" data-num="01" data-name="重點速覽">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">01</span>
@@ -527,7 +496,7 @@
     </section>
 
     <!-- ================= 02 · PROBLEM FRAMING ================= -->
-    <section id="problem">
+    <section id="problem" data-num="02" data-name="問題">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">02</span>
@@ -825,7 +794,7 @@
     </section>
 
     <!-- ================= 03 · GAPS ================= -->
-    <section id="gaps">
+    <section id="gaps" data-num="03" data-name="我們還不知道的">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">03</span>
@@ -844,7 +813,7 @@
     </section>
 
     <!-- ================= 04 · ACTIONS / ROADMAP ================= -->
-    <section id="actions">
+    <section id="actions" data-num="04" data-name="防治方向">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">04</span>
@@ -908,7 +877,7 @@
     </section>
 
     <!-- ================= 05 · SOURCES ================= -->
-    <section id="sources">
+    <section id="sources" data-num="05" data-name="主要來源">
       <div class="wrap">
         <header class="sec-head rv">
           <span class="sec-num">05</span>
@@ -973,7 +942,6 @@
     </section>
 
   </main>
-</div>
 
 <footer>
   <div class="ft-inner">
@@ -985,24 +953,30 @@
 </footer>
 
 <script>
-  // ---- scroll-spy active state ----
-  const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
-  const map = new Map();
-  navLinks.forEach(a=>{
-    const id = a.getAttribute('href').slice(1);
-    const el = document.getElementById(id);
-    if(el) map.set(el, a);
-  });
-  const spy = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        navLinks.forEach(a=>a.classList.remove('active'));
-        const a = map.get(e.target);
-        if(a) a.classList.add('active');
+  /* progress bar + scroll-spy badge (A chrome) */
+  (function(){
+    const progress = document.getElementById('progress');
+    const badge = document.getElementById('badge');
+    const badgeNum = document.getElementById('badgenum');
+    const badgeName = document.getElementById('badgename');
+    const sections = Array.from(document.querySelectorAll('section[data-num]'));
+    function update(){
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = Math.min(100, (window.scrollY / docH) * 100);
+      if(progress) progress.style.width = pct + '%';
+      const y = window.scrollY + 120;
+      let active = sections[0];
+      for(const s of sections){ if(s.offsetTop <= y) active = s; }
+      if(active && badgeNum){
+        badgeNum.textContent = active.dataset.num;
+        badgeName.textContent = active.dataset.name || '';
+        if(window.scrollY > 240) badge.classList.add('show');
+        else badge.classList.remove('show');
       }
-    });
-  }, {rootMargin:'-15% 0px -75% 0px'});
-  map.forEach((a,el)=>spy.observe(el));
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    update();
+  })();
 
   // ---- reveal-on-scroll (.rv) ----
   const rev = new IntersectionObserver((entries)=>{
