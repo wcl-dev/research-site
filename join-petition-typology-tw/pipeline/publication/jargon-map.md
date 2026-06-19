@@ -28,6 +28,11 @@
 - NGO → 倡議團體 / 非政府組織
 - We the People → 美國白宮「We the People」連署平台
 
+## v2 重跑（2026-06-19，measured register update）
+- 套用更新後 pipeline-to-publication 的 ⭐ register baseline（理性、學術保守、降行銷/降張力）：
+  降戰鬥/戲劇動詞（撞罐頭牆/萬能鑰匙/恰恰→中性）、降誇張形容、反問/張力標題→noun-led 陳述（標題改「跨過門檻與獲得實質回應：兩個階段的不同決定因素」）、錨定證據語氣（「資料/估計下/呈正向關聯」）。
+- 修一個 confusion：成案率 1.26%＝五年合併率(162/12,844)，2.0%→0.71%＝逐年端點；舊版同句並陳+「腰斬」不準（實降 64%、2022 回升非單調）。改：headline 只放 1.26%；趨勢移內文、講準確並加小樣本但書。已同步 report HTML / manifest / insight_v2 / brief.md。
+
 ## 刻意保留（不可被去術語洗掉的 review 後警語）
 - 全篇「關聯非因果」基調 + 開場閱讀提醒
 - 逐變項信度（org 可靠 κ0.83 / constituency 不可靠 κ0.25 / motive 偏寬）
