@@ -1,0 +1,210 @@
+project: join-petition-typology-tw
+version: v1
+year_from: 2013          # e-petition / We the People 學術文獻起點;Join 2015 上線
+languages: [zh-TW, en]
+
+brief_type:
+  intent: methodology    # 類型學建構與驗證為主軸;comparative(與 IPSR 原文對讀) 是次結構
+  horizon: current       # 2020-2024 資料;平台現況
+
+review:
+  mode: multi_model      # 可對外發表的民主品質研究 → Claude+Codex+Gemini 平行 + meta-merge
+  fidelity_level: high
+
+# ─────────────────────────────────────────────────────────────
+# §6.5 — Concept ontology
+# research_focus = M∩O(動機類型學 × 成案結果),核心張力在 off-diagonal
+# F 軸(外形 vs 動機)是 pilot 揭出的量測承重軸,必須釘死避免高估工具型佔比
+# ─────────────────────────────────────────────────────────────
+concept_ontology:
+  - id: M
+    label: "動機光譜 表達型↔工具型 (motivation axis) — concept_axis"
+    definition: >-
+      移植自 O'Brien & Kasianenko 2026 的政治參與軸。工具型＝為了真的
+      改變某個對象的行為/政策;表達型＝為了表態、認同、宣洩、道德譴責。
+      操作化為三個文本維度:D1 指名標的 / D2 賦能他人(機制/數據/草案) /
+      D3 期待可衡量結果。本研究編的是「提案物件的動機簽名」,非提案人內心。
+    type: concept_axis
+    examples_in:
+      - "工具型端: 引刑法18條/少事法83-1、附監察院數據、給法條草案(縫補社會安全網案)"
+      - "表達型端: 『政府不要再爛』、酒駕一律死刑、純道德譴責(凜沁夜羽系列, 0 附議)"
+    examples_out:
+      - "提案人真實心理動機(本研究不臆測,只編可觀察文本)"
+
+  - id: F
+    label: "工具型外形 vs 工具型動機 (form vs function) — concept_axis"
+    definition: >-
+      pilot 揭出的量測陷阱:有些提案有工具型的『外形』(引法條、列條號)
+      但底層是表達型『動機』(懲罰宣洩)。重刑民粹案是典型。F 軸把 form_score
+      (D1+D2+D3 表層) 與 motive(底層驅動) 分開,否則會把民粹案誤判成審議型。
+    type: concept_axis
+    examples_in:
+      - "外形高/動機表達: 『虐童致死唯一死刑』(引刑法271/286,但驅動是懲罰宣洩)、兒少性侵鞭刑(引新加坡法)"
+      - "外形高/動機工具: 藝文票券定型化契約、教學支援鐘點費(引要點沿革,為解決具體問題)"
+    examples_out:
+      - "外形低一定動機表達(不必然;有些簡短提案是工具型動機只是沒寫足)"
+
+  - id: O
+    label: "成案結果 (outcome ground truth)"
+    definition: >-
+      原文做不到、本基板獨有的結果驗證。三層:①附議數≥5000=成案(crossed,
+      in-dataset);②機關回應品質(罐頭/實質/無,爬 detail page);③是否成政策(v2)。
+      base rate: 2024 成案率 0.71%(21/2942)。
+    type: entity
+    layer: outcome_layer
+    examples_in:
+      - "crossed=true: 附議≥5000 觸發機關60天內須回應"
+      - "response_type: 罐頭(制式不處理) vs 實質(具體承諾/修法)"
+    examples_out:
+      - "關注數/留言數(熱度訊號,非成案門檻)"
+
+  - id: DRV
+    label: "動員驅動力 (mobilization drivers) — 成案的競爭解釋"
+    definition: >-
+      pilot 指出真正驅動成案的不是審議品質,而是這組變項。作為控制變項,
+      用來檢定工具型品質在控制它們後是否仍有(無)解釋力。
+    type: concept_axis
+    examples_in:
+      - "群體規模: 軍公教~100萬、牙醫師、家長/教師、ACG 創作者"
+      - "組織後盾: 全教總、台灣運動產業協會、職業協會領銜(vs 個人提案)"
+      - "媒體時機: 剴剴虐童案後一票兒虐提案集體過門檻"
+    examples_out:
+      - "提案文本的審議品質(這正是要對照檢定的對象,不屬 DRV)"
+
+research_focus: "M∩O"   # 動機類型學 × 成案結果的交集;核心是 off-diagonal
+
+# ─────────────────────────────────────────────────────────────
+# Pathways — 兩條競爭因果路徑(pilot 已偏向 P_mobilize)
+# ─────────────────────────────────────────────────────────────
+pathways:
+  - id: P_quality
+    label: "審議品質→成案(naive 假設,pilot 已證偽)"
+    description: "工具型/高審議品質的提案較易跨 5000 門檻。Pilot 顯示此路徑微弱、被反例推翻。保留以供全量正式檢定。"
+    relates_to_entities: [M, O]
+    needs_evidence: [Q3, Q4]
+  - id: P_mobilize
+    label: "動員驅動力→成案(pilot 支持)"
+    description: "受影響群體規模/組織後盾/媒體事件時機驅動成案,獨立於審議品質。本研究主要待驗路徑。"
+    relates_to_entities: [DRV, O]
+    needs_evidence: [Q3, Q4, Q6]
+
+# ─────────────────────────────────────────────────────────────
+# Queries — 文獻軌(刻意精簡;實證核心是手上的 58036 資料)
+# ─────────────────────────────────────────────────────────────
+queries:
+  # 互文錨點 + 政治消費主義類型學
+  - text: "expressive instrumental political consumerism boycott typology motivation"
+    concept_target: M
+  - text: "Stolle Micheletti political consumerism participation typology"
+    concept_target: M
+  # e-petition 成案決定因素(對應 P_mobilize / DRV)
+  - text: "e-petition success determinants threshold mobilization organized interest"
+    concept_target: DRV
+  - text: "We the People petition signatures threshold deliberative quality"
+    concept_target: O
+  - text: "online petition platform participation deliberation quality slacktivism"
+    concept_target: DRV
+  # Join 平台本身
+  - "公共政策網路參與平臺 Join 提點子 附議 成案 研究 成效"
+  - "Join 平台 許願池 罷免 提案 機關回應 罐頭 批評"
+  - "g0v 公共政策網路參與 提點子 開放資料 分析"
+  # 審議 vs 動員 民主理論
+  - "審議民主 數位參與 動員 參與量 deliberative participation Taiwan"
+  - text: "petition agenda setting media event window mobilization burst"
+    concept_target: DRV
+
+keyword_expansions:
+  typology_axis:
+    - 表達型
+    - 工具型
+    - expressive
+    - instrumental
+    - political consumerism
+    - 政治消費主義
+    - motivation
+    - 動機
+    - 指名標的
+    - 賦能
+    - 期待結果
+
+  platform:
+    - Join
+    - 提點子
+    - 附議
+    - 連署
+    - 公共政策網路參與平臺
+    - 公共政策網路參與平台
+    - 國家發展委員會
+    - 國發會
+    - e-petition
+    - We the People
+    - 提議者
+
+  outcome_threshold:
+    - 成案
+    - 5000 門檻
+    - 附議門檻
+    - 60 天
+    - 機關回應
+    - 罐頭回應
+    - 罐頭
+    - 實質回應
+    - petition success
+    - threshold
+
+  democratic_theory:
+    - 審議民主
+    - deliberative democracy
+    - 參與量
+    - participation
+    - 動員
+    - mobilization
+    - slacktivism
+    - clicktivism
+    - 鍵盤參與
+    - 數位行動主義
+    - agenda setting
+
+  drivers:
+    - 利益團體
+    - organized interest
+    - 職業團體
+    - 工會
+    - 協會
+    - constituency
+    - 群體規模
+    - 媒體事件
+    - 社會事件時機
+
+# ─────────────────────────────────────────────────────────────
+# Exclusion
+# ─────────────────────────────────────────────────────────────
+exclusion_terms:
+  - "參與式預算"             # 不同機制,不同門檻/單位
+  - "公民投票 公投 連署"      # 不同法律門檻,只作對照不混主資料
+  - "數位轉型 政策宣導"        # 開放政府宣傳文
+  - "We the People 美國結論直接套用"
+  - "平台 UI 介面 教學"        # 純 UX,除非觸及門檻機制
+
+# ─────────────────────────────────────────────────────────────
+# Source priorities
+# ─────────────────────────────────────────────────────────────
+source_priorities:
+  must_include:
+    - name: "O'Brien & Kasianenko 2026 IPSR 10.1177/01925121261442380"
+      fetch_fallback: secondary_citation_acceptable
+    - "Join 提點子開放資料 dataset 58036 / join.gov.tw toOpenData"
+    - "國家發展委員會 公共政策網路參與平臺 實施要點/成效報告"
+
+  deprioritize:
+    - "開放政府/數位轉型純政策宣導頁"
+    - "單一爆紅提案的軼事報導(須回母體)"
+    - "平台 UI 操作教學"
+
+# ─────────────────────────────────────────────────────────────
+# Seek direct — Collector 直接 WebFetch
+# ─────────────────────────────────────────────────────────────
+seek_direct:
+  - "https://doi.org/10.1177/01925121261442380"
+  - "https://join.gov.tw/toOpenData/v2/ey/idea?year=2024"
+  - "https://join.gov.tw/attachments/13fec27c-5eae-4c21-a0bf-ecfa9714a910"

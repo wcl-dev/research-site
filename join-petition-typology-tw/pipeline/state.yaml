@@ -1,0 +1,35 @@
+project: join-petition-typology-tw
+tool: insight-pipeline
+current_stage: review        # multi_model review(2-senior) 完成 + insight_v2 已依 review 修訂
+status: in_progress          # v2 完整;剩 編碼信度正式驗證(≥150雙盲+κ)前置於發表;然後 pipeline-to-publication → generate-research-html
+brief_path: pipeline/brief.md
+brief_expanded_path: pipeline/brief_expanded.yaml
+codebook_path: pipeline/coding/codebook.md
+sample_path: pipeline/data/sample.jsonl          # gitignored;draw_sample.py 可再現
+review_mode: multi_model
+scoping_locked:              # 2026-06-18
+  encode_scope: hybrid_case_control   # 162 成案 + 214 高附議 + 700 分層隨機 = 1076 件
+  response_layer: v1_crawl_crossers   # 爬 162 成案 detail page 編 response_type
+  media_window: v1_include            # 建社會事件時間線納入 confound
+progress_done:
+  - "全量 12,844 件抓齊(fetch_corpus.py);全期成案率 1.26%(162),逐年 2.00%→0.71%"
+  - "codebook.md v1.1(D1-D3+form/motive+ai_essay+confounds;R1-R3 校準補)"
+  - "draw_sample.py → sample.jsonl(1076) + calibration.jsonl(20)"
+  - "calibration_coded.md: 20 件校準,off-diagonal 成立"
+  - "workflow join-code-sample: 45 sonnet agent 編 1064 件(+12 人工)=1076;驗證 form/motive 各 91% 一致"
+  - "analysis/offdiagonal.md: 核心結果。logistic OR — org_ngo 10.9× / org_assoc 7.2× / form 2.0× / motive 0.55×(負) / const 1.4×。高form無組織607件母體真實率~個位數%, 有組織61.4%成案。許願池裁決:半對半錯"
+progress_done_2:
+  - "Q5回應層完成:162成案回應全抓(responses.jsonl,100%有回應)+workflow分類160件(crossers_with_response.jsonl)"
+  - "★兩階段門:Gate1跨門檻靠動員(org 7-11x), Gate2換實質回應靠品質(motive 4%→24%/form 8%→26%,動員無用甚至負). 標準錯位=capstone"
+progress_done_3:
+  - "media_window 已納入(events_timeline.yaml 15事件)=null,核心穩健"
+  - "文獻軌:IPSR互文+陳坤毅黃心怡TASPAA(2015-18,156成案,形式vs實質,前work)+民眾黨摸頭平臺0.43%+We the People(Dumas/Pew/Baumgartner-Jones)"
+  - "draft/insight_v1.md 完成:兩階段門當主軸,~200行,含設計槓桿+limitations+S1-S7 source index"
+progress_done_4:
+  - "multi_model review(2-senior:Claude+Codex;Gemini agy hang→fallback per spec §2)=review/{r_claude,r_codex,review}.md。兩位獨立重算數字全對,問題在框架自信"
+  - "敏感度分析:org OR 規格相依2.8-27×→IPW加權母體 18-20×;motive 0.56是suppression(單獨1.25);加權母體率 高form無組織1.41% vs 組織22.2%"
+  - "insight_v2.md 已修:降級motive/兩階段改『重點不同』非『相反』/拿掉91%/IPW加權主述/加Stage-2可修法性confound/定義partial/全associational"
+progress_done_5:
+  - "✅編碼信度驗證(跨模型雙編碼 sonnet×opus 盲編200件,coding/reliability.md+compute_kappa.py):org_binary κ0.83/org_backing κ0.71(headline可靠)/form加權κ0.62/motive加權κ0.65(分歧±1相鄰,sonnet偏多判motive2)/constituency κ0.25(poor,最弱)/d3 0.31。已寫進 insight_v2 三處信度段"
+next: "①pipeline-to-publication 去術語(insight_v2→lay reader) ②generate-research-html 發 research-site。可選:~50件人工雙盲金標準覆核org/motive、statsmodels加CI、修codebook d3/constituency決策規則"
+last_handoff_ts: "2026-06-18T00:00:00Z"

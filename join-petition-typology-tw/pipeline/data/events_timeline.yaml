@@ -1,0 +1,52 @@
+# 重大社會事件時間線 — media_window confound 用
+# 原則：只列有把握、可查證的全國性事件;月精度;高精度非窮舉(window=1 真事件,
+#       window=0 可能漏小事件 → media_window 效果為下界)。topics 用 codebook topic 枚舉。
+# window 規則:提案提送日落在 [event_date, event_date + 8 週] 且 topic 相符 → media_window=1
+# 注意:本表為 operator/Claude curated,日期為月精度近似,正式版可逐一查證收窄。
+
+events:
+  - date: "2020-02"
+    name: "COVID-19 疫情爆發/口罩實名制"
+    topics: ["醫療長照", "教育"]
+  - date: "2021-05"
+    name: "COVID 本土疫情大爆發/三級警戒/遠距教學"
+    topics: ["醫療長照", "教育"]
+  - date: "2021-06"
+    name: "高端疫苗 EUA/疫苗政策爭議"
+    topics: ["醫療長照"]
+  - date: "2021-09"
+    name: "學習歷程檔案遺失事件"
+    topics: ["教育"]
+  - date: "2022-08"
+    name: "台南殺警案(2 名員警殉職)"
+    topics: ["司法刑罰"]
+  - date: "2022-12"
+    name: "CNN『行人地獄』報導/交通安全大檢討"
+    topics: ["交通"]
+  - date: "2023-05"
+    name: "台灣 MeToo 浪潮(性騷擾連環爆)"
+    topics: ["司法刑罰", "其他"]
+  - date: "2023-06"
+    name: "私立幼兒園餵藥案(新北)"
+    topics: ["兒少保護"]
+  - date: "2023-08"
+    name: "缺蛋/進口蛋爭議"
+    topics: ["其他"]
+  - date: "2023-12"
+    name: "新北國中生割頸命案(少年事件)"
+    topics: ["兒少保護", "司法刑罰", "教育"]
+  - date: "2024-03"
+    name: "剴剴虐童致死案(兒福聯盟/保母)"
+    topics: ["兒少保護"]
+  - date: "2024-03"
+    name: "寶林茶室米酵菌酸中毒案"
+    topics: ["醫療長照", "其他"]
+  - date: "2024-04"
+    name: "波波牙醫/偏鄉醫療精進計畫爭議"
+    topics: ["醫療長照"]
+  - date: "2024-04"
+    name: "0403 花蓮大地震"
+    topics: ["其他"]
+  - date: "2024-07"
+    name: "信義區幼兒園性侵案(重判)曝光"
+    topics: ["兒少保護", "司法刑罰"]

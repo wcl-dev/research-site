@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在 Join 連署平台上，被聽見和被認真回應靠的是兩件不同的事</title>
+<!-- og:auto:start -->
+<meta name="description" content="台灣的『公共政策網路參與平臺（Join）／提點子』常被批為許願池。本研究借一篇政治學的『表達型／工具型』動機分類法，把分析單位從『貼文』換成『提案』，用 2020–2024 全部 12,844 件提案＋每件成案的政府回應，發現它其實是『兩道門、標準不同』：跨過 5,000 附議門檻（被聽見）主要靠組織動員——有協會／倡議團體領銜的提案成案勝算約 18–20 倍、寫得好但沒組織的個人提案母體成案率只有約 1.4%；但成案後要換到實質而非罐頭回應（被認真對待）靠的卻是審議品質、動員反而幫不上忙。最該被行動的高品質提案，恰恰最難擠過第一道門。經跨模型雙編碼信度驗證（組織後盾 Kappa 0.83）與多模型對抗式審查，全程守住關聯而非因果。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="weichen&#x27;s Research">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="在 Join 連署平台，被聽見和被認真回應靠的是兩件不同的事">
+<meta property="og:description" content="台灣的『公共政策網路參與平臺（Join）／提點子』常被批為許願池。本研究借一篇政治學的『表達型／工具型』動機分類法，把分析單位從『貼文』換成『提案』，用 2020–2024 全部 12,844 件提案＋每件成案的政府回應，發現它其實是『兩道門、標準不同』：跨過 5,000 附議門檻（被聽見）主要靠組織動員——有協會／倡議團體領銜的提案成案勝算約 18–20 倍、寫得好但沒組織的個人提案母體成案率只有約 1.4%；但成案後要換到實質而非罐頭回應（被認真對待）靠的卻是審議品質、動員反而幫不上忙。最該被行動的高品質提案，恰恰最難擠過第一道門。經跨模型雙編碼信度驗證（組織後盾 Kappa 0.83）與多模型對抗式審查，全程守住關聯而非因果。">
+<meta property="og:url" content="https://wcl-dev.github.io/research-site/join-petition-typology-tw/">
+<meta property="og:image" content="https://wcl-dev.github.io/research-site/join-petition-typology-tw/og.png?v=5">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="在 Join 連署平台，被聽見和被認真回應靠的是兩件不同的事">
+<meta name="twitter:description" content="台灣的『公共政策網路參與平臺（Join）／提點子』常被批為許願池。本研究借一篇政治學的『表達型／工具型』動機分類法，把分析單位從『貼文』換成『提案』，用 2020–2024 全部 12,844 件提案＋每件成案的政府回應，發現它其實是『兩道門、標準不同』：跨過 5,000 附議門檻（被聽見）主要靠組織動員——有協會／倡議團體領銜的提案成案勝算約 18–20 倍、寫得好但沒組織的個人提案母體成案率只有約 1.4%；但成案後要換到實質而非罐頭回應（被認真對待）靠的卻是審議品質、動員反而幫不上忙。最該被行動的高品質提案，恰恰最難擠過第一道門。經跨模型雙編碼信度驗證（組織後盾 Kappa 0.83）與多模型對抗式審查，全程守住關聯而非因果。">
+<meta name="twitter:image" content="https://wcl-dev.github.io/research-site/join-petition-typology-tw/og.png?v=5">
+<!-- og:auto:end -->
+<meta name="description" content="台灣 Join 提點子的資料研究：跨過 5,000 附議門檻靠的是組織動員，成案後換到實質回應才看審議品質——兩道門的篩選標準不同。">
+<meta property="og:title" content="在 Join 連署平台上，被聽見和被認真回應靠的是兩件不同的事">
+<meta property="og:description" content="跨門檻靠動員、實質回應靠品質：Join 提點子兩階段門的資料研究。">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/open-props/easings.min.css">
+<style>
+/* ===== brand-tokens.css ===== */
+:root{
+  --c-paper:#fbfaf6; --c-paper-card:#f5f3ec; --c-paper-sink:#efece4;
+  --c-ink:#333333; --c-ink-soft:#555555; --c-ink-faint:#888888;
+  --c-watermark:#aaaaaa; --c-rule:#cfc9b9; --c-rule-soft:#dfd9c5;
+  --c-navy:#1B4A66; --c-jade:#2B7458; --c-clay:#B5402B;
+  --role-primary:var(--c-navy); --role-method:var(--c-jade); --role-emphasis:var(--c-clay);
+  --ff-display:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
+  --ff-serif:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
+  --ff-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --maxw-prose:720px; --maxw-content:920px;
+  --lh-prose-cjk:1.9;
+}
+/* ===== base.css ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--c-paper);color:var(--c-ink);font-family:var(--ff-serif);font-weight:400;font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.18;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E")}
+a{color:inherit}
+::selection{background:var(--c-paper-card)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+/* ===== template.css ===== */
+.shell{display:block}
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--role-emphasis);z-index:200;transition:width .12s linear}
+.badge{position:fixed;top:18px;right:24px;z-index:100;font-family:var(--ff-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--c-ink);opacity:0;transition:opacity .25s;padding:8px 14px;background:var(--c-paper);border:1px solid var(--c-rule)}
+.badge.show{opacity:.85}
+.badge b{color:var(--role-emphasis);font-weight:700;margin-right:8px}
+.inline-toc{max-width:var(--maxw-content);margin:0 auto;padding:36px 48px 0;display:flex;flex-wrap:wrap;gap:8px}
+.inline-toc a{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-ink-soft);padding:7px 12px;border:1px solid var(--c-rule);background:var(--c-paper);text-decoration:none;transition:background .12s,border-color .12s,color .12s}
+.inline-toc a:hover{background:var(--c-ink);color:var(--c-paper);border-color:var(--c-ink)}
+.inline-toc .ix{color:var(--c-ink-faint);margin-right:6px}
+main{display:block}
+.wrap{max-width:var(--maxw-content);margin:0 auto;padding:0 48px}
+section{padding:96px 0;border-bottom:1px solid var(--c-rule)}
+section:last-of-type{border-bottom:none}
+.hero{border-bottom:4px double var(--c-rule);background:linear-gradient(180deg,var(--c-paper-card),transparent 72%)}
+.hero-inner{max-width:var(--maxw-content);margin:0 auto;padding:74px 48px 64px}
+.hero-kicker{font-family:var(--ff-mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--role-emphasis);font-weight:600;display:flex;align-items:center;gap:14px;margin-bottom:30px}
+.hero-kicker::after{content:"";flex:1;height:1px;background:var(--c-rule)}
+h1.hero-title{font-family:var(--ff-display);font-weight:600;font-size:clamp(28px,4.4vw,52px);line-height:1.25;letter-spacing:-.008em;margin-bottom:28px}
+h1.hero-title .cut{color:var(--role-emphasis);font-weight:600}
+.hero-stand{font-size:16px;line-height:1.78;color:var(--c-ink-soft);max-width:var(--maxw-prose);margin-bottom:38px}
+.hero-stand b{color:var(--c-ink);font-weight:700}
+.hero-scope{font-family:var(--ff-display);font-weight:500;color:var(--c-ink);font-size:clamp(16px,2.2vw,20px);line-height:1.5;margin:-6px 0 34px;padding-left:16px;border-left:4px solid var(--role-primary)}
+.hero-foot{margin-top:34px;font-size:14px;color:var(--c-ink-soft);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hero-foot .dot{width:7px;height:7px;border-radius:50%;background:var(--role-emphasis);display:inline-block;flex:none}
+.sec-head{margin-bottom:52px}
+.sec-num{font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.14em;color:var(--c-ink-faint);display:block;margin-bottom:16px}
+h2.sec-title{font-family:var(--ff-display);font-weight:600;color:var(--c-watermark);font-size:clamp(24px,3.2vw,36px);line-height:1.3;letter-spacing:-.005em}
+.sec-lead{font-size:16px;color:var(--c-ink-soft);margin-top:20px;max-width:var(--maxw-prose);line-height:1.78}
+.sub-h{font-family:var(--ff-display);font-size:21px;font-weight:600;color:var(--c-ink);margin:0 0 26px;padding-bottom:14px;border-bottom:2px solid var(--c-rule);line-height:1.4}
+.block{margin-top:48px}
+.prose p{font-size:16px;line-height:1.85;color:var(--c-ink-soft);margin-bottom:20px;max-width:var(--maxw-prose)}
+.prose p b{color:var(--c-ink);font-weight:700}
+.prose .em{font-weight:700;background:var(--c-paper-sink);padding:1px 5px;border-radius:3px;color:var(--c-ink)}
+.cap{font-family:var(--ff-mono);font-size:13px;color:var(--c-ink-soft);margin-bottom:18px;font-weight:500;letter-spacing:.01em}
+.tldr-list{display:flex;flex-direction:column;gap:14px}
+.tldr{display:flex;gap:28px;padding:32px 34px;background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:12px;align-items:flex-start}
+.tldr .num{font-family:var(--ff-display);font-size:50px;font-weight:600;line-height:.85;color:var(--role-primary);flex:none;width:54px}
+.tldr .body p{font-size:16px;line-height:1.82}
+.tldr .body b{font-weight:700;color:var(--c-ink)}
+.tldr .tag{font-family:var(--ff-mono);font-size:12.5px;color:var(--c-ink-faint);margin-top:14px}
+.find{background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:16px;padding:40px 42px;margin-bottom:24px}
+.find-top{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:20px}
+.find-no{font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.08em;color:var(--c-paper-card);background:var(--c-ink);padding:7px 12px;border-radius:6px;flex:none}
+.find h3{font-family:var(--ff-display);font-size:21px;font-weight:600;line-height:1.42;flex:1;min-width:260px}
+.find-sum{font-size:16px;line-height:1.84;color:var(--c-ink-soft)}
+.find-sum b{color:var(--c-ink);font-weight:700}
+.find-sum .em{font-weight:700;background:var(--c-paper-sink);padding:1px 5px;border-radius:3px;color:var(--c-ink)}
+.find-key{margin-top:24px;padding:22px 26px;background:var(--c-paper-sink);border-radius:11px;font-size:15.5px;line-height:1.74}
+.find-key .kl{font-family:var(--ff-mono);font-size:13px;letter-spacing:.08em;color:var(--role-emphasis);font-weight:600;display:block;margin-bottom:6px}
+.find-key b{font-weight:700;color:var(--c-ink)}
+.find .block{margin-top:34px}
+.src-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.src{background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:11px;padding:20px 22px;font-size:14.5px;line-height:1.72;color:var(--c-ink-soft)}
+.src .s-n{font-family:var(--ff-mono);font-size:12px;color:var(--role-emphasis);font-weight:600;display:block;margin-bottom:7px;letter-spacing:.04em}
+.src b{color:var(--c-ink);font-weight:700}
+footer{background:var(--c-ink);color:var(--c-ink-faint);padding:48px 28px;font-size:14px;line-height:1.85}
+footer .ft-inner{max-width:var(--maxw-content);margin:0 auto}
+footer b{color:var(--c-paper-card);font-weight:700}
+footer a{color:var(--c-paper-card);border-bottom:1px solid rgba(255,255,255,.25);text-decoration:none}
+@media(max-width:1040px){.wrap,.hero-inner{padding-left:32px;padding-right:32px}}
+@media(max-width:600px){
+  body{font-size:14.5px}.badge{display:none}.inline-toc{padding:24px 24px 0}
+  .wrap,.hero-inner{padding-left:24px;padding-right:24px}section{padding:64px 0}
+  .hero-inner{padding-top:52px}.find{padding:28px 24px}.tldr{padding:24px;gap:18px}
+  .tldr .num{font-size:40px;width:42px}footer{padding:36px 24px}.src-grid{grid-template-columns:1fr}
+}
+/* ===== module: hero-numbers ===== */
+.hero-numbers{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:38px 0 8px;border:1px solid var(--c-rule);border-radius:14px;overflow:hidden;background:var(--c-paper-card)}
+.hn-cell{padding:30px 28px}
+.hn-cell+.hn-cell{border-left:1px solid var(--c-rule)}
+.hn-big{font-family:var(--ff-display);font-size:32px;font-weight:600;line-height:1.1;color:var(--role-primary);margin-bottom:10px}
+.hn-big .unit{font-size:17px;color:var(--c-ink-soft);font-weight:500;margin-left:4px}
+.hn-lbl{font-family:var(--ff-mono);font-size:11.5px;color:var(--c-ink-faint);letter-spacing:.12em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+.hn-sub{font-size:14px;color:var(--c-ink-soft);line-height:1.6}
+@media(max-width:1040px){.hero-numbers{grid-template-columns:1fr}.hn-cell+.hn-cell{border-left:none;border-top:1px solid var(--c-rule)}}
+/* ===== module: schema-card ===== */
+.schema{background:var(--c-paper-card);border:2px solid var(--role-primary);border-radius:14px;padding:32px 36px;margin-top:10px}
+.schema-h{font-family:var(--ff-display);font-size:20px;font-weight:600;color:var(--role-primary);margin-bottom:6px}
+.schema-sub{font-family:var(--ff-mono);font-size:13px;color:var(--c-ink-faint);letter-spacing:.06em;margin-bottom:24px}
+.schema-rows{display:flex;flex-direction:column;gap:0}
+.schema-row{display:grid;grid-template-columns:78px 150px 1fr;gap:18px;padding:14px 0;align-items:start;border-top:1px solid var(--c-rule-soft)}
+.schema-row:first-child{border-top:none;padding-top:0}
+.schema-code{font-family:var(--ff-mono);font-size:13px;font-weight:700;color:#fff;background:var(--role-primary);padding:5px 10px;border-radius:5px;text-align:center;height:fit-content;letter-spacing:.04em}
+.schema-code.zero{background:var(--c-ink-faint)}
+.schema-name{font-family:var(--ff-display);font-size:15.5px;font-weight:600;color:var(--c-ink);line-height:1.4;padding-top:3px}
+.schema-def{font-size:14.5px;line-height:1.7;color:var(--c-ink-soft);padding-top:3px}
+.schema-foot{margin-top:24px;padding-top:20px;border-top:1px solid var(--c-rule);font-size:14.5px;line-height:1.74;color:var(--c-ink-soft)}
+.schema-foot b{color:var(--role-primary);font-weight:700}
+@media(max-width:1040px){.schema-row{grid-template-columns:78px 1fr;gap:14px}.schema-name{grid-column:2}.schema-def{grid-column:1/-1}}
+@media(max-width:600px){.schema{padding:24px 20px}.schema-row{grid-template-columns:1fr;gap:8px}.schema-code{width:fit-content}}
+/* ===== module: flagship-table ===== */
+.flagship{margin-top:16px;padding:32px 30px;background:var(--c-ink);border-radius:16px;color:var(--c-paper-card)}
+.flag-lab{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--c-paper-sink);opacity:.7;margin-bottom:8px;font-weight:600}
+.flag-h{font-family:var(--ff-display);font-size:21px;font-weight:600;color:#fff;margin-bottom:22px;line-height:1.36}
+.flag-tbl{width:100%;border-collapse:collapse;font-size:14.5px;color:var(--c-paper-card)}
+.flag-tbl th,.flag-tbl td{padding:14px 10px;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)}
+.flag-tbl th{font-family:var(--ff-mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--c-paper-sink);opacity:.75;font-weight:600;background:rgba(255,255,255,.04)}
+.flag-tbl th:first-child,.flag-tbl td:first-child{text-align:left;font-family:var(--ff-display);font-size:15px;font-weight:500;color:#fff;padding-left:14px}
+.flag-tbl .dom{background:var(--role-emphasis);color:#fff;font-weight:700;border-radius:4px}
+.flag-tbl .meth{background:var(--role-method);color:#fff;font-weight:700;border-radius:4px}
+.flag-note{font-size:14px;color:var(--c-paper-sink);opacity:.78;margin-top:18px;line-height:1.7}
+@media(max-width:600px){.flagship{padding:24px 18px}.flag-tbl{font-size:12.5px}.flag-tbl th,.flag-tbl td{padding:10px 6px}}
+/* ===== module: spectrum-bar ===== */
+.spectrum{margin-top:18px}
+.sp-row{display:grid;grid-template-columns:200px 1fr 130px;gap:14px;align-items:center;padding:10px 0}
+.sp-row+.sp-row{border-top:1px dotted var(--c-rule)}
+.sp-name{font-size:14.5px;color:var(--c-ink)}
+.sp-track{height:24px;background:var(--c-paper-sink);border-radius:4px;position:relative;overflow:hidden}
+.sp-fill{height:100%;background:var(--role-emphasis);border-radius:4px;transition:width 1.1s cubic-bezier(.2,.7,.2,1)}
+.sp-fill.method{background:var(--role-method)}
+.sp-val{font-family:var(--ff-mono);font-size:13px;color:var(--c-ink-soft);text-align:right;white-space:nowrap}
+.sp-val b{font-family:var(--ff-display);font-size:15px;color:var(--c-ink);font-weight:700;margin-right:6px}
+@media(max-width:600px){.sp-row{grid-template-columns:120px 1fr 56px;gap:10px}.sp-name{font-size:13px}}
+/* ===== module: gaps-list ===== */
+.gaps{list-style:none}
+.gaps li{position:relative;padding:18px 22px 18px 56px;margin-bottom:12px;background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:11px;font-size:15px;line-height:1.76;color:var(--c-ink-soft)}
+.gaps li::before{content:"!";position:absolute;left:20px;top:18px;font-family:var(--ff-display);font-weight:700;font-size:18px;color:var(--role-emphasis);width:26px;height:26px;border:2px solid var(--role-emphasis);border-radius:50%;text-align:center;line-height:23px}
+.gaps li b{color:var(--c-ink);font-weight:700}
+</style>
+</head>
+
+<body>
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">01</b><span id="badgename">重點摘要</span></div>
+
+<div class="shell">
+  <main>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker">Join 提點子 · 動機類型學 · 資料研究</div>
+        <h1 class="hero-title">在 Join 連署平台上，被聽見和被認真回應，靠的是<span class="cut">兩件不同的事</span></h1>
+        <p class="hero-scope">跨過 5,000 附議門檻靠組織動員；成案後換到實質回應才看審議品質——兩道門的篩選標準不一樣。</p>
+        <p class="hero-stand">
+          本研究借用一篇分析網路抵制行動的政治學方法（把參與動機分成「表達型／工具型」），搬到台灣的公共政策網路參與平臺（Join），用 2020–2024 年全部 12,844 件提案、加上每件成案的政府回應，去檢驗：<b>什麼樣的提案能跨過門檻、又是什麼樣的提案才換得到政府的實質回應。</b>
+        </p>
+        <div class="hero-numbers">
+          <div class="hn-cell">
+            <div class="hn-lbl">成案率（2020–2024）</div>
+            <div class="hn-big">1.26<span class="unit">%</span></div>
+            <div class="hn-sub">12,844 件提案只有 162 件成案，且五年腰斬（2.0%→0.71%）</div>
+          </div>
+          <div class="hn-cell">
+            <div class="hn-lbl">組織後盾的進場優勢</div>
+            <div class="hn-big">18–20<span class="unit">倍</span></div>
+            <div class="hn-sub">有協會／倡議團體領銜的提案，成案勝算的加權估計</div>
+          </div>
+          <div class="hn-cell">
+            <div class="hn-lbl">成案後仍是罐頭回應</div>
+            <div class="hn-big">47<span class="unit">%</span></div>
+            <div class="hn-sub">跨過門檻不等於問題被處理：近半拿到制式回應</div>
+          </div>
+        </div>
+        <div class="hero-foot">
+          <span class="dot"></span><span>關聯非因果 · 提案特徵由 AI 依明確規則判讀、經兩個模型交叉驗證 · 2026 年 6 月</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="inline-toc" aria-label="目次">
+      <a href="#tldr"><span class="ix">§01</span>重點摘要</a>
+      <a href="#section-02"><span class="ix">§02</span>題目與平台</a>
+      <a href="#section-03"><span class="ix">§03</span>怎麼做</a>
+      <a href="#section-04"><span class="ix">§04</span>三個發現</a>
+      <a href="#section-05"><span class="ix">§05</span>許願池的裁決</a>
+      <a href="#section-06"><span class="ix">§06</span>限制與信度</a>
+      <a href="#sources"><span class="ix">§07</span>資料來源</a>
+    </nav>
+
+    <!-- 01 TL;DR -->
+    <section id="tldr" data-num="01" data-name="重點摘要">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">重點摘要</h2>
+          <p class="sec-lead">一句話：Join 的「進場」和「回應」是兩道門，篩選標準不同——進場吃動員，回應才看品質。</p>
+        </header>
+        <div class="tldr-list">
+          <div class="tldr rv">
+            <div class="num">1</div>
+            <div class="body"><p>台灣的 Join 常被批為「許願池」。我們算 2020–2024 的資料：<b>12,844 件提案只有 162 件（1.26%）成案</b>，成案率還逐年腰斬。台灣民眾黨以「採納率 0.43%」批評它是「摸頭平臺」，數字上站得住。</p></div>
+          </div>
+          <div class="tldr rv">
+            <div class="num">2</div>
+            <div class="body"><p><b>要「進場」（集滿 5,000 附議），靠的是動員，不是品質。</b>有組織後盾的提案，成案勝算約是個人提案的 18–20 倍（還原母體後的估計）；提案的審議品質有幫助、但只是次要。</p><div class="tag">母體成案率：有組織 ≈ 22% vs 高品質但無組織 ≈ 1.4%</div></div>
+          </div>
+          <div class="tldr rv">
+            <div class="num">3</div>
+            <div class="body"><p><b>成案之後，「換到實質回應」才開始看品質。</b>162 件成案有近半（47%）是罐頭回應；而審議品質越高、動機越是工具型，越容易換到實質回應——但這一關組織後盾幫不上忙。</p></div>
+          </div>
+          <div class="tldr rv">
+            <div class="num">4</div>
+            <div class="body"><p><b>兩道門的標準不同（不是方向相反）。</b>最可能換到實質回應的高品質提案，並不會因為品質好就比較容易進場。「許願池」批評只對一半：不是提案爛，而是進場門檻高度由動員決定。</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 題目與平台 -->
+    <section id="section-02" data-num="02" data-name="題目與平台">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">一個來自「抵制研究」的點子，搬到台灣的連署平台</h2>
+        </header>
+        <div class="prose rv">
+          <p>有一篇政治學研究（O'Brien & Kasianenko，2026，《國際政治科學評論》IPSR）在分析網路抵制行動時，把參與動機放在一條光譜上：一端是<b>表達型</b>（為了表態、宣洩、認同），另一端是<b>工具型</b>（為了真的改變某個對象的行為），並把這條抽象光譜拆成幾個可從文字判讀的訊號。那篇研究有個自己也承認的遺憾——只看得到貼文，看不到結果。</p>
+          <p>台灣的 Join（公共政策網路參與平臺）剛好補上這個缺口。它是國家發展委員會 2015 年仿照美國白宮「We the People」設立的：任何人可以提案，通過審核後開放附議，<span class="em">60 天內集滿 5,000 個附議就「成案」，主管機關必須在 60 天內回應</span>。每一份提案都附帶一個客觀結果，於是我們可以把同一套動機分類法搬過來，用真實結果<b>反過來檢驗</b>它。</p>
+          <p>它常被叫「許願池」「摸頭平臺」。我們算 2020–2024 的資料也印證門檻之高：五年 12,844 件提案，只有 162 件（1.26%）成案，而且<b>成案率還在逐年腰斬</b>（2020 年 2.0%，到 2024 年只剩 0.71%）。但後面會看到，「許願池」這個批評只對了一半。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 方法 -->
+    <section id="section-03" data-num="03" data-name="怎麼做">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">怎麼做（白話版）</h2>
+          <p class="sec-lead">抓全部提案 → 抽樣判讀每件提案的特徵 → 兩個 AI 模型交叉驗證 → 把 162 件成案的政府回應也抓下來分類。</p>
+        </header>
+        <div class="prose rv">
+          <p>我們從 Join 官方開放資料把 2020–2024 全部 12,844 件提案抓下來；逐件判讀成本太高，所以用「全部 162 件成案，加上一批隨機抽樣的未成案提案」組成 1,076 件的分析樣本（這種抽法讓成案被刻意放大，所以講「全平台比例」時，會把樣本依抽樣比例還原回母體再估計）。每件提案，依一套明確規則簿標出以下特徵：</p>
+        </div>
+        <div class="schema rv">
+          <div class="schema-h">提案動機類型學：四個判讀維度</div>
+          <div class="schema-sub">CODEBOOK · 編碼單位＝提案文本，只判可觀察文字、不臆測內心</div>
+          <div class="schema-rows">
+            <div class="schema-row">
+              <div class="schema-code">審議品質</div>
+              <div class="schema-name">提案寫得多紮實</div>
+              <div class="schema-def">有沒有點名具體機關或法條？有沒有提供可執行機制、草案、數據？有沒有寫出可衡量的預期結果？（三項合計成 0–3 分）</div>
+            </div>
+            <div class="schema-row">
+              <div class="schema-code">動機型態</div>
+              <div class="schema-name">工具型 vs 表達型</div>
+              <div class="schema-def">底層是為了解決問題（工具型），還是為了表態、宣洩、懲罰（表達型）？注意：引了法條不等於工具型——很多「一律死刑」式提案有工具外形，骨子裡是情緒宣洩。</div>
+            </div>
+            <div class="schema-row">
+              <div class="schema-code">組織後盾</div>
+              <div class="schema-name">誰在推</div>
+              <div class="schema-def">個人單打，還是有職業協會、工會、倡議團體領銜？（依提議者與內文署名判讀）</div>
+            </div>
+            <div class="schema-row">
+              <div class="schema-code zero">群體規模</div>
+              <div class="schema-name">受影響群體</div>
+              <div class="schema-def">這件事潛在影響的群體有多大、多可動員。（此變項信度偏低，見限制一節）</div>
+            </div>
+          </div>
+          <div class="schema-foot">
+            <b>編碼可靠度（跨模型交叉驗證）</b>：原始判讀由一個 AI 模型完成，再用另一個不同模型盲編 200 件比對。最重要的「有沒有組織後盾」很可靠（一致性統計 Kappa 達 0.83）；品質與動機還算可靠（加權 Kappa 0.62／0.65，95% 的分歧只差一級）；但「群體規模」不可靠（Kappa 僅 0.25）。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 發現 -->
+    <section id="section-04" data-num="04" data-name="三個發現">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">三個發現</h2>
+        </header>
+
+        <div class="find rv">
+          <div class="find-top">
+            <span class="find-no">發現 1</span>
+            <h3>要「進場」（跨過門檻），靠的是動員，不是品質</h3>
+          </div>
+          <div class="find-sum">
+            <p>把樣本還原回全平台後估計：<b>有組織後盾的提案，成案機率約是個人提案的一個數量級以上</b>（協會領銜約 18 倍、倡議團體約 20 倍）。換成白話：有組織後盾的提案約 <span class="em">22%</span> 會成案，「寫得很好但沒有組織」的只有約 <span class="em">1.4%</span>。提案的審議品質有幫助，但每高一級只多約一倍勝算——跟組織後盾的量級差很遠。</p>
+          </div>
+          <div class="find-key">
+            <span class="kl">要誠實說的兩個但書</span>
+            <p><b>① 組織是強力加分項，不是唯一通行證</b>——162 件成案裡其實有 127 件（78%）沒有組織後盾，靠的是廣泛情緒共鳴或夠大的群體。<b>② 不要過度解讀「動機」</b>：我們一度看到「越冷靜的工具型動機越不容易成案」，但這是統計假象——工具型動機單獨來看其實是正向的，那個負號只在控制住品質之後才出現，<b>不能</b>推論成「講道理本身降低動員力」。</p>
+          </div>
+        </div>
+
+        <div class="find rv">
+          <div class="find-top">
+            <span class="find-no">發現 2</span>
+            <h3>成案之後，「換到實質回應」才開始看品質</h3>
+          </div>
+          <div class="find-sum">
+            <p>跨過門檻不等於問題被處理。162 件成案的政府回應裡，<b>將近一半（47%）是罐頭式制式回應，只有 20% 給出實質的具體改變</b>。而這一關的篩選標準，跟進場那關不一樣——審議品質越高、動機越工具型，越容易換到實質回應；但組織後盾在這關反而幫不上忙。</p>
+          </div>
+          <div class="block">
+            <div class="cap">實質回應率 · 依提案的輸入端特徵（162 件成案的真實比例）</div>
+            <div class="spectrum">
+              <div class="sp-row rv"><div class="sp-name">表達型動機</div><div class="sp-track"><div class="sp-fill" style="width:16%"></div></div><div class="sp-val"><b>4%</b></div></div>
+              <div class="sp-row rv"><div class="sp-name">審議品質最低</div><div class="sp-track"><div class="sp-fill" style="width:31%"></div></div><div class="sp-val"><b>8%</b></div></div>
+              <div class="sp-row rv"><div class="sp-name">有組織後盾</div><div class="sp-track"><div class="sp-fill" style="width:58%"></div></div><div class="sp-val"><b>15%</b></div></div>
+              <div class="sp-row rv"><div class="sp-name">工具型動機</div><div class="sp-track"><div class="sp-fill" style="width:92%"></div></div><div class="sp-val"><b>24%</b></div></div>
+              <div class="sp-row rv"><div class="sp-name">審議品質最高</div><div class="sp-track"><div class="sp-fill" style="width:100%"></div></div><div class="sp-val"><b>26%</b></div></div>
+            </div>
+          </div>
+          <div class="find-key">
+            <span class="kl">最重要、而且無法排除的替代解釋</span>
+            <p>「品質高→實質回應」很可能其實是被<b>議題本身好不好辦</b>混淆了——機關對「本來就在修法管道上、行政上可處理」的議題給實質回應，而這類議題也剛好傾向被寫得比較工具型。前人研究（陳坤毅、黃心怡分析 2015–2018 年成案回應）正好發現「修法類提案回應比較完整」，那是這個混淆的證據，不是「品質本身換到回應」的證明。本研究是觀察性的，無法分辨這兩者。</p>
+          </div>
+        </div>
+
+        <div class="find rv">
+          <div class="find-top">
+            <span class="find-no">發現 3</span>
+            <h3>兩個階段，重點不同（不是「方向相反」）</h3>
+          </div>
+          <div class="find-sum">
+            <p>把兩道門並排看，篩選標準明顯不同——進場高度吃動員，回應才跟品質掛鉤。要特別說明的是：審議品質在<b>兩個階段都是正向的</b>，所以這不是「標準完全相反」，而是「動員在進場壓過了品質，品質要到回應這一關才浮現」。</p>
+          </div>
+          <div class="flagship rv">
+            <div class="flag-lab">發現 3 · 旗艦對照</div>
+            <div class="flag-h">兩道門，篩選標準不同</div>
+            <table class="flag-tbl">
+              <thead><tr><th>面向</th><th>進場 · 集滿 5,000 附議＝被聽見</th><th>回應 · 換到實質而非罐頭＝被認真對待</th></tr></thead>
+              <tbody>
+                <tr><td>主要靠</td><td class="dom">動員（組織後盾 ≈ 18–20 倍）</td><td class="meth">審議品質正相關</td></tr>
+                <tr><td>審議品質</td><td>正向、次要</td><td>正向、主導</td></tr>
+                <tr><td>組織後盾</td><td>主導</td><td>幫不上忙</td></tr>
+                <tr><td>誰被卡住</td><td>寫得好但沒組織的個人提案（母體成案率 ≈ 1.4%）</td><td>動員型成案（罐頭率較高）</td></tr>
+              </tbody>
+            </table>
+            <p class="flag-note">張力在於：那些最可能在回應端換到行動的高品質提案，並不會因為品質好就比較容易進場——進場主要還是看有沒有人把群眾動員起來。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 裁決 -->
+    <section id="section-05" data-num="05" data-name="許願池的裁決">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">對「許願池」的裁決，以及可以往哪裡走</h2>
+        </header>
+        <div class="prose rv">
+          <p><b>一半對、一半錯。</b>錯的一半：不是提案都很爛——平台上有大量問題導向、寫得很認真的提案。對的一半：它確實常常「沒用」——但主因不是品質差，而是<span class="em">進場門檻高度由動員決定</span>（一個寫得很好但沒有組織的個人提案，母體成案率只有約 1.4%），而且就算成案，將近一半還是撞上罐頭牆。</p>
+          <p>這個樣貌跟美國的 We the People 一致：連署能否成功主要靠社群動員，平台也一樣被批評「只是製造一種有在回應的假象」。Join 比較特別的，是本研究揭出的這個「進場看動員、回應才看品質」的兩階段落差。</p>
+        </div>
+        <div class="block rv">
+          <h3 class="sub-h">如果要改，可以往哪裡走</h3>
+          <div class="prose">
+            <p>（以下是初步建議，仍需更嚴謹的因果分析支撐。）若希望高品質提案不必自帶群眾就能進場：<b>分級／雙軌門檻</b>——在附議量之外增設一條「審議品質」軌，結構完整的提案經審查可直接進入機關回應；<b>機關主動撈取</b>——給機關誘因去回應那些未達門檻但品質高的提案；<b>回應品質課責</b>——公開各機關的「罐頭率」，把形式回應和實質回應分開揭露。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 限制 -->
+    <section id="section-06" data-num="06" data-name="限制與信度">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">06</span>
+          <h2 class="sec-title">老實說的限制</h2>
+          <p class="sec-lead">本研究的數字都經兩個獨立 AI 模型重算確認；但底下的關係多是關聯、不是因果。</p>
+        </header>
+        <ul class="gaps rv">
+          <li><b>這是關聯，不是因果。</b>全文的關係都是觀察性的，提案特徵由 AI 依規則判讀；我們刻意不用「平台篩掉」「獎勵情緒」這類因果或價值判斷的字眼。</li>
+          <li><b>編碼可靠度有高有低。</b>最重要的「有沒有組織後盾」很可靠（Kappa 0.83）、品質與動機還算可靠（加權 Kappa 0.62／0.65）；但「受影響群體規模」不可靠（Kappa 僅 0.25），所以它那個約 1.4 倍的效果只能當很弱的證據看。原始模型也比第二個模型更傾向判「工具型」，所以「工具型佔多數」這點要打折扣。</li>
+          <li><b>是模型之間的一致性，不是人工雙盲。</b>這份交叉驗證測的是「規則簿清不清楚到不同模型會同意」；要到期刊等級，還需要一份人工覆核的小樣本當金標準。</li>
+          <li><b>進場的「倍數」是還原母體後的估計。</b>會隨對照組怎麼選而在約 3 倍到 27 倍間變動，但「動員主導」的方向穩定；回應那關則是 162 件成案的近乎全查。</li>
+          <li><b>第二階段有一個無法排除的混淆。</b>「品質高→實質回應」很可能其實是議題本身好不好辦在起作用（見發現 2）。</li>
+          <li><b>沒有給統計誤差範圍。</b>組織後盾的效果量級夠大、結論穩；品質與動機的較小效果，嚴格說還需要補上信賴區間。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 07 來源 -->
+    <section id="sources" data-num="07" data-name="資料來源">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">07</span>
+          <h2 class="sec-title">資料與文獻</h2>
+        </header>
+        <div class="src-grid">
+          <div class="src rv"><span class="s-n">方法互文</span>O'Brien & Kasianenko（2026），<b>Boycotting Russia: Expressive and instrumental motivations in political consumerism on social media</b>，《國際政治科學評論》（IPSR），DOI:10.1177/01925121261442380。本研究借用的動機分類方法。</div>
+          <div class="src rv"><span class="s-n">在地前人研究</span>陳坤毅、黃心怡，<b>影響政府回應的提案因素——以公共政策網路參與平臺為例</b>（台灣公共行政與公共事務系所聯合會）。分析 2015–2018 成案回應；其「修法類回應較完整」正是本研究第二階段的主要競爭解釋。</div>
+          <div class="src rv"><span class="s-n">研究母體</span><b>Join 提點子開放資料</b>（data.gov.tw dataset 58036 / join.gov.tw toOpenData）。2020–2024 全部 12,844 件提案與成案回應。</div>
+          <div class="src rv"><span class="s-n">平台與批評</span><b>公共政策網路參與平臺</b>，維基百科。平台規則與台灣民眾黨「摸頭平臺／許願池」批評（採納率 0.43%）。</div>
+          <div class="src rv"><span class="s-n">國際對照</span>Dumas 等人，<b>E-petitioning as Collective Political Action in We the People</b>（USF）；Pew Research Center，<b>We the People: Five Years of Online Petitions</b>。連署動員與平台回應的內容分析。</div>
+          <div class="src rv"><span class="s-n">再現材料</span>編碼簿、編碼結果、信度計算、兩階段分析、多模型審查紀錄，皆隨研究儲存庫一併公開。</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <b>在 Join 連署平台上，被聽見和被認真回應靠的是兩件不同的事</b><br>
+    Join 提點子 2020–2024 · 12,844 件提案 · 1,076 件編碼 · 162 件成案回應 · 2026 年 6 月<br>
+    立場：呈現兩階段門的結構差異與其限制，提供一面公民參與健康度的篩檢鏡——標出該改哪裡，而非定論因果。<br>
+    研究儲存庫 · <a href="https://github.com/wcl-dev/research-site">github.com/wcl-dev/research-site</a> · <a href="../">回 weichen's Research 首頁</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const progress=document.getElementById('progress');
+    const badge=document.getElementById('badge');
+    const badgeNum=document.getElementById('badgenum');
+    const badgeName=document.getElementById('badgename');
+    const sections=Array.from(document.querySelectorAll('section[data-num]'));
+    function update(){
+      const docH=document.documentElement.scrollHeight-window.innerHeight;
+      const pct=docH>0?Math.min(100,(window.scrollY/docH)*100):0;
+      if(progress)progress.style.width=pct+'%';
+      const y=window.scrollY+120;let active=sections[0];
+      for(const s of sections){if(s.offsetTop<=y)active=s;}
+      if(active&&badgeNum){
+        badgeNum.textContent=active.dataset.num;
+        badgeName.textContent=active.dataset.name||'';
+        if(window.scrollY>240)badge.classList.add('show');else badge.classList.remove('show');
+      }
+    }
+    window.addEventListener('scroll',update,{passive:true});update();
+  })();
+  (function(){
+    const els=document.querySelectorAll('.rv');
+    if(!els.length||!('IntersectionObserver' in window)){els.forEach(el=>el.classList.add('in'));return;}
+    const io=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    els.forEach(el=>io.observe(el));
+  })();
+</script>
+</body>
+</html>

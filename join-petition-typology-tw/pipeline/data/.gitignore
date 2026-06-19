@@ -1,0 +1,5 @@
+# Heavy + reproducible-from-endpoint; regenerate with fetch_corpus.py
+raw/
+idea_2020_2024.json
+# Kept tracked: fetch_corpus.py, crossers.json (small analytical artifact), coded outputs
+sample.jsonl

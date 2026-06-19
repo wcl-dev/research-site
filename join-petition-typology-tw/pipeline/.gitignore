@@ -1,0 +1,6 @@
+coding/chunks/
+coding/coded.jsonl
+analysis/resp_chunks/
+analysis/responses.jsonl
+coding/val_chunks/
+coding/val_gold.json

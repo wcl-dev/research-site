@@ -49,7 +49,7 @@ consumerism on social media"（DOI 10.1177/01925121261442380）。
 （11、12 月件數更高＝年底消化預算的真實現象，屬訊號非雜訊。）
 
 ## 分析單位與納入門檻
-- 單位：`agency`（共 5,577 個 distinct；`agency_id` 全為 0，不可用）。
+- 單位：`agency`（資料全期共 5,577 個 distinct，2022-H2 窗內 5,359 個；`agency_id` 全為 0，不可用）。
   注意 agency 字串很細（含作業單位，如「台灣電力公司台中發電廠」），
   v1 先以原始 agency 字串為單位，必要時再做部會 roll-up 的 robustness check。
 - 門檻：窗內決標件數 n ≥ 30（確保指紋穩定），其餘進長尾不分型。
