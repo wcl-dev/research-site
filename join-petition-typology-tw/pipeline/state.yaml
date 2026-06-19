@@ -1,7 +1,9 @@
 project: join-petition-typology-tw
 tool: insight-pipeline
-current_stage: review        # multi_model review(2-senior) 完成 + insight_v2 已依 review 修訂
-status: in_progress          # v2 完整;剩 編碼信度正式驗證(≥150雙盲+κ)前置於發表;然後 pipeline-to-publication → generate-research-html
+current_stage: done          # PUBLISHED 2026-06-19
+status: done                 # 全弧 0→published 一 session 完成
+published_url: "https://wcl-dev.github.io/research-site/join-petition-typology-tw/"
+published_commit: "research-site main 923e3b7 (pushed) / randomfindings 2e825ed (local, no remote)"
 brief_path: pipeline/brief.md
 brief_expanded_path: pipeline/brief_expanded.yaml
 codebook_path: pipeline/coding/codebook.md
