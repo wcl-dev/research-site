@@ -311,7 +311,8 @@ for no,nm,href,summ in TH:
 ov_body = (
  sec(1,"scope","母體與方法","母體與方法：什麼算「資訊採購」，以及兩道清洗",
    "本專題是「政府採購人格類型學」的資訊類延伸，沿用相同資料源與「訊號非定罪」的用語界線。",
-   '<div class="prose rv"><p>本研究的「資訊類母體」定義為：標的屬<b>財物或勞務</b>（排除工程類，以剔除捷運號誌、鐵路電氣化等系統工程）、且標案名稱命中資訊關鍵字（系統／軟體／資訊／資通／雲端／資安／網路／程式等）。得到 <b>13,339 件</b>資訊類決標，橫跨 2015–2026。資料採半月公開資料，各年份收錄密度不一，故跨年趨勢僅就「未經公開評選」這一十一年用字一致的欄位進行，並條件化於「公告金額以上」母體。</p></div>'
+   '<div class="prose rv"><p>政府每年以公帑採購資訊系統與服務，這些系統承載稅務、健保、郵政、戶政、交通等核心業務的日常運作。本研究的資訊類母體（13,339 件、清洗後名目約 3,050 億）即是觀察這個市場結構的窗口。</p>'
+   '<p>本研究的「資訊類母體」定義為：標的屬<b>財物或勞務</b>（排除工程類，以剔除捷運號誌、鐵路電氣化等系統工程）、且標案名稱命中資訊關鍵字（系統／軟體／資訊／資通／雲端／資安／網路／程式等）。得到 <b>13,339 件</b>資訊類決標，橫跨 2015–2026。資料採半月公開資料，各年份收錄密度不一，故跨年趨勢僅就「未經公開評選」這一十一年用字一致的欄位進行，並條件化於「公告金額以上」母體。</p></div>'
    '<div class="block rv"><div class="sub-h">清洗一：以行業代號剔除非資訊類</div><div class="prose">'
    '<p>「系統」一詞會誤含重電、環保、醫療設備（例如中欣行屬環境檢測、台灣世曦屬土木工程顧問）。本研究以商工登記的財政部稅籍<b>行業代號</b>判定大額廠商是否屬資訊類：前 30 大金額廠商中，約 <b>738 億（佔帳面 19.5%）為非資訊類</b>。因此金額型陳述採清洗後的乾淨值約 <b>3,050 億</b>；件數型陳述不受影響（污染僅集中於少數大案）。</p></div></div>'
    '<div class="block rv"><div class="sub-h">清洗二：以董監事資料還原控制集團</div><div class="prose">'
@@ -357,15 +358,19 @@ d_body=(
    '</div>')
  + sec(2,"rate","無公競爭採購","無公開競爭採購的比率高於全政府，並呈緩升",None,
    '<div class="find rv"><div class="find-top"><span class="find-no">發現一</span><h3>每五件公告金額以上的資訊採購，約有一件未經公開競爭</h3></div>'
-   '<div class="find-sum"><p>在公告金額以上的資訊類採購中，未經公開評選之佔比於 2018–2025 年介於約 17% 至 23% 之間，並呈緩升。對照全政府同口徑（約 14%），資訊類高出約 1.4 倍。</p></div>'
+   '<div class="find-sum"><p>在公告金額以上的資訊類採購中，未經公開評選之佔比於 2015 年約 20%，2018 年一度降至約 17%，其後回升，2023–2025 年約 22%。對照全政府同口徑（約 14%），資訊類整體高出約 1.4 倍。</p></div>'
    '<div class="block"><div class="cap">未經公開評選佔「公告金額以上資訊類決標」之比率（逐年）</div><div class="spectrum">'
+   '<div class="sp-row rv"><div class="sp-name">2015</div><div class="sp-track"><div class="sp-fill" style="width:19.6%"></div></div><div class="sp-val"><b>19.6%</b>93 / 474</div></div>'
    '<div class="sp-row rv"><div class="sp-name">2018</div><div class="sp-track"><div class="sp-fill" style="width:16.9%"></div></div><div class="sp-val"><b>16.9%</b>125 / 740</div></div>'
    '<div class="sp-row rv"><div class="sp-name">2021</div><div class="sp-track"><div class="sp-fill" style="width:19.6%"></div></div><div class="sp-val"><b>19.6%</b>163 / 833</div></div>'
    '<div class="sp-row rv"><div class="sp-name">2023</div><div class="sp-track"><div class="sp-fill" style="width:22.9%"></div></div><div class="sp-val"><b>22.9%</b>176 / 768</div></div>'
    '<div class="sp-row rv"><div class="sp-name">2025</div><div class="sp-track"><div class="sp-fill" style="width:22.4%"></div></div><div class="sp-val"><b>22.4%</b>189 / 843</div></div>'
    '</div></div>'
-   '<div class="find-key"><span class="kl">說明</span>未經公開評選有合法事由（如原廠專屬、後續擴充），故此比率為值得查核的結構指標，而非違法比率。資訊類高於全政府，與資訊系統建置後維護、擴充多須由原建置者承作的特性一致。</div></div>')
- + sec(3,"pairs","兩種長年配對","機關層級的兩種長年配對","同樣是「多年由同一廠商承作」，其競爭性質可分為兩類。",
+   '<div class="find-key"><span class="kl">說明</span>未經公開評選有合法事由（如原廠專屬、後續擴充），故此比率為值得查核的結構指標，而非違法比率。資訊類高於全政府，與資訊系統建置後維護、擴充多須由原建置者承作的特性一致。</div></div>'
+   '<div class="find rv"><div class="find-top"><span class="find-no">發現二</span><h3>資訊支出較多用於維持既有系統，而非建置新系統</h3></div>'
+   '<div class="find-sum"><p>在標題明確標示用途的案件中，「維持既有」（維護、維運、授權、擴充、升級）的件數約為「建置新系統」（建置、開發、導入）的 <b>3.5 倍</b>（4,278 件 vs 1,219 件）。在未經公開評選的資訊案中，約 <b>45%</b> 的標題即明示為既有系統的維護、授權或擴充（728 / 1,612）。</p></div>'
+   '<div class="find-key"><span class="kl">與轉型的關係</span>採購結構偏向維持既有系統，是「數位轉型不易前進」可在資料中觀察到的一個面向：相當部分的資訊預算用於延續既有系統的運轉，而延續既有系統多須由原建置者承作，兩者相互強化。（其餘約六成案件標題用語較一般，如採購、服務、委託，未必能據以判斷新舊。）</div></div>')
+ + sec(3,"pairs","兩種長年配對","機關層級的兩種長年配對","同樣是「多年由同一廠商承作」，其競爭性質可分為兩類；同一區分亦見於各機關的直接議價結構。",
    '<div class="chains rv">'
    '<article class="chain A"><div class="chain-top"><div class="chain-tag">類型一</div><div class="chain-name">持續單一來源</div><div class="chain-sub">多年承作，且多數以直接議價進行</div></div>'
    '<div class="chain-rows">'
@@ -382,7 +387,17 @@ d_body=(
    '<div class="crow"><div class="lbl">判讀</div><div class="val">較難以本資料指為問題，但同樣使既有廠商不易被替換</div></div>'
    '</div></article>'
    '</div>'
-   '<div class="find-key rv" style="margin-top:30px"><span class="kl">說明</span>兩類配對的治理意義不同：類型一無公開競爭，類型二保有競爭程序。但兩者皆指向「既有廠商延續承作」的結構，這也是新進廠商、在地中小廠與開源方案較難切入的層級。</div>')
+   '<div class="find-key rv" style="margin-top:30px"><span class="kl">說明</span>兩類配對的治理意義不同：類型一無公開競爭，類型二保有競爭程序。但兩者皆指向「既有廠商延續承作」的結構，這也是新進廠商、在地中小廠與開源方案較難切入的層級。</div>'
+   '<div class="block rv"><div class="flagship"><div class="flag-lab">未經公開評選資訊採購 · 件數最多的機關（2015–2026）</div><div class="flag-h">直接議價的資訊採購，集中於少數機關</div>'
+   '<table class="flag-tbl"><thead><tr><th>機關</th><th>直接議價件數</th><th>不同廠商數</th><th>金額</th></tr></thead><tbody>'
+   '<tr><td>中華郵政</td><td>328</td><td>73</td><td>111.5 億</td></tr>'
+   '<tr><td>中央研究院</td><td>166</td><td>110</td><td>31.2 億</td></tr>'
+   '<tr><td>台灣中油</td><td>73</td><td>34</td><td>25.0 億</td></tr>'
+   '<tr><td>交通部臺鐵</td><td>26</td><td class="dom">11</td><td>29.5 億</td></tr>'
+   '<tr><td>飛航服務總臺</td><td>26</td><td class="dom">10</td><td>16.6 億</td></tr>'
+   '<tr><td>經濟部智慧財產局</td><td>18</td><td class="dom">6</td><td>1.3 億</td></tr>'
+   '</tbody></table>'
+   '<p class="flag-note"><b>兩種型態並存：</b>中央研究院直接議價件數雖多，但分散於 110 家廠商（多為各自獨家的科研儀器與系統），接近前述「程序上未公開競爭、但廠商分散」一類；臺鐵、飛航服務總臺、智財局等則由極少數廠商承作（11、10、6 家），屬集中於少數既有廠商一類。兩者均有合法事由，差別在競爭是否集中。</p></div></div>')
  + sec(4,"case","逐年重複的單一來源採購","逐年重複的單一來源採購：以中華郵政的大型主機為例","此例說明系統建置後，後續支出如何長期集中於原廠。",
    '<div class="prose rv" style="margin-bottom:28px"><p>中華郵政的資訊採購分散於約七至八家廠商，其中多數配對的單一來源比偏高。以其 IBM z/OS 大型主機相關採購為例，2015 年起每年大致固定為三筆，且均以未經公開評選方式辦理。</p></div>'
    '<div class="flagship rv"><div class="flag-lab">中華郵政 · IBM 大型主機相關採購（2015 年起）</div><div class="flag-h">系統建置後，後續授權、維護逐年由原廠承作</div>'
@@ -434,11 +449,24 @@ b_body=(
    '<div class="sp-row rv"><div class="sp-name">臺北市（件數）</div><div class="sp-track"><div class="sp-fill alt" style="width:53.8%"></div></div><div class="sp-val"><b>53.8%</b>件數</div></div>'
    '<div class="sp-row rv"><div class="sp-name">臺北＋新北（金額）</div><div class="sp-track"><div class="sp-fill" style="width:83.9%"></div></div><div class="sp-val"><b>83.9%</b>金額</div></div>'
    '</div></div>'
-   '<div class="find-key"><span class="kl">說明</span>台北市登記廠商取得的件數逾半、金額約七成；金額佔比高於件數佔比，顯示規模較大的標案更集中。此為可解析子集的下界——少數登記於非台北的大額為被誤含的非資訊類工程，移除後台北佔比將略升。</div></div>')
+   '<div class="find-key"><span class="kl">說明</span>台北市登記廠商取得的件數逾半、金額約七成；金額佔比高於件數佔比，顯示規模較大的標案更集中。此為可解析子集的下界——少數登記於非台北的大額為被誤含的非資訊類工程，移除後台北佔比將略升。</div>'
+   '<div class="block"><div class="cap">得標廠商登記縣市（前 7，可解析子集）</div>'
+   '<table class="verify"><thead><tr><th>廠商登記縣市</th><th>件數</th><th>金額佔比</th></tr></thead><tbody>'
+   '<tr><td class="vid">臺北市</td><td>6,865</td><td>70.3%</td></tr>'
+   '<tr><td class="vid">新北市</td><td>2,205</td><td>13.5%</td></tr>'
+   '<tr><td class="vid">臺中市</td><td>1,050</td><td>4.3%</td></tr>'
+   '<tr><td class="vid">高雄市</td><td>947</td><td>3.6%</td></tr>'
+   '<tr><td class="vid">桃園市</td><td>437</td><td>1.9%</td></tr>'
+   '<tr><td class="vid">新竹縣</td><td>304</td><td>1.8%</td></tr>'
+   '<tr><td class="vid">臺南市</td><td>344</td><td>0.8%</td></tr>'
+   '</tbody></table>'
+   '<div class="cap" style="margin-top:14px">金額佔比為占可解析縣市總額之比例；其餘縣市合計約 3.8%。</div></div></div>')
  + sec(3,"flow","非台北機關的流向","非台北機關的資訊支出，多數金額由台北廠商承作",None,
    '<div class="find rv"><div class="find-top"><span class="find-no">發現二</span><h3>規模較大的標案，多由台北廠商承作</h3></div>'
    '<div class="find-sum"><p>僅就<b>買方機關不在台北</b>的資訊類決標而言，由台北廠商承作者佔<b>件數 37.5%、金額 71.8%</b>。台北廠商承作這些案件的平均單案金額約 <b>3,340 萬</b>，在地廠商（如臺中約 530 萬、高雄約 760 萬）則明顯較低。</p></div>'
-   '<div class="find-key"><span class="kl">判讀</span>件數上，非台北機關仍有相當比例由在地廠商承作；金額上則多數流向台北廠商。兩者並列指向：<b>小型標案傾向在地承作，規模較大的標案則多由台北廠商承作</b>。在公開資料範圍內，這呈現資訊服務供給能量在地理上的不均；地方機關進行較大規模的資訊建置時，多須向台北廠商採購。</div></div>')
+   '<div class="find-key"><span class="kl">判讀</span>件數上，非台北機關仍有相當比例由在地廠商承作；金額上則多數流向台北廠商。兩者並列指向：<b>小型標案傾向在地承作，規模較大的標案則多由台北廠商承作</b>。在公開資料範圍內，這呈現資訊服務供給能量在地理上的不均；地方機關進行較大規模的資訊建置時，多須向台北廠商採購。</div>'
+   '<div class="prose rv" style="margin-top:28px"><p>對照之下，<b>買方機關遍布全台</b>——各縣市政府、鄉鎮機關、地方學校醫院皆有資訊採購，買方端的地理分布遠較賣方端分散。供需兩端的落差，即是「數位城鄉」的具體樣態：需求在各地，供給能量集中於首都。</p></div>'
+   '<div class="find-key rv" style="margin-top:24px"><span class="kl">一個具體例子</span>臺東縣境內機關的資訊類決標，金額約 <b>72% 由台北廠商承作</b>（約 2,650 萬）；在地臺東廠商雖得標 7 件，金額僅約 395 萬。比例與全國型態一致：在地廠商承接零星小案，較大的標案由台北廠商承作。</div></div>')
  + sec(4,"limits","限制","限制",None,
    '<ul class="gaps rv">'
    '<li><b>登記地非履約地。</b>本文陳述限於得標廠商登記縣市之集中，不外推為人力或履約地集中；大型廠商總部多設台北。</li>'
@@ -466,36 +494,67 @@ a_hero=hero(
    ("獨立廠商","4,424<span class='unit'>家</span>","其餘約 82.9% 件數由獨立廠商承作"),
    ("最大供應集團","中華電信系","件數 5.3% / 金額 8.5%，明顯領先；交通部為最大股東")],
   "資料：商工登記董監事所代表法人席次（經濟部商業發展署／g0v／歐噴整理）")
-a_toc=toc([("method","方法"),("rollup","集團還原"),("largest","最大供應集團"),("reading","如何判讀集中度"),("limits","限制"),("sources","資料來源")])
+a_toc=toc([("method","方法"),("rollup","集團還原"),("largest","最大供應集團"),("reading","如何判讀集中度"),("foundation","法人承包"),("limits","限制"),("sources","資料來源")])
 a_body=(
  sec(1,"method","方法","方法：以董監事「所代表法人」還原控制關係","公司名稱無法看出隸屬；董事會席次的法人代表可較客觀地判定控制關係。",
    '<div class="prose rv">'
    '<p>台灣資訊服務廠商常以不同名稱的子公司分別承作標案，僅看名稱難以判斷是否同屬一集團，且名稱相近不必然同集團。本文採用商工登記的公司董監事資料：每位董事、監察人若由法人指派，其「所代表法人」即顯示於登記中。當某一法人在某公司董事會占有多數或關鍵席次，即可判定其控制關係。例如資拓宏宇董事會 10 席中，中華電信占 5 席。</p>'
    '<p>除逐家查核外，本文亦以「某法人在哪些公司占有董監席位」的反向查詢，找出以不同名稱承作的集團成員，再與廠商名單比對。此法同時排除名稱相近但無控制關係者（例如凌網、凌誠與凌群並無母子關係；華電聯網與中華電信並無持股關係）。</p>'
-   '</div>')
+   '</div>'
+   '<div class="find-key rv" style="margin-top:30px"><span class="kl">怎麼讀董事會</span>以資拓宏宇為例：其董事會 10 席中，<b>5 席由中華電信指派的法人代表擔任</b>，即可判定中華電信為控制方——即使公司名稱不含「中華電信」。本研究即以此種「法人占席」關係，將不同名稱的子公司歸戶至同一集團。</div>')
  + sec(2,"rollup","集團還原","還原控制集團後，集中度較帳面為高",None,
    '<div class="schema rv"><div class="schema-h">集團還原（董監事席次為據）</div><div class="schema-sub">帳面件數 → 還原控制集團後件數 · 商工登記董監事所代表法人</div>'
    '<div class="schema-row"><div class="schema-code">405 → 707</div><div class="schema-name">中華電信系 <span style="color:var(--role-emphasis)">+75%</span></div><div class="schema-def">含資拓宏宇（中華電信占董事會 <b>5/10 席</b>）、中華系統整合（<b>6/6 席</b>）、中華資安國際（3/7 席）、是方電訊。</div></div>'
    '<div class="schema-row"><div class="schema-code">98 → 215</div><div class="schema-name">宏碁系 <span style="color:var(--role-emphasis)">+119%</span></div><div class="schema-def">含安碁資訊（宏碁占 3/7 席）、宏碁雲架構（安碁占 4/4 席）。資安子公司之名稱不顯示其隸屬。</div></div>'
    '<div class="schema-row"><div class="schema-code">235 → 394</div><div class="schema-name">精誠系 <span style="color:var(--role-emphasis)">+68%</span></div><div class="schema-def">含康和資訊（精誠占 4/4 席）、泰鋒電腦、藍新資訊。另：駿永屬驊宏資通、國眾屬大眾投控、三商電腦屬三商投控，名稱均不顯示其隸屬。</div></div>'
    '<div class="schema-foot"><b>但長尾為實：</b>即使完全還原，前 14 大集團合計亦僅佔 <b>17.3% 件數 / 22.2% 金額</b>，其餘 <b>82.9% 件數由 4,424 家獨立廠商</b>承作（平均 2.5 件／家）。前 4 大集團合計約 11%、前 8 大約 14%（件數），尚不構成由少數集團把持的全國市場。</div></div>'
+   '<div class="block rv"><div class="cap">還原控制集團後 · 前 14 大集團（資訊類決標，2015–2026）</div>'
+   '<table class="verify"><thead><tr><th>集團</th><th>件數</th><th>金額</th><th>含括實體（例）</th></tr></thead><tbody>'
+   '<tr><td class="vid">中華電信系</td><td>707</td><td>321 億</td><td>中華電信、資拓宏宇、中華系統整合、中華資安</td></tr>'
+   '<tr><td class="vid">精誠系</td><td>394</td><td>77 億</td><td>精誠資訊、科技整合、軟體服務、康和資訊</td></tr>'
+   '<tr><td class="vid">宏碁系</td><td>215</td><td>54 億</td><td>宏碁資訊、安碁資訊、宏碁雲架構</td></tr>'
+   '<tr><td class="vid">叡揚資訊</td><td>149</td><td>21 億</td><td>（獨立）</td></tr>'
+   '<tr><td class="vid">凌群電腦</td><td>122</td><td>41 億</td><td>（獨立）</td></tr>'
+   '<tr><td class="vid">聯華神通系</td><td>108</td><td>34 億</td><td>神通資訊、資通電腦</td></tr>'
+   '<tr><td class="vid">關貿網路</td><td>102</td><td>15 億</td><td>（財政部官股）</td></tr>'
+   '<tr><td class="vid">工研院</td><td>91</td><td>35 億</td><td>（政府捐助法人）</td></tr>'
+   '<tr><td class="vid">敦陽系</td><td>86</td><td>15 億</td><td>敦陽科技、敦陽資訊</td></tr>'
+   '<tr><td class="vid">大眾投控</td><td>81</td><td>24 億</td><td>國眾電腦</td></tr>'
+   '<tr><td class="vid">遠傳系</td><td>79</td><td>58 億</td><td>遠傳系統整合、數聯資安</td></tr>'
+   '<tr><td class="vid">資策會</td><td>70</td><td>34 億</td><td>（政府捐助法人）</td></tr>'
+   '<tr><td class="vid">三商投控</td><td>68</td><td>110 億</td><td>三商電腦（含大型主機）</td></tr>'
+   '<tr><td class="vid">驊宏資通</td><td>40</td><td>3.5 億</td><td>駿永資訊</td></tr>'
+   '</tbody></table>'
+   '<div class="cap" style="margin-top:14px">其餘 11,060 件（約 83% 件數）由約 4,424 家獨立廠商承作；金額型集中度高於件數，反映大型標案更集中。</div></div>'
    '<div class="prose rv" style="margin-top:30px"><p>以帳面廠商家數衡量競爭，會因子公司分別命名而低估集中度（中華電信系由 405 件增為 707 件、宏碁系由 98 件增為 215 件）。但還原後集中度的提高約為三至四成，市場仍存在為數眾多的獨立廠商；因此較準確的描述是「集中度被部分低估」，而非「市場由少數集團隱藏式把持」。</p></div>')
  + sec(3,"largest","最大供應集團","規模明顯領先的供應集團為中華電信集團",None,
    '<div class="find rv"><div class="find-top"><span class="find-no">發現</span><h3>最大的單一供應集團，最大股東為交通部</h3></div>'
    '<div class="find-sum"><p>還原後，中華電信集團為規模明顯領先的供應集團，單一集團佔資訊類決標<b>件數 5.3% / 金額 8.5%</b>，居首且與其後集團有明顯差距；而中華電信由<b>交通部為最大股東（董事會 8/13 席）</b>。其承作對象包含多項核心系統——財政部財政資訊中心（約 64 億）、健保署、中華郵政、臺鐵票務、台電、公路監理、航港、氣象等。各機關的單一來源比不一（如公路總局較高、健保署多為公開競爭）。</p></div>'
-   '<div class="find-key"><span class="kl">說明</span>此一觀察的意義在於：政府資訊採購最大的單一供應方，是一個由政府為最大股東的集團。其是否承作多以公開競爭進行，因機關而異；本文呈現的是供給端的結構事實，不就個案作評價。</div></div>')
+   '<div class="block"><div class="cap">中華電信系承作的主要機關（資訊類決標）</div>'
+   '<table class="verify"><thead><tr><th>機關</th><th>件數</th><th>金額</th><th>承載的系統（例）</th></tr></thead><tbody>'
+   '<tr><td class="vid">財政部財政資訊中心</td><td>16</td><td>64 億</td><td>稅務資訊系統</td></tr>'
+   '<tr><td class="vid">衛福部中央健保署</td><td>71</td><td>37 億</td><td>健保資訊系統</td></tr>'
+   '<tr><td class="vid">中華郵政</td><td>43</td><td>27 億</td><td>郵務／金融資訊</td></tr>'
+   '<tr><td class="vid">交通部臺鐵</td><td>15</td><td>20 億</td><td>票務系統維運</td></tr>'
+   '<tr><td class="vid">交通部公路總局</td><td>18</td><td>12 億</td><td>公路監理委外</td></tr>'
+   '<tr><td class="vid">交通部航港局</td><td>23</td><td>8 億</td><td>航港資訊</td></tr>'
+   '</tbody></table></div>'
+   '<div class="find-key"><span class="kl">說明</span>政府資訊採購最大的單一供應方，是一個由政府為最大股東的集團，且其承載的多為稅務、健保、郵政、交通等核心系統。各機關的單一來源比不一（如公路總局較高、健保署多為公開競爭）；本文呈現的是供給端的結構事實，不就個案作評價。</div></div>')
  + sec(4,"reading","如何判讀集中度","如何判讀此處的集中度","集中度的高低取決於以哪一層（實體或集團）、哪一維（件數或金額）衡量。",
    '<div class="prose rv">'
    '<p>「政府資訊採購是否被少數廠商寡占」沒有單一答案，取決於衡量方式。以帳面實體、件數衡量，集中度低（前 8 大約 11%）；以還原集團、金額衡量，集中度較高（前 8 大約 19%），且大型標案更集中。兩者並非矛盾，而是反映同一市場的不同切面：商品化的硬體採購分散於眾多廠商，規模較大的系統建置與服務則集中於少數集團。</p>'
    '<p>因此本文的結論是雙層結構：<b>一個規模明顯領先的供應集團、十餘個集團骨幹、以及為數眾多的獨立廠商</b>。競爭限制主要不在「全國市佔」，而在大型標案的集中與機關層級的承作延續（後者見面向一）。</p>'
    '</div>')
- + sec(5,"limits","限制","限制",None,
+ + sec(5,"foundation","法人承包","另一條供給管道：政府捐助法人","除商業廠商外，政府亦將相當部分資訊業務委由自家捐助法人承作。",
+   '<div class="prose rv"><p>工業技術研究院（91 案，跨 24 個機關）與資訊工業策進會（70 案，跨 15 個機關）是資訊採購的承作大戶。其主要委託來源為經濟部體系與數位發展部——經濟部工業局（43 案、約 27 億）、數位發展部數位產業署（25 案、約 21 億）、經濟部產業發展署等。</p>'
+   '<p>值得一提的是，<b>數位發展部自身</b>金額最大的兩個資訊承作對象，正是資策會與工研院。委由捐助法人承作多以政策性計畫名義進行，未必經一般公開競爭。此處非評價法人是否適任，而是指出：在商業廠商的市場之外，還有一條「委由自家法人」的供給管道，同樣不經開放競爭。對「為何開放競爭、開源或新進廠商不易擴大」而言，這是供給端結構的一部分。</p></div>')
+ + sec(6,"limits","限制","限制",None,
    '<ul class="gaps rv">'
    '<li><b>還原僅涵蓋可識別的 14 個最大集團。</b>長尾四千餘家中可能仍有未捕捉的中小型集團，故實際集中度可能再略高；「長尾為實」的量級結論不變。</li>'
    '<li><b>控制關係以董事會法人席次近似。</b>本文以「最大股東＋董事會多數席次」判定控制，非精確持股百分比；持股顯著但未過半者，另以集團聯屬標示而非歸入控制。</li>'
    '<li><b>登記資料非即時。</b>商工登記為登記資料，反映登記時點之董監結構，可能與最新狀況有時間差。</li>'
    '</ul>')
- + sec(6,"sources","資料來源","資料來源",None, sources(
+ + sec(7,"sources","資料來源","資料來源",None, sources(
    '<div class="src"><span class="src-k">姊妹研究</span>本文為「政府資訊採購的市場結構」專題之面向三，與導讀及其他三篇分論共用母體與用語界線。</div>')))
 page("ownership/index.html",
   "資訊採購的供給端組成：以董監事資料還原控制集團",
@@ -537,7 +596,16 @@ c_body=(
    '<div class="crow"><div class="lbl">判讀</div><div class="val">客製服務多採比品質選商，非一律比價</div></div>'
    '</div></article>'
    '</div>'
-   '<div class="find-key rv" style="margin-top:30px"><span class="kl">說明</span>資訊類整體採最低標約 54%（全政府約 58%），並未高於全政府；而最嚴格的「最有利標」資訊類約 3.3%、全政府約 2.9%，同樣稀少。資訊服務的比品質選商，多以限制性招標下的「準用最有利標」進行，而非公開的最有利標。</div>')
+   '<div class="find-key rv" style="margin-top:30px"><span class="kl">說明</span>資訊類整體採最低標約 54%（全政府約 58%），並未高於全政府；而最嚴格的「最有利標」資訊類約 3.3%、全政府約 2.9%，同樣稀少。資訊服務的比品質選商，多以限制性招標下的「準用最有利標」進行，而非公開的最有利標。</div>'
+   '<div class="block rv"><div class="sub-h">「最有利標」其實有三種，嚴謹度不同</div>'
+   '<div class="prose"><p>「比品質」並非單一制度。資訊類的「比品質」多屬<b>準用最有利標</b>，而這幾乎全部發生在<b>限制性招標之內</b>（3,726 件全數為限制性）；真正公開、由評選委員會完整評分的<b>最有利標</b>僅 441 件（3.3%）。換言之，資訊服務的品質選商主要在限縮競爭的程序中進行，而非公開競爭——此與面向一（限制性招標佔比偏高）相互呼應。</p></div>'
+   '<table class="verify"><thead><tr><th>決標方式</th><th>件數</th><th>是否在限制性招標內</th><th>均案金額</th></tr></thead><tbody>'
+   '<tr><td class="vid">最有利標（公開、最嚴謹）</td><td>441</td><td>否（公開競爭）</td><td>約 1.3 億</td></tr>'
+   '<tr><td class="vid">準用最有利標</td><td>3,726</td><td class="ok">是（100%）</td><td>約 3,700 萬</td></tr>'
+   '<tr><td class="vid">參考最有利標精神</td><td>1,945</td><td>否（多為小額）</td><td>約 57 萬</td></tr>'
+   '<tr><td class="vid">最低標</td><td>7,225</td><td>部分（約 22%）</td><td>約 2,500 萬</td></tr>'
+   '</tbody></table>'
+   '<div class="cap" style="margin-top:14px">最嚴謹的公開最有利標案件雖少，但平均金額最大（約 1.3 億）；準用最有利標次之（約 3,700 萬）。</div></div>')
  + sec(3,"reading","常見推論的對照","常見推論與資料的對照",None,
    '<table class="verify rv"><thead><tr><th style="width:230px">常見推論</th><th>資料中的對照</th><th style="width:96px">判定</th></tr></thead><tbody>'
    '<tr><td class="vid">資訊採購偏向低價，<br>因而品質不佳</td><td>低價標集中於商品化的硬體（財物類 82% 最低標，屬合理）；客製服務多採比品質（勞務類準用最有利標 54%）。資訊類採最低標之比例並不高於全政府。</td><td class="upd">不成立</td></tr>'
