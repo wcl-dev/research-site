@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夥伴，還是基礎建設？公民社會作為科技巨頭的基礎建設 — 以 Meta 與台灣事實查核組織為例</title>
+<!-- og:auto:start -->
+<meta name="description" content="當一家全球平台需要維護資訊品質，它會公開招募獨立的事實查核組織、稱其為『倚賴』的夥伴；等到不再需要，同一批夥伴又在同一家公司口中變成『政治偏見』與『審查工具』。本篇以 Meta 與台灣事實查核組織（台灣事實查核中心、MyGoPen、Cofacts）為單一案例，逐字對照平台在不同時間點的公開發言與行為：查核組織持續產出的判斷，早已被接進平台判斷內容真偽的系統核心，成為平台治理不可見的『地基』——而地基可被單方停用。全球層次有『同一套計畫、兩種說法』的原話對照；台灣層次則只有沉默與合約到期風險，是否退場至今未定。方法上守住『查不到就記查不到』，刀口對準平台的行為、不對被工具化的查核組織；動機的最終判斷與更大的普遍性留待系列後續。為『平台與公民社會』系列的開篇。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="weichen&#x27;s Research">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="夥伴，還是基礎建設？——Meta 與台灣事實查核組織的承諾、取用與撤離">
+<meta property="og:description" content="當一家全球平台需要維護資訊品質，它會公開招募獨立的事實查核組織、稱其為『倚賴』的夥伴；等到不再需要，同一批夥伴又在同一家公司口中變成『政治偏見』與『審查工具』。本篇以 Meta 與台灣事實查核組織（台灣事實查核中心、MyGoPen、Cofacts）為單一案例，逐字對照平台在不同時間點的公開發言與行為：查核組織持續產出的判斷，早已被接進平台判斷內容真偽的系統核心，成為平台治理不可見的『地基』——而地基可被單方停用。全球層次有『同一套計畫、兩種說法』的原話對照；台灣層次則只有沉默與合約到期風險，是否退場至今未定。方法上守住『查不到就記查不到』，刀口對準平台的行為、不對被工具化的查核組織；動機的最終判斷與更大的普遍性留待系列後續。為『平台與公民社會』系列的開篇。">
+<meta property="og:url" content="https://wcl-dev.github.io/research-site/willing-partner-tw/">
+<meta property="og:image" content="https://wcl-dev.github.io/research-site/willing-partner-tw/og.png?v=6">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="夥伴，還是基礎建設？——Meta 與台灣事實查核組織的承諾、取用與撤離">
+<meta name="twitter:description" content="當一家全球平台需要維護資訊品質，它會公開招募獨立的事實查核組織、稱其為『倚賴』的夥伴；等到不再需要，同一批夥伴又在同一家公司口中變成『政治偏見』與『審查工具』。本篇以 Meta 與台灣事實查核組織（台灣事實查核中心、MyGoPen、Cofacts）為單一案例，逐字對照平台在不同時間點的公開發言與行為：查核組織持續產出的判斷，早已被接進平台判斷內容真偽的系統核心，成為平台治理不可見的『地基』——而地基可被單方停用。全球層次有『同一套計畫、兩種說法』的原話對照；台灣層次則只有沉默與合約到期風險，是否退場至今未定。方法上守住『查不到就記查不到』，刀口對準平台的行為、不對被工具化的查核組織；動機的最終判斷與更大的普遍性留待系列後續。為『平台與公民社會』系列的開篇。">
+<meta name="twitter:image" content="https://wcl-dev.github.io/research-site/willing-partner-tw/og.png?v=6">
+<!-- og:auto:end -->
+<meta name="description" content="公民社會是不是科技巨頭的治理基礎建設？一份證據審計：事實查核者的產出被接進 Meta 判斷內容真偽的系統核心，卻能被單方抽走。以 Meta 與台灣事實查核組織為案例——能被一聲不響關掉的，不是夥伴，是基礎建設。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Serif+TC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ---------- brand tokens (subset consumed by this report) ---------- */
+:root{
+  --c-paper:#fbfaf6; --c-paper-card:#f5f3ec; --c-paper-sink:#efece4;
+  --c-ink:#333333; --c-ink-soft:#555555; --c-ink-faint:#888888;
+  --c-watermark:#aaaaaa; --c-rule:#cfc9b9; --c-rule-soft:#dfd9c5;
+  --role-accent:#b03a2e;
+  --ff-display:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
+  --maxw-prose:680px; --maxw-content:920px;
+  --lh-prose-cjk:1.9;
+}
+
+/* ---------- base reset ---------- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--c-paper); color:var(--c-ink);
+  font-family:var(--ff-display); font-size:15px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+body::before{
+  content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
+  opacity:.18; mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+::selection{background:var(--role-accent);color:var(--c-paper)}
+a{color:var(--role-accent);text-decoration:none;border-bottom:1px solid currentColor;transition:opacity .15s}
+a:hover{opacity:.65}
+
+/* ---------- progress + badge ---------- */
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--role-accent);z-index:200;transition:width .12s linear}
+.badge{position:fixed;top:18px;right:24px;z-index:100;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;color:var(--c-ink);opacity:0;transition:opacity .25s;padding:6px 12px;background:var(--c-paper);border:1px solid var(--c-rule);border-radius:99px}
+.badge.show{opacity:.8}
+.badge b{color:var(--role-accent);font-weight:700;margin-right:8px}
+
+/* ---------- layout ---------- */
+main{display:block}
+.wrap{max-width:var(--maxw-prose);margin:0 auto;padding:0 28px}
+.wrap.wide{max-width:var(--maxw-content)}
+section{padding:96px 0;position:relative}
+section+section{border-top:1px solid var(--c-rule)}
+
+/* ---------- cover ---------- */
+.cover{min-height:82vh;padding:0;display:flex;align-items:flex-start;border-bottom:1px solid var(--c-rule)}
+.cover-inner{max-width:760px;margin:0 auto;padding:104px 28px 70px;width:100%}
+.meta{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-ink);opacity:.5;font-weight:600;margin-bottom:54px;display:flex;align-items:center;gap:14px}
+.meta::after{content:"";flex:1;max-width:240px;height:1px;background:var(--c-rule)}
+h1.title{font-family:var(--ff-display);font-size:clamp(48px,9vw,104px);font-weight:700;line-height:1.02;letter-spacing:-.03em;margin-bottom:30px;color:var(--c-ink)}
+h1.title .q{color:var(--role-accent)}
+.subtitle{font-size:clamp(19px,2.7vw,26px);font-weight:500;line-height:1.44;max-width:640px;margin-bottom:48px;color:var(--c-ink);opacity:.9;letter-spacing:-.005em;border-left:3px solid var(--role-accent);padding-left:18px}
+.cover-lead{font-size:17px;line-height:1.85;color:var(--c-ink);opacity:.84;max-width:600px}
+.cover-lead b{font-weight:700;opacity:1}
+.cover-lead .ref{display:block;margin-top:24px;padding-top:20px;border-top:1px solid var(--c-rule);font-size:13.5px;line-height:1.7;opacity:.62}
+
+/* ---------- section headers ---------- */
+.sec-meta{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--role-accent);font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.sec-meta b{color:var(--c-ink);opacity:.5;font-weight:500;letter-spacing:.18em}
+h2.sec-title{font-family:var(--ff-display);font-size:clamp(25px,3.8vw,36px);font-weight:600;line-height:1.28;letter-spacing:-.015em;margin-bottom:26px;color:var(--c-watermark)}
+h2.sec-title em{color:var(--role-accent);font-style:normal}
+.sec-lead{font-size:19px;line-height:1.7;color:var(--c-ink);opacity:.82;margin-bottom:48px;font-weight:500}
+.sec-lead b{font-weight:700;opacity:1;color:var(--role-accent)}
+
+/* ---------- prose ---------- */
+.lf{max-width:640px}
+.lf p{font-size:15.5px;line-height:var(--lh-prose-cjk);margin:20px 0;color:var(--c-ink)}
+.lf p b{font-weight:700}
+.lf .q{color:var(--role-accent);font-weight:500}
+.lf h3{font-size:15px;font-weight:700;margin:38px 0 6px;letter-spacing:.01em}
+.lf h3 .n{color:var(--role-accent);margin-right:10px}
+.ledger{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:14px 0 8px;font-size:14px;line-height:1.7}
+.ledger .lk{color:var(--role-accent);font-weight:700;white-space:nowrap}
+
+/* ---------- pre-viz guide ---------- */
+.pre-viz{margin:0 auto 44px;max-width:640px;font-size:16px;line-height:1.85;color:var(--c-ink);opacity:.88}
+.pre-viz p{margin:14px 0}
+.pre-viz b{font-weight:700;opacity:1;color:var(--role-accent)}
+
+/* ---------- CENTRAL VIZ · say-do 對照 ---------- */
+.saydo{margin:12px 0 0}
+.sd-colhead{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:14px}
+.sd-colhead div{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;padding:4px 11px;border:1px solid var(--c-ink);justify-self:start}
+.sd-colhead .h-in{color:var(--c-ink);opacity:.7}
+.sd-colhead .h-out{color:var(--c-paper);background:var(--role-accent);border-color:var(--role-accent)}
+.sd-group{margin-bottom:34px;border-top:2px solid var(--c-ink);padding-top:14px}
+.sd-gtitle{font-size:13px;font-weight:700;margin-bottom:14px;letter-spacing:.06em;text-transform:uppercase;opacity:.85}
+.sd-gtitle .gk{color:var(--role-accent);margin-right:10px}
+.sd-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:14px}
+.sd-cell{font-size:13.5px;line-height:1.7;background:var(--c-paper-card);border:1px solid var(--c-rule);padding:11px 14px 13px}
+.sd-cell .who{display:block;font-size:11px;letter-spacing:.08em;color:var(--c-ink-faint);margin:-11px -14px 10px;padding:5px 14px;border-bottom:1px dashed var(--c-rule);text-transform:uppercase}
+.sd-in{color:var(--c-ink)}
+.sd-out{color:var(--c-ink);border-left:3px solid var(--role-accent)}
+.sd-out .quo{color:var(--role-accent);font-weight:500}
+.sd-empty{border:1.5px dashed var(--role-accent);padding:16px 14px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;line-height:1.75;color:var(--role-accent);opacity:.9;background:repeating-linear-gradient(135deg,transparent,transparent 8px,rgba(176,58,46,.05) 8px,rgba(176,58,46,.05) 16px)}
+.sd-note{margin-top:8px;font-size:13px;line-height:1.75;color:var(--c-ink-soft);border-left:2px solid var(--c-rule);padding-left:14px}
+
+/* ---------- takeaway ---------- */
+.takeaway{margin:44px auto 0;max-width:640px;padding:24px 28px;border:1px solid var(--c-ink);background:var(--c-paper)}
+.takeaway p{font-size:15.5px;line-height:1.8;color:var(--c-ink)}
+.takeaway p+p{margin-top:12px}
+.takeaway b{font-weight:700;color:var(--role-accent)}
+.takeaway .tk-line{font-size:13.5px;opacity:.7;margin-top:18px;padding-top:14px;border-top:1px solid var(--c-rule);line-height:1.66}
+
+/* ---------- levers ---------- */
+.lever{max-width:640px;margin:26px 0;padding-left:44px;position:relative}
+.lever .lv-n{position:absolute;left:0;top:1px;font-size:15px;font-weight:700;color:var(--role-accent)}
+.lever h4{font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.5}
+.lever p{font-size:14.5px;line-height:1.78;color:var(--c-ink);opacity:.92}
+.lever .tag{display:inline-block;font-size:12px;letter-spacing:.04em;color:var(--c-ink-soft);text-transform:uppercase;font-weight:600;border:1px solid var(--c-rule);border-left:3px solid var(--role-accent);background:var(--c-paper-card);padding:2px 9px;margin-bottom:4px}
+
+/* ---------- boundary list ---------- */
+.bd{max-width:640px}
+.bd li{list-style:none;font-size:14.5px;line-height:1.78;padding:9px 0 9px 22px;position:relative;border-bottom:1px solid var(--c-rule-soft);color:var(--c-ink)}
+.bd li::before{content:"—";position:absolute;left:0;color:var(--role-accent)}
+.bd li b{font-weight:700;color:var(--role-accent)}
+
+/* ---------- sources ---------- */
+.src-grid{max-width:var(--maxw-content);columns:2;column-gap:44px;font-size:13px;line-height:1.72}
+.src-grid .src{break-inside:avoid;margin-bottom:14px;color:var(--c-ink-soft)}
+.src-grid .src b{color:var(--c-ink);font-weight:600}
+
+/* ---------- footer ---------- */
+footer{background:var(--c-ink);color:var(--c-ink-faint);padding:48px 28px;font-size:13.5px;line-height:1.9}
+footer .ft-inner{max-width:var(--maxw-content);margin:0 auto}
+footer b{color:var(--c-paper-card);font-weight:700}
+footer a{color:var(--c-paper-card);border-bottom:1px solid rgba(255,255,255,.25)}
+
+/* ---------- responsive ---------- */
+@media (max-width:760px){
+  .cover-inner{padding:60px 22px 50px}
+  section{padding:60px 0}
+  .sd-row,.sd-colhead{grid-template-columns:1fr;gap:12px}
+  .sd-colhead{display:none}
+  .src-grid{columns:1}
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">01</b><span id="badgename">楔子</span></div>
+
+<main>
+
+  <!-- ===== 01 COVER ===== -->
+  <section class="cover" data-num="01" data-name="楔子">
+    <div class="cover-inner">
+      <div class="meta">平台與公民社會 · 系列楔子 · 2026</div>
+      <h1 class="title">夥伴，還是<span class="q">基礎建設？</span></h1>
+      <p class="subtitle">公民社會作為科技巨頭的基礎建設——以 Meta 與台灣事實查核組織為例</p>
+      <div class="cover-lead">
+        <p>一家全球平台維護資訊品質時，會公開招募獨立的事實查核組織，稱它們是自己「倚賴」的專業夥伴；等到不再需要，同一批夥伴又會在同一家公司口中，變成「政治偏見」與「審查工具」。但「夥伴」這個詞，可能從一開始就用錯了。查核組織本身不歸 Meta 所有；可是它們持續產出的判斷，早已被接進平台判斷內容真偽的系統核心，成了平台治理不可見的<b>外部地基</b>。地基有一個特徵：平時看不見，只有被抽走時才現形。這篇報告，就從 Meta 抽走地基的那一刻看回去；用的不是推測，是<b>可以逐字比對的公開紀錄</b>。</p>
+        <div class="ref">
+          本文以 Meta 與台灣查核組織這<b>一個案例</b>為據，所有承重判斷都對照公開紀錄，查不到的就照實說查不到。文章有立場，但刀口對準的是平台的行為、不是被它工具化的查核組織；至於動機的最終判斷與更大的普遍性，留待系列後續。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 摘要 ===== -->
+  <section data-num="02" data-name="摘要">
+    <div class="wrap">
+      <div class="sec-meta"><span>§02</span> <b>五個要點</b></div>
+      <h2 class="sec-title">一頁看完這篇在說什麼</h2>
+      <p class="sec-lead">如果只有五分鐘，先讀這五句。每一句在後文都有完整的證據、引文與但書。</p>
+      <div class="lf">
+        <p><b>招募時是「夥伴」，收手時是「審查工具」。</b>同一家公司、同一套計畫，Meta 從<span class="q">「我們倚賴事實查核者」</span>（2016–2021），翻臉成<span class="q">「它變成一種審查工具」</span>（2025）——中間那套機制其實一個字都沒改，改的只是說法。</p>
+        <p><b>這些組織的判斷，早被接進 Meta 判斷內容真偽的系統。</b>用 Meta 自己的話：查核員的每一則評級，都成了系統辨認相似貼文、加警示、降觸及的依據——光一場美國大選期間，就掛了逾 1.8 億則警示。</p>
+        <p><b>收手時只承諾「以後不做」，對「已經拿走的」卻隻字不提。</b>八年累積的查核標註、據此養成的比對系統要怎麼處置——公告與報導裡，查不到任何交代。</p>
+        <p><b>對台灣，連一句退場的話都沒有——是否退場也還未定。</b>能查到的只有沉默、2026 年 1 月的合約到期風險，以及台灣事實查核中心帳上「Meta 佔一半收入」的高度依賴。</p>
+        <p><b>但查核組織不是只能等救濟。</b>他們握有平台拿不走的東西——開放的程式碼、在地的人與知識、政府的需求；而反過來，平台也留下了收不回去的（開源的碼、移交的機構、訓練出的人）。一句話：<b>能撤銷的是錢與權限，已經釋出的收不回來。</b></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 承諾 ===== -->
+  <section data-num="03" data-name="承諾">
+    <div class="wrap">
+      <div class="sec-meta"><span>§03</span> <b>第一幕 · 2016–2021</b></div>
+      <h2 class="sec-title">承諾：<em>進場時的語言</em></h2>
+      <p class="sec-lead">Meta 招募事實查核夥伴時的語言，有完整的逐字紀錄。</p>
+      <div class="lf">
+        <p>故事要從招募說起。2016 年 12 月 15 日，時任新聞動態副總裁 Adam Mosseri 宣布 Facebook 啟動一項計畫，<span class="q">「與 Poynter 國際事實查核準則的簽署組織合作」</span>。兩年後，語氣更進一步。產品經理 Tessa Lyons 在 2018 年 6 月坦承，Meta 無法單靠人工查核解決假訊息、必須與外部組織協作；同年 9 月，她把話說得更白——Meta<span class="q">「倚賴事實查核者發揮其新聞專業與情境判斷」</span>，並要<span class="q">「充分運用來自查核夥伴的每一則評級」</span>。關鍵詞是「倚賴」：在 Meta 自己的敘述裡，夥伴的評級是系統的輸入，不是平台施予查核者的恩惠。</p>
+        <p>台灣的版本，是同一套語言的在地翻版。2019 年 6 月 19 日，Facebook 在記者會上宣布台灣事實查核中心成為它在台第一個、全球第 54 個查核夥伴，策略夥伴經理 Alice Budisatrijo 說：<span class="q">「我們也很高興宣布與台灣事實查核中心合作……同時也期望未來有更多機會能進一步擴大該計畫在當地的規模。」</span>隔年 MyGoPen 加入時，台灣公共政策經理陳奕儒再補一句：<span class="q">「Facebook 也期待未來有機會與更多在地的事實查證單位合作。」</span>到了 2021 年 8 月，這套「期待擴大」的語言仍在延續——台灣事實查核中心入選 Facebook 全球 14 家夥伴的加速器計畫，官方說法是<span class="q">「期望幫助獨立事實查證夥伴拓展更廣大的閱聽眾」</span>。</p>
+        <p>而承諾期給出的，不只是漂亮話。美國全國公共廣播電台（NPR）在 2019 年 12 月的現場報導記下一個細節：當時台灣事實查核中心用的是 Facebook 提供的後台工具，主動追蹤瘋傳的貼文——這正是幾年後會被收回的那一類存取權，在 2019 年的樣子。同一時期，LINE 也把在地公民社會拉了進來：2019 年 7 月「LINE 訊息查證」上線，一口氣接上四家查核組織。</p>
+        <p>值得記下的是，2019 年那場在地宣告，其實已經把整套機制的骨架講完了：「移除／降觸及／告知」三個主軸、國際事實查核聯盟（IFCN）的認證門檻、不實內容降級、累犯專頁取消廣告獲利。把它跟 Meta 透明中心 2025–2026 年的現行文字擺在一起，幾乎一字不差。也就是說，接下來七年裡真正改變的從來不是這套機制——是描述它的說法。而要看清說法怎麼變，得先弄懂：夥伴的產出，究竟流進了 Meta 的哪裡。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 取用與撤離 ===== -->
+  <section data-num="04" data-name="取用與撤離">
+    <div class="wrap">
+      <div class="sec-meta"><span>§04</span> <b>第二幕 · 行動時的紀錄</b></div>
+      <h2 class="sec-title">取用與撤離：<em>退場時的行動</em></h2>
+      <p class="sec-lead">夥伴的產出如何進入系統，以及資源如何被收回——每一項都記下「平台留下什麼、夥伴失去什麼」。</p>
+      <div class="lf">
+        <h3><span class="n">4.1</span>夥伴的產出如何進入 Meta 的系統（只用 Meta 自己的用詞）</h3>
+        <p>先看流進去的部分。這一節刻意只用 Meta 自己的措辭。Meta 透明中心對機制的現行描述是：<span class="q">「我們用我們的技術偵測與查核者所評級內容相同、或幾乎完全相同的內容，並為那些內容加上提示。」</span>翻成白話：查核者的每一則評級，都成了系統辨認「近乎重複內容」的比對基準。凡是被評為不實、竄改、部分不實、或判定近乎相同的內容，就在 Facebook、Instagram、Threads 上被降低觸及。規模有多大？數字同樣是 Meta 自己給的——它的人工智慧部落格自述，光是 2020 年 3 月到美國大選日之間，就對「美國用戶在 Facebook 上所見」的逾 1.8 億則內容掛上了查核警示。</p>
+        <p>這裡要守一個分寸。Meta 官方描述這套機制的頁面，全文找不到「訓練」二字：它會用既有的查核結果去辨認相同或相似的貼文，但現有文件不足以證明這些結果被拿去當成正式的 AI 訓練材料——因此本文不作這項主張。（唯一接近的線索，是 Facebook 2018 年一篇姊妹文：那裡有一套模型會比對歷史案例、預測「查核者會不會說這則貼文為假」，頁面甚至自稱在「訓練一個機器學習分類器」；但那是另一套系統。）至於誰在做決定，Rest of World 訪問多家查核組織後講得很清楚：<span class="q">「這些組織負責標記與標註內容——與內容和帳號移除相關的決定，則完全由 Meta 做出。」</span>夥伴供給判斷，處置權全在平台手上。</p>
+
+        <h3><span class="n">4.2</span>撤離與終止的行為紀錄</h3>
+        <p>流進去的是判斷與存取，流回來的又是什麼？接下來四筆，時間橫跨 2023 到 2026，每一筆都記下同一件事：平台留下什麼、夥伴失去什麼。</p>
+        <p><b>其一，Meta 終止美國的第三方查核。</b>2025 年 1 月 7 日宣布、4 月生效。全球事務長 Joel Kaplan 的說法是：「一個原本要用來提供資訊的計畫，太常變成一種審查工具。」Zuckerberg 同日的影片更直接：「這些事實查核者實在太有政治偏見……尤其在美國。」取而代之的是「社群筆記」（由使用者自己補充背景、再由其他使用者評價的機制）。這一進一出的帳很清楚：<span class="q">留下的</span>，是八年累積的評級、以及據此養成的比對系統；<span class="q">失去的</span>，是合約收入與計畫參與。至於那些累積下來的資料要怎麼處置——公告與報導裡，查不到任何一句承諾。</p>
+        <p><b>其二，Meta 收回研究工具。</b>CrowdTangle 這個讓記者與研究者追蹤貼文如何在平台上擴散的工具，在 2024 年 8 月關閉；Mozilla、美國兩黨國會議員、人權觀察都要求延長，沒用。替代品「Meta 內容庫」則把商業媒體全部擋在門外。後果有多實在？調查顯示，近九成受訪的研究者擔心手上的研究因此中斷。這件事連歐盟都看不下去——執委會 2024 年對 Meta 啟動《數位服務法》調查時，正是點名它沒有給 CrowdTangle 適當的替代。</p>
+        <p><b>其三，換一個行為者：X 公司。</b>這一筆只當生態背景，不跟 Meta 的承諾配對。2023 年 2 月，X 為研究用的應用程式介面（API）架起收費牆——最低方案每月 100 美元，可蒐集量約只剩過去免費單日量的 0.3%。收費牆一立，逾百項公益研究計畫應聲取消或停擺。</p>
+        <p><b>其四，回到台灣——這一筆是行為，不是語言。</b>依台灣事實查核中心自家帳目，Meta 佔它的收入 2024 年是 52%、2025 年是 50%，科目寫得明白：「參與 Meta 查證機制，授權 Meta 平台使用查核報告內容」。2025 年 12 月，執行長邱家宜的話帶著不確定：「依目前情況看，我們與 Meta 的合約恐在 2026 年 1 月到期。」帳的兩側同樣清楚：<span class="q">留下的</span>，是 2019 年以來累積的中文評級史，以及照常運轉的「世界其他地區」機制；<span class="q">面臨失去的</span>，是佔了一半收入的那條授權線。而壓力不只來自 Meta——該中心自己也揭露，「2024 年下半年之後，開放社會基金會（OSF）已停止對本中心捐款」。兩條財源，在不同的時程上一起收窄。</p>
+
+        <h3><span class="n">4.3</span>兩側並列：可撤銷的與不可撤銷的</h3>
+        <p>到這裡，可撤銷的那一側已經數完了：現金報酬、工具與 API 存取、台灣的授權線，全都發生了或正在發生。但如果就此打住，這篇報告會犯下它自己要批評的毛病——只講一面。誠實的帳本得記下相反的一側，也就是平台確實留下、收不回去的東西：</p>
+        <div class="ledger">
+          <div class="lk">開源的碼</div><div>Meta 將 ThreatExchange／Hasher-Matcher-Actioner 整套比對基礎設施以 BSD 授權開源。已釋出的版本收不回來，任何非政府組織不需 Meta 許可即可自行部署。</div>
+          <div class="lk">移交的機構</div><div>防止未經同意親密影像散布的 StopNCII，由 Meta 出資出技術，但營運權已移交英國慈善組織——不會因 Meta 抽資而消失。</div>
+          <div class="lk">訓練的人</div><div>Google.org 於 2021 與 2024 年兩度各捐 100 萬美元推動台灣媒體素養計畫。被訓練出來的人與在地夥伴網絡，不隨單一合約消失。</div>
+        </div>
+        <p>因此，整體命題收斂為一句更精確的話：<b>可以撤銷的，是現金與存取關係；已經釋出的程式碼、已經移交的機構、已經被訓練出來的人，是例外。</b>它不是「平台給的一切都收得回」。</p>
+
+        <h3><span class="n">4.4</span>同一種取用，也出現在 AI 這一側</h3>
+        <p>順帶一提：同樣「外部貢獻被單向吸進專有系統」的結構，在生成式 AI 也看得到——OpenAI、Anthropic 的外部紅隊，以及在肯亞以每小時一兩美元標註有害內容的外包工人，產出都進了各家的專有分類器。但那是另一批公司、另一種勞動關係，並沒有本文追的那條招募→撤離弧線，所以只作背景一提，不納入對照。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 05 對照 · CENTRAL VIZ ===== -->
+  <section data-num="05" data-name="對照">
+    <div class="wrap wide">
+      <div class="sec-meta"><span>§05</span> <b>第三幕 · 本篇核心</b></div>
+      <h2 class="sec-title">對照：<em>同一個承諾，兩種結局</em></h2>
+      <p class="sec-lead">把前兩幕並排，落差自己會說話。以下每一組對照，都限定在<b>同一個行為者、同一項計畫</b>之內；動機一律不讀入。</p>
+
+      <div class="pre-viz">
+        <p>怎麼讀：左欄是<b>進場時的承諾語言</b>，右欄是<b>退場時的說法或行為</b>。每一組都是同一家公司、同一項計畫，只是相隔數年。前兩組是「話對話」與「行為對行為」；第三組——台灣——右欄有一個<b>虛線空盒</b>：那不是排版遺漏，<b>那個空白本身就是發現</b>：查遍公開紀錄，Meta 從未對台灣發布過退場聲明。</p>
+      </div>
+
+      <div class="saydo">
+        <div class="sd-colhead"><div class="h-in">進場</div><div class="h-out">退場</div></div>
+
+        <div class="sd-group">
+          <div class="sd-gtitle"><span class="gk">其一</span>全球：同一套計畫，兩種說法</div>
+          <div class="sd-row">
+            <div class="sd-cell sd-in"><span class="who">Mosseri · 2016-12-15</span>「我們已經啟動一項計畫，與第三方事實查核組織合作……」</div>
+            <div class="sd-cell sd-out"><span class="who">Kaplan · 2025-01-07</span><span class="quo">「一個原本要用來提供資訊的計畫，太常變成一種審查工具。」</span></div>
+          </div>
+          <div class="sd-row">
+            <div class="sd-cell sd-in"><span class="who">Lyons · 2018-09-13</span>「我們倚賴事實查核者發揮其新聞專業……」／「充分運用來自查核夥伴的每一則評級」</div>
+            <div class="sd-cell sd-out"><span class="who">Zuckerberg · 2025-01-07</span><span class="quo">「這些事實查核者實在太有政治偏見，他們摧毀的信任比創造的還多，尤其在美國。」</span></div>
+          </div>
+          <div class="sd-note">同一個行為者、同一項計畫：2018 年是「系統倚賴的專業輸入」，2025 年是「偏見與審查的工具」；而機制本體的三段框架，2019 到 2026 始終未變。切換的是說法，不是機制。</div>
+        </div>
+
+        <div class="sd-group">
+          <div class="sd-gtitle"><span class="gk">其二</span>研究工具：從開放到收回</div>
+          <div class="sd-row">
+            <div class="sd-cell sd-in"><span class="who">CrowdTangle · 提供多年</span>免費開放，高峰期近 10 萬註冊用戶</div>
+            <div class="sd-cell sd-out"><span class="who">Meta · 2024</span><span class="quo">3 月宣布、8 月關閉；替代品明文排除全部商業媒體，用戶降至數百人</span></div>
+          </div>
+        </div>
+
+        <div class="sd-group">
+          <div class="sd-gtitle"><span class="gk">其三</span>台灣：有進場的話，沒有退場的話</div>
+          <div class="sd-row">
+            <div class="sd-cell sd-in"><span class="who">Budisatrijo · 2019-06-19</span>「……期望未來有更多機會能進一步擴大該計畫在當地的規模」</div>
+            <div class="sd-cell sd-empty">查不到 Meta 對台灣的<br>任何專屬說明<br><span style="opacity:.7">（是否退場尚未確定——<br>這個空白本身就是發現）</span></div>
+          </div>
+          <div class="sd-row">
+            <div class="sd-cell sd-in"><span class="who">陳奕儒 · 2020-03-30</span>「Facebook 也期待未來有機會與更多在地的事實查證單位合作」</div>
+            <div class="sd-cell sd-out"><span class="who">行為 · 2025–2026</span>對續約報導未予回應；合約 2026 年 1 月到期風險；帳目上 Meta 佔 50%／52% 的授權線懸而未決</div>
+          </div>
+          <div class="sd-note">台灣這一組，右側該有的退場表態是<b>一片沉默</b>：Meta 至今沒有對台灣說任何話，只有一份合約的到期風險懸在那裡——是否退場、何時退場都未定。這一格由台灣事實查核中心自己的陳述與帳目文件化，而不是 Meta 的話；本報告不會、也不能捏造一句不存在的聲明。作為對照，該中心執行長邱家宜 2025 年 1 月具名反駁：<span style="color:var(--role-accent);font-weight:500">「事實查核是為了保障言論自由，而非限制言論自由。」</span></div>
+        </div>
+      </div>
+
+      <div class="takeaway">
+        <p>三組對照，指向同一個結構：<b>對美國，Meta 至少給了一個退場的說法；對台灣，連說法都沒有，只有帳目上懸置的一半收入。</b></p>
+        <p>而「說法」能被單方切換、「地基」能被單方抽走這件事本身，就回答了封面那個詞的選擇——<b>這比較像可由平台單方停用的治理基建，而不是有對等知情與談判權的夥伴關係。</b></p>
+        <div class="tk-line">本報告能證明的止於此：公民社會的產出曾是平台治理的承重地基，而這地基可被單方撤除。它是否為所有科技巨頭的普遍結構、這撤除又意味著什麼——是這個系列往下要問的（動機二解詳見 §07 邊界）。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 06 能動性 ===== -->
+  <section data-num="06" data-name="夥伴的籌碼">
+    <div class="wrap">
+      <div class="sec-meta"><span>§06</span> <b>談判籌碼盤點</b></div>
+      <h2 class="sec-title">夥伴：<em>不是等待救濟的一方</em></h2>
+      <p class="sec-lead">帳算到這裡，容易讓人以為夥伴只是被撤資的受害者。把鏡頭轉到他們身上，會看到另一半——這一節只用夥伴自己的公開陳述與可查行為，逐項標明「有紀錄」或「查不到」，不代言，也不悲情化。</p>
+
+      <div class="lever"><span class="lv-n">1</span><h4>開放、任何人都能接手的基礎設施（Cofacts）</h4><p>Cofacts（「真的假的」，一個群眾協作的訊息查核平台）把程式碼（採 MIT 授權）與資料（採「姓名標示—相同方式分享」）都公開，任何人都能複製、另行運行——即使某個平台撤出，系統照樣活著，泰國就已經長出分支。需注意的兩面：它同時聲明「別人拿去用」不等於「跟它合作」；資料集目前也改成需要申請才能取用（是治理收緊，不是閉源）。</p></div>
+      <div class="lever"><span class="lv-n">2</span><h4>不在 Meta 管轄範圍內的分發生態（LINE 線）</h4><p>2019 年四家組織共同上線；到 2026 年，高雄市刑事警察大隊的頁面仍以幾乎相同的機制列出全部四家——結構七年穩定。MyGoPen 2025 年 10 月與 LINE、刑事警察局、數位發展部等單位共推反詐遊戲。（需說明：LINE 是否付費給這四家組織，目前查不到公開資料。）</p></div>
+      <div class="lever"><span class="lv-n">3</span><h4>已經完成的商業模式轉身（MyGoPen）</h4><p>其官方頁面明白寫道：「MyGoPen 目前是透過平台的內容授權以及相關教育推廣的資訊素養專案來支持整體營運，並沒有接受民眾的捐款與贊助。」不依賴公眾捐款、也不綁定單一平台合約的收入結構，對這個組織而言已是現在式。</p></div>
+      <div class="lever"><span class="lv-n">4</span><h4>正在進行中的財源分散（台灣事實查核中心）</h4><p>董事長層級已確認近一年主動募款、勞動條件不變；2025 年 2 月即公開「尋求本土企業支持、積極向公眾募資」的路線；開源情報與 AI 偽造內容拆解課程、教育基金會的三年高中素養計畫，都是新的技能線。定位是「進行中」，而非「風險已解除」。</p></div>
+      <div class="lever"><span class="lv-n">5</span><h4>政府端的機構性需求</h4><p>行政院打詐綱領 2.0 明文「結合民間團體……宣導反詐、識詐」；法務部調查局與高雄市刑大的頁面具名列出多家查核組織——中央與地方兩級，都把民間查核當作公共基礎設施引用。作為對照，數位發展部同期新聞稿走自建工具敘事、全文沒有「查核」二字——這是一個「沒有提到」的事實，但不能因此推論成「不與民間合作」。</p></div>
+      <div class="lever"><span class="lv-n">6</span><h4>對平台執法的既往影響</h4><p class="tag">出自當事社群的論證文，非第三方實證</p><p>台灣事實查核中心研究員與前總編輯具名論證：2020 年大選期間，查核者所辨識的不實訊息，使 Facebook 顯著限縮了這些內容的觸及。</p></div>
+      <div class="lever"><span class="lv-n">7</span><h4>替代機制仍然需要專業查核</h4><p>一項跨語言研究發現：「引用專業查核者的社群筆記被認為更有幫助，但整體而言對專業查核的引用率仍然偏低。」同時，Meta 自請監督委員會審查社群筆記的全球推展；委員會 2026 年 4 月的意見書被評為顯示全球部署比公司預期更複雜——替代方案尚未完成全球化。</p></div>
+      <div class="lever"><span class="lv-n">8</span><h4>在地感測的知識會過期</h4><p class="tag">本報告的判斷，不是文獻結論</p><p>平台終止合作時帶走的，是標註的「快照」，而不是持續感測的能力。最接近的旁證來自一項對 23 名查核者的訪談研究：受訪者直言，查核的優先排序必須看一則主張正處於傳播週期的哪個階段；多數自動化工具並不包含在地知識，查核組織的價值正在於在地專家。</p></div>
+    </div>
+  </section>
+
+  <!-- ===== 07 邊界 ===== -->
+  <section data-num="07" data-name="邊界">
+    <div class="wrap">
+      <div class="sec-meta"><span>§07</span> <b>本報告不主張什麼</b></div>
+      <h2 class="sec-title">邊界：<em>查不到與尚未確定</em></h2>
+      <p class="sec-lead">一份審計最後要交代的，是它自己的邊界。以下每一處「查不到」，都指檢索之後的證據空白——它不能被升格成「不存在」的證明。</p>
+      <ul class="bd">
+        <li>查不到 Meta 對台灣的任何專屬聲明——台灣是否退場、何時退場都未確定，能文件化的只有沉默與合約到期的風險。</li>
+        <li>查不到 Meta 或 LINE 實際付給各查核組織的具體金額（該中心只揭露了科目與占比）。</li>
+        <li><b>關於資料處置的空白</b>：Meta 終止時，對累積評級資料與既建系統要如何處置，查不到任何承諾。「未承諾刪除標註」是推論層次的但書，本報告不以它作為主軸；這類主張在性質上，永遠無法升級為有直接文件支撐的事實。</li>
+        <li>尚未確定 Meta 2026 年是否會把台灣納入全球退場（截至 2025 年 12 月報導時點；監督委員會程序至 2026 年 4 月仍未收束）。</li>
+        <li>查不到 Cofacts 的資料是否曾被具名公司用於訓練大型語言模型（只能確認資料公開、授權允許任何用途）。</li>
+        <li>《日經亞洲》的「Google 逾三成」與該中心帳目上 Google 系的具名占比（2025 年 10.6%）無法對齊——科目或口徑差異，本報告未能裁決，如實列為未解。</li>
+        <li>查不到蘭姆酒吐司對 Meta 撤資的公開回應；在可文件化的層面上，台灣「夥伴」因此隱性收窄為三家，如實記載。</li>
+      </ul>
+      <div class="lf" style="margin-top:34px">
+        <h3>關於「Meta 為什麼撤離」：證據能說到哪裡</h3>
+        <p>有兩種解釋並存，也不互相排斥。<b>一種是「取用已完成」</b>：機制與八年標註史都已留存，退場只是把一個不再需要的計畫向前性地關掉；一位巴基斯坦查核主管也自述兩年前就聽說計畫將收——「我不認為這個決定是憑空冒出來的。」<b>另一種是「政治轉向」</b>：宣布的時點與美國政局交疊，退場語言本身就以美國政治的語氣書寫（「尤其在美國」），Meta 也以錯誤率與過度執法自辯。</p>
+        <p>本報告不替 Meta 讀心，但可以指出證據的重量偏向哪邊：可文件化的行為結構——收尾承諾全部指向未來、對累積資產的處置自始只字未提——讓「取用已完成」成為一個值得認真追問的解釋。政治轉向能解釋<b>宣布的時機與措辭</b>，卻無法單獨解釋<b>為什麼連累積的資料要怎麼處理都不必交代</b>。這不是定論：政治因素無法排除，真正的意圖也可能兩者兼有。但若問「行為本身透露了什麼」，它更偏向前者。至於該不該就此對 Meta 下判斷，那是立場問題，留給系列的下一篇。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 08 結論 ===== -->
+  <section data-num="08" data-name="結論">
+    <div class="wrap">
+      <div class="sec-meta"><span>§08</span> <b>一段話總結</b></div>
+      <h2 class="sec-title">結論：<em>一種關係的真名</em></h2>
+      <div class="lf">
+        <p>把這一個案例攤開，浮現的不是一段合作的起落，而是一種關係的真名。事實查核組織以為自己是 Meta 的夥伴，但它們持續產出的判斷，早已被接成平台判斷內容真偽的地基——這正是「基礎建設」的意思：別人在你身上蓋東西，平時看不見，直到被抽走。而 Meta 抽走它的方式，也正是對待基礎建設、而不是對待夥伴的方式：說法可以單方翻轉、資源可以單方收回，累積的資產留在自己手上，連怎麼處置都不必交代。這不是說 Meta 特別壞，而是指出一個結構——當公民社會的公共功能被接進私人平台的系統，它同時得到了規模，也失去了對自己命運的主導權。單一個案還不足以斷言所有科技巨頭皆如此；但它已經讓那個更大的問題變得具體：如果我們的資訊環境，有一部分是靠可被隨時關掉的地基在維繫，那麼下一個該問的就不是「Meta 為什麼走」，而是<b>「這樣的地基，我們還要不要、又該交在誰手上」</b>。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 09 資料來源 ===== -->
+  <section data-num="09" data-name="資料來源">
+    <div class="wrap wide">
+      <div class="sec-meta"><span>§09</span> <b>主要一手與具名來源</b></div>
+      <h2 class="sec-title">資料來源</h2>
+      <div class="src-grid">
+        <div class="src"><b>Meta 招募期發言</b>　Adam Mosseri（Facebook Newsroom, 2016-12-15）；Tessa Lyons（2018-06、2018-09），原始網頁逐字核實。</div>
+        <div class="src"><b>台灣夥伴宣布</b>　TFC 轉載 Facebook 新聞稿（2019-06-19，Wayback 封存）；中央社／TechNews 同場報導；MyGoPen 官方公告（2020-03-30）；聯合報加速器（2021-08-28）。</div>
+        <div class="src"><b>後台工具與 LINE</b>　NPR（2019-12-06）；cool3c LINE 訊息查證上線（2019-07-22）。</div>
+        <div class="src"><b>Meta 機制現行描述</b>　Meta 透明中心「事實查核如何運作」頁（2025-03 與 2026-01 兩枚封存快照一致）。</div>
+        <div class="src"><b>Meta 退場發言</b>　Meta Newsroom（2025-01-07）；Zuckerberg 影片逐字稿（Tech Policy Press）；Kaplan 4 月貼文。</div>
+        <div class="src"><b>全球撤資報導</b>　Rest of World、NPR、Poynter、Foreign Policy（均 2025-01）。</div>
+        <div class="src"><b>集體反應與監督委員會</b>　IFCN 公開信（Poynter, 2025-01-09，Wayback）；Just Security（2026-04-21）。</div>
+        <div class="src"><b>研究工具收回</b>　CrowdTangle 關閉、Meta 內容庫限制、X 的 API 收費牆，均引自獨立科技研究聯盟（CITR）調查報告。</div>
+        <div class="src"><b>台灣事實查核中心財務</b>　TFC「財務與捐款報告」頁（2025 年帳，2026-06 更新）、「接受 OSF 捐款說明」（2025-02-10）；經濟日報（2025-12-13）。</div>
+        <div class="src"><b>邱家宜回應</b>　The News Lens（2025-01-15，原文封存逐字核實）。</div>
+        <div class="src"><b>Cofacts</b>　授權文件（LEGAL.md）、about 頁原始碼、NPOst（2019）。</div>
+        <div class="src"><b>政府端引用</b>　行政院打詐綱領 2.0（2024）、法務部調查局頁、高雄市刑事警察大隊頁、數位發展部新聞稿（2024-05-28）。</div>
+        <div class="src"><b>學術旁證</b>　Sehat et al.（ACM CSCW 2024）、社群筆記跨語言研究（2025 預印本）、TechPolicy.Press（2025-02）。</div>
+        <div class="src"><b>人工智慧實驗室對照</b>　OpenAI 紅隊白皮書（2024-11）、Anthropic 憲法分類器（HackerOne 部落格）、TIME 對 Sama／肯亞標註的具名調查。</div>
+        <div class="src"><b>不可撤銷側</b>　ThreatExchange GitHub 授權文件、StopNCII／SWGfL、Google.org 台灣媒體素養計畫。</div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ft-inner">
+    <b>夥伴，還是基礎建設？公民社會作為科技巨頭的基礎建設——以 Meta 與台灣事實查核組織為例</b><br>
+    平台與公民社會系列 · 開篇 · 以台灣為主的案例 · 2026 年 7 月<br>
+    立場：本篇以一個案例檢視「公民社會作為科技巨頭治理基礎建設」的命題——證據綁定，但不假裝沒有觀點；刀口對平台、不對夥伴。行為結構偏向「取用已完成」的讀法，完整的判斷與普遍性留待系列後續。<br>
+    研究儲存庫 · <a href="https://github.com/wcl-dev/research-site">github.com/wcl-dev/research-site</a> · <a href="../">回 weichen's Research 首頁</a>
+  </div>
+</footer>
+
+<script>
+/* reveal */
+(function(){
+  const els=document.querySelectorAll('.rv');
+  if(!els.length||!('IntersectionObserver' in window)){els.forEach(el=>el.classList.add('in'));return;}
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(el=>io.observe(el));
+})();
+/* progress + badge */
+(function(){
+  const progress=document.getElementById('progress'),badge=document.getElementById('badge'),badgeNum=document.getElementById('badgenum'),badgeName=document.getElementById('badgename');
+  const sections=Array.from(document.querySelectorAll('section[data-num]'));
+  function update(){
+    const docH=document.documentElement.scrollHeight-window.innerHeight;
+    const pct=docH>0?Math.min(100,(window.scrollY/docH)*100):0;
+    if(progress)progress.style.width=pct+'%';
+    const y=window.scrollY+100;let active=sections[0];
+    for(const s of sections){if(s.offsetTop<=y)active=s;}
+    if(active&&badgeNum){badgeNum.textContent=active.dataset.num;badgeName.textContent=active.dataset.name||'';if(window.scrollY>200)badge.classList.add('show');else badge.classList.remove('show');}
+  }
+  window.addEventListener('scroll',update,{passive:true});update();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+project: willing-partner-tw
+version: v1
+year_from: 2016
+languages: [en, zh-TW]
+
+brief_type:
+  intent: argument-audit    # 論證型（say-do gap）但以審計紀律執行；三幕敘事、對照對為承重牆
+  horizon: current          # 核心事件 2024–2026 進行式；2016+ 僅承諾語料基期
+
+# ─────────────────────────────────────────────────────────────
+# I3 — Concept ontology（三幕 + 背景）
+# ─────────────────────────────────────────────────────────────
+concept_ontology:
+  - id: A
+    label: "承諾語料（進場期 willing-partner 語域）"
+    definition: >-
+      平台在合作關係建立期（2016–2021）對事實查核夥伴的公開承諾與依賴表述，
+      逐字、具日期、可溯源到一手出處。含退場語料（2025）作為對照的另一極。
+    examples_in:
+      - "Meta newsroom 2016-12 3PFC 啟動公告"
+      - "Tessa Lyons 2018-06 / 2018-09 'we rely on fact-checkers' 系列"
+      - "Facebook 台灣 2020-03 MyGoPen 合作宣言（陳奕儒）"
+      - "Zuckerberg / Joel Kaplan 2025-01 退場聲明（對照極）"
+      - "LINE 訊息查證 2019 上線公告"
+    examples_out:
+      - "平台高管泛論 misinformation 的演講（無夥伴承諾內容）"
+      - "無法溯源的流傳語錄"
+
+  - id: B
+    label: "萃取與撤資行為（做一套）"
+    definition: >-
+      夥伴產出進入平台系統的機制（平台自述措辭），與資源/支持被單方終止的行為紀錄。
+      每項標「平台留下什麼、夥伴失去什麼」。措辭紀律：比對基準/預測地面真值，
+      「training data」僅限直接引文。
+    examples_in:
+      - "fact-checker rating 作為相似內容比對基準（Meta transparency center）"
+      - "2025-01 美國 3PFC 終止與 Community Notes 替代"
+      - "CrowdTangle 2024-08 關閉 / Meta Content Library 准入限制"
+      - "X/Twitter API 2023 收費牆"
+      - "TFC Meta 合約 2026-01 到期危機（日經口徑）"
+      - "OpenAI 紅隊 prompt→DALL-E3 分類器 / Anthropic Constitutional Classifiers（同構旁證）"
+    examples_out:
+      - "平台一般性裁員或產品下線（與查核夥伴無關）"
+      - "動機歸因（『因為拿夠了』）——不可證，禁入 B"
+      - "跨主體對照（Meta 的承諾 × OpenAI/Anthropic 的行為）——移花接木，絕對禁止；lab 素材僅限機制同構、須自成一節"
+
+  - id: C
+    label: "夥伴能動性與槓桿（silver lining）"
+    definition: >-
+      夥伴在撤資變局中的主動應對、平台拿不走的資產、以及對平台的殘餘槓桿。
+      只用夥伴自己的公開陳述與可查行為，不代言、不悲情化。
+    examples_in:
+      - "MyGoPen 商模轉身（內容授權＋教育專案、不收公眾捐款）"
+      - "Cofacts 開放策略（MIT code / HF dataset / 泰國 fork）"
+      - "政府反詐需求管道（數位部/刑事局/iWIN/LINE 反詐遊戲聯盟）"
+      - "TFC 2020 大選改變平台執法的紀錄（Li & Chen 2025）"
+      - "94% 平台問責立法民意（台灣韌性社會研究中心 2026-05）"
+      - "在地感測知識過期論（label freshness——需找支撐或標為本研究論證）"
+    examples_out:
+      - "夥伴受害者敘事（違反 partner-safe）"
+      - "EU DSA 全球一致論（已查死，禁用）"
+
+  - id: D
+    label: "境外資金生態（背景 only）"
+    definition: >-
+      同一批夥伴的非平台資金來源地圖（美國民主資金），僅服務「撤資後替代財源多薄」
+      與「上下游雙黑箱」一句脈絡。不展開成軸線。
+    examples_in:
+      - "OSF grants DB 台灣受贈紀錄"
+      - "OTF 三筆台灣支持（OCF/DTL/fellowship）"
+      - "NED 資料庫下架與匿名化（關燈梯度）"
+      - "TFC 捐款徵信（OSF/Meedan/X 2023）"
+    examples_out:
+      - "美國民主資金政策史（另一篇研究）"
+      - "台灣政府資金（TFD/遠景——方向相反，只防混淆）"
+
+research_focus: "A×B gap 為核心，C 為對位聲部；D 背景"
+
+# ─────────────────────────────────────────────────────────────
+# Queries
+# ─────────────────────────────────────────────────────────────
+queries:
+  # A — 承諾語料補缺
+  - text: "Facebook Journalism Project Taiwan FactCheck Center 2019 announcement"
+    concept_target: A
+  - text: "Meta third-party fact-checking partnership announcement expand 2017 2018 2019"
+    concept_target: A
+  - text: "LINE 訊息查證 2019 上線 台灣事實查核中心 合作"
+    concept_target: A
+  - text: "Facebook 台灣 事實查核 合作 宣布 2019"
+    concept_target: A
+  # B — 機制與撤資
+  - text: "Meta fact-checker rating similar content matching machine learning transparency"
+    concept_target: B
+  - text: "Meta ends fact-checking program international partners 2025 2026"
+    concept_target: B
+  - text: "台灣事實查核中心 Meta 合約 授權收入 2026"
+    concept_target: B
+  - text: "IFCN State of Fact-Checkers 2025 revenue Meta dependence"
+    concept_target: B
+  - text: "fact-checkers open letter Zuckerberg signatories list"
+    concept_target: B
+  # C — 能動性
+  - text: "台灣事實查核中心 財務 徵信 2025 2026"
+    concept_target: C
+  - text: "MyGoPen 內容授權 資訊素養 營運"
+    concept_target: C
+  - text: "Cofacts 開放資料 授權 fork Thailand"
+    concept_target: C
+  - text: "fact-checking organizations diversification survival strategies after Meta 2025"
+    concept_target: C
+  - text: "數位發展部 打詐 事實查核 合作 民間"
+    concept_target: C
+  - text: "misinformation label freshness decay local fact-checkers platform need"
+    concept_target: C
+  # D — 背景補缺（seeds 已有主體，只補台灣端變動）
+  - text: "Taiwan fact check foundation grant 2025 2026 funding"
+    concept_target: D
+
+keyword_expansions:
+  synonyms:
+    - third-party fact-checking
+    - 3PFC
+    - 第三方事實查核
+    - 事實查核夥伴
+    - fact-check label
+    - 降觸及
+    - reduced distribution
+    - partnership termination
+    - 合作終止
+    - 撤資
+    - defunding
+    - content licensing revenue
+    - 內容授權
+    - community notes
+    - 群眾註記
+
+  adjacent_concepts:
+    - trust and safety outsourcing
+    - platform accountability
+    - 平台問責
+    - data colonialism
+    - knowledge extraction
+    - civic tech commons
+    - open data licensing
+    - misinformation lifecycle
+    - claim matching
+    - similarity detection
+    - ground truth labels
+    - media literacy funding
+    - 媒體素養
+    - researcher data access
+    - 打詐
+
+  key_actors:
+    # 平台
+    - Meta
+    - Facebook
+    - Mark Zuckerberg
+    - Joel Kaplan
+    - Tessa Lyons
+    - Adam Mosseri
+    - 陳奕儒
+    - LINE
+    - LINE Taiwan
+    - Google.org
+    - Google
+    - TikTok
+    - X Corp
+    # 台灣夥伴
+    - 台灣事實查核中心
+    - TFC
+    - Taiwan FactCheck Center
+    - 台灣事實查核教育基金會
+    - 邱家宜
+    - Summer Chen
+    - 陳慧敏
+    - MyGoPen
+    - 麥擱騙
+    - Cofacts
+    - 真的假的
+    - g0v
+    - 蘭姆酒吐司
+    - Doublethink Lab
+    - 台灣民主實驗室
+    # 生態
+    - IFCN
+    - Poynter
+    - Duke Reporters' Lab
+    - Meedan
+    - 卓越新聞獎基金會
+    - Wei-Ping Li
+    - TechPolicy.Press
+    - Rest of World
+    - Nikkei Asia
+    - 日經亞洲
+    - CITR Coalition for Independent Technology Research
+    # 台灣政府端（C 幕需求管道）
+    - 數位發展部
+    - moda
+    - 刑事警察局
+    - iWIN
+    # D 背景
+    - Open Society Foundations
+    - NED
+    - Open Technology Fund
+
+  technical_jargon:
+    - claim review
+    - ClaimReview markup
+    - rating scale false altered missing context
+    - similar content detection
+    - NLP OCR duplicate matching
+    - Meta Content Library
+    - CrowdTangle
+    - researcher API
+    - Hugging Face dataset
+    - CC BY-SA
+    - MIT license
+    - ThreatExchange
+    - Hasher-Matcher-Actioner
+    - Constitutional Classifiers
+    - red teaming network
+
+  counter_framings:
+    - fact-checking as censorship        # Meta 2025 官方框架，必須如實呈現
+    - political rebalancing explanation  # 退場的政治解釋（對等競爭解釋，不可壓下）
+    - fair market transaction            # 查核有酬＝市場交易非萃取
+    - commons contribution not extraction  # Cofacts 自選開放
+    - durable open-source giveback       # ThreatExchange/HMA BSD（鋼人存活論證）
+    - platform-funded capacity building  # Google.org 媒體素養（留存人力資本）
+    - fact-checker bias studies          # 任何實證查核偏誤研究都必須正面處理
+
+exclusion_terms:
+  - fact-checking in education assessment   # 教育測驗文獻污染
+  - "'label' as ML-classification-only literature"
+  - blockchain fact-checking startups
+
+source_priorities:
+  must_include:
+    # A
+    - Meta newsroom 2016-12-15 Addressing Hoaxes and Fake News
+    - Meta newsroom 2018-06 Hard Questions fact-checking
+    - Meta newsroom 2018-09 Seeing the Truth (Tessa Lyons)
+    - Meta newsroom 2025-01-07 More Speech and Fewer Mistakes
+    - Tech Policy Press Zuckerberg 2025-01 video transcript
+    - MyGoPen 2020-03-30 Facebook 合作公告
+    - Wayback: Facebook Journalism Project Taiwan 2019
+    # B
+    - Meta Transparency Center fact-checking how-it-works 頁
+    - CITR CrowdTangle survey PDF
+    - Nikkei Asia 2025-12 TFC 報導（含中央社/ETtoday 轉載鏈）
+    - IFCN open letter to Meta 2025-01
+    - OpenAI external red teaming whitepaper
+    - Anthropic Constitutional Classifiers paper
+    # C
+    - TFC 官網捐款徵信頁 + 2025 State of Fact-Checking
+    - MyGoPen 贊助辦法頁（2025 更新版）
+    - github.com/cofacts/opendata + Hugging Face dataset 頁
+    - MyGoPen 2025-10 LINE 反詐遊戲公告
+    - Li & Chen TechPolicy.Press 2025-02
+    - 台灣韌性社會研究中心 2025 假訊息認知調查
+    # D（seeds 已含，僅列防斷鏈）
+    - OSF grants database 台灣條目
+    - OTF supported-projects 三頁
+  deprioritize:
+    - AI 摘要/聚合站轉述
+    - 匿名內部人士報導
+    - 意見專欄（Karp 素材除外，角色=話語標本）
+    - 中共官方 NED fact sheets
+
+seek_direct:
+  - https://about.fb.com/news/2016/12/news-feed-fyi-addressing-hoaxes-and-fake-news/
+  - https://about.fb.com/news/2018/06/hard-questions-fact-checking/
+  - https://about.fb.com/news/2018/09/inside-feed-tessa-lyons-photos-videos/
+  - https://about.fb.com/news/2025/01/meta-more-speech-fewer-mistakes/
+  - https://www.techpolicy.press/transcript-mark-zuckerberg-announces-major-changes-to-metas-content-moderation-policies-and-operations/
+  - https://www.mygopen.com/2020/03/facebook-mygopen.html
+  - https://www.mygopen.com/p/blog-page_26.html
+  - https://tfc-taiwan.org.tw/about/donation-report
+  - https://tfc-taiwan.org.tw/2025-fact-checking-report-decline-and-demand/
+  - https://github.com/cofacts/opendata
+  - https://www.techpolicy.press/the-looming-threat-of-the-global-disinformation-battlea-perspective-from-taiwan/
+  - https://ifcncodeofprinciples.poynter.org/signatories

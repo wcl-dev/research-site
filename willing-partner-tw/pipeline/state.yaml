@@ -1,0 +1,30 @@
+project: willing-partner-tw
+tool: insight-pipeline
+version: v1
+current_stage: done
+status: done
+brief_path: projects/willing-partner-tw/pipeline/brief.md
+brief_expanded_path: projects/willing-partner-tw/pipeline/brief_expanded.yaml
+sources_path: projects/willing-partner-tw/pipeline/sources.yaml
+candidates_path: projects/willing-partner-tw/pipeline/collect/candidates.jsonl
+accepted_path: projects/willing-partner-tw/pipeline/gate/accepted.jsonl
+rejected_path: projects/willing-partner-tw/pipeline/gate/rejected.jsonl
+extracts_path: projects/willing-partner-tw/pipeline/extracts/
+extracts_index_path: projects/willing-partner-tw/pipeline/extracts/INDEX.md
+draft_path: projects/willing-partner-tw/pipeline/draft/insight_v2.md
+review_output_path: projects/willing-partner-tw/pipeline/review/review.md
+last_handoff_ts: '2026-07-05T07:42:46Z'
+notes: 'Segment complete (2026-07-05): all 27 accepted cids deep-read (22 extract
+  files + 1 synthesized cluster for c010/c012/c013/c014/c015); 24/27 raw-verified,
+  3 access_blocked (c019/c020/c028) with recovery recipes logged. Critical verifications
+  resolved: c006 Meta transparency mechanism wording (raw-confirmed via Wayback, cross-confirmed
+  stable across 2025-03/2026-01 snapshots, zero training-data language found); c007
+  IFCN letter signatories (TFC+MyGoPen confirmed via Wayback, Cofacts absent, Summer
+  Chen/FactLink reconciled via seeds cross-reference); c026 Cofacts licensing (resolved
+  via GitHub source since Wayback HTML is empty for this client-rendered page -- CC
+  BY-SA text confirmed to live in separate LEGAL.md already in seeds, not on the About
+  page itself). c022 contamination risk confirmed real and excluded. Actor x register
+  table (引文歸屬表) built for all say-do pairs; Taiwan pair labeled 語料(c001) vs 行為(c009)
+  per operator instruction, zero cross-actor pairings. INDEX.md carries full seeds/*.md
+  cross-reference table. Handing to Drafter.'
+extracts_output_path: pipeline/extracts/
