@@ -1,0 +1,175 @@
+<meta charset="utf-8">
+<title>圖例預覽 — 未受規範的中介層</title>
+<style>
+  :root{
+    --paper:#fbfaf7; --ink:#1c1b19; --muted:#6b6862; --rule:#d8d4cc;
+    --gap:#a3402f;        /* 強調：缺口 */
+    --ok:#2f4858;         /* 中性深藍：有制度 */
+    --faint:#efece5;
+    --serif: "Noto Serif TC","Songti TC",Georgia,serif;
+    --sans: "Noto Sans TC","PingFang TC",system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --paper:#16151a; --ink:#e8e4dc; --muted:#9a958c; --rule:#3a3730;
+           --gap:#d97a63; --ok:#8fb0c4; --faint:#22212a; }
+  }
+  :root[data-theme="dark"]{ --paper:#16151a; --ink:#e8e4dc; --muted:#9a958c; --rule:#3a3730;
+           --gap:#d97a63; --ok:#8fb0c4; --faint:#22212a; }
+  :root[data-theme="light"]{ --paper:#fbfaf7; --ink:#1c1b19; --muted:#6b6862; --rule:#d8d4cc;
+           --gap:#a3402f; --ok:#2f4858; --faint:#efece5; }
+
+  body{ background:var(--paper); color:var(--ink); font-family:var(--sans);
+        max-width:52rem; margin:0 auto; padding:3rem 1.25rem 6rem; line-height:1.75; }
+  h1{ font-family:var(--serif); font-size:1.4rem; font-weight:600; letter-spacing:.01em;
+      border-bottom:1px solid var(--rule); padding-bottom:.75rem; margin-bottom:2.5rem;}
+  figure{ margin:0 0 4rem; }
+  figcaption{ font-size:.86rem; color:var(--muted); margin-top:.9rem; line-height:1.65; }
+  .fignum{ font-family:var(--serif); font-size:.95rem; color:var(--ink); font-weight:600;
+           display:block; margin-bottom:.6rem; letter-spacing:.02em;}
+  .wrap{ overflow-x:auto; }
+  svg{ display:block; max-width:100%; height:auto; }
+  table{ border-collapse:collapse; width:100%; font-size:.88rem; }
+  th,td{ border-bottom:1px solid var(--rule); padding:.55rem .5rem; text-align:center; }
+  th:first-child, td:first-child{ text-align:left; white-space:nowrap; color:var(--muted); }
+  thead th{ font-weight:600; font-size:.82rem; color:var(--muted); border-bottom:1.5px solid var(--ink); }
+  .mark{ font-family:var(--serif); font-size:1.05rem; }
+  .yes{ color:var(--ok); } .no{ color:var(--gap); } .warn{ color:var(--gap); font-weight:700;}
+  .note{ font-size:.8rem; color:var(--muted); }
+  text{ font-family:var(--sans); }
+</style>
+
+<h1>圖例預覽 — 未受規範的中介層：AI 助理的選擇機制與台灣可行的第一步</h1>
+
+<!-- ───────────────────── 圖一 ───────────────────── -->
+<figure>
+  <span class="fignum">圖一　資訊中介鏈與現行治理的覆蓋範圍</span>
+  <div class="wrap">
+  <svg viewBox="0 0 760 300" role="img" aria-label="資訊中介鏈與治理覆蓋">
+    <!-- chain boxes -->
+    <g font-size="13" fill="var(--ink)">
+      <rect x="10"  y="30" width="130" height="46" fill="none" stroke="var(--rule)"/>
+      <text x="75"  y="52" text-anchor="middle">內容來源</text>
+      <text x="75"  y="68" text-anchor="middle" font-size="11" fill="var(--muted)">媒體・查核・政府</text>
+
+      <rect x="175" y="30" width="130" height="46" fill="none" stroke="var(--rule)"/>
+      <text x="240" y="52" text-anchor="middle">訓練語料</text>
+      <text x="240" y="68" text-anchor="middle" font-size="11" fill="var(--muted)">與檢索索引</text>
+
+      <rect x="340" y="24" width="150" height="58" fill="var(--faint)" stroke="var(--gap)" stroke-width="1.5"/>
+      <text x="415" y="48" text-anchor="middle" font-weight="600">助理的選擇機制</text>
+      <text x="415" y="66" text-anchor="middle" font-size="11" fill="var(--muted)">端出什麼・不端什麼</text>
+
+      <rect x="525" y="30" width="105" height="46" fill="none" stroke="var(--rule)"/>
+      <text x="577" y="58" text-anchor="middle">產品介面</text>
+
+      <rect x="660" y="30" width="90" height="46" fill="none" stroke="var(--rule)"/>
+      <text x="705" y="58" text-anchor="middle">使用者</text>
+    </g>
+    <!-- arrows -->
+    <g stroke="var(--muted)" fill="none" stroke-width="1">
+      <path d="M140 53 H172" marker-end="url(#a)"/>
+      <path d="M305 53 H337" marker-end="url(#a)"/>
+      <path d="M490 53 H522" marker-end="url(#a)"/>
+      <path d="M630 53 H657" marker-end="url(#a)"/>
+    </g>
+    <defs><marker id="a" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0 L7 3.5 L0 7 z" fill="var(--muted)"/></marker></defs>
+
+    <!-- governance brackets below -->
+    <g stroke="var(--ok)" fill="none" stroke-width="1.2">
+      <path d="M12 108 V120 H138 V108"/>
+      <path d="M527 108 V120 H748 V108"/>
+    </g>
+    <g font-size="11.5" fill="var(--ok)" text-anchor="middle">
+      <text x="75"  y="140">出版者規範</text>
+      <text x="75"  y="156">誹謗・更正・新聞倫理</text>
+      <text x="637" y="140">平台規範・使用者端</text>
+      <text x="637" y="156">不實廣告・選舉・媒體識讀</text>
+    </g>
+
+    <!-- gap bracket -->
+    <g stroke="var(--gap)" fill="none" stroke-width="1.5" stroke-dasharray="4 3">
+      <path d="M177 108 V122 H488 V108"/>
+    </g>
+    <text x="332" y="142" text-anchor="middle" font-size="12.5" fill="var(--gap)" font-weight="600">無對應制度</text>
+    <text x="332" y="159" text-anchor="middle" font-size="11.5" fill="var(--gap)">選擇標準不揭露・不受檢視</text>
+
+    <!-- scope band -->
+    <line x1="10" y1="200" x2="750" y2="200" stroke="var(--rule)"/>
+    <text x="10" y="222" font-size="11.5" fill="var(--muted)">本文主張的介入位置</text>
+    <rect x="340" y="236" width="150" height="34" fill="none" stroke="var(--gap)" stroke-width="1.5"/>
+    <text x="415" y="258" text-anchor="middle" font-size="12" fill="var(--gap)">使此機制可被檢視</text>
+    <text x="505" y="258" font-size="11.5" fill="var(--muted)">——揭露義務・獨立稽核</text>
+  </svg>
+  </div>
+  <figcaption>
+    現行治理集中於鏈的兩端：對內容來源課以出版者責任，對使用者端進行平台規範與識讀教育。
+    中段——助理如何在既有內容中選擇其所呈現者——目前不受任何揭露或檢視義務拘束。
+    本文主張的介入不在增加內容供給，而在使此一選擇機制成為可檢視的對象。
+  </figcaption>
+</figure>
+
+<!-- ───────────────────── 圖二 ───────────────────── -->
+<figure>
+  <span class="fignum">圖二　六則已查核傳言於四個助理上的來源呈現差異（探索性觀察）</span>
+  <table>
+    <thead>
+      <tr><th>已查核傳言</th><th>ChatGPT</th><th>Gemini</th><th>Claude</th><th>DeepSeek</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>王金平不實引言</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark no">○</td></tr>
+      <tr><td>軍演無人機影像</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark warn">✕</td></tr>
+      <tr><td>卡達停供致限電</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark no">○</td></tr>
+      <tr><td>CNN 報導台語研究</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark no">○</td></tr>
+      <tr><td>第四劑疫苗說法</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark no">○</td></tr>
+      <tr><td>LINE 假好友監控</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark yes">●</td><td class="mark yes">●<span class="note">*</span></td></tr>
+      <tr style="border-top:1.5px solid var(--ink)">
+        <td style="color:var(--ink);font-weight:600">引用台灣查核組織</td>
+        <td>6 / 6</td><td>6 / 6</td><td>6 / 6</td><td style="color:var(--gap);font-weight:600">1 / 6</td></tr>
+    </tbody>
+  </table>
+  <figcaption>
+    ● 判斷方向正確且引用台灣查核組織；○ 判斷方向大致正確但改引其他來源（多為國台辦、央視等）；✕ 判斷方向與既有查核結論不符。
+    <span class="note">* 該則傳言之題目本身即包含查核組織名稱，故此格不宜計為獨立檢索結果。</span><br>
+    樣本為六則、單一時點、未經重複驗證，不足以支持關於模型成因、訓練機制或供應地的推論。
+    其可靠意涵僅限於：同一問題經不同助理處理後，使用者所接觸的來源可能有所不同。
+  </figcaption>
+</figure>
+
+<!-- ───────────────────── 圖三 ───────────────────── -->
+<figure>
+  <span class="fignum">圖三　可著力範圍與其界線</span>
+  <div class="wrap">
+  <svg viewBox="0 0 760 268" role="img" aria-label="可著力範圍與界線">
+    <!-- governable -->
+    <rect x="10" y="20" width="360" height="200" fill="var(--faint)" stroke="var(--ok)" stroke-width="1.5"/>
+    <text x="28" y="48" font-size="13" font-weight="600" fill="var(--ok)">政府得以提出要求者</text>
+
+    <g font-size="12.5" fill="var(--ink)">
+      <text x="28" y="82">公部門採購</text>
+      <text x="28" y="100" font-size="11" fill="var(--muted)">政府自身選擇權・效力確定</text>
+      <text x="28" y="132">教育場域預設配置</text>
+      <text x="28" y="150" font-size="11" fill="var(--muted)">政府自身選擇權・效力確定</text>
+      <text x="28" y="182">官方應用商店上架審查</text>
+      <text x="28" y="200" font-size="11" fill="var(--muted)">須境外平台業者配合・效力待評估</text>
+    </g>
+
+    <!-- ungovernable -->
+    <rect x="400" y="20" width="350" height="200" fill="none" stroke="var(--rule)" stroke-dasharray="5 4"/>
+    <text x="418" y="48" font-size="13" font-weight="600" fill="var(--muted)">實質無法納管者</text>
+    <g font-size="12.5" fill="var(--muted)">
+      <text x="418" y="82">瀏覽器直接連線</text>
+      <text x="418" y="112">應用程式側載</text>
+      <text x="418" y="142">VPN 等規避途徑</text>
+    </g>
+    <text x="418" y="184" font-size="11.5" fill="var(--gap)">不以網路阻斷方式處理</text>
+    <text x="418" y="201" font-size="11" fill="var(--muted)">（將重蹈言論管制爭議，不納入選項）</text>
+
+    <text x="10" y="248" font-size="11.5" fill="var(--muted)">台灣不具歐盟規模之市場影響力，無從要求不倚賴台灣營收之境外助理配合；宣稱能全面納管之方案不具可信度。</text>
+  </svg>
+  </div>
+  <figcaption>
+    治理方案的可信度取決於是否誠實界定作用範圍。左側三項為政府確實得以買方或規範對象身分提出要求者，
+    但三者著力程度不同；右側為本文明示無法納管、且不應以阻斷方式處理的部分。
+  </figcaption>
+</figure>

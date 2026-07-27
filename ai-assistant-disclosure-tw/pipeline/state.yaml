@@ -1,0 +1,51 @@
+project: ai-assistant-disclosure-tw
+tool: insight-pipeline
+brief_path: pipeline/brief.md
+brief_expanded_path: pipeline/brief_expanded.yaml
+collect_output_path: pipeline/collect/candidates.jsonl
+last_handoff_ts: '2026-07-20T10:32:56+08:00'
+current_stage: segment
+status: awaiting_input
+collect:
+  candidates_count: 60
+  output_path: pipeline/collect/candidates.jsonl
+  coverage_path: pipeline/collect/coverage.md
+  providers_run:
+  - openalex
+  - semantic_scholar_partial
+  - websearch
+  - webfetch
+  - taiwan-legal-db-mcp
+  providers_failed:
+  - 'semantic_scholar: HTTP 429 rate-limited on ~22/25 queries (openalex unaffected)'
+  - 'twinkle-hub-mcp: tools not available this session (Co6 auto-probe skipped, not
+    silently)'
+  notes: 60 unique candidates (deduped from 82) across concept_ontology P/T/F/D/S/G/M
+    = 7/10/7/11/5/17/3. No sources.yaml present for this project -> Track 2 curated
+    RSS skipped entirely (same as sibling llm-user-side-bias project). All 11 seek_direct
+    URLs attempted; 4 access-blocked with alternate-route substitute records (Nature
+    paywall, DebunkBot Science DOI 403, cofacts.tw 403, NewsGuard 403). DebunkBot
+    anchor (Costello/Pennycook/Rand Science 2024) carries an Editorial Expression
+    of Concern (data/screening-criteria issue) -- flagged with 2 dedicated candidate
+    records so it is cited with an integrity footnote. M (measurement) cluster thinnest
+    at 3 -- structurally young academic niche; the operator's planned probe protocol
+    (brief Section 待決事項 1b, not yet run) will supply the primary M-cluster evidence
+    once executed. See pipeline/collect/coverage.md for full brief-Q x track matrix
+    and blind-spot callouts.
+gate:
+  accepted_count: 53
+  accepted_path: pipeline/gate/accepted.jsonl
+  rejected_count: 7
+  rejected_path: pipeline/gate/rejected.jsonl
+  borderline_count: 0
+  balance_check: not_applicable — counter_framings absent in brief_expanded.yaml
+  second_pass: 36 re-judged (all qs>=4 accepts), 0 disagreements
+  notes: 'Top rejection reasons: adjacent_not_material (3), ss_landing_no_open_pdf
+    (2), brief_exclusion (1), time_window (1). P-cluster established anchors + Pravda-network
+    trio all accepted per operator directive #1. DebunkBot + Editorial Expression
+    of Concern + Retraction Watch all accepted per operator directive #2, integrity
+    flag travels with the 20pct headline figure. M (3/3) and S (4/5) clusters protected
+    per operator directive #3. must_include: 14/17 present (bare-string entries, no
+    fetch_fallback -> no blocking action per I2); TFC official ClaimReview doc, IFCN
+    ClaimReview doc, IORG/Doublethink Lab research never entered the 60-candidate
+    pool at all.'

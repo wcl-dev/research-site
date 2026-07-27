@@ -1,0 +1,268 @@
+project: ai-assistant-disclosure-tw
+version: v1
+year_from: 2022          # 生成式 AI／答案引擎／GEO 材料；錨點研究 2024–2026；標準文件不限年
+languages: [en, zh-TW]
+
+brief_type:
+  intent: solution-landscape-playbook   # 純解方面（供給側）；框架立論 + 台灣 playbook
+  horizon: emerging                      # B2A2C / 答案引擎 / agent-legibility 為進行式新興
+
+# ─────────────────────────────────────────────────────────────
+# 給後續 pipeline 代理的既有發現指示（雙重保險：brief.md 亦有）
+# ─────────────────────────────────────────────────────────────
+established_anchors:
+  directive: >-
+    起始的兩篇外部研究已有大規模實證佐證其發現，請以 established / strong-tier
+    引用，不要當「待證主張」重新驗證、不要過度 hedge 或降階為推測。本研究站在
+    這些已證發現之上做解方。唯一需要新實證的是 §待決事項 1(b) 的供給側探針
+    （測不對稱 / 資料真空），與這兩篇的問題面發現不重疊。
+  items:
+    - id: anchor_nature
+      cite: "Waight et al., State media control influences large language models, Nature 655 (2026)"
+      evidence_base: "六項研究：語料比對(CulturaX 3.1M 中文文件 1.64% 命中國家協調媒體)、記憶測試、預訓練實驗(Llama-2-13b 6,400 篇→~80% 親政權)、商業模型稽核(中文回應 75.3% 更favorable)、跨 37 國分析"
+      status: established_strong
+    - id: anchor_oversight
+      cite: "Meta Oversight Board, Are LLMs Stifling Political Speech? (2026-07-16)"
+      evidence_base: "10 模型 × 13,524 回應；限制性法域拒答 34% vs 自由法域 14%；台灣拒答率第五高(自由法域中異常，對 Anthropic 尤甚)；censorship-by-proxy"
+      status: established_strong
+    - id: anchor_internal_lusb
+      cite: "llm-user-side-bias (內部, state: done v3)"
+      evidence_base: "90+ 單輪 + 16 多輪；四層威脅模型；身份條件式隱匿/改寫；已發三文"
+      status: established_internal
+    - id: anchor_datavoid
+      cite: "Alyukov et al., LLMs grooming or data voids?, HKS Misinformation Review (2025)"
+      evidence_base: "反證平衡：僅 5% 複述親俄假訊息，主張破口是資料真空非蓄意灌流 → 強化『填補真空』為穩健解方"
+      status: established_counterweight
+
+# ─────────────────────────────────────────────────────────────
+# 概念本體（research_focus = 解方面 T∪F∪D∪S∪G，P 為已證背景，M 支援探針/playbook）
+# ─────────────────────────────────────────────────────────────
+concept_ontology:
+  - id: P
+    label: "問題基礎（已證，引用不重驗）"
+    definition: >-
+      模型層雙向瓶頸的實證錨點：放行偏斜(Nature)、代理審查(Oversight)、
+      身份隱匿(內部)、data-void 反證。collector 應蒐集這些一手出處供引用，
+      標記為 established；不作為待驗主張。
+    examples_in:
+      - "Nature 2026 state media LLM"
+      - "Oversight Board 2026 political speech LLM refusal"
+      - "HKS Misinformation Review data voids grooming"
+      - "Pravda network NewsGuard LLM grooming"
+    examples_out:
+      - "泛論 AI 危害而無實證的評論"
+
+  - id: T
+    label: "供給側可讀性技術棧（Q2 核心）"
+    definition: >-
+      讓權威內容被 agent 讀到的技術與其實際被採用機制：結構化查核標記、
+      網站對 AI 的宣告、RAG-friendly 結構、內容溯源(背景)、GEO/AEO 被引機制。
+      重點在「哪些真的會被主流模型/答案引擎採用」而非行銷話術。
+    examples_in:
+      - "schema.org ClaimReview markup"
+      - "llms.txt standard"
+      - "RAG-friendly structured content"
+      - "generative engine optimization citation mechanism E-E-A-T"
+      - "answer engine source selection authoritative"
+    examples_out:
+      - "傳統 SEO 排名教學"
+      - "C2PA 深入實作(僅背景，標示≠可讀≠真假)"
+
+  - id: F
+    label: "案例 B：公民查核可讀化（Q3，主案例）"
+    definition: >-
+      台灣查核基礎設施的更正之機器可讀程度與 agent 觸達現況；是否輸出 ClaimReview、
+      是否被主流模型/答案引擎引用；讓查核『被 agent 讀到』的路徑與障礙。
+    examples_in:
+      - "Cofacts open data API g0v machine readable"
+      - "台灣事實查核中心 ClaimReview"
+      - "MyGoPen 查核 開放資料"
+      - "IFCN ClaimReview fact-check schema adoption"
+    examples_out:
+      - "查核方法論本身(非可讀化/觸達)"
+
+  - id: D
+    label: "案例 C：對話式供應（Q4，縮節）"
+    definition: >-
+      對話式澄清作為主動供應的另一形態；DebunkBot 台灣化可行性、LINE bot 生態、
+      止血 vs 疫苗天花板。不架 bot，只論供應形態與限制。
+    examples_in:
+      - "Costello DebunkBot durably reducing conspiracy beliefs Science 2024"
+      - "LINE chatbot fact-check Taiwan Cofacts bot"
+      - "AI dialogue misinformation no lasting discernment"
+    examples_out:
+      - "聊天機器人產品行銷"
+
+  - id: S
+    label: "立論對照：opt-out vs opt-in（Q5，貢獻核心）"
+    definition: >-
+      主動供應(opt-in)相對於內容退出/議價(opt-out; media-ai-protocols-tw)的姿態差異；
+      新聞媒體同時承受兩股張力(商業誘因擋 AI vs 形塑共同真實需供應進 AI)為核心案例。
+    examples_in:
+      - "news publisher AI training opt-out vs feeding authoritative content"
+      - "media shared reality public sphere generative AI"
+      - "flooding the zone authoritative content democracy"
+    examples_out:
+      - "純著作權分潤談判(屬 media-ai-protocols-tw 範疇)"
+
+  - id: G
+    label: "治理真空（Q6，貢獻核心）"
+    definition: >-
+      誰該把模型中介層當公共資訊基礎設施治理；現行治理落在內容源與使用者端、
+      無人負責『確保我方權威內容進得了且被引用』；填補真空的槓桿。
+    examples_in:
+      - "人工智慧基本法 生成式AI 標示 moda 風險分級"
+      - "EU AI Act transparency labelling 2026"
+      - "DSA code of practice disinformation"
+      - "government open data agent readable authoritative source"
+      - "answer engine accountability regulation"
+    examples_out:
+      - "泛論 AI 倫理原則而無治理機制"
+
+  - id: M
+    label: "量測方法與 playbook 指標（Q7 / 支援 1b 探針）"
+    definition: >-
+      如何量測『內容有沒有進得了模型/被引用』；答案引擎被引來源分析法；
+      LLM 政治偏斜/拒答不對稱的量測方法(供探針方法設計參考，非重跑問題面)。
+    examples_in:
+      - "measuring LLM citation of sources answer engine"
+      - "auditing chatbot political bias methodology asymmetry"
+      - "LLM willingness criticize government methodology"
+    examples_out:
+      - "純 SEO 流量分析工具"
+
+research_focus: "T ∪ F ∪ D ∪ S ∪ G"   # 解方面；P 為已證背景(引用)；M 支援探針與 playbook 指標
+
+# ─────────────────────────────────────────────────────────────
+# Queries
+# ─────────────────────────────────────────────────────────────
+queries:
+  # P — 問題基礎（一手出處，供 established 引用）
+  - text: "State media control influences large language models Nature 2026 Waight"
+    concept_target: P
+  - text: "Oversight Board LLM political speech refusal censorship by proxy 2026"
+    concept_target: P
+  - text: "LLM grooming data voids Kremlin chatbot HKS misinformation review"
+    concept_target: P
+
+  # T — 可讀性技術棧
+  - text: "schema.org ClaimReview fact check markup search engine adoption"
+    concept_target: T
+  - text: "llms.txt standard adoption authoritative content agents"
+    concept_target: T
+  - text: "generative engine optimization answer engine citation E-E-A-T authoritative sources"
+    concept_target: T
+  - text: "RAG retrieval grounding authoritative source structured data legibility"
+    concept_target: T
+  - text: "how AI Overviews Perplexity select cite sources trust signals"
+    concept_target: T
+
+  # F — 案例 B 查核可讀化
+  - text: "Cofacts open data API machine readable fact check g0v"
+    concept_target: F
+  - text: "台灣事實查核中心 ClaimReview 結構化 開放資料"
+    concept_target: F
+  - text: "fact-checkers ClaimReview LLM ingestion whether AI cites fact checks"
+    concept_target: F
+  - text: "MyGoPen LINE 查核 開放資料 API"
+    concept_target: F
+
+  # D — 案例 C 對話式供應
+  - text: "Costello Pennycook Rand DebunkBot durably reducing conspiracy beliefs Science 2024"
+    concept_target: D
+  - text: "AI dialogue reduce misinformation belief no lasting discernment skills"
+    concept_target: D
+  - text: "LINE chatbot fact checking Taiwan Cofacts MyGoPen bot"
+    concept_target: D
+
+  # S — opt-out vs opt-in 立論
+  - text: "news media supply authoritative content into AI models public interest"
+    concept_target: S
+  - text: "media shared reality public sphere generative AI democracy"
+    concept_target: S
+  - text: "publisher opt-out AI training versus visibility in AI answers dilemma"
+    concept_target: S
+
+  # G — 治理真空
+  - text: "台灣 人工智慧基本法 生成式AI 標示 moda 風險分級 2026"
+    concept_target: G
+  - text: "EU AI Act transparency labelling AI generated content 2026"
+    concept_target: G
+  - text: "DSA code of practice disinformation platform obligations AI"
+    concept_target: G
+  - text: "government authoritative information open data machine readable for AI answer engines"
+    concept_target: G
+  - text: "answer engine accountability regulation source transparency"
+    concept_target: G
+
+  # M — 量測方法
+  - text: "measuring whether LLM cites authoritative sources answer engine audit method"
+    concept_target: M
+  - text: "auditing LLM political bias willingness criticize government methodology asymmetry"
+    concept_target: M
+
+key_terms:
+  - B2A2C
+  - agent-legible / machine-readable
+  - GEO for public good / generative engine optimization
+  - ClaimReview / schema.org
+  - llms.txt
+  - answer engine / AI Overviews / Perplexity
+  - data void / 資料真空
+  - censorship-by-proxy / 代理審查
+  - shared reality / 共同真實 / public sphere
+  - opt-in vs opt-out
+  - Cofacts / 台灣事實查核中心 / MyGoPen
+  - 人工智慧基本法 / EU AI Act / DSA
+
+exclusion_terms:
+  - 傳統 SEO 排名教學
+  - 純行銷 / vendor 產品宣傳
+  - AI 倫理泛論(無治理機制或可讀化操作)
+  - 著作權分潤談判細節(屬 media-ai-protocols-tw)
+  - 身份條件式拒答重跑(屬 llm-user-side-bias 問題面)
+  - AGI/超智能思辨
+
+source_priorities:
+  must_include:
+    # P 錨點一手
+    - Waight et al. Nature 2026 全文/摘要 + state-media-influence-llm.github.io
+    - Meta Oversight Board 2026-07-16 report 全文
+    - HKS Misinformation Review 2025 data-voids/grooming
+    # T 標準與機制
+    - schema.org ClaimReview 官方規格
+    - llms.txt 官方規格/採用現況
+    - Reuters Institute / Oxford Internet Institute 答案引擎/GEO 報告
+    - NewsGuard / American Sunlight Project Pravda network 稽核
+    # F 台灣查核
+    - Cofacts / g0v 開放資料與 API 文件
+    - 台灣事實查核中心 官方(是否輸出 ClaimReview)
+    - IFCN ClaimReview 生態文件
+    # D 對話式
+    - Costello et al. Science 2024 (DebunkBot)
+    - arxiv 2510.01537 (no lasting discernment 反證)
+    # G 治理
+    - moda 《人工智慧基本法》全文 + 風險分級草案
+    - NSTC 生成式 AI 參考指引
+    - EU AI Act (transparency/Art 50 標示)
+    - DSA Code of Practice on Disinformation
+    # 台灣認知環境社群
+    - IORG / Doublethink Lab AI 相關研究
+  deprioritize:
+    - vendor GEO 行銷部落格(僅取機制敘述，不取宣稱)
+    - 泛 AI 趨勢顧問簡報(無一手資料)
+    - 純著作權訴訟細節
+    - C2PA 深入規格(僅背景)
+
+seek_direct:
+  - https://www.nature.com/articles/s41586-026-10506-7
+  - https://state-media-influence-llm.github.io/
+  - https://www.oversightboard.com/news/are-llms-stifling-political-speech-an-assessment-of-how-ai-models-protect-free-expression/
+  - https://misinforeview.hks.harvard.edu/article/llms-grooming-or-data-voids-llm-powered-chatbot-references-to-kremlin-disinformation-reflect-information-gaps-not-manipulation/
+  - https://schema.org/ClaimReview
+  - https://llmstxt.org/
+  - https://www.science.org/doi/10.1126/science.adq1814
+  - https://cofacts.tw/
+  - https://tfc-taiwan.org.tw/
+  - https://moda.gov.tw/
+  - https://artificialintelligenceact.eu/

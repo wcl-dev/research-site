@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>揭露的界線 — AI 助理選擇機制，台灣可行的治理起點</title>
+<!-- og:auto:start -->
+<meta name="description" content="AI 助理在生成回應時決定端出哪些來源、如何敘述、哪些問題不予回答——這些選擇在功能上等同編輯行為，但其標準不對外揭露，在台灣也不受任何制度檢視。本文以兩項近期研究（Waight 等人《自然》2026 記錄輸出的傾向性；Meta 監督委員會 2026 記錄輸出的限制與「代理審查」）為問題基礎，指出現行治理集中於資訊鏈的兩端（對內容來源課以出版者責任、對使用者端進行平台規範與識讀教育），中段的選擇機制則無對應制度。主張一組刻意受限的第一步：在政府確實具有影響力的三個通路（官方應用商店上架、公部門採購、教育場域預設配置）課予僅涉及程序的揭露義務，由 NCC 執行、由公民社會組成的獨立委員會擔任觀測機構，並將可處罰行為明確限定為三類（未揭露、揭露不實、拒絕稽核）——模型的立場與跨模型差異永不得構成處罰事由。全文誠實揭示此一設計的四項結構性弱點，包括市場關卡實為自願性質、觀測機構的政治標籤無法迴避、政府自身可能成為新的內容守門人，以及執法機關可能合法地不作為。治理提案的可行性經一次多方角色對抗式推演檢驗。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="weichen&#x27;s Research">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="揭露的界線：AI 助理選擇機制，台灣可行的治理起點">
+<meta property="og:description" content="AI 助理在生成回應時決定端出哪些來源、如何敘述、哪些問題不予回答——這些選擇在功能上等同編輯行為，但其標準不對外揭露，在台灣也不受任何制度檢視。本文以兩項近期研究（Waight 等人《自然》2026 記錄輸出的傾向性；Meta 監督委員會 2026 記錄輸出的限制與「代理審查」）為問題基礎，指出現行治理集中於資訊鏈的兩端（對內容來源課以出版者責任、對使用者端進行平台規範與識讀教育），中段的選擇機制則無對應制度。主張一組刻意受限的第一步：在政府確實具有影響力的三個通路（官方應用商店上架、公部門採購、教育場域預設配置）課予僅涉及程序的揭露義務，由 NCC 執行、由公民社會組成的獨立委員會擔任觀測機構，並將可處罰行為明確限定為三類（未揭露、揭露不實、拒絕稽核）——模型的立場與跨模型差異永不得構成處罰事由。全文誠實揭示此一設計的四項結構性弱點，包括市場關卡實為自願性質、觀測機構的政治標籤無法迴避、政府自身可能成為新的內容守門人，以及執法機關可能合法地不作為。治理提案的可行性經一次多方角色對抗式推演檢驗。">
+<meta property="og:url" content="https://wcl-dev.github.io/research-site/ai-assistant-disclosure-tw/">
+<meta property="og:image" content="https://wcl-dev.github.io/research-site/ai-assistant-disclosure-tw/og.png?v=6">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="揭露的界線：AI 助理選擇機制，台灣可行的治理起點">
+<meta name="twitter:description" content="AI 助理在生成回應時決定端出哪些來源、如何敘述、哪些問題不予回答——這些選擇在功能上等同編輯行為，但其標準不對外揭露，在台灣也不受任何制度檢視。本文以兩項近期研究（Waight 等人《自然》2026 記錄輸出的傾向性；Meta 監督委員會 2026 記錄輸出的限制與「代理審查」）為問題基礎，指出現行治理集中於資訊鏈的兩端（對內容來源課以出版者責任、對使用者端進行平台規範與識讀教育），中段的選擇機制則無對應制度。主張一組刻意受限的第一步：在政府確實具有影響力的三個通路（官方應用商店上架、公部門採購、教育場域預設配置）課予僅涉及程序的揭露義務，由 NCC 執行、由公民社會組成的獨立委員會擔任觀測機構，並將可處罰行為明確限定為三類（未揭露、揭露不實、拒絕稽核）——模型的立場與跨模型差異永不得構成處罰事由。全文誠實揭示此一設計的四項結構性弱點，包括市場關卡實為自願性質、觀測機構的政治標籤無法迴避、政府自身可能成為新的內容守門人，以及執法機關可能合法地不作為。治理提案的可行性經一次多方角色對抗式推演檢驗。">
+<meta name="twitter:image" content="https://wcl-dev.github.io/research-site/ai-assistant-disclosure-tw/og.png?v=6">
+<!-- og:auto:end -->
+<meta name="description" content="AI 助理決定端出哪些來源、哪些問題不答——這些選擇在功能上等同編輯行為，卻不受任何制度檢視。本文主張一組只問揭露、不問對錯的有限義務，並誠實劃出這條界線會在哪四個地方鬆掉。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/open-props/easings.min.css">
+<link rel="stylesheet" href="https://unpkg.com/open-props/sizes.min.css">
+
+<style>
+/* ===== brand-tokens.css ===== */
+:root{
+  --c-paper:#fbfaf6; --c-paper-card:#f5f3ec; --c-paper-sink:#efece4;
+  --c-ink:#333333; --c-ink-soft:#555555; --c-ink-faint:#888888; --c-watermark:#aaaaaa;
+  --c-rule:#cfc9b9; --c-rule-soft:#dfd9c5;
+  --role-accent:#b03a2e;
+  --ff-display:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
+  --ff-serif:var(--ff-display);
+  --ff-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --maxw-prose:680px; --maxw-content:920px;
+  --lh-tight:1.4; --lh-body-cjk:1.82; --lh-prose-cjk:1.9;
+}
+/* ===== base.css ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--c-paper);color:var(--c-ink);font-family:var(--ff-serif);
+  font-weight:400;font-size:19px;line-height:var(--lh-prose-cjk);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;
+  opacity:.18;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E")}
+a{color:inherit}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ===== template-a-linear ===== */
+body{font-family:var(--ff-display);font-size:16.5px;line-height:1.75}
+::selection{background:var(--role-accent);color:var(--c-paper)}
+a{color:var(--role-accent);text-decoration:none;border-bottom:1px solid currentColor;transition:opacity .15s}
+a:hover{opacity:.65}
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--role-accent);z-index:200;transition:width .12s linear}
+.badge{position:fixed;top:18px;right:24px;z-index:100;font-size:11.5px;letter-spacing:.15em;
+  text-transform:uppercase;font-weight:600;color:var(--c-ink);opacity:0;transition:opacity .25s;
+  padding:6px 12px;background:var(--c-paper);border:1px solid var(--c-rule);border-radius:99px}
+.badge.show{opacity:.8}
+.badge b{color:var(--role-accent);font-weight:700;margin-right:8px}
+main{display:block}
+.wrap{max-width:var(--maxw-prose);margin:0 auto;padding:0 28px}
+.wrap.wide{max-width:var(--maxw-content)}
+section{padding:96px 0;position:relative}
+section+section{border-top:1px solid var(--c-rule)}
+.cover{min-height:88vh;padding:0;display:flex;align-items:center;border-bottom:1px solid var(--c-rule)}
+.cover-inner{max-width:760px;margin:0 auto;padding:80px 28px 70px;width:100%}
+.meta{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--c-ink);
+  opacity:.5;font-weight:600;margin-bottom:54px;display:flex;align-items:center;gap:14px}
+.meta::after{content:"";flex:1;max-width:240px;height:1px;background:var(--c-rule)}
+h1.title{font-family:var(--ff-display);font-size:clamp(38px,7vw,72px);font-weight:700;
+  line-height:1.08;letter-spacing:-.025em;margin-bottom:28px;color:var(--c-ink)}
+.subtitle{font-size:clamp(19px,2.6vw,24px);font-weight:500;line-height:1.44;max-width:640px;
+  margin-bottom:48px;color:var(--role-accent);letter-spacing:-.005em}
+.cover-lead{font-size:18px;line-height:1.85;color:var(--c-ink);opacity:.82;max-width:600px}
+.cover-lead b{font-weight:700;opacity:1}
+.cover-lead .ref{display:block;margin-top:24px;padding-top:20px;border-top:1px solid var(--c-rule);
+  font-size:15px;line-height:1.78;opacity:.68}
+.sec-meta{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--role-accent);
+  font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:14px}
+.sec-meta b{color:var(--c-ink);opacity:.5;font-weight:500;letter-spacing:.18em}
+h2.sec-title{font-family:var(--ff-display);font-size:clamp(24px,3.4vw,32px);font-weight:600;
+  line-height:1.3;letter-spacing:-.015em;margin-bottom:26px;color:var(--c-watermark)}
+h2.sec-title em{color:var(--role-accent);font-style:normal}
+.sec-lead{font-size:20px;line-height:1.74;color:var(--c-ink);opacity:.78;margin-bottom:44px;font-weight:500}
+.sec-lead b{font-weight:700;opacity:1}
+.pre-viz{margin:0 auto 40px;max-width:640px;font-size:17.5px;line-height:1.86;color:var(--c-ink);opacity:.86}
+.pre-viz p{margin:14px 0}
+.pre-viz b{font-weight:700;opacity:1}
+.takeaway{margin:40px auto 0;max-width:620px;padding:24px 28px;border:1px solid var(--c-ink);background:var(--c-paper)}
+.takeaway p{font-size:17.5px;line-height:1.82}
+.takeaway p+p{margin-top:12px}
+.takeaway b{font-weight:700;color:var(--role-accent)}
+.takeaway .tk-line{font-size:14.5px;opacity:.7;margin-top:18px;padding-top:14px;
+  border-top:1px solid var(--c-rule);line-height:1.7}
+footer{background:var(--c-ink);color:var(--c-ink-faint);padding:48px 28px;font-size:15px;line-height:1.85}
+footer .ft-inner{max-width:var(--maxw-content);margin:0 auto}
+footer b{color:var(--c-paper-card);font-weight:700}
+footer a{color:var(--c-paper-card);border-bottom:1px solid rgba(255,255,255,.25);text-decoration:none}
+
+/* ===== bespoke: prose + figures ===== */
+p.body{font-size:17.5px;line-height:1.95;margin:20px 0}
+p.body b{font-weight:700}
+.lede-box{border-left:2px solid var(--role-accent);padding:4px 0 4px 20px;margin:0 0 44px}
+.lede-box p{font-size:17.5px;line-height:1.88;margin:12px 0}
+h3.sub{font-size:16.5px;font-weight:700;letter-spacing:.02em;margin:38px 0 8px;color:var(--c-ink)}
+h3.sub::before{content:"— ";color:var(--role-accent)}
+ol.numbered{margin:20px 0 20px 1.2em;font-size:17.5px;line-height:1.95}
+ol.numbered li{margin:10px 0;padding-left:6px}
+figure.fig{margin:44px 0}
+figure.fig .figwrap{overflow-x:auto}
+figure.fig svg{display:block;max-width:100%;height:auto}
+figcaption{font-size:14px;line-height:1.82;color:var(--c-ink);opacity:.66;margin-top:14px;
+  border-top:1px solid var(--c-rule);padding-top:12px}
+.fignum{display:block;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:700;color:var(--role-accent);margin-bottom:14px}
+table.probe{border-collapse:collapse;width:100%;font-size:14.5px}
+table.probe th,table.probe td{border-bottom:1px solid var(--c-rule);padding:.6rem .4rem;text-align:center}
+table.probe th:first-child,table.probe td:first-child{text-align:left;white-space:nowrap;opacity:.7}
+table.probe thead th{font-weight:600;font-size:12px;letter-spacing:.06em;opacity:.55;border-bottom:1.5px solid var(--c-ink)}
+table.probe tr.total td{border-top:1.5px solid var(--c-ink);border-bottom:none;font-weight:700;padding-top:.7rem}
+.m-yes{color:var(--c-ink)}
+.m-part{color:var(--c-ink-faint)}
+.m-miss{color:var(--role-accent);font-weight:700}
+.hi{color:var(--role-accent);font-weight:700}
+.limits{margin-top:14px;font-size:14px;line-height:1.8;opacity:.6}
+@media (max-width:760px){.cover-inner{padding:60px 24px 50px}section{padding:64px 0}}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">01</b><span id="badgename">封面</span></div>
+
+<main>
+
+<!-- ============ COVER ============ -->
+<section class="cover" data-num="01" data-name="封面">
+  <div class="cover-inner">
+    <div class="meta">AI 治理 · 政策分析 · 2026 / 07</div>
+    <h1 class="title">揭露的界線</h1>
+    <p class="subtitle">AI 助理選擇機制，台灣可行的治理起點</p>
+    <div class="cover-lead">
+      <p>生成式 AI 助理正在成為民眾取得公共資訊的通道之一。它在生成回應時決定端出哪些來源、如何敘述、哪些問題不予回答——這些選擇<b>在功能上等同編輯行為</b>，但其標準不對外揭露，在台灣亦不受任何制度檢視。</p>
+      <div class="ref">
+        本文主張台灣現階段不宜追求對此一中介層的全面治理，而應設定一個明確且可執行的有限目標：在政府確實具有影響力的通路上，要求 AI 助理揭露其選擇機制——<b>只問是否揭露，不問內容對錯</b>。第八節誠實列出這條界線會在哪四個地方鬆掉。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §02 問題的性質 ============ -->
+<section data-num="02" data-name="問題的性質">
+  <div class="wrap">
+    <div class="sec-meta"><span>§02</span> <b>問題的性質</b></div>
+    <h2 class="sec-title">從提供連結，到<em>代為作答</em></h2>
+    <p class="sec-lead">當使用者不再直接造訪來源，而是向 AI 助理提問，中介層的功能便從提供連結，轉向直接代為作答。</p>
+
+    <p class="body">AI 助理在生成回應時所做的判斷——採用哪些來源、略過哪些、以何種框架敘述、對哪些提問拒絕回應——構成一組事實上的編輯決策。相較於傳統的連結式檢索，AI 助理更常直接生成回應；搜尋服務近年加入的生成式摘要功能亦具類似性質，兩者界線正在模糊。</p>
+
+    <p class="body">須先界定本文主張的範圍。目前並無可靠數據顯示台灣民眾在公共議題上依賴 AI 助理的程度、信任水準，或其對公共判斷的實際影響；<b>本文不主張此一中介已主導公共認知</b>。值得關注的是一個較窄的事實：無論此一通道最終規模為何，其選擇機制目前在台灣不受任何制度檢視。</p>
+
+    <p class="body">附帶一項趨勢判斷：當這類產品逐步取得代理能力——代使用者瀏覽、比較、執行多步驟任務——使用者能親眼檢視的中間過程將更少，其選擇機制也更不可見。本文的揭露主張<b>不會隨此一演進而失效，反而更為必要</b>。</p>
+  </div>
+</section>
+
+<!-- ============ §03 既有證據 ============ -->
+<section data-num="03" data-name="既有證據">
+  <div class="wrap">
+    <div class="sec-meta"><span>§03</span> <b>既有證據及其界線</b></div>
+    <h2 class="sec-title">它會<em>推</em>，也會<em>壓</em></h2>
+    <p class="sec-lead">兩項近期研究分別記錄了此一中介層的兩種偏差方向——而它們的證據力應被準確理解。</p>
+
+    <h3 class="sub">輸出的傾向性</h3>
+    <p class="body">Waight 等人發表於《自然》的研究指出，當訓練語料包含大量國家控制媒體時，模型輸出會呈現偏向該政權的傾向，且以該國語言查詢時最為明顯。就中文使用者而言，此一發現意味著模型所依據的語料中，包含經特定國家系統性生產的敘事。</p>
+
+    <h3 class="sub">輸出的限制</h3>
+    <p class="body">Meta 監督委員會同年針對十個主流模型、逾一萬三千筆回應的測試發現，模型對源自言論受限法域的政治言論拒答率明顯偏高，批評威權政府的抗議文案與諷刺內容尤其容易被拒。委員會將此現象稱為「代理審查」——特定法域的言論限制透過模型延伸至其他法域的使用者。</p>
+
+    <div class="takeaway">
+      <p>兩項研究證明<b>偏差存在</b>，且來源可追溯至訓練資料與對齊設計；它們<b>並未測量</b>此類偏差對公共認知的實際效果。</p>
+      <p>其政策意涵因此是有限而明確的：中介層的選擇機制具有系統性影響的可能，而該機制目前不可見。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §04 中央視覺：治理缺口 ============ -->
+<section data-num="04" data-name="治理缺口">
+  <div class="wrap wide">
+    <div class="sec-meta"><span>§04</span> <b>台灣的制度缺口</b></div>
+    <h2 class="sec-title">現行治理落在鏈的<em>兩端</em></h2>
+    <p class="sec-lead">台灣的資訊環境治理涵蓋數個層次，而這些機制的共同特徵，是均作用於 AI 助理之外。</p>
+
+    <div class="pre-viz">
+      <p>對內容來源課以誹謗、更正與新聞倫理規範；對平台設有不實廣告與選舉相關限制；並透過媒體識讀與事實查核強化使用者端能力。事實查核在其側進行更正，媒體識讀於其下游提醒使用者，平台規範處理的是內容如何流通。</p>
+      <p>就<b>「AI 助理如何選擇其所呈現之內容」</b>此一問題，目前並無對應制度。歐盟已透過《數位服務法》將大型線上中介納入監管，惟該法是否涵蓋各類 AI 助理仍在界定中；台灣已有《人工智慧基本法》及其風險分級架構，NCC 亦曾於 2022 年提出《數位中介服務法》草案，惟均未針對此一問題建立揭露或檢視機制。</p>
+    </div>
+
+    <figure class="fig">
+      <span class="fignum">圖一　資訊中介鏈與現行治理的覆蓋範圍</span>
+      <div class="figwrap">
+      <svg viewBox="0 0 780 300" role="img" aria-label="資訊中介鏈與治理覆蓋範圍">
+        <defs><marker id="ar" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0 0 L7 3.5 L0 7 z" fill="#888888"/></marker></defs>
+        <g font-size="13" fill="#333333" font-family="IBM Plex Mono, monospace">
+          <rect x="10" y="30" width="132" height="48" fill="none" stroke="#cfc9b9"/>
+          <text x="76" y="52" text-anchor="middle">內容來源</text>
+          <text x="76" y="69" text-anchor="middle" font-size="10.5" fill="#888888">媒體・查核・政府</text>
+
+          <rect x="178" y="30" width="132" height="48" fill="none" stroke="#cfc9b9"/>
+          <text x="244" y="52" text-anchor="middle">訓練語料</text>
+          <text x="244" y="69" text-anchor="middle" font-size="10.5" fill="#888888">與檢索索引</text>
+
+          <rect x="346" y="22" width="156" height="64" fill="#f5f3ec" stroke="#b03a2e" stroke-width="1.5"/>
+          <text x="424" y="48" text-anchor="middle" font-weight="700">AI 助理的選擇機制</text>
+          <text x="424" y="68" text-anchor="middle" font-size="10.5" fill="#888888">端出什麼・不端什麼</text>
+
+          <rect x="538" y="30" width="110" height="48" fill="none" stroke="#cfc9b9"/>
+          <text x="593" y="58" text-anchor="middle">產品介面</text>
+
+          <rect x="684" y="30" width="86" height="48" fill="none" stroke="#cfc9b9"/>
+          <text x="727" y="58" text-anchor="middle">使用者</text>
+        </g>
+        <g stroke="#888888" fill="none" stroke-width="1">
+          <path d="M142 54 H175" marker-end="url(#ar)"/>
+          <path d="M310 54 H343" marker-end="url(#ar)"/>
+          <path d="M502 54 H535" marker-end="url(#ar)"/>
+          <path d="M648 54 H681" marker-end="url(#ar)"/>
+        </g>
+
+        <g stroke="#888888" fill="none" stroke-width="1.2">
+          <path d="M12 112 V124 H140 V112"/>
+          <path d="M540 112 V124 H768 V112"/>
+        </g>
+        <g font-size="11.5" fill="#555555" text-anchor="middle" font-family="IBM Plex Mono, monospace">
+          <text x="76" y="145">出版者規範</text>
+          <text x="76" y="162" font-size="10.5" fill="#888888">誹謗・更正・新聞倫理</text>
+          <text x="654" y="145">平台規範・使用者端</text>
+          <text x="654" y="162" font-size="10.5" fill="#888888">不實廣告・選舉・媒體識讀</text>
+        </g>
+
+        <g stroke="#b03a2e" fill="none" stroke-width="1.5" stroke-dasharray="4 3">
+          <path d="M180 112 V126 H500 V112"/>
+        </g>
+        <text x="340" y="148" text-anchor="middle" font-size="13" fill="#b03a2e" font-weight="700" font-family="IBM Plex Mono, monospace">無對應制度</text>
+        <text x="340" y="166" text-anchor="middle" font-size="11" fill="#b03a2e" font-family="IBM Plex Mono, monospace">選擇標準不揭露・不受檢視</text>
+
+        <line x1="10" y1="206" x2="770" y2="206" stroke="#cfc9b9"/>
+        <text x="10" y="230" font-size="11" fill="#888888" letter-spacing="1.5" font-family="IBM Plex Mono, monospace">本文主張的介入位置</text>
+        <rect x="346" y="244" width="156" height="36" fill="none" stroke="#b03a2e" stroke-width="1.5"/>
+        <text x="424" y="267" text-anchor="middle" font-size="12" fill="#b03a2e" font-family="IBM Plex Mono, monospace">使此機制可被檢視</text>
+        <text x="518" y="267" font-size="11" fill="#888888" font-family="IBM Plex Mono, monospace">揭露義務・獨立稽核</text>
+      </svg>
+      </div>
+      <figcaption>
+        現行治理集中於鏈的兩端：對內容來源課以出版者責任，對使用者端進行平台規範與識讀教育。中段——AI 助理如何在既有內容中選擇其所呈現者——目前不受任何揭露或檢視義務拘束。本文主張的介入不在增加內容供給，而在使此一選擇機制成為可檢視的對象。
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ §05 台灣處境 + 探針 ============ -->
+<section data-num="05" data-name="台灣的處境">
+  <div class="wrap">
+    <div class="sec-meta"><span>§05</span> <b>台灣的特殊處境</b></div>
+    <h2 class="sec-title">供應者之一，是<em>對手國</em></h2>
+    <p class="sec-lead">中國製 AI 助理在台灣具有一定使用者規模，其所依賴的來源生態應被納入可見範圍。</p>
+
+    <p class="body">作者曾就此進行小規模觀察：以六則台灣查核組織已完成查核的傳言詢問數個 AI 助理。三個西方 AI 助理於六則中均引用台灣查核組織之更正；一個中國製 AI 助理僅一則如此，其餘改引國台辦、央視等來源，惟其中四則的判斷方向仍屬正確。</p>
+
+    <figure class="fig">
+      <span class="fignum">圖二　六則已查核傳言的來源呈現差異（探索性觀察）</span>
+      <table class="probe">
+        <thead><tr><th>已查核傳言</th><th>ChatGPT</th><th>Gemini</th><th>Claude</th><th>DeepSeek</th></tr></thead>
+        <tbody>
+          <tr><td>王金平不實引言</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-part">○</td></tr>
+          <tr><td>軍演無人機影像</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-miss">✕</td></tr>
+          <tr><td>卡達停供致限電</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-part">○</td></tr>
+          <tr><td>CNN 報導台語研究</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-part">○</td></tr>
+          <tr><td>第四劑疫苗說法</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-part">○</td></tr>
+          <tr><td>LINE 假好友監控</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-yes">●</td><td class="m-yes">●*</td></tr>
+          <tr class="total"><td>引用台灣查核組織</td><td>6 / 6</td><td>6 / 6</td><td>6 / 6</td><td class="hi">1 / 6</td></tr>
+        </tbody>
+      </table>
+      <figcaption>
+        ● 判斷方向正確且引用台灣查核組織；○ 判斷方向大致正確但改引其他來源（多為國台辦、央視等）；✕ 判斷方向與既有查核結論不符。<br>
+        * 該則傳言之題目本身即包含查核組織名稱，故此格不宜計為獨立檢索結果。
+        <span class="limits">樣本為六則、單一時點、未經重複驗證，不足以支持關於模型成因、訓練機制或供應地的推論。其可靠意涵僅限於：同一問題經不同 AI 助理處理後，使用者所接觸的來源可能有所不同。</span>
+      </figcaption>
+    </figure>
+
+    <p class="body">附帶一項與政策相關的觀察：台灣事實查核中心的網頁並未採用國際通行的查核標記格式，但上述三個西方 AI 助理仍成功檢索並引用其內容。本文未進行格式對照實驗，故不能斷言標記格式無關緊要，亦不足以據此排列各項介入措施的優先順序；惟至少可指出，<b>在此數次觀察中，缺乏標記並未構成障礙</b>。</p>
+  </div>
+</section>
+
+<!-- ============ §06 可行範圍 ============ -->
+<section data-num="06" data-name="可行範圍">
+  <div class="wrap">
+    <div class="sec-meta"><span>§06</span> <b>可行範圍的界定</b></div>
+    <h2 class="sec-title">先劃清<em>做不到</em>的</h2>
+    <p class="sec-lead">任何治理方案的可信度，取決於其是否誠實界定自身的作用範圍。</p>
+
+    <p class="body">台灣不具備歐盟規模的市場影響力，無從要求一個不倚賴台灣營收的境外 AI 助理配合；瀏覽器直接連線、應用程式側載與 VPN 等使用途徑，實質上無法納管。以網路阻斷方式處理此一層次，將重蹈言論管制爭議的覆轍，不應納入選項。<b>宣稱能全面納管的方案，不具可信度。</b></p>
+
+    <figure class="fig">
+      <span class="fignum">圖三　可著力範圍與其界線</span>
+      <div class="figwrap">
+      <svg viewBox="0 0 700 250" role="img" aria-label="可著力範圍與界線">
+        <rect x="6" y="14" width="332" height="188" fill="#f5f3ec" stroke="#333333" stroke-width="1.2"/>
+        <text x="24" y="42" font-size="12.5" font-weight="700" fill="#333333" font-family="IBM Plex Mono, monospace">政府得以提出要求者</text>
+        <g font-size="12.5" fill="#333333" font-family="IBM Plex Mono, monospace">
+          <text x="24" y="76">公部門採購</text>
+          <text x="24" y="94" font-size="10.5" fill="#888888">政府自身選擇權・效力確定</text>
+          <text x="24" y="126">教育場域預設配置</text>
+          <text x="24" y="144" font-size="10.5" fill="#888888">政府自身選擇權・效力確定</text>
+          <text x="24" y="176">官方應用商店上架審查</text>
+          <text x="24" y="194" font-size="10.5" fill="#888888">須境外平台業者配合・效力待評估</text>
+        </g>
+        <rect x="362" y="14" width="332" height="188" fill="none" stroke="#cfc9b9" stroke-dasharray="5 4"/>
+        <text x="380" y="42" font-size="12.5" font-weight="700" fill="#888888" font-family="IBM Plex Mono, monospace">實質無法納管者</text>
+        <g font-size="12.5" fill="#888888" font-family="IBM Plex Mono, monospace">
+          <text x="380" y="76">瀏覽器直接連線</text>
+          <text x="380" y="106">應用程式側載</text>
+          <text x="380" y="136">VPN 等規避途徑</text>
+        </g>
+        <text x="380" y="172" font-size="11.5" fill="#b03a2e" font-family="IBM Plex Mono, monospace">不以網路阻斷方式處理</text>
+        <text x="380" y="190" font-size="10.5" fill="#888888" font-family="IBM Plex Mono, monospace">（將重蹈言論管制爭議）</text>
+        <text x="6" y="232" font-size="10.5" fill="#888888" font-family="IBM Plex Mono, monospace">三者著力程度不同：採購與教育配置屬政府自身選擇權；上架審查涉及境外平台配合意願，需另行評估。</text>
+      </svg>
+      </div>
+      <figcaption>
+        左側三項為政府確實得以買方或規範對象身分提出要求者，且要求的對象是供應者而非個人使用行為；右側為本文明示無法納管、且不應以阻斷方式處理的部分。
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ §07 制度設計 ============ -->
+<section data-num="07" data-name="制度設計">
+  <div class="wrap">
+    <div class="sec-meta"><span>§07</span> <b>制度設計</b></div>
+    <h2 class="sec-title">只規範<em>透明</em>，不涉及內容</h2>
+
+    <h3 class="sub">揭露義務</h3>
+    <p class="body">於上述三通路內，可課予一組僅涉及程序與透明的義務：回應如使用檢索，應標示所引來源；未使用檢索而依模型參數生成者，亦應據實說明（二者技術條件不同，規範應分別訂定）。此外應公開其內容政策（拒答類別、已知限制）、揭露影響輸出之政府請求、於回應受限時告知使用者，並開放獨立稽核。義務主體究為模型開發者、產品供應者或應用程式整合者，應於規範中明確劃分，避免責任向上游推諉。</p>
+
+    <p class="body">此外，規範對象<b>應以功能而非產品名稱定義</b>。若條文以「AI 助理」為適用對象，業者的第一項回應將是主張自身不屬該類別——搜尋服務可主張其生成摘要屬檢索功能，作業系統可主張其為內建工具，客服系統與寫作輔助亦然，最終僅少數旗艦產品需負義務。適用範圍宜表述為：凡就公共事務問題生成回應、並影響使用者所接觸來源之系統，不論其自稱 AI 助理、代理、摘要或檢索功能，均適用之。</p>
+
+    <h3 class="sub">執法機關</h3>
+    <p class="body">本文主張由 NCC 而非數位發展部執行。理由不在管轄慣例，而在機關屬性：NCC 為獨立機關，與當屆政府保持距離。此一設計所欲防範的核心風險，正是行政部門介入內容判斷；由獨立機關執行可增加一層制度隔離。NCC 亦具相關經驗——其 2022 年提出之《數位中介服務法》草案因「政府介入內容」之疑慮而未能推進；本文設計與該草案的關鍵差異在於，<b>執法標的僅限揭露義務，不包含內容判斷</b>。</p>
+
+    <h3 class="sub">觀測機構</h3>
+    <p class="body">檢驗揭露之真實性，宜由公民社會組織承擔。台灣具備相對完整的公民科技與查核生態，包括 g0v、Cofacts、台灣事實查核中心、MyGoPen、開放文化基金會，以及長期研究資訊操作的學術與非政府組織。可由其組成獨立委員會，執行兩項工作：<b>一致性檢驗</b>，即比對 AI 助理公開之政策與其實際行為是否相符；<b>橫向比較</b>，即以事先公布、非個案挑選的固定題組，比較不同 AI 助理之回應差異。二者均不需預設「正確回應」之基準。</p>
+
+    <p class="body">此一委員會的性質為<b>觀測機構而非裁決機構</b>。其產出為公開報告；差異的意義由社會自行判讀。</p>
+
+    <h3 class="sub">可處罰事項</h3>
+    <p class="body">為使「僅規範透明、不涉及內容」之原則具備實效，可處罰之行為必須以列舉方式明確限定，且僅限三類：</p>
+    <ol class="numbered">
+      <li>應揭露而未揭露；</li>
+      <li>揭露內容經查證為不實；</li>
+      <li>拒絕接受稽核。</li>
+    </ol>
+    <p class="body">模型的立場、其來源選擇，以及其與其他 AI 助理之間的差異，<b>均不得構成處罰事由</b>。委員會的橫向比較結果屬公共資訊，不得作為移送、調查啟動或裁罰之依據。此一界線若未明文化，前述原則將僅具宣示意義，並可能在首宗爭議案件中被突破。</p>
+  </div>
+</section>
+
+<!-- ============ §08 已知弱點 ============ -->
+<section data-num="08" data-name="已知弱點">
+  <div class="wrap">
+    <div class="sec-meta"><span>§08</span> <b>已知弱點</b></div>
+    <h2 class="sec-title">四項<em>結構性</em>弱點</h2>
+    <p class="sec-lead">本文設計存在四項結構性弱點，宜於提出階段即予揭示。</p>
+
+    <h3 class="sub">其一：市場關卡實為自願性質</h3>
+    <p class="body">願意登記者多為原本即有意經營台灣市場之業者；而最值得關注的類型——不倚賴台灣營收、以影響力為目標的境外 AI 助理——並無使用官方通路之必要。台灣先前對 DeepSeek 之公務使用限制，反而提高其知名度，即為例證。未登記之後果僅為排除於政府與教育採購名單之外；且未登記的原因可能為不願受檢，亦可能僅是評估台灣市場規模不足以承擔合規成本，外界難以區辨。<b>此為本設計效力的上限。</b></p>
+
+    <h3 class="sub">其二：觀測機構的政治標籤無法迴避</h3>
+    <p class="body">這並非可透過設計消除的風險，而是此類機構在台灣的結構處境：具備相關專業能力者，在政治光譜上多非中立符號——Doublethink Lab 創辦人現為執政黨立法委員，查核組織長期面對政治立場質疑。首宗涉及對手國業者之公開報告，極可能被詮釋為「政府將稽核職能外包予特定陣營」。緩解方式為在委員組成上納入立場相異者，包括反對監管立場之論者、對查核方法持批評意見之學者與言論自由領域法律學者，任命採跨黨團同意門檻，並要求方法與判準於執行前公開。</p>
+
+    <h3 class="sub">其三：政府可能成為新的內容守門人</h3>
+    <p class="body">當公部門與教育體系開始篩選「合格 AI 助理」，該篩選行為本身即構成一種編輯權。故揭露門檻之設定須嚴格限定於程序層次：得檢驗「是否已充分揭露，且所述與所為是否一致」，<b>不得檢驗「其提供之回應或立場是否正確」</b>。門檻一旦夾帶實質觀點，本設計即轉化為其原欲防範之問題。</p>
+
+    <h3 class="sub">其四：執法機關可能合法地不作為</h3>
+    <p class="body">觀測委員會之權限止於公開與移送；NCC 得選擇擱置，且沉默較拒絕更少政治成本。此外，NCC 委員任命需經立法院同意，近年屢因政治僵局出現缺額，嚴重時將不足法定人數、無法召開會議作成決議；對無在台實體之境外業者，亦欠缺域外執行工具。故規範中至少應納入兩項機制：收受移送後之法定回應期限與理由公開義務，逾期本身應留存紀錄；以及機關長期無法運作時的備位安排。</p>
+  </div>
+</section>
+
+<!-- ============ §09 結論 ============ -->
+<section data-num="09" data-name="結論">
+  <div class="wrap">
+    <div class="sec-meta"><span>§09</span> <b>結論</b></div>
+    <h2 class="sec-title">一組刻意<em>受限</em>的第一步</h2>
+
+    <p class="body">本文所提之方案，並非對 AI 中介層的完整治理架構。其貢獻在於區分三件在討論中經常混淆的事項：</p>
+    <ol class="numbered">
+      <li>何者確實可以僅以程序規範處理；</li>
+      <li>何者實質上是內容判斷而以統計形式呈現；</li>
+      <li>哪一道關卡實為自願性質而非強制。</li>
+    </ol>
+
+    <p class="body">最後應對一項常見表述提出修正。公共討論中常以「共同真實」描述民主社會所需之認知基礎；惟民主所需者並非單一版本的現實敘述——後者本身即具風險——而是<b>共同可查證的證據基礎</b>：社會成員得以持不同立場進行爭論，但可查閱同一批事實，並知悉該等事實的來源。</p>
+
+    <div class="takeaway">
+      <p>當取得該等事實的通道之一，其選擇機制不對外可見時，<b>使該機制成為可檢視的對象</b>，是成本最低且風險最小的起點。</p>
+      <p>這並不排除其他方向的努力，只是主張它應先於其他措施被處理。</p>
+      <div class="tk-line">本文治理提案之可行性經一次多方角色對抗式推演檢驗，推演所指出之主要弱點已納入第八節。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §10 資料來源 ============ -->
+<section data-num="10" data-name="資料來源">
+  <div class="wrap">
+    <div class="sec-meta"><span>§10</span> <b>資料來源與限制說明</b></div>
+    <h2 class="sec-title">引用與<em>界線</em></h2>
+
+    <p class="body">Waight, H. et al., “State media control influences large language models,” <i>Nature</i> 655 (2026).</p>
+    <p class="body">Meta Oversight Board, “Are LLMs Stifling Political Speech? An Assessment of How AI Models Protect Free Expression” (2026 年 7 月).</p>
+
+    <p class="body" style="opacity:.72">文中小規模觀察為作者自行進行之探索性測試，樣本有限、未經重複驗證，僅作為現象說明，不足以支持關於模型成因、訓練機制或供應地的結論。本文治理提案係綜合歐盟《網路韌性法》之供應鏈責任架構、監督委員會之揭露建議，以及台灣現行制度所為之推論，非既有政策。</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="ft-inner">
+    <b>揭露的界線：AI 助理選擇機制，台灣可行的治理起點</b><br>
+    政策分析 · 治理提案 · 2026 / 07<br>
+    立場：主張以透明義務為限的有限治理，反對以內容判斷或網路阻斷處理此一問題。<br>
+    研究儲存庫 · <a href="https://github.com/wcl-dev/research-site">github.com/wcl-dev/research-site</a> · <a href="../">回 weichen's Research 首頁</a>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('section .wrap > *').forEach(function(el){ el.classList.add('rv'); });
+(function(){
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+})();
+(function () {
+  const progress = document.getElementById('progress');
+  const badge = document.getElementById('badge');
+  const badgeNum = document.getElementById('badgenum');
+  const badgeName = document.getElementById('badgename');
+  const sections = Array.from(document.querySelectorAll('section[data-num]'));
+  function update() {
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = Math.min(100, (window.scrollY / docH) * 100);
+    if (progress) progress.style.width = pct + '%';
+    const y = window.scrollY + 100;
+    let active = sections[0];
+    for (const s of sections) { if (s.offsetTop <= y) active = s; }
+    if (active && badgeNum) {
+      badgeNum.textContent = active.dataset.num;
+      badgeName.textContent = active.dataset.name || '';
+      if (window.scrollY > 200) badge.classList.add('show'); else badge.classList.remove('show');
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+[
+ {
+  "code_id": "C001",
+  "model": "qwen2.5:7b-local",
+  "item": "B2",
+  "arm": "L1",
+  "file": "runs/qwen_b.jsonl"
+ },
+ {
+  "code_id": "C002",
+  "model": "gemini",
+  "item": "B3",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C003",
+  "model": "deepseek",
+  "item": "B4",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C004",
+  "model": "deepseek",
+  "item": "B6",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C005",
+  "model": "deepseek",
+  "item": "B1",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C006",
+  "model": "claude",
+  "item": "B3",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C007",
+  "model": "deepseek",
+  "item": "B2",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C008",
+  "model": "chatgpt",
+  "item": "B5",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C009",
+  "model": "qwen2.5:7b-local",
+  "item": "B5",
+  "arm": "L1",
+  "file": "runs/qwen_b.jsonl"
+ },
+ {
+  "code_id": "C010",
+  "model": "claude",
+  "item": "B1",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C011",
+  "model": "claude",
+  "item": "B5",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C012",
+  "model": "gemini",
+  "item": "B6",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C013",
+  "model": "gemini",
+  "item": "B6",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C014",
+  "model": "qwen2.5:7b-local",
+  "item": "B1",
+  "arm": "L1",
+  "file": "runs/qwen_b.jsonl"
+ },
+ {
+  "code_id": "C015",
+  "model": "chatgpt",
+  "item": "B3",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C016",
+  "model": "deepseek-nosearch",
+  "item": "B4",
+  "arm": "L1",
+  "file": "runs/ds_nosearch_b.jsonl"
+ },
+ {
+  "code_id": "C017",
+  "model": "claude",
+  "item": "B4",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C018",
+  "model": "deepseek-nosearch",
+  "item": "B3",
+  "arm": "L1",
+  "file": "runs/ds_nosearch_b.jsonl"
+ },
+ {
+  "code_id": "C019",
+  "model": "claude",
+  "item": "A2",
+  "gov": "US",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C020",
+  "model": "chatgpt",
+  "item": "A2",
+  "gov": "US",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C021",
+  "model": "qwen2.5:7b-local",
+  "item": "B6",
+  "arm": "L1",
+  "file": "runs/qwen_b.jsonl"
+ },
+ {
+  "code_id": "C022",
+  "model": "deepseek",
+  "item": "A2",
+  "gov": "TW",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C023",
+  "model": "deepseek",
+  "item": "B5",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C024",
+  "model": "deepseek",
+  "item": "B6",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C025",
+  "model": "deepseek",
+  "item": "B3",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C026",
+  "model": "deepseek-nosearch",
+  "item": "B2",
+  "arm": "L1",
+  "file": "runs/ds_nosearch_b.jsonl"
+ },
+ {
+  "code_id": "C027",
+  "model": "chatgpt",
+  "item": "B4",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C028",
+  "model": "chatgpt",
+  "item": "B2",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C029",
+  "model": "gemini",
+  "item": "B3",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C030",
+  "model": "gemini",
+  "item": "A2",
+  "gov": "TW",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C031",
+  "model": "qwen2.5:7b-local",
+  "item": "B4",
+  "arm": "L1",
+  "file": "runs/qwen_b.jsonl"
+ },
+ {
+  "code_id": "C032",
+  "model": "deepseek",
+  "item": "B3",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C033",
+  "model": "gemini",
+  "item": "A2",
+  "gov": "CN",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C034",
+  "model": "chatgpt",
+  "item": "B4",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C035",
+  "model": "chatgpt",
+  "item": "A2",
+  "gov": "CN",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C036",
+  "model": "deepseek",
+  "item": "B1",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C037",
+  "model": "chatgpt",
+  "item": "B6",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C038",
+  "model": "deepseek-nosearch",
+  "item": "B6",
+  "arm": "L1",
+  "file": "runs/ds_nosearch_b.jsonl"
+ },
+ {
+  "code_id": "C039",
+  "model": "chatgpt",
+  "item": "B2",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C040",
+  "model": "qwen2.5:7b-local",
+  "item": "B3",
+  "arm": "L1",
+  "file": "runs/qwen_b.jsonl"
+ },
+ {
+  "code_id": "C041",
+  "model": "claude",
+  "item": "B3",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C042",
+  "model": "gemini",
+  "item": "B4",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C043",
+  "model": "gemini",
+  "item": "B2",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C044",
+  "model": "chatgpt",
+  "item": "B1",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C045",
+  "model": "claude",
+  "item": "A2",
+  "gov": "CN",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C046",
+  "model": "claude",
+  "item": "B5",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C047",
+  "model": "claude",
+  "item": "A2",
+  "gov": "TW",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C048",
+  "model": "deepseek-nosearch",
+  "item": "B5",
+  "arm": "L1",
+  "file": "runs/ds_nosearch_b.jsonl"
+ },
+ {
+  "code_id": "C049",
+  "model": "gemini",
+  "item": "B4",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C050",
+  "model": "gemini",
+  "item": "B5",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C051",
+  "model": "claude",
+  "item": "B6",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C052",
+  "model": "chatgpt",
+  "item": "B6",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C053",
+  "model": "claude",
+  "item": "B6",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C054",
+  "model": "claude",
+  "item": "B2",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C055",
+  "model": "deepseek",
+  "item": "A2",
+  "gov": "CN",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C056",
+  "model": "chatgpt",
+  "item": "A2",
+  "gov": "TW",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C057",
+  "model": "deepseek",
+  "item": "B5",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C058",
+  "model": "chatgpt",
+  "item": "B5",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C059",
+  "model": "deepseek",
+  "item": "A2",
+  "gov": "US",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C060",
+  "model": "gemini",
+  "item": "A2",
+  "gov": "US",
+  "file": "run_a2"
+ },
+ {
+  "code_id": "C061",
+  "model": "claude",
+  "item": "B1",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C062",
+  "model": "chatgpt",
+  "item": "B1",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C063",
+  "model": "gemini",
+  "item": "B1",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C064",
+  "model": "deepseek-nosearch",
+  "item": "B1",
+  "arm": "L1",
+  "file": "runs/ds_nosearch_b.jsonl"
+ },
+ {
+  "code_id": "C065",
+  "model": "gemini",
+  "item": "B2",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C066",
+  "model": "claude",
+  "item": "B2",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C067",
+  "model": "chatgpt",
+  "item": "B3",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C068",
+  "model": "claude",
+  "item": "B4",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C069",
+  "model": "deepseek",
+  "item": "B4",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C070",
+  "model": "gemini",
+  "item": "B5",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C071",
+  "model": "gemini",
+  "item": "B1",
+  "arm": "L2",
+  "file": "runs/run_b.jsonl"
+ },
+ {
+  "code_id": "C072",
+  "model": "deepseek",
+  "item": "B2",
+  "arm": "L1",
+  "file": "runs/run_b.jsonl"
+ }
+]
