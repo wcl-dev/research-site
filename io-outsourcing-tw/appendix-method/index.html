@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>附錄二：83 頻道網絡的方法與統計摘要 — 中國在數位威權業務上的公私協力實踐 — weichen's Research</title>
+<!-- og:auto:start -->
+<meta name="description" content="中國把對外資訊操弄發包給民間公司：輿情科技、公關公司、內容農場企業、帳號供應鏈，各有專門廠商。 從買方側（政府採購公告）與賣方側（企業登記還原）兩邊看這個承包市場，並說明研究方法為什麼會撞到天花板。 主張的是功能性後果，不是動機——外包買到執行能力；與分包、資產隔離、身分偽裝結合後，額外產生責任隔離的效果。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="weichen&#x27;s Research">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="附錄二：83 頻道網絡的方法與統計摘要">
+<meta property="og:description" content="中國把對外資訊操弄發包給民間公司：輿情科技、公關公司、內容農場企業、帳號供應鏈，各有專門廠商。 從買方側（政府採購公告）與賣方側（企業登記還原）兩邊看這個承包市場，並說明研究方法為什麼會撞到天花板。 主張的是功能性後果，不是動機——外包買到執行能力；與分包、資產隔離、身分偽裝結合後，額外產生責任隔離的效果。">
+<meta property="og:url" content="https://wcl-dev.github.io/research-site/io-outsourcing-tw/appendix-method/">
+<meta property="og:image" content="https://wcl-dev.github.io/research-site/io-outsourcing-tw/appendix-method/og.png?v=6">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="附錄二：83 頻道網絡的方法與統計摘要">
+<meta name="twitter:description" content="中國把對外資訊操弄發包給民間公司：輿情科技、公關公司、內容農場企業、帳號供應鏈，各有專門廠商。 從買方側（政府採購公告）與賣方側（企業登記還原）兩邊看這個承包市場，並說明研究方法為什麼會撞到天花板。 主張的是功能性後果，不是動機——外包買到執行能力；與分包、資產隔離、身分偽裝結合後，額外產生責任隔離的效果。">
+<meta name="twitter:image" content="https://wcl-dev.github.io/research-site/io-outsourcing-tw/appendix-method/og.png?v=6">
+<!-- og:auto:end -->
+<meta name="description" content="公開 83 頻道疑似協同操作網絡的資料蒐集方法、樣本建立步驟、重跑所需參數（含六項原分析未記錄者）、樣本構成與變現配置，以及為什麼不公開頻道名單。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --c-paper:#fbfaf6; --c-paper-card:#f5f3ec; --c-paper-sink:#efece4;
+  --c-ink:#333; --c-ink-soft:#555; --c-ink-faint:#888; --c-watermark:#aaa;
+  --c-rule:#cfc9b9; --c-rule-soft:#dfd9c5;
+  --c-navy:#1B4A66; --c-jade:#2B7458; --c-clay:#B5402B;
+  --role-primary:var(--c-navy); --role-method:var(--c-jade); --role-emphasis:var(--c-clay);
+  --ff-display:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
+  --ff-serif:'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;
+  --ff-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --maxw-prose:720px; --maxw-content:920px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--c-paper);color:var(--c-ink);font-family:var(--ff-serif);font-weight:400;font-size:15.5px;line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+body::before{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.18;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E")}
+a{color:inherit}
+::selection{background:var(--c-paper-card)}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--role-emphasis);z-index:200;transition:width .12s linear}
+.badge{position:fixed;top:18px;right:24px;z-index:100;font-size:14px;letter-spacing:.12em;font-weight:600;color:var(--c-ink);opacity:0;transition:opacity .25s;padding:8px 14px;background:var(--c-paper);border:1px solid var(--c-rule)}
+.badge.show{opacity:.9}
+.badge b{color:var(--role-emphasis);font-weight:700;margin-right:8px}
+.inline-toc{max-width:var(--maxw-content);margin:0 auto;padding:30px 48px 0;display:flex;flex-wrap:wrap;gap:8px}
+.inline-toc a{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.04em;color:var(--c-ink-soft);padding:7px 12px;border:1px solid var(--c-rule);background:var(--c-paper);text-decoration:none;transition:background .12s,border-color .12s,color .12s}
+.inline-toc a:hover{background:var(--c-ink);color:var(--c-paper);border-color:var(--c-ink)}
+.inline-toc a.apx{color:var(--role-method);border-color:var(--role-method);font-weight:600}
+.inline-toc a.apx:hover{background:var(--role-method);color:#fff;border-color:var(--role-method)}
+.inline-toc .ix{color:var(--c-ink-faint);margin-right:6px}
+.inline-toc a.apx .ix{color:var(--role-method)}
+main{display:block}
+.wrap{max-width:var(--maxw-content);margin:0 auto;padding:0 48px}
+section{padding:84px 0;border-bottom:1px solid var(--c-rule)}
+section:last-of-type{border-bottom:none}
+.hero{border-bottom:4px double var(--c-rule);background:linear-gradient(180deg,var(--c-paper-card),transparent 72%)}
+.hero-inner{max-width:var(--maxw-content);margin:0 auto;padding:70px 48px 56px}
+.hero-kicker{font-family:var(--ff-mono);font-size:13px;letter-spacing:.14em;color:var(--role-emphasis);font-weight:600;display:flex;align-items:center;gap:14px;margin-bottom:28px}
+.hero-kicker::after{content:"";flex:1;height:1px;background:var(--c-rule)}
+h1.hero-title{font-family:var(--ff-display);font-weight:600;font-size:clamp(26px,3.8vw,44px);line-height:1.3;letter-spacing:-.006em;margin-bottom:26px}
+h1.hero-title .cut{color:var(--role-emphasis)}
+.hero-scope{font-family:var(--ff-display);font-weight:500;color:var(--c-ink);font-size:clamp(17px,2vw,20px);line-height:1.55;margin:-4px 0 30px;padding-left:16px;border-left:4px solid var(--role-primary)}
+.hero-stand{font-size:17.5px;line-height:1.86;color:var(--c-ink-soft);max-width:var(--maxw-prose);margin-bottom:34px}
+.hero-stand b{color:var(--c-ink);font-weight:700}
+.hero-foot{margin-top:30px;font-size:14.5px;color:var(--c-ink-soft);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.hero-foot .dot{width:7px;height:7px;border-radius:50%;background:var(--role-emphasis);display:inline-block;flex:none}
+.hero-tension{display:flex;margin:36px 0 8px;border:1px solid var(--c-rule);border-radius:14px;overflow:hidden;background:var(--c-paper-card)}
+.ht-cell{flex:1;padding:26px 28px}
+.ht-cell+.ht-cell{border-left:1px solid var(--c-rule)}
+.ht-arrow{font-size:32px;line-height:1;margin-bottom:10px;display:block}
+.ht-cell.a .ht-arrow,.ht-cell.b .ht-arrow{color:var(--role-emphasis)}
+.ht-cell.c .ht-arrow{color:var(--role-primary)}
+.ht-big{font-family:var(--ff-display);font-size:21px;font-weight:600;line-height:1.4}
+.ht-cell.c .ht-big .cd{color:var(--role-emphasis)}
+.ht-sub{font-size:14.5px;color:var(--c-ink-soft);margin-top:10px;line-height:1.7}
+.apx-claim{font-family:var(--ff-display);font-size:clamp(17px,2vw,20px);font-weight:600;color:var(--role-method);line-height:1.6;margin:26px 0 4px;padding:18px 22px;border:2px solid var(--role-method);border-radius:12px;background:var(--c-paper-card)}
+.apx-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.apx-btn{font-family:var(--ff-mono);font-size:13.5px;font-weight:600;letter-spacing:.03em;text-decoration:none;padding:13px 20px;border:2px solid var(--role-method);color:#fff;background:var(--role-method);transition:opacity .15s}
+.apx-btn:hover{opacity:.86}
+.apx-btn.alt{background:var(--c-paper);color:var(--role-method)}
+.sec-head{margin-bottom:44px}
+.sec-num{font-family:var(--ff-mono);font-size:14px;font-weight:600;letter-spacing:.14em;color:var(--c-ink-faint);display:block;margin-bottom:16px}
+h2.sec-title{font-family:var(--ff-display);font-weight:600;color:var(--c-watermark);font-size:clamp(23px,3vw,33px);line-height:1.32;letter-spacing:-.004em}
+.sec-lead{font-size:17.5px;color:var(--c-ink-soft);margin-top:20px;max-width:var(--maxw-prose);line-height:1.8}
+.sec-lead b{color:var(--c-ink);font-weight:700}
+.sub-h{font-family:var(--ff-display);font-size:21px;font-weight:600;color:var(--c-ink);margin:0 0 22px;padding-bottom:14px;border-bottom:2px solid var(--c-rule);line-height:1.5}
+.blk{margin-top:40px}
+.find{background:var(--c-paper-card);border:1px solid var(--c-rule);border-radius:16px;padding:38px 40px;margin-bottom:22px}
+.find>p,.find .cbody>p{font-size:17.5px;line-height:1.94;color:var(--c-ink-soft)}
+.find>p+p,.find .cbody>p+p{margin-top:20px}
+.find b{color:var(--c-ink);font-weight:700}
+.find .em{font-weight:700;background:var(--c-paper-sink);padding:1px 5px;border-radius:3px}
+.find>ul,.find>ol{margin:20px 0 0 0;padding-left:22px}
+.find li{font-size:17.5px;line-height:1.94;color:var(--c-ink-soft);margin-bottom:14px}
+.find li b{color:var(--c-ink);font-weight:700}
+.q{margin:24px 0;padding:22px 26px;background:var(--c-paper);border:1px solid var(--c-rule);border-left:4px solid var(--role-primary);border-radius:0 12px 12px 0}
+.q p{font-size:16.5px;line-height:1.86;color:var(--c-ink)}
+.q p+p{margin-top:10px}
+.q .qt{color:var(--c-ink-soft);font-size:16px}
+.q .pg{font-family:var(--ff-mono);font-size:12.5px;color:var(--c-ink-faint);display:block;margin-top:10px}
+.note{margin:24px 0;padding:26px 30px;background:var(--c-paper);border:2px solid var(--role-emphasis);border-radius:14px}
+.note-k{font-family:var(--ff-mono);font-size:12.5px;letter-spacing:.12em;color:var(--role-emphasis);font-weight:600;margin-bottom:12px;display:block}
+.note p{font-size:16.5px;line-height:1.88;color:var(--c-ink-soft)}
+.note p+p{margin-top:14px}
+.note b{color:var(--c-ink);font-weight:700}
+.tbl{width:100%;border-collapse:collapse;font-size:15.5px;margin-top:20px}
+.tbl th,.tbl td{border-bottom:1px solid var(--c-rule);padding:14px 12px;vertical-align:top;text-align:left;line-height:1.72}
+.tbl th{font-family:var(--ff-mono);font-size:12px;color:var(--c-ink-soft);letter-spacing:.05em;font-weight:600;background:var(--c-paper-sink)}
+.tbl td{color:var(--c-ink-soft)}
+.tbl td b{color:var(--c-ink);font-weight:700}
+.tbl .yes{color:var(--role-method);font-weight:700;white-space:nowrap}
+.tbl .no{color:var(--role-emphasis);font-weight:700;white-space:nowrap}
+.tbl-note{font-size:15px;color:var(--c-ink-soft);margin-top:18px;line-height:1.84}
+.tbl-note b{color:var(--c-ink);font-weight:700}
+.ax{color:var(--role-method);text-decoration:none;border-bottom:2px solid var(--role-method);font-weight:600;padding-bottom:1px}
+.ax:hover{background:var(--c-paper-sink)}
+footer{background:var(--c-ink);color:var(--c-ink-faint);padding:46px 28px;font-size:14.5px;line-height:1.85}
+footer .ft-inner{max-width:var(--maxw-content);margin:0 auto}
+footer b{color:var(--c-paper-card);font-weight:700}
+footer a{color:var(--c-paper-card);border-bottom:1px solid rgba(255,255,255,.25);text-decoration:none}
+footer .ft-back{margin-bottom:22px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.18);color:var(--c-paper-sink)}
+@media(max-width:1040px){.hero-tension{flex-direction:column}.ht-cell+.ht-cell{border-left:none;border-top:1px solid var(--c-rule)}}
+@media(max-width:600px){
+  body{font-size:14.5px}.badge{display:none}
+  .wrap,.hero-inner,.inline-toc{padding-left:24px;padding-right:24px}
+  section{padding:58px 0}.hero-inner{padding-top:46px}
+  .find{padding:26px 22px}
+  .tbl{font-size:14px}.tbl th,.tbl td{padding:10px 8px}
+  footer{padding:34px 24px}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">附二</b><span id="badgename">方法與統計摘要</span></div>
+
+<main>
+
+  <section class="hero" data-num="附二" data-name="方法與統計摘要">
+    <div class="hero-inner">
+      <div class="hero-kicker">中國在數位威權業務上的公私協力實踐 · 本頁是這篇研究的一部分</div>
+      <h1 class="hero-title">附錄二：83 頻道網絡的<span class="cut">方法與統計摘要</span></h1>
+      <p class="hero-scope">公開方法、樣本構成與彙總統計，但不公開頻道名單——以及六項原分析未記錄的重跑參數。</p>
+      <p class="apx-claim">兩份附錄都是這篇文章論證的一部分，不是補充材料。</p>
+      <div class="apx-cta">
+        <a class="apx-btn" href="../index.html">← 回主文</a>
+        <a class="apx-btn alt" href="../appendix-counterevidence/index.html">← 附錄一：反證的完整處理</a>
+      </div>
+    </div>
+  </section>
+
+  <nav class="inline-toc" aria-label="目次">
+    <a href="#intro"><span class="ix">§00</span>這份附錄的用途</a>
+    <a href="#m1"><span class="ix">§一</span>資料蒐集</a>
+    <a href="#m2"><span class="ix">§二</span>樣本如何被建立</a>
+    <a href="#m2b"><span class="ix">§二之二</span>重跑所需的完整參數</a>
+    <a href="#m3"><span class="ix">§三</span>樣本構成</a>
+    <a href="#m4"><span class="ix">§四</span>變現配置</a>
+    <a href="#m5"><span class="ix">§五</span>這份分析做不到什麼</a>
+    <a href="#m6"><span class="ix">§六</span>為什麼不公開頻道名單</a>
+    <a class="apx" href="../index.html"><span class="ix">←</span>回主文</a>
+    <a class="apx" href="../appendix-counterevidence/index.html"><span class="ix">附一</span>反證的完整處理</a>
+  </nav>
+
+  <section id="intro" data-num="00" data-name="這份附錄的用途">
+    <div class="wrap">
+      <div class="note rv">
+        <span class="note-k">這份附錄的用途</span>
+        <p>正文<a class="ax" href="../index.html#s5">〈廣告養的，和沒人養的〉</a>與<a class="ax" href="../index.html#s7">〈防守方的轉型〉</a>引用了一份作者自行進行、尚未公開發表的分析。若不揭露其方法與數據，讀者無從判斷那兩節的論證強度——尤其<a class="ax" href="../index.html#s7">〈防守方的轉型〉</a>的核心論點正是「行為層盤點做到徹底也仍然到不了歸因」，而這個論點若不能讓讀者檢視盤點本身，就只是一句自我聲明。</p>
+        <p>因此以下公開方法、樣本構成與彙總統計，<b>但不公開頻道名單</b>。理由見末節<a class="ax" href="#m6">〈為什麼不公開頻道名單〉</a>。</p>
+        <p><b>這份附錄依審查意見列出重跑所需的完整參數，其中有六項參數原分析並未記錄。這六項一律據實標明為「原分析未記錄」，不以事後回推的數字填補。</b> 這使得可重複性的承諾必須降級，見該處說明。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="m1" data-num="一" data-name="資料蒐集">
+    <div class="wrap">
+      <header class="sec-head rv">
+        <span class="sec-num">一</span>
+        <h2 class="sec-title">資料蒐集</h2>
+      </header>
+      <article class="find rv">
+        <p><b>時點</b>：2026 年 3 月中旬的橫截面快照。</p>
+        <p><b>資料性質</b>：全部為 YouTube 平台公開資訊——頻道名稱、頻道代碼（handle）、訂閱數、影片總數、影片標題、縮圖、發布時間等元數據。<b>不涉及任何需要帳號登入或特殊權限的資料。</b></p>
+      </article>
+    </div>
+  </section>
+
+  <section id="m2" data-num="二" data-name="樣本如何被建立">
+    <div class="wrap">
+      <header class="sec-head rv">
+        <span class="sec-num">二</span>
+        <h2 class="sec-title">樣本如何被建立</h2>
+      </header>
+      <article class="find rv">
+        <p><b>第一步｜種子影片。</b> 自台灣事實查核中心（TFC）已發布的查核報告中，取得被標記影片的 YouTube 網址，以 <span class="em">yt-dlp</span> 提取完整標題與元數據。</p>
+        <p><b>第二步｜標題相似度展開。</b> 自種子標題萃取多組搜尋關鍵字（完整標題文字、括號內主題詞、去除噪音前綴後的語段），對 YouTube 搜尋結果逐一計算標題相似度。相似度為三種 Jaccard 指標的加權組合，<b>三者各佔三分之一</b>：</p>
+        <table class="tbl">
+          <thead><tr><th>指標</th><th>捕捉什麼</th></tr></thead>
+          <tbody>
+            <tr><td>字元 bigram Jaccard</td><td>字詞層級的重疊</td></tr>
+            <tr><td>字元 trigram Jaccard</td><td>人名、術語等三字實體的保留</td></tr>
+            <tr><td>去噪語段 Jaccard</td><td>標題結構與主題區塊的匹配</td></tr>
+          </tbody>
+        </table>
+        <p class="tbl-note"><b>綜合分數門檻為 0.15</b>，超過者其所屬頻道納入候選清單。</p>
+        <p><b>第三步｜人工審核。</b> 候選頻道逐一人工核對內容主題、視覺風格、發布模式的關聯性，排除明顯誤判，形成最終 83 個頻道的分析樣本。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="m2b" data-num="二之二" data-name="重跑所需的完整參數">
+    <div class="wrap">
+      <header class="sec-head rv">
+        <span class="sec-num">二之二</span>
+        <h2 class="sec-title">重跑所需的完整參數（含六項原分析未記錄者）</h2>
+        <p class="sec-lead">以下逐項列出獨立重跑所需的參數。<b>凡原分析未記錄者，一律標明，不回推、不臆造。</b> 這六項沒有任何一項會洩漏頻道身分——它們之所以缺漏，是原分析當初未以「供他人重跑」為目的撰寫，不是出於保護樣本的考量。</p>
+      </header>
+      <article class="find rv">
+        <table class="tbl">
+          <thead><tr><th>#</th><th>參數</th><th>狀態</th><th>說明</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><b>種子影片的支數，與其出自哪幾份 TFC 查核報告的編號</b></td>
+              <td class="no">原分析未記錄此參數</td>
+              <td>TFC 查核報告有公開編號，列出編號不會洩漏任何頻道資訊。原分析只記載「自 TFC 已發布查核報告中取得被標記影片的網址」，未逐一保留報告編號與影片支數。<b>這是缺漏中最容易補的一項</b>：任何重跑者可自行以 TFC 公開報告中的養生／健康類 YouTube 影片為種子，但其種子集合將與原分析不同，因此「相同的種子影片」這個前提無法被滿足。</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><b>每組關鍵字取搜尋結果的前幾筆</b></td>
+              <td class="no">原分析未記錄此參數</td>
+              <td>候選池的大小完全由這個參數決定。原分析未記錄取樣深度，因此重跑者無從得知自己的候選池是偏大還是偏小。</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><b>快照的確切日期</b></td>
+              <td class="no">原分析僅記錄至「2026 年 3 月中旬」</td>
+              <td>未記錄逐日日期。YouTube 的搜尋結果排序與訂閱數逐日變動，因此即使參數全部相同，不同日期重跑也會得到不同的樣本邊界。</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><b>漏斗數字：候選頻道 N 個 → 人工審核排除 M 個 → 最終 83 個</b></td>
+              <td class="no">原分析未記錄 N 與 M</td>
+              <td><b>這是六項中最關鍵的一項。</b> 人工審核是把候選變成 83 的那一步，也是整個流程中唯一無法自動化、完全依賴研究者判斷的一步。沒有 N 與 M，讀者無從判斷這一步做掉了多少判斷——排除率是 10% 還是 80%，對樣本的性質意義完全不同。原分析只保留了最終的 83，未保留候選池規模與排除數。<b>這裡明白承認：這使得「人工審核只排除明顯誤判」這句話，目前無法被外部檢驗。</b></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><b>「去除噪音前綴」的定義，與中文語段的切分方式</b></td>
+              <td class="no">原分析未記錄操作型定義</td>
+              <td>原分析僅描述為「去除噪音前綴後的語段」，未保留前綴清單，也未記載中文如何切分（逐字、詞典斷詞、或標點分段）。三個 Jaccard 指標中，前兩個（字元 bigram／trigram）不需要切分即可重現，<b>第三個（去噪語段 Jaccard）因此無法重現</b>。也就是說，重跑者能重建的是三分之二的相似度計算。</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><b>門檻 0.15 的由來</b></td>
+              <td class="no">原分析未記錄</td>
+              <td>未說明它是敏感度測試的結果，還是一個設定值。若為後者，樣本邊界對這個數字的敏感度未經檢驗。</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td><b>「協同可信度中高」的評級標準</b></td>
+              <td class="no">原分析未記錄操作型判準</td>
+              <td>原分析給出的是一個整體判斷（中高），但未定義什麼算「高」、什麼算「中高」，也未說明是哪幾項行為特徵、以什麼權重構成該評級。這是這份附錄中唯一一個<b>重跑者無法自行複現的欄位</b>——其餘統計都是可數的，這一項是判斷。正文兩處引用此評級時，讀者宜將其視為研究者的整體判斷，不是一個有標準的分級。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note">
+          <span class="note-k">可重複性承諾的降級</span>
+          <p>原本的說法是「任何具備相同工具的研究者，以相同的種子影片為起點、套用上述參數，應可獨立產生高度重疊的頻道清單」。<b>依上表，這句話說得太滿，在此收回。</b></p>
+          <p>準確的說法是：<b>上述方法本身是可被獨立實作的，但由於第 1、2、3、5 項參數缺漏，重跑者無法產生與本樣本可比對的頻道清單，也無法判斷自己的結果是否構成「高度重疊」。</b></p>
+          <p>因此這份附錄實際做到的，是讓<b>方法</b>可以被檢驗與批評，不是讓<b>這 83 個頻道</b>可以被重建。<a class="ax" href="#m5b">〈這份分析做不到什麼〉</a>末段對這個區別有進一步說明。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="m3" data-num="三" data-name="樣本構成">
+    <div class="wrap">
+      <header class="sec-head rv">
+        <span class="sec-num">三</span>
+        <h2 class="sec-title">樣本構成</h2>
+      </header>
+      <article class="find rv">
+        <p><b>活躍度分層</b>（以各頻道最新影片發布時間為準）：</p>
+        <table class="tbl">
+          <thead><tr><th>分層</th><th>定義</th><th>頻道數</th><th>佔比</th></tr></thead>
+          <tbody>
+            <tr><td>Active</td><td>最新影片發布於 7 天內</td><td>68</td><td>81.9%</td></tr>
+            <tr><td>Intermittent</td><td>8 天至 4 週前</td><td>4</td><td>4.8%</td></tr>
+            <tr><td>Dormant</td><td>1 個月以上前</td><td>11</td><td>13.3%</td></tr>
+          </tbody>
+        </table>
+        <p class="tbl-note">多數 Active 頻道維持每 1–3 天發布一支新片的節奏。</p>
+        <p><b>命名模式</b>：83 個頻道中，超過 60 個的名稱可拆解為有限詞彙模組的排列組合（如「X養生Y」「X健康Y」「X晚年／樂齡Y」「X銀Y」等結構）。</p>
+        <p><b>頻道代碼與名稱不匹配</b>：在 82 個可取得 handle 的頻道中，32 個（39%）的 handle 與頻道名稱不匹配。其中跨語言不匹配包括：西里爾字母俄文人名 3 個、韓文人名 1 個、西方人名 7 個。</p>
+        <p><b>批量複製型帳號</b>：Dormant 層中有 5 個帳號具有完全相同的影片內容（相同縮圖、相同標題、同為 50 部影片），全部停止於約 6 個月前，訂閱數 0–8。</p>
+        <p><b>內容取向</b>：約 10–15 個頻道具有明確的地緣政治導向；其餘以養生健康內容為主。</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="m4" data-num="四" data-name="變現配置">
+    <div class="wrap">
+      <header class="sec-head rv">
+        <span class="sec-num">四</span>
+        <h2 class="sec-title">變現配置（正文〈廣告養的，和沒人養的〉的核心數據）</h2>
+      </header>
+      <article class="find rv">
+        <p>在 82 個可分析頻道中：</p>
+        <table class="tbl">
+          <thead><tr><th>項目</th><th>數量</th><th>佔比</th></tr></thead>
+          <tbody>
+            <tr><td>開啟廣告</td><td>4</td><td>4.9%</td></tr>
+            <tr><td>開啟會員加入</td><td>2</td><td>2.4%</td></tr>
+            <tr><td>設置外部連結</td><td>0</td><td>0%</td></tr>
+            <tr><td>設置商業信箱</td><td>0</td><td>0%</td></tr>
+          </tbody>
+        </table>
+        <p class="tbl-note">開啟廣告的 4 個頻道中，有兩個同時是全樣本訂閱數最高的帳號（均為十萬量級，遠高於樣本中位數）。其變現設定較可能是被納入此一內容集群之前的既有配置，而非後來刻意啟用。</p>
+        <div class="note">
+          <span class="note-k">註</span>
+          <p>此處刻意不列出這兩個帳號的確切訂閱數。在「養生類、2026 年 3 月、以 TFC 查核報告為種子」這組條件下，精確的訂閱數等同於指名——而依<a class="ax" href="#m6">末節</a>的理由，這兩個恰好是本樣本中最可能屬於誤判的帳號。</p>
+          <p>（批量複製型帳號的「訂閱數 0–8」不構成同樣的問題：這種量級的帳號在 YouTube 上以萬計，不具識別性。）</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="m5" data-num="五" data-name="這份分析做不到什麼">
+    <div class="wrap">
+      <header class="sec-head rv">
+        <span class="sec-num">五</span>
+        <h2 class="sec-title">這份分析做不到什麼</h2>
+        <p class="sec-lead">以下限制出自原分析，未經修飾：</p>
+      </header>
+      <article class="find rv">
+        <ol>
+          <li><b>樣本邊界由演算法相似度主導。</b> 標題相似度方法依賴文字重疊，可能遺漏採用不同標題模板、但行為上仍屬同一集群的帳號。<b>本樣本應視為可觀察子集，而非完整覆蓋。</b></li>
+          <li><b>平台搜尋演算法的推薦偏差可能影響樣本分布。</b> 研究者無法完全控制搜尋結果的組成。</li>
+          <li><b>歸因分析未完成。</b> 所有觀察均為行為層次的推論，<b>無法確定帳號的實際操作者身分、組織歸屬或資金來源。</b></li>
+          <li><b>橫截面快照。</b> 無法排除帳號在觀察期間的狀態變化（改名、內容策略調整、被平台處置等）。</li>
+        </ol>
+        <p><b>第 3 點正是正文<a class="ax" href="../index.html#s7">〈防守方的轉型〉</a>所要說明的事。</b> 這份盤點在行為層做得夠細——分層、命名模式、handle 痕跡、變現配置、素材複用都逐項核對過，協同特徵的可信度評為中高（該評級的標準未經記錄，見<a class="ax" href="#m2b">第二節之二第 7 項</a>）——而歸因欄位仍然是空的。<b>不是因為做得不夠，是因為這個方法本來就到不了那裡。</b></p>
+      </article>
+
+      <article class="find rv" id="m5b">
+        <h3 class="sub-h">這份附錄解決了什麼、沒解決什麼</h3>
+        <p>這個區別必須挑明，否則這份附錄會被讀成一個比實際更強的承諾：</p>
+        <ul>
+          <li><b>方法</b>：從「相信作者」變成「可以被檢驗與批評」。讀者現在看得到相似度指標怎麼組成、門檻設在哪裡、哪一步是人工判斷，也看得到有六項參數缺漏。<b>這一半是真的做到了。</b></li>
+          <li><b>數據</b>：<b>沒有解決，只是往後推了一層。</b> 重跑的人會得到<b>他自己的</b>樣本，而他無法比對自己的樣本與這 83 個是不是同一批（原因見<a class="ax" href="#m2b">第二節之二</a>）。因此 4.9%、39%、68／4／11 這些數字，仍然無法被任何外部讀者驗證。他能檢驗的是「用這個方法在這個內容域裡跑，是否也會得到一批零變現、模板化命名、handle 不匹配的頻道」——那是<b>現象</b>的可重現性，不是<b>數字</b>的可查核性。</li>
+        </ul>
+        <p>這個區別對正文兩節的影響不同：</p>
+        <ul>
+          <li><b>對<a class="ax" href="../index.html#s7">〈為什麼數帳號在結構上疲於奔命〉</a>（列舉的天花板）</b>：現象可重現就足夠。那一節要的是「行為層做到徹底仍然到不了歸因」，而任何人重跑都會撞到同一面牆。<b>這份附錄對該節是充分的。</b></li>
+          <li><b>對<a class="ax" href="../index.html#s5">〈另一種存在：完全不變現的網絡〉</a>（零變現的存在主張）</b>：承重的是 4.9%／零外部連結／零商業信箱這三個具體數字，而它們仍然不可查核。<b>這份附錄對該節只是減輕，不是解除。</b> 正文已就此明白揭露。</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="m6" data-num="六" data-name="為什麼不公開頻道名單">
+    <div class="wrap">
+      <header class="sec-head rv">
+        <span class="sec-num">六</span>
+        <h2 class="sec-title">為什麼不公開頻道名單</h2>
+      </header>
+      <article class="find rv">
+        <p>不是因為資料敏感——全部都是任何人都看得到的公開資訊。</p>
+        <p>原因是<b>這份樣本可能含有誤判，而歸因是空白的</b>。樣本以演算法相似度建立，原分析自己聲明可能包含 false positives，且無法指認任何操作者。在這種條件下公布一份 83 個頻道的名單，等於把「疑似協同操作」的標籤貼在一群無法被證明有關聯的帳號上——其中任何一個若其實是獨立創作者，都會承受這份研究無法證成的指控。</p>
+        <p>而<a class="ax" href="#m2b">第二節之二第 4 項</a>（漏斗數字未記錄）讓這個理由更強而不是更弱：既然連人工審核排除了多少候選都沒有記錄，就更沒有立場為這 83 個具名帳號背書。</p>
+        <p><b>對想要驗證的研究者</b>：這份附錄<a class="ax" href="#m2">第二節</a>與<a class="ax" href="#m2b">第二節之二</a>已完整公開方法、參數，以及參數缺在哪裡。以 TFC 查核報告中的養生類 YouTube 影片為種子重跑，可以檢驗這個方法是否會在這個內容域裡產生一批零變現、模板化命名、handle 不匹配的頻道；但無法檢驗正文引用的那幾個百分比。兩者的差別在<a class="ax" href="#m5b">上一節</a>末已說明。</p>
+        <div class="apx-cta">
+          <a class="apx-btn" href="../index.html">← 回主文</a>
+          <a class="apx-btn alt" href="../appendix-counterevidence/index.html">← 附錄一：反證的完整處理</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="ft-inner">
+    <div class="ft-back">本頁是〈中國在數位威權業務上的公私協力實踐，讓民主國家的咎責顯得凌亂且無力〉的<b>附錄二</b>，與主文同屬一篇研究。來源清單見<a href="../index.html#sources">主文頁尾</a>；本附錄所引數據出自一份未公開發表的一手分析報告，外部讀者無法自行查核。</div>
+    <b>中國在數位威權業務上的公私協力實踐，讓民主國家的咎責顯得凌亂且無力</b><br>
+    附錄二：83 頻道網絡的方法與統計摘要 · 63 筆來源 · 2026 年 8 月<br>
+    立場：主張的是一種已被制度化的模式，不是規模<br>
+    研究儲存庫 · <a href="https://github.com/wcl-dev/research-site">wcl-dev/research-site</a> · <a href="../../">回 weichen's Research 首頁</a>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const progress=document.getElementById('progress');
+    const badge=document.getElementById('badge');
+    const badgeNum=document.getElementById('badgenum');
+    const badgeName=document.getElementById('badgename');
+    const sections=Array.from(document.querySelectorAll('section[data-num]'));
+    function update(){
+      const docH=document.documentElement.scrollHeight-window.innerHeight;
+      const pct=Math.min(100,(window.scrollY/docH)*100);
+      if(progress) progress.style.width=pct+'%';
+      const y=window.scrollY+120;
+      let active=sections[0];
+      for(const s of sections){ if(s.offsetTop<=y) active=s; }
+      if(active&&badgeNum){
+        badgeNum.textContent=active.dataset.num;
+        badgeName.textContent=active.dataset.name||'';
+        if(window.scrollY>240) badge.classList.add('show');
+        else badge.classList.remove('show');
+      }
+    }
+    window.addEventListener('scroll',update,{passive:true});
+    update();
+  })();
+  const rev=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); rev.unobserve(e.target); } });
+  },{threshold:0.08,rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv').forEach((el,i)=>{
+    el.style.transitionDelay=(Math.min(i,4)*0.06)+'s';
+    rev.observe(el);
+  });
+</script>
+</body>
+</html>
