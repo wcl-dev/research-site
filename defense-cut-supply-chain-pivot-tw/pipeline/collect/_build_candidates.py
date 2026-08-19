@@ -22,8 +22,8 @@ import json
 import re
 from pathlib import Path
 
-TMP = Path("/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline/collect/_tmp")
-OUT = Path("/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline/collect/candidates.jsonl")
+TMP = Path("./projects/defense-cut-supply-chain-pivot-tw/pipeline/collect/_tmp")
+OUT = Path("./projects/defense-cut-supply-chain-pivot-tw/pipeline/collect/candidates.jsonl")
 
 # Topic gate — at least one term must appear in title+abstract (case-insensitive)
 ON_TOPIC_TERMS = [

@@ -31,4 +31,4 @@
 [16/16] deepseek__B1__- ...
      ✓ 45.1s, 45 chars
 
-=== pilot-web done: 16 cells → /Users/wclim/randomfindings/projects/geo-public-good-tw/pipeline/probe/runs/pilot_web.jsonl ===
+=== pilot-web done: 16 cells → projects/geo-public-good-tw/pipeline/probe/runs/pilot_web.jsonl ===

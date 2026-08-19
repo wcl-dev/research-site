@@ -15,7 +15,7 @@ P2 = Path(__file__).parent
 sys.path.insert(0, str(P2))
 from typosquat_detect import load_brands, detect  # noqa: E402
 
-SRC = ("/Users/wclim/.claude/projects/-Users-wclim-randomfindings/"
+SRC = ("~/.claude/projects/-Users-wclim-randomfindings/"
        "5e5435ee-308b-4896-aed0-3efcbc618aa4/tool-results/"
        "mcp-twinkle-hub-opendata-query_rows-1779431328222.txt")
 SAMPLE_N = 400

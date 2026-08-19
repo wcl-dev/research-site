@@ -1,7 +1,7 @@
 # Review of defense-cut-supply-chain-pivot-tw insight_v1
 
 **Reviewed on**: 2026-05-20
-**Draft**: `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/draft/insight_v1.md`
+**Draft**: `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/draft/insight_v1.md`
 **Sources consulted**: accepted.jsonl (79 records), extracts/ (19 deep-reads), brief.md
 
 ## Verdict

@@ -2,14 +2,14 @@
 
 你是 **insight-pipeline 的 Reviewer**（Stage 6）。完整的 role 規格、7+1 lens 框架、輸出 schema 在：
 
-`/Users/wclim/randomfindings/.claude/agents/reviewer.md`
+`./.claude/agents/reviewer.md`
 
 請先讀完該檔，再對下列 project 跑一次完整 review。
 
 ## Target project
 
 - **Project**: `defense-cut-supply-chain-pivot-tw`
-- **Pipeline dir**: `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline/`
+- **Pipeline dir**: `./projects/defense-cut-supply-chain-pivot-tw/pipeline/`
 - **Draft to review**: `pipeline/draft/insight_v1.md`（~5500 字繁體中文研究報告，6 Findings + Counter-framing engagement + What we don't know）
 - **Review mode**: multi_model（per `tools/insight-pipeline/backlog/multi-model-reviewer.md` §3，已 confirmed in brief_expanded.yaml `review.mode: multi_model, fidelity_level: high`）
 

@@ -2,25 +2,25 @@
 
 你是 **insight-pipeline 的 Reviewer**（Stage 6）。完整的 role 規格、7+1 lens 框架、輸出 schema 在：
 
-`/Users/wclim/randomfindings/.claude/agents/reviewer.md`
+`./.claude/agents/reviewer.md`
 
 請先讀完該檔，再對下列 project 跑一次完整 adversarial review。
 
 ## Target project
 
 - **Project**: `defense-cut-supply-chain-pivot-tw`
-- **Pipeline dir**: `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/`（注意是 **pipeline_v2**，不是 pipeline）
-- **Draft to review**: `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/draft/insight_v1.md`（約 5,400 字繁體中文研究定位備忘錄；5 Findings + Counter-framing engagement + What we don't know）
+- **Pipeline dir**: `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/`（注意是 **pipeline_v2**，不是 pipeline）
+- **Draft to review**: `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/draft/insight_v1.md`（約 5,400 字繁體中文研究定位備忘錄；5 Findings + Counter-framing engagement + What we don't know）
 - **Review mode**: multi_model（brief_expanded.yaml `review.mode: multi_model, fidelity_level: high`）
 - **Review pass**: 這是 insight_v1.md 的**第一次** review（無先前 review baseline）。
 
 ## 必讀檔案（全部絕對路徑）
 
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/brief.md`（含 PRIMARY/SECONDARY success criteria + Failure modes）
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/brief_expanded.yaml`（concept_ontology A/B/E + 6 counter_framings + review settings）
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/gate/accepted.jsonl`（**79** accepted source 全集，L3/L4 cross-check 用）
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/gate/rejected.jsonl`（1 rejected，L1 hard-error 檢查用）
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/extracts/`（**19** deep-read extract，含 evidence_scope front-matter，L2 fidelity 用）+ `extracts/INDEX.md`（Dr3 evidence-pool 兩層劃分）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/brief.md`（含 PRIMARY/SECONDARY success criteria + Failure modes）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/brief_expanded.yaml`（concept_ontology A/B/E + 6 counter_framings + review settings）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/gate/accepted.jsonl`（**79** accepted source 全集，L3/L4 cross-check 用）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/gate/rejected.jsonl`（1 rejected，L1 hard-error 檢查用）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/extracts/`（**19** deep-read extract，含 evidence_scope front-matter，L2 fidelity 用）+ `extracts/INDEX.md`（Dr3 evidence-pool 兩層劃分）
 
 ## Operator notes（v2 特有脈絡 — 非攻擊面，請勿誤判為缺陷）
 

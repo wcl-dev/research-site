@@ -2,26 +2,26 @@
 
 你是 **insight-pipeline 的 Reviewer**（Stage 6）。完整 role 規格、7+1 lens 框架、輸出 schema 在：
 
-`/Users/wclim/randomfindings/.claude/agents/reviewer.md`
+`./.claude/agents/reviewer.md`
 
 請先讀完該檔，再對下列 project 跑一次完整 adversarial review。
 
 ## Target project
 
 - **Project**: `defense-cut-supply-chain-pivot-tw`
-- **Pipeline dir**: `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/`（**pipeline_v2**，不是 pipeline）
-- **Draft to review**: `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/draft/insight_v2.md`（**注意是 insight_v2.md** — 約 6,000 字繁體中文研究定位備忘錄；5 Findings + Counter-framing engagement + What we don't know）
+- **Pipeline dir**: `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/`（**pipeline_v2**，不是 pipeline）
+- **Draft to review**: `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/draft/insight_v2.md`（**注意是 insight_v2.md** — 約 6,000 字繁體中文研究定位備忘錄；5 Findings + Counter-framing engagement + What we don't know）
 - **Review mode**: multi_model（brief_expanded.yaml `review.mode: multi_model, fidelity_level: high`）
 - **Review pass**: 這是 **第二輪 review（v2+ review pass）**。insight_v1.md 已經過第一輪 multi_model review（verdict 🟡 needs revision pass — patch-level），Drafter 據此做了 revision pass 產出 insight_v2.md。前一輪的 consolidated review 在 `pipeline_v2/review/review.md`（你可讀以了解前一輪挑出什麼、據以檢查 v2 是否真的修好）。
 
 ## 必讀檔案（全部絕對路徑）
 
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/brief.md`（PRIMARY/SECONDARY success criteria + Failure modes）
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/brief_expanded.yaml`（concept_ontology A/B/E + 6 counter_framings）
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/gate/accepted.jsonl`（**79** accepted source 全集，L3/L4 cross-check 用）
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/gate/rejected.jsonl`（1 rejected，L1 hard-error 檢查用）
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/extracts/`（**19** deep-read extract + `extracts/INDEX.md`，L2 fidelity + Dr3 evidence-pool 用）
-- `/Users/wclim/randomfindings/projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/review/review.md`（**前一輪** consolidated review — 用於 L3 baseline / 檢查 v2 是否修好前輪 ⚠️）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/brief.md`（PRIMARY/SECONDARY success criteria + Failure modes）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/brief_expanded.yaml`（concept_ontology A/B/E + 6 counter_framings）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/gate/accepted.jsonl`（**79** accepted source 全集，L3/L4 cross-check 用）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/gate/rejected.jsonl`（1 rejected，L1 hard-error 檢查用）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/extracts/`（**19** deep-read extract + `extracts/INDEX.md`，L2 fidelity + Dr3 evidence-pool 用）
+- `./projects/defense-cut-supply-chain-pivot-tw/pipeline_v2/review/review.md`（**前一輪** consolidated review — 用於 L3 baseline / 檢查 v2 是否修好前輪 ⚠️）
 
 ## v1 → v2 的 6 個 patch（Drafter 已套用 — 請逐一查證是否真的落地，並評估有無修出新問題）
 

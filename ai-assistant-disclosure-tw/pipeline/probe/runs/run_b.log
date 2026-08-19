@@ -95,4 +95,4 @@
 [48/48] deepseek__B6__L2 ...
      ✓ 45.9s, 381 chars
 
-=== run-b done → /Users/wclim/randomfindings/projects/geo-public-good-tw/pipeline/probe/runs/run_b.jsonl ===
+=== run-b done → projects/geo-public-good-tw/pipeline/probe/runs/run_b.jsonl ===
