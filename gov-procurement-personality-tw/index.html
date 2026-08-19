@@ -714,5 +714,31 @@ footer a{color:var(--c-paper-card);border-bottom:1px solid rgba(255,255,255,.25)
   els.forEach(el=>io.observe(el));
 })();
 </script>
+<!-- series:auto:start -->
+<style>
+.srs-bar{max-width:680px;margin:4.5em auto 0;padding:1.4em 0 0;border-top:1px solid #ddd;font-family:"IBM Plex Mono","PingFang TC","Microsoft JhengHei","Noto Sans TC",ui-monospace,Menlo,monospace;font-size:13px;line-height:1.6;color:#555;text-align:left}
+.srs-bar .srs-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.6em;margin-bottom:.9em}
+.srs-bar .srs-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#888}
+.srs-bar .srs-name{color:#333;font-weight:600;text-decoration:none;border-bottom:1px solid #ddd}
+.srs-bar .srs-name:hover{background:#eee}
+.srs-bar .srs-pos{font-size:11.5px;color:#888;margin-left:auto}
+.srs-bar .srs-list{list-style:none;margin:0;padding:0;counter-reset:srs}
+.srs-bar .srs-item{display:block;margin:0;padding:0;border:0}
+.srs-bar .srs-item + .srs-item{margin-top:.35em}
+.srs-bar .srs-link{display:flex;gap:.7em;padding:.55em .7em;text-decoration:none;color:#555;border:1px solid transparent}
+.srs-bar .srs-link:hover{background:#eee}
+.srs-bar .srs-num{color:#888;flex:none;font-size:11.5px;padding-top:.15em}
+.srs-bar .srs-item-cur .srs-link{border-color:#ddd;color:#333;background:#fafaf9}
+.srs-bar .srs-item-cur .srs-num{color:#FF6F00}
+.srs-bar .srs-cur-mark{font-size:11px;color:#888;margin-left:.5em}
+</style>
+<nav class="srs-bar" aria-label="系列導覽">
+<div class="srs-head"><span class="srs-label">系列</span><a class="srs-name" href="../series/gov-procurement/">政府採購的資料研究</a><span class="srs-pos">第 1 篇 / 共 2 篇</span></div>
+<ol class="srs-list">
+<li class="srs-item srs-item-cur"><a class="srs-link" href="../gov-procurement-personality-tw/"><span class="srs-num">01</span><span class="srs-text">政府採購行為的類型學：四種採購人格與競爭程度分析<span class="srs-cur-mark">← 本篇</span></span></a></li>
+<li class="srs-item"><a class="srs-link" href="../gov-it-procurement-tw/"><span class="srs-num">02</span><span class="srs-text">政府資訊採購的市場結構：四個面向</span></a></li>
+</ol>
+</nav>
+<!-- series:auto:end -->
 </body>
 </html>
