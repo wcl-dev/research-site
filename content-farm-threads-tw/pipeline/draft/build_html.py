@@ -207,7 +207,7 @@ def insight(zh, h, prose, so):
 # ---------------- content ----------------
 insights = f'''<div class="lf"><p>內容農場的連結在 Threads 上到處出現，但張貼這些連結的帳號不是一群互相配合的人。農場會給分享者一組分潤碼，也就是放在連結裡、用來記錄分享者的代碼；誰的連結帶著這組碼，收益就算給誰。這些帳號各自貼文，彼此幾乎不互動。貼文會被誰看到，由演算法決定；看到的人留完言就離開，也幾乎沒有人追問文章來自哪裡。</p><p>我們反向搜尋了 25 個農場群與 340 個網域在 Threads 上的紀錄，找到 1,520 個帳號，並核實其中 296 個帳號的完整發文史。我們也完整擷取 1,106 篇有互動的農場貼文留言區，再從 833 個留言者中隨機抽取 250 人，分析這些留言者的身分輪廓。以下三項發現是這批資料最能支持的結論。</p></div>
 <div class="figwrap rv" data-zoom><div class="cap">圖一 · 分工結構：分享者拿農場的分潤碼貼連結，演算法決定誰看到，路人留言後即離開</div>{fig_division()}<div class="zoom-hint">點圖放大</div></div>
-{insight('一', '農場照分潤碼算錢，不照帳號',
+{insight('一', '農場相關帳號彼此不互動，僅靠分潤碼彼此關聯',
  '<p>picelse／luckyelse 群的連結尾端帶有分潤參數 <span class="mono">utm_term=</span>，參數中的數字是這家農場分潤系統所使用的分享者編號。只要連結帶有某個編號，系統就會把收益計入該名分享者。其中，<span class="mono">utm_term=1883</span> 這個編號串起 10 個帳號，當中有 7 個帳號以「某平台名加 news747」命名：girlsnews747、youtubenews747、tiktoknews747、phpnews747、chinesenews747、fararrinews747、fbnews747。這 7 個帳號共用同一個分享者編號與同一種命名方式，也都在 2024 年 7 到 11 月間註冊，並推送同一家農場的內容。這些跡象顯示，<b>它們不是七名各自運作的使用者，而是同一個分潤帳戶的七個出口。</b></p><p>相同模式也出現在其他群。同一家農場的另一個分享者編號 <span class="mono">utm_term=8842</span>，串起 8 個自述位於馬來西亞的帳號。dsawjk 群提供的分享工具，會在連結尾端加上「<span class="mono">#threads</span> 加數字」的識別碼；我們共發現 65 組識別碼，每個識別碼對應一個帳號，並且跨網域沿用。另有兩個群原本只因共用頁面模板而被列為候選群；這兩個群的貼文帶有同一套識別碼，因而證實其散布行為使用同一項工具。分潤碼也會跨群使用：ericcheww 和 shixiaoqi6554 這兩個帳號，同時張貼 picelse／luckyelse 群帶有 <span class="mono">utm_term=8427</span> 的連結，以及 picread 群帶有自身分潤參數 <span class="mono">uid=12853</span> 的連結；換言之，同一個帳號同時領取兩家農場的分潤。</p><p>這些散布帳號彼此沒有互動關係。在兩批共 13,097 列貼文中，散布帳號彼此回覆 <span class="em">0 次</span>，彼此引用 1 次。這些帳號共用的是工具與代碼，不是社群關係。</p>',
  '監測與處置若以帳號為單位，關閉一個帳號就只是關閉一個出口；<b>若以分潤碼為單位，才是一次關掉同一個分享者的所有出口。</b>')}
 {insight('二', '農場雖有觸及，但沒有固定受眾',
@@ -291,7 +291,7 @@ hero = '''<header class="hero"><div class="hero-inner">
 <div class="hero-kicker">內容農場 · 社群層調查 · Threads · 2026 年 9 月</div>
 <h1 class="hero-title">內容農場在 Threads 的<span class="cut">散布網絡與受眾</span></h1>
 <p class="hero-stand"><b>內容農場的連結在 Threads 上到處出現，但張貼這些連結的帳號不是一群互相配合的人。</b> 農場會給分享者一組分潤碼，也就是放在連結裡、用來記錄分享者的代碼；誰的連結帶著這組碼，收益就算給誰。這些帳號各自貼文，彼此幾乎不互動。</p>
-<div class="hero-numbers"><div class="hn-cell"><div class="hn-claim"><b>農場照分潤碼算錢，不照帳號。</b>以 picelse 群為例，一個分享者編號由 10 個帳號共用，這些帳號之間從不互動。</div></div><div class="hn-cell"><div class="hn-claim"><b>農場雖有觸及，但沒有固定受眾。</b>833 名留言者中，只有 23 人曾回覆兩篇以上的貼文；每篇貼文觸及的都是不同的人。</div></div><div class="hn-cell"><div class="hn-claim"><b>農場文章進入日常，且少有人把它當成農場內容。</b>936 則留言中，質疑來源的不到 2%，其餘留言把它當成真實新聞在回應。</div></div></div>
+<div class="hero-numbers"><div class="hn-cell"><div class="hn-claim"><b>農場相關帳號彼此不互動，僅靠分潤碼彼此關聯。</b>以 picelse 群為例，一個分享者編號由 10 個帳號共用。</div></div><div class="hn-cell"><div class="hn-claim"><b>農場雖有觸及，但沒有固定受眾。</b>833 名留言者中，只有 23 人曾回覆兩篇以上的貼文；每篇貼文觸及的都是不同的人。</div></div><div class="hn-cell"><div class="hn-claim"><b>農場文章進入日常，且少有人把它當成農場內容。</b>936 則留言中，質疑來源的不到 2%，其餘留言把它當成真實新聞在回應。</div></div></div>
 <div class="hero-foot"><span class="dot"></span><span>340 個網域、1,520 個帳號、1,106 篇貼文的留言區、250 名隨機抽取的路人 · 研究方法見 §04</span></div>
 </div></header>'''
 
