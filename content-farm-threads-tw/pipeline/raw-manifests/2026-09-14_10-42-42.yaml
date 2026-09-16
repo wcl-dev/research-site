@@ -1,0 +1,58 @@
+{
+  "run_id": "2026-09-14_10-42-42",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-14T11:11:25+08:00",
+  "tool": "Threads Crawl Tool 1.9.4",
+  "mode": "account",
+  "tier": "audience_random_session1",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-14_10-42-42",
+  "input_file": {
+    "path": "inputs/accounts_audience_random_session1.csv",
+    "sha256": "6d324f283074adce751ff3150ff58aa25df3426e0528b64cdbe318f323506847"
+  },
+  "settings": {
+    "post_num": 30,
+    "crawl_following": true,
+    "crawl_followers": false,
+    "skip_if_over": 2000,
+    "auth_mode": "chrome",
+    "note": "2026-09-14 10:42–11:09；L4 隨機樣本 session1（84）；第 28 個起 57 個 Target page closed（瀏覽器關閉，原因待使用者確認是否休眠），27 有資料、24 份追蹤名單；工具 1.9.4 起輸出 following_*.csv"
+  },
+  "files": {
+    "account_posts_20260914_104242.csv": {
+      "sha256": "c5b42e6ee4816570b8d56e8fad75521821c03ef4fc2d1b94873b0340b1eefc14",
+      "bytes": 975907
+    },
+    "account_posts_20260914_104242.xlsx": {
+      "sha256": "ec02ca7efc4f8eb18358884c24ad9b473e424c3c8ac45d87bfb5829932f24986",
+      "bytes": 454070
+    },
+    "account_posts_pretty_20260914_104242.csv": {
+      "sha256": "2a208cdd1f5500674fec6b36903ac8496cc9e3f1ef14270c9a3f936c75e0b331",
+      "bytes": 836175
+    },
+    "account_posts_pretty_20260914_104242.xlsx": {
+      "sha256": "6ae3414bb3b82c5b4eba2ffcfac431889de16f7d2b6fe6f8b8f7d47a9c781000",
+      "bytes": 407434
+    },
+    "accounts_20260914_104242.csv": {
+      "sha256": "e32b2464ddbe2c767276383a48056990d7a073bafe6c005bc5e3f427ce557290",
+      "bytes": 160377
+    },
+    "accounts_20260914_104242.xlsx": {
+      "sha256": "fe736fb7c7c816ad9a20b1a357e71b7a29930747c199ec9b8028d196e8963255",
+      "bytes": 63543
+    },
+    "following_20260914_104242.csv": {
+      "sha256": "76a7fa8126bb236d61ce6076eeaf4fa56817cc666bfcfe28fe57f225089c1435",
+      "bytes": 88477
+    },
+    "following_20260914_104242.xlsx": {
+      "sha256": "f555b879cb0b0c3deae4c02766b11f7fd1121e439842becc759b1069246ffa69",
+      "bytes": 77994
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

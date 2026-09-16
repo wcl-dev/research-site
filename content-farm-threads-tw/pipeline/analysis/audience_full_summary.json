@@ -1,0 +1,215 @@
+{
+ "population": 1114,
+ "crawled": 1106,
+ "replies_total": 1397,
+ "self": 457,
+ "other": 936,
+ "repliers": 833,
+ "by_stratum": [
+  {
+   "stratum": "偶發轉貼",
+   "posts_with_reply": 91,
+   "replies": 318,
+   "repliers": 277,
+   "posts_crawled": 229,
+   "replies_per_post": 1.39,
+   "share_with_reply": 0.4
+  },
+  {
+   "stratum": "專職轉貼",
+   "posts_with_reply": 19,
+   "replies": 102,
+   "repliers": 97,
+   "posts_crawled": 288,
+   "replies_per_post": 0.35,
+   "share_with_reply": 0.07
+  },
+  {
+   "stratum": "工具化散布",
+   "posts_with_reply": 55,
+   "replies": 133,
+   "repliers": 120,
+   "posts_crawled": 245,
+   "replies_per_post": 0.54,
+   "share_with_reply": 0.22
+  },
+  {
+   "stratum": "站方自營",
+   "posts_with_reply": 108,
+   "replies": 383,
+   "repliers": 340,
+   "posts_crawled": 344,
+   "replies_per_post": 1.11,
+   "share_with_reply": 0.31
+  }
+ ],
+ "by_cluster": [
+  {
+   "cluster": "cand-anyelse-net",
+   "replies": 12,
+   "repliers": 11,
+   "posts": 16,
+   "per_post": 0.75
+  },
+  {
+   "cluster": "cand-happyshare",
+   "replies": 1,
+   "repliers": 1,
+   "posts": 1,
+   "per_post": 1.0
+  },
+  {
+   "cluster": "cand-ptt-network",
+   "replies": 5,
+   "repliers": 3,
+   "posts": 3,
+   "per_post": 1.67
+  },
+  {
+   "cluster": "cand-qhd-adstxt",
+   "replies": 92,
+   "repliers": 86,
+   "posts": 32,
+   "per_post": 2.88
+  },
+  {
+   "cluster": "cand-singles",
+   "replies": 237,
+   "repliers": 198,
+   "posts": 210,
+   "per_post": 1.13
+  },
+  {
+   "cluster": "cand-thai-narrative-amplifiers",
+   "replies": 10,
+   "repliers": 9,
+   "posts": 148,
+   "per_post": 0.07
+  },
+  {
+   "cluster": "family-01",
+   "replies": 121,
+   "repliers": 109,
+   "posts": 288,
+   "per_post": 0.42
+  },
+  {
+   "cluster": "farm-eatmary",
+   "replies": 96,
+   "repliers": 86,
+   "posts": 106,
+   "per_post": 0.91
+  },
+  {
+   "cluster": "farm-enews",
+   "replies": 151,
+   "repliers": 144,
+   "posts": 109,
+   "per_post": 1.39
+  },
+  {
+   "cluster": "looker-17",
+   "replies": 76,
+   "repliers": 74,
+   "posts": 15,
+   "per_post": 5.07
+  },
+  {
+   "cluster": "qsh-alpha",
+   "replies": 41,
+   "repliers": 39,
+   "posts": 42,
+   "per_post": 0.98
+  },
+  {
+   "cluster": "qsh-beta",
+   "replies": 24,
+   "repliers": 23,
+   "posts": 31,
+   "per_post": 0.77
+  },
+  {
+   "cluster": "qsh-gamma",
+   "replies": 1,
+   "repliers": 1,
+   "posts": 6,
+   "per_post": 0.17
+  },
+  {
+   "cluster": "ref-active",
+   "replies": 66,
+   "repliers": 48,
+   "posts": 57,
+   "per_post": 1.16
+  },
+  {
+   "cluster": "thai-news01-hsupr",
+   "replies": 1,
+   "repliers": 1,
+   "posts": 1,
+   "per_post": 1.0
+  },
+  {
+   "cluster": "vietnam-adsense",
+   "replies": 2,
+   "repliers": 1,
+   "posts": 11,
+   "per_post": 0.18
+  }
+ ],
+ "repeat": {
+  "ge2": 23,
+  "ge3": 9,
+  "cross_strata": 1,
+  "cross_cluster": 1
+ },
+ "lang": {
+  "簡體": {
+   "偶發轉貼": 0.028,
+   "專職轉貼": 0.0,
+   "工具化散布": 0.023,
+   "站方自營": 0.104
+  },
+  "粵語": {
+   "偶發轉貼": 0.022,
+   "專職轉貼": 0.0,
+   "工具化散布": 0.075,
+   "站方自營": 0.013
+  },
+  "繁體": {
+   "偶發轉貼": 0.855,
+   "專職轉貼": 0.078,
+   "工具化散布": 0.654,
+   "站方自營": 0.83
+  },
+  "非中文/表情": {
+   "偶發轉貼": 0.094,
+   "專職轉貼": 0.922,
+   "工具化散布": 0.248,
+   "站方自營": 0.052
+  }
+ },
+ "src_skeptic": {
+  "sum": {
+   "偶發轉貼": 5,
+   "專職轉貼": 0,
+   "工具化散布": 1,
+   "站方自營": 13
+  },
+  "count": {
+   "偶發轉貼": 318,
+   "專職轉貼": 102,
+   "工具化散布": 133,
+   "站方自營": 383
+  },
+  "pct": {
+   "偶發轉貼": 1.6,
+   "專職轉貼": 0.0,
+   "工具化散布": 0.8,
+   "站方自營": 3.4
+  }
+ },
+ "quotes": 95,
+ "l4_sample": 250,
+ "l4_to_crawl": 168
+}

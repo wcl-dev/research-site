@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-09-11_09-19-34",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-11T10:04:20+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "account",
+  "tier": "r3_session2_rerun",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-11_09-19-34",
+  "input_file": {
+    "path": "inputs/accounts_r3_session2_rerun.csv",
+    "sha256": "041624203b359afc9cf7d2c3b7f23e8ccecc1efe3b1585e9dcb862f32b739834"
+  },
+  "settings": {
+    "post_num": 100,
+    "crawl_followers": false,
+    "crawl_following": false,
+    "skip_if_over": 1000,
+    "auth_mode": "chrome",
+    "note": "2026-09-11；session2 因合蓋未回傳的 12 個補跑"
+  },
+  "files": {
+    "account_posts_20260911_091934.csv": {
+      "sha256": "9bfde6ac1387932c2984cafc9cbee4670fb19a7c196af3104e919f3838fa5db8",
+      "bytes": 1500447
+    },
+    "account_posts_20260911_091934.xlsx": {
+      "sha256": "9a1a528d5c3b93a4de1ba8ae6e1d8134ea99f90fc13d51ecc97ddf8019755ef4",
+      "bytes": 659905
+    },
+    "accounts_20260911_091934.csv": {
+      "sha256": "2540716da638364e73e6ba7a40647217dfb44465e691431472573ec991846387",
+      "bytes": 8845
+    },
+    "accounts_20260911_091934.xlsx": {
+      "sha256": "e8373bd25c38b1d2e81369b8bc4ab179778b9fd2e875f30082bf09a1b5f8621c",
+      "bytes": 10057
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

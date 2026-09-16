@@ -1,0 +1,69 @@
+{
+ "posts_covered": 242,
+ "replies_total": 931,
+ "self_replies": 182,
+ "other_replies": 749,
+ "repliers": 683,
+ "quotes": 61,
+ "likes": 0,
+ "by_stratum": [
+  {
+   "stratum": "偶發轉貼",
+   "posts_with_reply": 77,
+   "replies": 283,
+   "repliers": 243,
+   "posts_covered": 113,
+   "replies_per_post": 2.5
+  },
+  {
+   "stratum": "專職轉貼",
+   "posts_with_reply": 20,
+   "replies": 109,
+   "repliers": 101,
+   "posts_covered": 37,
+   "replies_per_post": 2.95
+  },
+  {
+   "stratum": "工具化對照",
+   "posts_with_reply": 8,
+   "replies": 66,
+   "repliers": 63,
+   "posts_covered": 42,
+   "replies_per_post": 1.57
+  },
+  {
+   "stratum": "站方自營",
+   "posts_with_reply": 44,
+   "replies": 291,
+   "repliers": 278,
+   "posts_covered": 50,
+   "replies_per_post": 5.82
+  }
+ ],
+ "lang_by_stratum": {
+  "emoji/符號/拉丁": {
+   "偶發轉貼": 28,
+   "專職轉貼": 73,
+   "工具化對照": 12,
+   "站方自營": 14
+  },
+  "簡體": {
+   "偶發轉貼": 6,
+   "專職轉貼": 2,
+   "工具化對照": 1,
+   "站方自營": 28
+  },
+  "粵語": {
+   "偶發轉貼": 6,
+   "專職轉貼": 1,
+   "工具化對照": 2,
+   "站方自營": 4
+  },
+  "繁體中文": {
+   "偶發轉貼": 243,
+   "專職轉貼": 33,
+   "工具化對照": 51,
+   "站方自營": 245
+  }
+ }
+}

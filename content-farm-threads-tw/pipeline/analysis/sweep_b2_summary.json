@@ -1,0 +1,211 @@
+{
+ "rows_raw": 3699,
+ "verified_hits": 993,
+ "input": "inputs/keywords_b2_small_and_tw_cands.csv",
+ "clusters": {
+  "cand-docilepuppy": {
+   "searched": 22,
+   "domains_hit": {
+    "itigeryou.com": 15
+   },
+   "zero_hit": [
+    "docilepuppy.com",
+    "channel2025.com",
+    "friend-color.com",
+    "knowledgekhabar.com",
+    "acgfansclub.com",
+    "babiesjh.com",
+    "bestlovetop.com",
+    "energy-healthy.com",
+    "gunews97.com",
+    "healthdst.com",
+    "healthgoi.com",
+    "inspirational-saying.com",
+    "jinglemom.com",
+    "life-knowhow.com",
+    "newstvd.com",
+    "pets-master.com",
+    "remodelsh.com",
+    "svsvves.com",
+    "toopartner.com",
+    "trhen.com",
+    "zoomnewslive.com"
+   ],
+   "posts": 15,
+   "accounts": 9,
+   "accounts_ge2": 3,
+   "accounts_ge5": 1,
+   "tags": {
+    "threads9656": 5,
+    "threads14074": 2,
+    "threads7482": 2,
+    "threads4397": 1,
+    "threads4423": 1,
+    "threads5248": 1,
+    "threads9603": 1
+   },
+   "uids": {},
+   "overlap_prior": {
+    "doushijiahao265": "CASE-2026-003",
+    "leealy796": "CASE-2026-003",
+    "mariakeppel8": "CASE-2026-003",
+    "summer_699": "CASE-2026-003"
+   }
+  },
+  "cand-happyshare": {
+   "searched": 2,
+   "domains_hit": {
+    "read1read.com": 2
+   },
+   "zero_hit": [
+    "happyshare101.com"
+   ],
+   "posts": 2,
+   "accounts": 1,
+   "accounts_ge2": 1,
+   "accounts_ge5": 0,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  },
+  "cand-ptt-network": {
+   "searched": 7,
+   "domains_hit": {
+    "pttcomics.com": 6,
+    "pttboygirl.com": 1
+   },
+   "zero_hit": [
+    "pttcareers.com",
+    "pttconsumer.com",
+    "pttdigits.com",
+    "pttfoodtravel.com",
+    "pttgamer.com"
+   ],
+   "posts": 7,
+   "accounts": 3,
+   "accounts_ge2": 1,
+   "accounts_ge5": 1,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  },
+  "cand-singles": {
+   "searched": 11,
+   "domains_hit": {
+    "chinanewscenter.com": 260,
+    "janeeyrego.com": 35,
+    "nguongmo.com": 5,
+    "onplusnews.com": 3,
+    "18read.net": 2,
+    "updatetinus.com": 1
+   },
+   "zero_hit": [
+    "dailytin24.com",
+    "newsentertai.com",
+    "newstoday123.com",
+    "74novel.com",
+    "healthlooker.com"
+   ],
+   "posts": 306,
+   "accounts": 25,
+   "accounts_ge2": 6,
+   "accounts_ge5": 3,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  },
+  "farm-eatmary": {
+   "searched": 2,
+   "domains_hit": {
+    "eatmary.net": 185,
+    "kikinote.net": 152
+   },
+   "zero_hit": [],
+   "posts": 337,
+   "accounts": 30,
+   "accounts_ge2": 5,
+   "accounts_ge5": 4,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  },
+  "farm-enews": {
+   "searched": 3,
+   "domains_hit": {
+    "enews.tw": 191,
+    "life.tw": 67,
+    "healthylives.tw": 2
+   },
+   "zero_hit": [],
+   "posts": 260,
+   "accounts": 125,
+   "accounts_ge2": 13,
+   "accounts_ge5": 1,
+   "tags": {
+    "section1": 1,
+    "section3": 1
+   },
+   "uids": {
+    "990": 42,
+    "310": 32,
+    "108": 12,
+    "410": 8,
+    "54088": 2,
+    "255688": 2,
+    "3100": 1
+   },
+   "overlap_prior": {
+    "[帳號已隱去]": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003"
+   }
+  },
+  "farm-twqiang": {
+   "searched": 5,
+   "domains_hit": {
+    "twqiang.com": 63
+   },
+   "zero_hit": [
+    "bpic.lawtw.com",
+    "bodhi.lawtw.com",
+    "human.lawtw.com",
+    "whlwell.com"
+   ],
+   "posts": 63,
+   "accounts": 1,
+   "accounts_ge2": 1,
+   "accounts_ge5": 1,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  },
+  "looker-17": {
+   "searched": 0,
+   "domains_hit": {
+    "tw100s.com": 1
+   },
+   "zero_hit": [],
+   "posts": 1,
+   "accounts": 1,
+   "accounts_ge2": 0,
+   "accounts_ge5": 0,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  },
+  "ref-active": {
+   "searched": 0,
+   "domains_hit": {
+    "juksy.com": 1,
+    "teepr.com": 1
+   },
+   "zero_hit": [],
+   "posts": 2,
+   "accounts": 2,
+   "accounts_ge2": 0,
+   "accounts_ge5": 0,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  }
+ }
+}

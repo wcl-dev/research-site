@@ -1,0 +1,38 @@
+{
+  "run_id": "2026-09-09_11-01-10",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-09T16:42:13+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "link",
+  "tier": "audience_v2",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/link/2026-09-09_11-01-10",
+  "input_file": {
+    "path": "inputs/links_audience_v2.csv",
+    "sha256": "9c34d13b0ffafc7d8bf8b465156c39c891f993cde801475dd33483217274870d"
+  },
+  "settings": {
+    "comment_scroll_rounds": 5,
+    "note": "2026-09-09 11:01 起跑，12:13 在第 194 篇（enews.tw 19,600 讚）掛住；16:05 結束程序清 .running 旗標後以 links_audience_v2_remaining.csv（51 篇）補跑，工具沿用同 run_id 並把兩段合併成 final：242/244 篇（排除 enews 那篇、[帳號已隱去]/DUbcc7XEwkB 未回傳）。link_behaviors 只有 Quotes 61 筆，Likes/Reposts 零（Threads 端拉不到，quirks §12）。partial 目錄為 12:13 的 temp 快照。"
+  },
+  "files": {
+    "link_behaviors_20260909_110110.csv": {
+      "sha256": "85d6642159d3589dd153e54dfbcca1742b37e8e70cd2643b80c6f4e395b5fcf4",
+      "bytes": 10973
+    },
+    "link_behaviors_20260909_110110.xlsx": {
+      "sha256": "41ebea576986cd90fbcdadb3c6aae695a52a5b46e23cb3cebacd72cf24cd4bc1",
+      "bytes": 10013
+    },
+    "link_posts_20260909_110110.csv": {
+      "sha256": "14848d28da7d5347cee61a918779a05877ecbfe698edd5601c7f887987447bc3",
+      "bytes": 469297
+    },
+    "link_posts_20260909_110110.xlsx": {
+      "sha256": "76f92bc43f86216688e687dd60c25538e822d39475960f562115b4ff1e9f4aac",
+      "bytes": 272386
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

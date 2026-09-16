@@ -1,0 +1,58 @@
+{
+  "run_id": "2026-09-14_12-55-35",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-14T14:03:06+08:00",
+  "tool": "Threads Crawl Tool 1.9.4",
+  "mode": "account",
+  "tier": "audience_random_session1_rerun",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-14_12-55-35",
+  "input_file": {
+    "path": "inputs/accounts_audience_random_session1_rerun.csv",
+    "sha256": "e9e2067dc7afa22e51def3327ce1bd96cd3e714050f9d1b40a96965fcead9a5c"
+  },
+  "settings": {
+    "post_num": 30,
+    "crawl_following": true,
+    "crawl_followers": false,
+    "skip_if_over": 2000,
+    "auth_mode": "chrome",
+    "note": "2026-09-14 12:55 起；session1 中斷的 57 個補跑，57/57、56 份追蹤名單"
+  },
+  "files": {
+    "account_posts_20260914_125535.csv": {
+      "sha256": "cc3a74200bdbe63f90c4ecb5b1fddfee2be99ade86b05f4e98228067b5f9180c",
+      "bytes": 1926290
+    },
+    "account_posts_20260914_125535.xlsx": {
+      "sha256": "9ce37771c67233d79f819ea41e74c39f5e3baacc4f815e8356aa3499b0c455ef",
+      "bytes": 873916
+    },
+    "account_posts_pretty_20260914_125535.csv": {
+      "sha256": "ceea48d573290b627dfd9bcc072ddeee6af6daead332861233073ff2be60e0d6",
+      "bytes": 1528087
+    },
+    "account_posts_pretty_20260914_125535.xlsx": {
+      "sha256": "5b1a8673beae85085e988b1ab521e69a119fa132eec860a22d133751193901d3",
+      "bytes": 750922
+    },
+    "accounts_20260914_125535.csv": {
+      "sha256": "d8c965121dd5f0e5ef6e407cbff9bb697bbff66f90534901f1b6a0fea0c04b61",
+      "bytes": 333482
+    },
+    "accounts_20260914_125535.xlsx": {
+      "sha256": "e8d43fc0f40188f58bad2e37aafe9884acf0f1ecb1d1f4b816e39987fb0f622f",
+      "bytes": 120455
+    },
+    "following_20260914_125535.csv": {
+      "sha256": "e4705728a01b5f453e9ad93443c10661155b83d10f6019077d9bb769bd524f29",
+      "bytes": 192336
+    },
+    "following_20260914_125535.xlsx": {
+      "sha256": "a39a7cbc87ba0c14fabac6aff767340cadd25e5c99e87af3d3ef78e527be47a1",
+      "bytes": 163793
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

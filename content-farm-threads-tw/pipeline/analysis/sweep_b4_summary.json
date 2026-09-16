@@ -1,0 +1,127 @@
+{
+ "rows_raw": 4091,
+ "verified_hits": 858,
+ "input": "inputs/keywords_b4_domains_only.csv",
+ "clusters": {
+  "cand-thai-narrative-amplifiers": {
+   "searched": 11,
+   "domains_hit": {
+    "vietnaminsiders.com": 299,
+    "enewspolar.com": 256,
+    "samachardainik.com": 13,
+    "gelora.co": 12,
+    "cari.com.my": 4,
+    "harianaceh.co.id": 3,
+    "58lao.com": 1
+   },
+   "zero_hit": [
+    "laoinfo.net",
+    "jakartakita.com",
+    "mtnewstoday.com",
+    "malay.news"
+   ],
+   "posts": 588,
+   "accounts": 26,
+   "accounts_ge2": 7,
+   "accounts_ge5": 3,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  },
+  "ref-active": {
+   "searched": 13,
+   "domains_hit": {
+    "kknews.cc": 163,
+    "teepr.com": 5,
+    "juksy.com": 2,
+    "twgreatdaily.com": 2,
+    "eazon.com": 1
+   },
+   "zero_hit": [
+    "read01.com",
+    "baoxiaovideo.com",
+    "onefunnyjoke.com",
+    "viralane.com",
+    "momdata.blogspot.com",
+    "cyhappytify.info",
+    "dmhappytify.info",
+    "jkhappytify.info"
+   ],
+   "posts": 173,
+   "accounts": 128,
+   "accounts_ge2": 16,
+   "accounts_ge5": 4,
+   "tags": {
+    ".WzUBNR9thK1.lineme": 1
+   },
+   "uids": {},
+   "overlap_prior": {}
+  },
+  "thai-news01-hsupr": {
+   "searched": 28,
+   "domains_hit": {
+    "newsbeat.asia": 1
+   },
+   "zero_hit": [
+    "sportsexpressasia.com",
+    "prnewsreleaser.com",
+    "news01.digitalpress.blog",
+    "words.vn",
+    "koreabusinessnews.com",
+    "page.tokyo",
+    "prtimes.org",
+    "thaibusiness.news",
+    "topicnews.cn",
+    "news24.tw",
+    "lingoexp.com",
+    "hinews.cc",
+    "amicnews.com",
+    "article.org.in",
+    "apacnews.org",
+    "news24.today",
+    "thnews.org",
+    "thailandscoop.com",
+    "koreascoop.com",
+    "skorea.news",
+    "skoreanews.com",
+    "news24.my",
+    "news24.ph",
+    "myanmarpost.net",
+    "cambodiapost.net",
+    "vietnamscoop.com",
+    "vietwriter.vip"
+   ],
+   "posts": 1,
+   "accounts": 1,
+   "accounts_ge2": 0,
+   "accounts_ge5": 0,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  },
+  "vietnam-adsense": {
+   "searched": 8,
+   "domains_hit": {
+    "thebustednews.com": 76,
+    "abc24times.com": 11,
+    "yeuhanoi.net": 7,
+    "newsnews24h.com": 2
+   },
+   "zero_hit": [
+    "gialai24.com",
+    "kenhnhadep.com",
+    "mstfootball.com",
+    "tin356.com"
+   ],
+   "posts": 96,
+   "accounts": 33,
+   "accounts_ge2": 8,
+   "accounts_ge5": 3,
+   "tags": {
+    "goog_rewarded": 4
+   },
+   "uids": {},
+   "overlap_prior": {}
+  }
+ }
+}

@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-09-07_14-05-04",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-07T16:19:24+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "account",
+  "tier": "serp_candidates_r2b_rerun",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-07_14-05-04",
+  "input_file": {
+    "path": "inputs/accounts_serp_candidates_r2b.csv",
+    "sha256": "febfc6c44c8c074198cebad5e7b63b8984842b83aab9034556966b5ef614b69a"
+  },
+  "settings": {
+    "post_num": 100,
+    "crawl_followers": false,
+    "crawl_following": false,
+    "skip_if_over": 1000,
+    "auth_mode": "chrome",
+    "note": "2026-09-07 14:05–14:22；R2 未回傳 14 帳號中 10 個補跑（3 媒體排除、1 私人／刪除不跑），10/10 有回傳"
+  },
+  "files": {
+    "account_posts_20260907_140504.csv": {
+      "sha256": "1644cbc0ce9beb12b49bd72d4dd2db8ae64d9cc0e5d42435da779e86503fc2ee",
+      "bytes": 711177
+    },
+    "account_posts_20260907_140504.xlsx": {
+      "sha256": "3d8ac1dca4b1170f5da765bfdd232c6e1f0b5a49dcafd15fbaee2c1d1bf63db5",
+      "bytes": 338086
+    },
+    "accounts_20260907_140504.csv": {
+      "sha256": "616e060ade422753be2f0521a7d5fc94c91e6e2209d0017520665a28671e8b22",
+      "bytes": 6241
+    },
+    "accounts_20260907_140504.xlsx": {
+      "sha256": "135fadb9aedc6a04c1364269f748c1c8e168405e08d05152f3cd1b7a8c04dc5d",
+      "bytes": 8471
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

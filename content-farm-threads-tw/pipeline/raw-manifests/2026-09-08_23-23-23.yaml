@@ -1,0 +1,32 @@
+{
+  "run_id": "2026-09-08_23-23-23",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-09T00:46:23+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "keyword",
+  "tier": "keyword_b4_domains_only",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/keyword/2026-09-08_23-23-23",
+  "input_file": {
+    "path": "inputs/keywords_b4_domains_only.csv",
+    "sha256": "49e7fc7ea9e412d2e84ab782fcb5d0327351f302dc2c95aa68ea37ebbf530490"
+  },
+  "settings": {
+    "keyword_tab": "Recent",
+    "max_posts": 300,
+    "auth_mode": "chrome",
+    "note": "2026-09-08 23:23–09-09 00:28；b4 去集團名後 64 域，33 有回傳、31 零結果；同日累計 210 關鍵字未觸發節流"
+  },
+  "files": {
+    "keyword_result_20260908_232323.csv": {
+      "sha256": "f1bce0beb61e00bf2ff3ecf42a987073a6e911a0f25b2747d795b6aa1d38de31",
+      "bytes": 4077260
+    },
+    "keyword_result_20260908_232323.xlsx": {
+      "sha256": "ab1680dc345f8cf2ce850ccd7d5dd1862aa5c570e21fe4c9b11b7e363a9fb307",
+      "bytes": 1956505
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

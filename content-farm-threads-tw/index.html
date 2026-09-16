@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>內容農場在 Threads 的散布網絡與受眾</title>
+<meta name="description" content="25 個農場群、340 個網域的社群層調查：分享者拿農場的分潤碼貼連結，演算法決定誰看到，路人留言後即離開。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="內容農場在 Threads 的散布網絡與受眾">
+<meta property="og:description" content="25 個農場群、340 個網域的社群層調查：分享者拿農場的分潤碼貼連結，演算法決定誰看到，路人留言後即離開。">
+<meta property="og:url" content="https://wcl-dev.github.io/research-site/content-farm-threads-tw/">
+<meta property="og:image" content="https://wcl-dev.github.io/research-site/content-farm-threads-tw/og.png?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+ * brand-tokens.css
+ *
+ * Anchor design tokens for weichen's Research site.
+ * Every report MUST consume these — do not redeclare in report HTML.
+ *
+ * Layered architecture:
+ *   1. Open Props (external)     scale tokens — font sizes, spacing, easing
+ *   2. brand-tokens.css (this)   anchor colors + font stacks + semantic roles
+ *   3. palette.yaml (per-report) optional override of semantic role colors
+ *   4. base.css                  typography reset, consumes 1 + 2 + 3
+ *
+ * Token taxonomy:
+ *   --c-*       raw color (do not use directly in components)
+ *   --role-*    semantic alias (USE THESE in components)
+ *   --ff-*      font-family stacks
+ *   --maxw-*    canonical content widths
+ *
+ * Note on 3-semantic-color discipline:
+ *   The revise-research-html skill audit prefers ≤4 colors.
+ *   Template B uses 3 semantic role colors (primary/method/emphasis).
+ *   This is a PRINCIPLED EXCEPTION, not visual sprawl — each role
+ *   has a stable referent across the report. See PALETTE_PRINCIPLES.md.
+ * ============================================================ */
+
+:root {
+  /* ---------- canvas (anchor, never overridden per-report) ----------
+     hardcore-mono skin (2026-06)：對齊 research-site 全站報告 + 首頁 site_brand.css。
+     原暖紙/深墨襯線版已退役——全站統一 cool paper + IBM Plex Mono。 */
+  --c-paper:        #fbfaf6;
+  --c-paper-card:   #f5f3ec;
+  --c-paper-sink:   #efece4;
+  --c-ink:          #333333;
+  --c-ink-soft:     #555555;
+  --c-ink-faint:    #888888;
+  --c-watermark:    #aaaaaa;   /* sec-title 中階灰（mono 版特徵） */
+  --c-rule:         #cfc9b9;
+  --c-rule-soft:    #dfd9c5;
+
+  /* ---------- semantic roles (default; palette.yaml may override) ---------- */
+  --c-navy:         #1B4A66;
+  --c-jade:         #2B7458;
+  --c-clay:         #B5402B;
+
+  --role-primary:   var(--c-navy);   /* Template B: 一手實證 / 主結構 */
+  --role-method:    var(--c-jade);   /* Template B: 方法論 / 工具 */
+  --role-emphasis:  var(--c-clay);   /* Template B: 關鍵發現 / 風險 */
+
+  /* Template A single-accent — separate var so A and B don't collide */
+  --role-accent:    #b03a2e;         /* Template A: rust */
+
+  /* ---------- Template C roles (advocacy / AI-comparison) ---------- */
+  /* Template C has its own 3-role system with DIFFERENT semantics from B.
+     Don't conflate role-thread with role-primary — they fire in different
+     contexts (B's "primary evidence" vs C's "article thread color"). */
+  --c-orange:       #b45309;         /* Template C thread accent */
+  --c-orange-soft:  #fef3e2;         /* Template C accent tint 1 */
+  --c-orange-soft2: #f9e7c8;         /* Template C accent tint 2 (em highlight) */
+  --c-warn:         #9d2929;         /* Template C danger / refuse / aligned-output */
+  --c-warn-soft:    #fae8e7;
+  --c-warn-soft2:   #f5d4d3;
+  --c-teal:         #2b5e5e;         /* Template C unlock / uncensored / success */
+  --c-teal-soft:    #e3eded;
+  --c-quote-bg:     #f3efe5;         /* Template C analyst-commentary box bg */
+
+  --role-thread:    var(--c-orange); /* Template C: article main thread */
+  --role-refuse:    var(--c-warn);   /* Template C: model refusal / aligned output */
+  --role-unlock:    var(--c-teal);   /* Template C: uncensored / abliterated success */
+
+  /* Template C uses a different ink (cooler, more navy) — separate to avoid
+     stepping on Template B's warmer --c-ink */
+  --c-ink-cool:     #14172a;
+  --c-ink-cool-soft:#2e314a;
+  --c-paper-cool:   #fbfaf5;
+  --c-rule-cool:    #d4cfc4;
+  --c-muted-cool:   #5b5e69;
+
+  /* ---------- font families ---------- */
+  --ff-display:     'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;  /* Template A + B headings + body (hardcore mono) */
+  --ff-serif:       'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;  /* Template B body alias (hardcore mono) */
+  --ff-narrative:   'Iowan Old Style','Source Serif Pro','Charter','Noto Serif TC','Songti TC',Georgia,serif;  /* LEGACY (Template A narrative serif; unused 2026-06+ — Template A 改 mono 對齊 sycophancy) */
+  --ff-editorial:   'Noto Serif TC','PingFang TC','Songti TC',serif;  /* Template C body — serif for advocacy prose */
+  --ff-cards:       'PingFang TC','Helvetica Neue','Arial',sans-serif;/* Template C cards — sans for AI-response simulacrum */
+  --ff-kicker:      'Helvetica Neue','PingFang TC','Arial',sans-serif;/* Template C kicker / labels — sans uppercase tracked */
+  --ff-mono:        'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---------- canonical widths ---------- */
+  --maxw-prose:     680px;            /* Template A narrow column */
+  --maxw-content:   920px;            /* Template B main column */
+  --maxw-wide:      1080px;
+  --w-sidebar:      300px;            /* Template B sidebar */
+
+  /* ---------- CJK line-height adjustments (override Open Props western defaults) ---------- */
+  --lh-tight:       1.4;              /* CJK headlines */
+  --lh-body-cjk:    1.82;             /* CJK body — Open Props default 1.5 too tight for Chinese */
+  --lh-prose-cjk:   1.9;              /* long-form CJK paragraphs */
+  --lh-narrative:   1.72;             /* LEGACY (Template A narrative serif; unused 2026-06+) */
+}
+
+/*  ASCII reference: all variables at a glance
+ *  ┌─────────────────────────────────────────────────────┐
+ *  │ CANVAS         paper / paper-card / paper-sink      │
+ *  │                ink   / ink-soft   / ink-faint       │
+ *  │                rule  / rule-soft                    │
+ *  │ ROLE (B)       primary(navy) / method(jade)         │
+ *  │                emphasis(clay)                       │
+ *  │ ROLE (A)       accent(rust)                         │
+ *  │ FONT           display / serif / narrative / mono   │
+ *  │ WIDTH          prose 680 / content 920 / wide 1080  │
+ *  │                sidebar 300                          │
+ *  └─────────────────────────────────────────────────────┘
+ */
+
+/* ============================================================
+ * base.css
+ *
+ * Typography reset + universal page chrome.
+ * Consumes brand-tokens.css and (optionally) Open Props.
+ *
+ * Open Props tokens used (load via <link> in report HTML):
+ *   sizes.min.css     — used for spacing / max-widths if needed
+ *   easings.min.css   — used by reveal.js animations
+ *
+ * NOTE: we DO NOT use Open Props' font-size scale, because:
+ *   - Open Props western-centric defaults (line-height 1.5) are too tight for CJK
+ *   - Long-form research reports want fluid clamp() pinned to content density,
+ *     not a 7-step scale
+ *   We keep custom clamp() sizes in template-specific CSS instead.
+ * ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--c-paper);
+  color: var(--c-ink);
+  font-family: var(--ff-serif);
+  font-weight: 400;
+  font-size: 19px;
+  line-height: var(--lh-prose-cjk);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* paper grain — universal subtle texture for warmth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: .42;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+a { color: inherit; }
+
+::selection {
+  background: var(--c-paper-card);
+}
+
+/* reveal helper class — paired with reveal.js IntersectionObserver */
+.rv {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+ * Template B (sidebar + modular) — layout & component CSS
+ *
+ * Loaded AFTER shared/brand-tokens.css + shared/base.css.
+ * Defines: shell layout, sidebar nav, hero, section headers,
+ *          sub-h, TL;DR list, find cards, section dividers,
+ *          responsive collapse, sources/footer.
+ *
+ * Extension modules ship their own CSS in _modules/*.html
+ * (each module is HTML + scoped <style> when needed).
+ * ============================================================ */
+
+/* ---------- mono skin overrides (hardcore mono, 對齊 research-site 全站) ---------- */
+body { font-size: 15.5px; line-height: 1.65; }   /* mono 比襯線寬，body 收到 15.5/1.65 */
+body::before { opacity: .18; }                    /* 紙紋更淡（base.css 預設 .42 給襯線版） */
+
+/* ---------- shell (B merged into A: 無側欄 linear scroll) ---------- */
+.shell { display: block; }
+
+/* ---------- linear chrome: progress bar + scroll-spy badge + 水平 inline-toc ----------
+   2026-06：Template B 的左側欄已退役，併入 Template A 的 linear chrome。
+   全站 6 篇報告皆此版面（無側欄）；保留 .find/.tldr/.schema 等模組於 linear scroll 中。 */
+.progress { position: fixed; top: 0; left: 0; height: 2px; width: 0;
+  background: var(--role-emphasis); z-index: 200; transition: width .12s linear; }
+.badge { position: fixed; top: 18px; right: 24px; z-index: 100;
+  font-family: var(--ff-mono); font-size: 13px; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 600; color: var(--c-ink);
+  opacity: 0; transition: opacity .25s; padding: 8px 14px;
+  background: var(--c-paper); border: 1px solid var(--c-rule); }
+.badge.show { opacity: .85; }
+.badge b { color: var(--role-emphasis); font-weight: 700; margin-right: 8px; }
+.inline-toc { max-width: var(--maxw-content); margin: 0 auto; padding: 36px 48px 0;
+  display: flex; flex-wrap: wrap; gap: 8px; }
+.inline-toc a { font-family: var(--ff-mono); font-size: 12.5px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--c-ink-soft); padding: 7px 12px;
+  border: 1px solid var(--c-rule); background: var(--c-paper); text-decoration: none;
+  transition: background .12s, border-color .12s, color .12s; }
+.inline-toc a:hover { background: var(--c-ink); color: var(--c-paper); border-color: var(--c-ink); }
+.inline-toc .ix { color: var(--c-ink-faint); margin-right: 6px; }
+
+/* ---------- main ---------- */
+main { display: block; }
+.wrap { max-width: var(--maxw-content); margin: 0 auto; padding: 0 48px; }
+section { padding: 96px 0; border-bottom: 1px solid var(--c-rule); }
+section:last-of-type { border-bottom: none; }
+
+/* ---------- hero (base) ---------- */
+.hero {
+  border-bottom: 4px double var(--c-rule);
+  background: linear-gradient(180deg, var(--c-paper-card), transparent 72%);
+}
+.hero-inner {
+  max-width: var(--maxw-content);
+  margin: 0 auto;
+  padding: 74px 48px 64px;
+}
+.hero-kicker {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--role-emphasis);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+.hero-kicker::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--c-rule);
+}
+h1.hero-title {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.4vw, 52px);
+  line-height: 1.25;
+  letter-spacing: -.008em;
+  margin-bottom: 28px;
+}
+h1.hero-title .cut { color: var(--role-emphasis); font-weight: 600; }
+.hero-stand {
+  font-size: 18px;
+  line-height: 1.78;
+  color: var(--c-ink-soft);
+  max-width: var(--maxw-prose);
+  margin-bottom: 38px;
+}
+.hero-stand b { color: var(--c-ink); font-weight: 700; }
+.hero-scope {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  color: var(--c-ink);
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.5;
+  margin: -6px 0 34px;
+  padding-left: 16px;
+  border-left: 4px solid var(--role-primary);
+}
+.hero-foot {
+  margin-top: 34px;
+  font-size: 15px;
+  color: var(--c-ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hero-foot .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--role-emphasis);
+  display: inline-block;
+  flex: none;
+}
+
+/* ---------- section headers ---------- */
+.sec-head { margin-bottom: 52px; }
+.sec-num {
+  font-family: var(--ff-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--c-ink-faint);
+  display: block;
+  margin-bottom: 16px;
+}
+h2.sec-title {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  color: var(--c-watermark);
+  font-size: clamp(24px, 3.2vw, 36px);
+  line-height: 1.3;
+  letter-spacing: -.005em;
+}
+.sec-lead {
+  font-size: 18px;
+  color: var(--c-ink-soft);
+  margin-top: 20px;
+  max-width: var(--maxw-prose);
+  line-height: 1.78;
+}
+
+/* ---------- sub-h (in-section sub-heading) ---------- */
+.sub-h {
+  font-family: var(--ff-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--c-ink);
+  margin: 0 0 26px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--c-rule);
+  line-height: 1.4;
+}
+.block { margin-top: 64px; }
+.cap {
+  font-family: var(--ff-mono);
+  font-size: 13.5px;
+  color: var(--c-ink-soft);
+  margin-bottom: 18px;
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+
+/* ---------- TL;DR list ---------- */
+.tldr-list { display: flex; flex-direction: column; gap: 14px; }
+.tldr {
+  display: flex;
+  gap: 28px;
+  padding: 32px 34px;
+  background: var(--c-paper-card);
+  border: 1px solid var(--c-rule);
+  border-radius: 12px;
+  align-items: flex-start;
+}
+.tldr .num {
+  font-family: var(--ff-display);
+  font-size: 50px;
+  font-weight: 600;
+  line-height: .85;
+  color: var(--role-primary);
+  flex: none;
+  width: 54px;
+}
+.tldr .body p { font-size: 18.5px; line-height: 1.82; }
+.tldr .body b { font-weight: 700; }
+.tldr .tag {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  color: var(--c-ink-faint);
+  margin-top: 14px;
+}
+
+/* ---------- find card ---------- */
+.find {
+  background: var(--c-paper-card);
+  border: 1px solid var(--c-rule);
+  border-radius: 16px;
+  padding: 40px 42px;
+  margin-bottom: 24px;
+}
+.find-top {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.find-no {
+  font-family: var(--ff-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--c-paper-card);
+  background: var(--c-ink);
+  padding: 7px 12px;
+  border-radius: 6px;
+  flex: none;
+}
+.find h3 {
+  font-family: var(--ff-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.42;
+  flex: 1;
+  min-width: 260px;
+}
+.find-sum { font-size: 18px; line-height: 1.84; color: var(--c-ink-soft); }
+.find-sum b { color: var(--c-ink); font-weight: 700; }
+.find-sum .em {
+  font-weight: 700;
+  background: var(--c-paper-sink);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.find-key {
+  margin-top: 24px;
+  padding: 22px 26px;
+  background: var(--c-paper-sink);
+  border-radius: 11px;
+  font-size: 17px;
+  line-height: 1.74;
+}
+.find-key .kl {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  letter-spacing: .08em;
+  color: var(--role-emphasis);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+.find-key b { font-weight: 700; }
+.find .block { margin-top: 34px; }
+
+/* ---------- footer (canonical 4-line, hardcore mono base) ----------
+   全站統一規格——若調動，請同步 Template A / Template C / 既有 8 篇報告。 */
+footer {
+  background: var(--c-ink);
+  color: var(--c-ink-faint);
+  padding: 48px 28px;
+  font-size: 14.5px;
+  line-height: 1.85;
+}
+footer .ft-inner {
+  max-width: var(--maxw-content);
+  margin: 0 auto;
+}
+footer b { color: var(--c-paper-card); font-weight: 700; }
+footer a {
+  color: var(--c-paper-card);
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
+  text-decoration: none;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1040px) {
+  .wrap, .hero-inner { padding-left: 32px; padding-right: 32px; }
+}
+@media (max-width: 600px) {
+  body { font-size: 14.5px; }
+  .badge { display: none; }
+  .inline-toc { padding: 24px 24px 0; }
+  .wrap, .hero-inner { padding-left: 24px; padding-right: 24px; }
+  section { padding: 64px 0; }
+  .hero-inner { padding-top: 52px; }
+  .find { padding: 28px 24px; }
+  .tldr { padding: 24px; gap: 18px; }
+  .tldr .num { font-size: 40px; width: 42px; }
+  footer { padding: 36px 24px; }
+}
+
+
+.hero-numbers{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+  margin:38px 0 8px; border:1px solid var(--c-rule);
+  border-radius:14px; overflow:hidden; background:var(--c-paper-card);
+}
+.hn-cell{padding:30px 28px}
+.hn-cell+.hn-cell{border-left:1px solid var(--c-rule)}
+.hn-big{font-family:var(--ff-display); font-size:32px; font-weight:600;
+  line-height:1.1; color:var(--role-primary); margin-bottom:10px}
+.hn-big .unit{font-size:18px; color:var(--c-ink-soft); font-weight:500; margin-left:4px}
+.hn-lbl{font-family:var(--ff-mono); font-size:11.5px; color:var(--c-ink-faint);
+  letter-spacing:.12em; text-transform:uppercase; font-weight:600; margin-bottom:6px}
+.hn-sub{font-size:14.5px; color:var(--c-ink-soft); line-height:1.6}
+@media(max-width:1040px){
+  .hero-numbers{grid-template-columns:1fr}
+  .hn-cell+.hn-cell{border-left:none; border-top:1px solid var(--c-rule)}
+}
+
+
+.verify{width:100%; border-collapse:collapse; font-size:15.5px; margin-top:14px}
+.verify th, .verify td{
+  border-bottom:1px solid var(--c-rule); padding:14px 14px; vertical-align:top;
+  text-align:left;
+}
+.verify th{font-family:var(--ff-mono); font-size:12px; color:var(--c-ink-faint);
+  letter-spacing:.06em; text-transform:uppercase; font-weight:600;
+  background:var(--c-paper-sink)}
+.verify .vid{font-family:var(--ff-mono); font-weight:700; color:var(--role-primary); width:60px}
+.verify .ok{color:var(--role-method); font-weight:700; white-space:nowrap}
+.verify .upd{color:var(--role-emphasis); font-weight:700; white-space:nowrap}
+
+
+.gaps{list-style:none}
+.gaps li{position:relative; padding:18px 22px 18px 56px; margin-bottom:12px;
+  background:var(--c-paper-card); border:1px solid var(--c-rule);
+  border-radius:11px; font-size:16.5px; line-height:1.76; color:var(--c-ink-soft)}
+.gaps li::before{content:"!"; position:absolute; left:20px; top:18px;
+  font-family:var(--ff-display); font-weight:700; font-size:19px; color:var(--role-emphasis);
+  width:26px; height:26px; border:2px solid var(--role-emphasis); border-radius:50%;
+  text-align:center; line-height:23px}
+.gaps li b{color:var(--c-ink); font-weight:700}
+
+
+.flagship{
+  margin-top:16px; padding:32px 30px; background:var(--c-ink);
+  border-radius:16px; color:var(--c-paper-card);
+}
+.flag-lab{font-family:var(--ff-mono); font-size:12.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--c-paper-sink); opacity:.7; margin-bottom:8px;
+  font-weight:600}
+.flag-h{font-family:var(--ff-display); font-size:24px; font-weight:600; color:#fff;
+  margin-bottom:22px; line-height:1.36}
+.flag-tbl{width:100%; border-collapse:collapse; font-size:15px; color:var(--c-paper-card)}
+.flag-tbl th, .flag-tbl td{
+  padding:14px 10px; text-align:center; border-bottom:1px solid rgba(255,255,255,.1);
+}
+.flag-tbl th{font-family:var(--ff-mono); font-size:11.5px; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--c-paper-sink); opacity:.75; font-weight:600;
+  background:rgba(255,255,255,.04)}
+.flag-tbl th:first-child, .flag-tbl td:first-child{text-align:left;
+  font-family:var(--ff-display); font-size:16px; font-weight:500; color:#fff;
+  padding-left:14px;}
+.flag-tbl tr.total td{font-weight:700; color:#fff; background:rgba(255,255,255,.05);
+  border-bottom:none}
+.flag-tbl .dom{background:var(--role-emphasis); color:#fff; font-weight:700;
+  border-radius:4px}
+.flag-tbl .pct{font-family:var(--ff-mono); font-size:11.5px;
+  color:rgba(255,255,255,.55); display:block; margin-top:2px}
+.flag-note{font-size:14.5px; color:var(--c-paper-sink); opacity:.78; margin-top:18px;
+  line-height:1.7}
+@media(max-width:600px){
+  .flagship{padding:24px 18px}
+  .flag-tbl{font-size:13px}
+  .flag-tbl th, .flag-tbl td{padding:10px 6px}
+}
+
+
+.mini-tbl{width:100%; border-collapse:collapse; font-size:15px; margin-top:6px}
+.mini-tbl th,.mini-tbl td{border-bottom:1px solid var(--c-rule-soft); padding:12px 12px; text-align:left; vertical-align:top}
+.mini-tbl th{font-family:var(--ff-mono); font-size:12px; color:var(--c-ink-faint); letter-spacing:.08em; text-transform:uppercase; font-weight:600; background:var(--c-paper-sink)}
+.mini-tbl td.r,.mini-tbl th.r{text-align:right; font-family:var(--ff-mono); font-weight:600}
+.mini-tbl .hi{color:var(--role-emphasis); font-weight:700}
+.tbl-scroll{overflow-x:auto}
+.mono{font-family:var(--ff-mono)} .small{font-size:12.5px}
+.lf p{max-width:var(--maxw-prose); font-size:17px; line-height:1.85; color:var(--c-ink-soft); margin-bottom:18px}
+.lf p b{color:var(--c-ink)}
+.lf ul{max-width:var(--maxw-prose); margin:0 0 22px 22px; color:var(--c-ink-soft); font-size:16.5px; line-height:1.8}
+.lf li{margin-bottom:8px}
+.lf .sub-h{margin-top:48px}
+/* 論點 */
+.thesis{max-width:var(--maxw-prose); font-family:var(--ff-display); font-size:clamp(20px,2.6vw,26px); line-height:1.6; color:var(--c-ink); font-weight:600; margin:0 0 26px; padding-left:18px; border-left:5px solid var(--role-emphasis)}
+/* 洞察卡（沿用 find-card 但徽章用中文序號） */
+.find-no.zh{font-size:15px; letter-spacing:.2em}
+.find .so{margin-top:24px; padding:20px 24px; background:var(--c-paper-sink); border-radius:11px; font-size:17px; line-height:1.74}
+.find .so .kl{font-family:var(--ff-mono); font-size:13px; letter-spacing:.08em; color:var(--role-emphasis); font-weight:600; display:block; margin-bottom:6px}
+.find .find-sum p{margin-bottom:14px}
+.find .find-sum p:last-child{margin-bottom:0}
+/* figures */
+.figwrap{margin:8px 0 40px; padding:22px 22px 14px; background:var(--c-paper-card); border:1px solid var(--c-rule); border-radius:14px; cursor:zoom-in}
+@media(min-width:1180px){.figwrap,.flagship{width:var(--maxw-wide); margin-left:calc((var(--maxw-content) - var(--maxw-wide))/2)}}
+@media(min-width:1400px){.figwrap,.flagship{width:1240px; margin-left:calc((var(--maxw-content) - 1240px)/2)}}
+.figwrap.zoom{position:fixed; inset:0; z-index:300; width:auto; margin:0; border-radius:0; padding:40px 4vw; background:var(--c-paper); display:flex; flex-direction:column; justify-content:center; cursor:zoom-out; overflow:auto}
+.figwrap.zoom .fig{max-height:80vh; width:auto; max-width:100%; margin:0 auto}
+.figwrap .zoom-hint{font-family:var(--ff-mono); font-size:11.5px; color:var(--c-ink-faint); text-align:right; margin-top:6px}
+.figwrap .cap{margin-bottom:12px}
+.fig{width:100%; height:auto; display:block; font-family:var(--ff-mono)}
+.fg-box{fill:var(--c-paper); stroke:var(--c-rule); stroke-width:1.5}
+.fg-t{font-size:15px; font-weight:600; fill:var(--c-ink)}
+.fg-t2{font-size:14px; font-weight:600; fill:var(--c-ink)}
+.fg-n{font-size:22px; font-weight:700; fill:var(--role-primary)}
+.fg-s{font-size:12px; fill:var(--c-ink-soft)}
+.fg-em{fill:var(--role-emphasis); font-weight:600}
+.fg-arrow{stroke:var(--c-ink-soft); stroke-width:2}
+.fg-head{fill:var(--c-ink-soft)}
+.fg-loop{fill:none; stroke:var(--role-emphasis); stroke-width:1.5; stroke-dasharray:5 5}
+.fg-grid{stroke:var(--c-rule-soft); stroke-width:1}
+.fg-bar.c0{fill:var(--role-primary)} .fg-bar.c1{fill:var(--role-emphasis)} .fg-bar.c2{fill:var(--role-method)}
+.fg-bar.c3{fill:var(--c-ink-faint)} .fg-bar.c4{fill:var(--c-rule)} .fg-bar.c5{fill:var(--c-watermark)}
+/* persona 個人檔案卡 */
+.pcard{background:var(--c-paper); border:1px solid var(--c-rule); border-radius:18px; padding:30px 32px; margin-bottom:26px; box-shadow:0 1px 0 var(--c-rule-soft)}
+.pc-head{display:flex; gap:18px; align-items:center; margin-bottom:14px}
+.pc-av{width:64px; height:64px; border-radius:50%; flex:none; border:2px solid var(--c-paper-sink)}
+.av1{background:radial-gradient(circle at 30% 30%, var(--role-primary), var(--c-paper-sink) 70%)}
+.av2{background:conic-gradient(var(--role-emphasis) 0 50%, var(--role-primary) 50% 100%)}
+.av3{background:repeating-linear-gradient(45deg, var(--role-method) 0 8px, var(--c-paper-sink) 8px 16px)}
+.av4{background:radial-gradient(circle, var(--c-paper-sink) 0 30%, var(--role-emphasis) 32% 34%, var(--c-paper-sink) 36%)}
+.av5{background:linear-gradient(180deg, var(--c-ink-faint), var(--c-paper-sink))}
+.pc-name{font-family:var(--ff-display); font-size:22px; font-weight:700; color:var(--c-ink)}
+.pc-meta{font-family:var(--ff-mono); font-size:12.5px; color:var(--c-ink-faint); margin-top:4px; line-height:1.6}
+.pc-bio{font-size:16.5px; line-height:1.8; color:var(--c-ink-soft); margin:0 0 18px; max-width:var(--maxw-prose)}
+.pstats{display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:0 0 18px}
+.pstat{background:var(--c-paper-card); border:1px solid var(--c-rule-soft); border-radius:10px; padding:12px 14px}
+.pstat b{display:block; font-family:var(--ff-display); font-size:22px; color:var(--role-primary); line-height:1.1}
+.pstat span{font-size:12px; color:var(--c-ink-faint); font-family:var(--ff-mono)}
+.bub{display:flex; gap:12px; margin:0 0 12px; align-items:flex-start}
+.bub-av{width:28px; height:28px; border-radius:50%; background:var(--c-paper-sink); border:1px solid var(--c-rule); flex:none; margin-top:4px}
+.bub>div{background:var(--c-paper-card); border:1px solid var(--c-rule-soft); border-radius:4px 16px 16px 16px; padding:12px 16px; max-width:640px}
+.bub p{margin:0; font-size:15.5px; line-height:1.72; color:var(--c-ink)}
+.bub-src{display:block; margin-top:6px; font-family:var(--ff-mono); font-size:11.5px; color:var(--c-ink-faint)}
+.pc-note{font-size:15px; color:var(--c-ink-soft); margin:16px 0 10px}
+@media(max-width:600px){.pcard{padding:22px 18px} .pstats{grid-template-columns:repeat(2,1fr)} .bub>div{max-width:100%}}
+/* appendix */
+.apx{border:1px solid var(--c-rule); border-radius:10px; background:var(--c-paper-card); margin-bottom:10px; padding:0 18px}
+.apx summary{cursor:pointer; padding:14px 0; display:flex; justify-content:space-between; align-items:center; font-size:16px}
+.apx .apx-n{font-family:var(--ff-mono); font-size:12.5px; color:var(--c-ink-faint)}
+.apx-doms{font-family:var(--ff-mono); font-size:13px; line-height:1.9; color:var(--c-ink-soft); padding:0 0 16px; word-break:break-all}
+.filter{display:flex; gap:10px; flex-wrap:wrap; margin:0 0 14px}
+.filter input,.filter select{font-family:var(--ff-mono); font-size:14px; padding:9px 12px; border:1px solid var(--c-rule); background:var(--c-paper); color:var(--c-ink); border-radius:6px}
+.filter input{flex:1; min-width:220px}
+.filter .cnt{font-family:var(--ff-mono); font-size:13px; color:var(--c-ink-faint); align-self:center}
+.src-grid{display:grid; grid-template-columns:1fr 1fr; gap:0 36px}
+.src{padding:16px 0; border-bottom:1px solid var(--c-rule); font-size:15px; line-height:1.62; display:flex; gap:14px}
+.src .sid{font-family:var(--ff-mono); font-size:12px; color:var(--role-emphasis); flex:none; font-weight:600; padding-top:3px; width:30px}
+.src .sx b{font-weight:700; color:var(--c-ink)}
+@media(max-width:1040px){.src-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">01</b><span id="badgename">三個洞察</span></div>
+<div class="shell"><main>
+<header class="hero"><div class="hero-inner">
+<div class="hero-kicker">內容農場 · 社群層調查 · Threads · 2026 年 9 月</div>
+<h1 class="hero-title">內容農場在 Threads 的<span class="cut">散布網絡與受眾</span></h1>
+<p class="hero-stand"><b>內容農場的連結在 Threads 上到處出現，但張貼這些連結的帳號不是一群互相配合的人。</b> 農場會給分享者一組分潤碼，也就是放在連結裡、用來記錄分享者的代碼；誰的連結帶著這組碼，收益就算給誰。這些帳號各自貼文，彼此幾乎不互動。</p>
+<div class="hero-numbers"><div class="hn-cell"><div class="hn-claim"><b>農場的帳本是分潤碼，不是帳號。</b>picelse 群的一個分享者編號由 10 個帳號共用，這些帳號之間從不互動。</div></div><div class="hn-cell"><div class="hn-claim"><b>農場沒有固定受眾，只有觸及。</b>833 名留言者中，只有 23 人曾回覆兩篇以上的貼文；每篇貼文觸及的都是不同的人。</div></div><div class="hn-cell"><div class="hn-claim"><b>農場文章進入日常，但少有人把它當成農場內容。</b>936 則留言中，質疑來源的不到 2%，其餘留言把它當成真實新聞在回應。</div></div></div>
+<div class="hero-foot"><span class="dot"></span><span>340 個網域、1,520 個帳號、1,106 篇貼文的留言區、250 名隨機抽取的路人 · 研究方法見 §04</span></div>
+</div></header>
+<nav class="inline-toc" aria-label="目次"><a href="#insights"><span class="ix">§01</span>三個洞察</a>
+<a href="#persona"><span class="ix">§02</span>五種路人</a>
+<a href="#farms"><span class="ix">§03</span>25 個群</a>
+<a href="#method"><span class="ix">§04</span>我們怎麼知道的</a>
+<a href="#appendix"><span class="ix">§05</span>附錄</a>
+<a href="#sources"><span class="ix">§06</span>資料來源</a></nav>
+<section id="insights" data-num="01" data-name="三個洞察"><div class="wrap"><header class="sec-head rv"><span class="sec-num">01</span><h2 class="sec-title">三個洞察</h2><p class="sec-lead">這批資料最能支持的三項結論，每項附一個關鍵數字和一句「因此」。</p></header><div class="lf"><p>內容農場的連結在 Threads 上到處出現，但張貼這些連結的帳號不是一群互相配合的人。農場會給分享者一組分潤碼，也就是放在連結裡、用來記錄分享者的代碼；誰的連結帶著這組碼，收益就算給誰。這些帳號各自貼文，彼此幾乎不互動。貼文會被誰看到，由演算法決定；看到的人留完言就離開，也幾乎沒有人追問文章來自哪裡。</p><p>我們反向搜尋了 25 個農場群與 340 個網域在 Threads 上的紀錄，找到 1,520 個帳號，並核實其中 296 個帳號的完整發文史。我們也完整擷取 1,106 篇有互動的農場貼文留言區，再從 833 個留言者中隨機抽取 250 人，分析這些留言者的身分輪廓。以下三項發現是這批資料最能支持的結論。</p></div>
+<div class="figwrap rv" data-zoom><div class="cap">圖一 · 分工結構：分享者拿農場的分潤碼貼連結，演算法決定誰看到，路人留言後即離開</div><svg class="fig" viewBox="0 0 1000 300" role="img" aria-label="分工結構圖：工具化帳號種連結，演算法送貼文，站方與專職帳號承接互動，路人留言完就走"><rect x="30" y="50" width="220" height="150" rx="12" class="fg-box"/><text x="140" y="80" class="fg-t" text-anchor="middle">工具化帳號</text><text x="140" y="122" class="fg-n" text-anchor="middle">201 個</text><text x="140" y="154" class="fg-s" text-anchor="middle">農場發的識別碼與分潤碼</text><text x="140" y="172" class="fg-s" text-anchor="middle">「2 / 2」注入</text><rect x="270" y="50" width="220" height="150" rx="12" class="fg-box"/><text x="380" y="80" class="fg-t" text-anchor="middle">Threads 搜尋</text><text x="380" y="100" class="fg-t" text-anchor="middle">與演算法</text><text x="380" y="144" class="fg-s" text-anchor="middle">貼文丟給</text><text x="380" y="162" class="fg-s" text-anchor="middle">不特定的人</text><rect x="510" y="50" width="220" height="150" rx="12" class="fg-box"/><text x="620" y="80" class="fg-t" text-anchor="middle">站方與專職帳號</text><text x="620" y="122" class="fg-n" text-anchor="middle">38 個</text><text x="620" y="154" class="fg-s" text-anchor="middle">承接互動</text><text x="620" y="172" class="fg-s" text-anchor="middle">有人設</text><rect x="750" y="50" width="220" height="150" rx="12" class="fg-box"/><text x="860" y="80" class="fg-t" text-anchor="middle">路人</text><text x="860" y="122" class="fg-n" text-anchor="middle">833 人</text><text x="860" y="154" class="fg-s" text-anchor="middle">留言完就走</text><text x="860" y="172" class="fg-s" text-anchor="middle">回頭 23 人</text><line x1="250" y1="125" x2="262" y2="125" class="fg-arrow"/><polygon points="260,119 270,125 260,131" class="fg-head"/><text x="260" y="112" class="fg-s" text-anchor="middle">種連結</text><line x1="490" y1="125" x2="502" y2="125" class="fg-arrow"/><polygon points="500,119 510,125 500,131" class="fg-head"/><text x="500" y="112" class="fg-s" text-anchor="middle">送貼文</text><line x1="730" y1="125" x2="742" y2="125" class="fg-arrow"/><polygon points="740,119 750,125 740,131" class="fg-head"/><text x="740" y="112" class="fg-s" text-anchor="middle">看到就回</text><path d="M140 200 C 140 262, 620 262, 620 200" class="fg-loop"/><text x="380" y="285" class="fg-s fg-em" text-anchor="middle">帳號之間互相回覆 0 次、引用 1 次：共用的是碼，不是關係</text></svg><div class="zoom-hint">點圖放大</div></div>
+<article class="find rv"><div class="find-top"><span class="find-no zh">一</span><h3>農場的帳本是分潤碼，不是帳號</h3></div><div class="find-sum"><p>picelse／luckyelse 群的連結尾端帶有分潤參數 <span class="mono">utm_term=</span>，參數中的數字是這家農場分潤系統所使用的分享者編號。只要連結帶有某個編號，系統就會把收益計入該名分享者。其中，<span class="mono">utm_term=1883</span> 這個編號串起 10 個帳號，當中有 7 個帳號以「某平台名加 news747」命名：girlsnews747、youtubenews747、tiktoknews747、phpnews747、chinesenews747、fararrinews747、fbnews747。這 7 個帳號共用同一個分享者編號與同一種命名方式，也都在 2024 年 7 到 11 月間註冊，並推送同一家農場的內容。這些跡象顯示，<b>它們不是七名各自運作的使用者，而是同一個分潤帳戶的七個出口。</b></p><p>相同模式也出現在其他群。同一家農場的另一個分享者編號 <span class="mono">utm_term=8842</span>，串起 8 個自述位於馬來西亞的帳號。dsawjk 群提供的分享工具，會在連結尾端加上「<span class="mono">#threads</span> 加數字」的識別碼；我們共發現 65 組識別碼，每個識別碼對應一個帳號，並且跨網域沿用。另有兩個群原本只因共用頁面模板而被列為候選群；這兩個群的貼文帶有同一套識別碼，因而證實其散布行為使用同一項工具。分潤碼也會跨群使用：ericcheww 和 shixiaoqi6554 這兩個帳號，同時張貼 picelse／luckyelse 群帶有 <span class="mono">utm_term=8427</span> 的連結，以及 picread 群帶有自身分潤參數 <span class="mono">uid=12853</span> 的連結；換言之，同一個帳號同時領取兩家農場的分潤。</p><p>這些散布帳號彼此沒有互動關係。在兩批共 13,097 列貼文中，散布帳號彼此回覆 <span class="em">0 次</span>，彼此引用 1 次。這些帳號共用的是工具與代碼，不是社群關係。</p></div><div class="so"><span class="kl">因此</span>監測與處置若以帳號為單位，關閉一個帳號就只是關閉一個出口；<b>若以分潤碼為單位，才是關閉一個帳本。</b></div></article>
+<article class="find rv"><div class="find-top"><span class="find-no zh">二</span><h3>農場沒有固定受眾，只有觸及</h3></div><div class="find-sum"><p>我們擷取了 1,106 篇有互動的農場貼文留言區，並找出共 833 名路人留言者。其中，只有 <span class="em">23 人</span>曾回覆兩篇以上的貼文，只有 9 人曾回覆三篇以上的貼文，也只有 1 人曾跨群留言。在可取得追蹤名單的 232 人中，只有 6 人追蹤任何一個農場帳號。</p><p>就這批資料而言，內容農場在 Threads 上沒有形成固定的粉絲群。演算法把每篇農場貼文分別推送給不同的使用者。一般使用者偶發轉貼的貼文，平均每篇有 1.39 則路人留言；農場官方帳號的貼文，平均每篇有 1.11 則；工具化帳號的貼文，平均每篇有 0.54 則；專職轉貼帳號的貼文，平均每篇有 0.35 則。專職轉貼層共有 102 則留言，其中 83 則是同一個巴西帳號收到的葡萄牙文留言，華語留言只有 8 則。</p><p>這項結果也解釋了散布帳號為何不需要經營人設，也不需要彼此拉抬：農場並未培養自己的受眾，而是由演算法為每篇貼文重新分配受眾。</p></div><div class="so"><span class="kl">因此</span>研究者若以「社群」「粉絲」或「同溫層」的框架理解內容農場，<b>會找錯研究對象。</b></div></article>
+<article class="find rv"><div class="find-top"><span class="find-no zh">三</span><h3>農場文章進入日常，但少有人把它當成農場內容</h3></div><div class="find-sum"><p>在 936 則路人留言中，指出來源或真偽有問題的留言比例如下：農場官方帳號底下為 3.4%，一般使用者轉貼底下為 1.6%，工具化帳號底下為 0.8%，專職轉貼底下為 0。<span class="em">整體比例不到 2%</span>。</p><p>其餘留言都是路人對故事本身的反應，例如責罵新聞中騙錢的女性、批評政黨、祈福或留下愛心。轉貼農場文章的一般使用者也不是為了澄清資訊：他們的 64 篇轉貼中，只有 1 篇屬於批評性分享，其餘貼文則寫著「懂就轉發」「終於有人寫出我的心聲」。</p><p>最直接反映這種狀況的一則留言，是一名路人直接詢問 Meta 的 AI：「这是真的吗 meta.ai」。Meta AI 確實回覆了這則提問。</p></div><div class="so"><span class="kl">因此</span>內容農場的文章已經進入一般使用者的日常生活，媒體識讀卻在留言區中缺席。這項現象比「有人相信假新聞」更值得注意，因為<b>幾乎沒有人提出「這是不是新聞」這個問題。</b></div></article></div></section>
+<section id="persona" data-num="02" data-name="五種路人"><div class="wrap"><header class="sec-head rv"><span class="sec-num">02</span><h2 class="sec-title">五種路人</h2><p class="sec-lead">以下五種人物輪廓，是根據隨機樣本 250 人的聚合數據與留言原文整理而成。抽樣方式是把 833 個留言者依其所回貼文的帳號類型分為四層，在有中文文字留言的人當中，每層隨機抽取 75 人；若該層樣本不足則全部納入，另外再納入所有回過兩篇以上貼文的 17 人。抽樣細節與偏差列於 §04。每個人物代表一種類型，而不是特定個人。本文引用留言時，只標示該則留言出現在哪一個群的貼文底下，不附上帳號，也不更動原文。</p></header><div class="figwrap rv" data-zoom><div class="cap">圖二 · 五種路人平均每人追蹤多少個特定類型的帳號。縱軸代表每人的追蹤名單中，屬於該類型帳號數量的平均值：0.5 代表平均每兩人會有一人追蹤一個該類型帳號。本文依帳號名稱中的關鍵字判定類別，資料來自隨機樣本。長條高度是平均值，不是人數；各組人數標在組名底下，專職帳號底下的讀者只有 8 人，那組長條再高也只代表 8 個人。台灣讀者追蹤政治人物最多，TVB 劇迷追蹤藝人。</div><svg class="fig" viewBox="0 0 920 360" role="img" aria-label="五種路人每人平均追蹤的帳號類別數"><line x1="40" y1="188" x2="900" y2="188" class="fg-grid"/><text x="32" y="192" class="fg-s" text-anchor="end">0.5</text><line x1="40" y1="116" x2="900" y2="116" class="fg-grid"/><text x="32" y="120" class="fg-s" text-anchor="end">1.0</text><line x1="40" y1="44" x2="900" y2="44" class="fg-grid"/><text x="32" y="48" class="fg-s" text-anchor="end">1.5</text><text x="40" y="18" class="fg-s">每人平均追蹤的該類帳號數</text><rect x="62" y="169" width="18" height="91" class="fg-bar c0"><title>台灣讀者・政治人物／政黨：0.63</title></rect><rect x="83" y="226" width="18" height="34" class="fg-bar c1"><title>台灣讀者・政治評論者：0.24</title></rect><rect x="104" y="192" width="18" height="68" class="fg-bar c2"><title>台灣讀者・媒體與知識：0.47</title></rect><rect x="126" y="214" width="18" height="46" class="fg-bar c3"><title>台灣讀者・藝人與網紅：0.32</title></rect><rect x="148" y="214" width="18" height="46" class="fg-bar c4"><title>台灣讀者・品牌與購物：0.32</title></rect><rect x="169" y="241" width="18" height="19" class="fg-bar c5"><title>台灣讀者・Meta 官方：0.13</title></rect><text x="126" y="282" class="fg-t2" text-anchor="middle">台灣讀者</text><text x="126" y="300" class="fg-s" text-anchor="middle">75 人的平均</text><rect x="234" y="230" width="18" height="30" class="fg-bar c0"><title>兩極讀者・政治人物／政黨：0.21</title></rect><rect x="255" y="246" width="18" height="14" class="fg-bar c1"><title>兩極讀者・政治評論者：0.1</title></rect><rect x="276" y="217" width="18" height="43" class="fg-bar c2"><title>兩極讀者・媒體與知識：0.3</title></rect><rect x="298" y="256" width="18" height="4" class="fg-bar c3"><title>兩極讀者・藝人與網紅：0.03</title></rect><rect x="320" y="251" width="18" height="9" class="fg-bar c4"><title>兩極讀者・品牌與購物：0.06</title></rect><rect x="341" y="256" width="18" height="4" class="fg-bar c5"><title>兩極讀者・Meta 官方：0.03</title></rect><text x="298" y="282" class="fg-t2" text-anchor="middle">兩極讀者</text><text x="298" y="300" class="fg-s" text-anchor="middle">75 人的平均</text><rect x="406" y="247" width="18" height="13" class="fg-bar c0"><title>TVB 劇迷・政治人物／政黨：0.09</title></rect><rect x="427" y="256" width="18" height="4" class="fg-bar c1"><title>TVB 劇迷・政治評論者：0.03</title></rect><rect x="448" y="236" width="18" height="24" class="fg-bar c2"><title>TVB 劇迷・媒體與知識：0.17</title></rect><rect x="470" y="237" width="18" height="23" class="fg-bar c3"><title>TVB 劇迷・藝人與網紅：0.16</title></rect><rect x="492" y="240" width="18" height="20" class="fg-bar c4"><title>TVB 劇迷・品牌與購物：0.14</title></rect><rect x="513" y="251" width="18" height="9" class="fg-bar c5"><title>TVB 劇迷・Meta 官方：0.06</title></rect><text x="470" y="282" class="fg-t2" text-anchor="middle">TVB 劇迷</text><text x="470" y="300" class="fg-s" text-anchor="middle">75 人的平均</text><rect x="578" y="224" width="18" height="36" class="fg-bar c0"><title>專職帳號底下的讀者・政治人物／政黨：0.25</title></rect><rect x="599" y="260" width="18" height="0" class="fg-bar c1"><title>專職帳號底下的讀者・政治評論者：0.0</title></rect><rect x="620" y="224" width="18" height="36" class="fg-bar c2"><title>專職帳號底下的讀者・媒體與知識：0.25</title></rect><rect x="642" y="224" width="18" height="36" class="fg-bar c3"><title>專職帳號底下的讀者・藝人與網紅：0.25</title></rect><rect x="664" y="44" width="18" height="216" class="fg-bar c4"><title>專職帳號底下的讀者・品牌與購物：1.5</title></rect><rect x="685" y="224" width="18" height="36" class="fg-bar c5"><title>專職帳號底下的讀者・Meta 官方：0.25</title></rect><text x="642" y="282" class="fg-t2" text-anchor="middle">專職帳號底下的讀者</text><text x="642" y="300" class="fg-s" text-anchor="middle">8 人的平均</text><rect x="750" y="233" width="18" height="27" class="fg-bar c0"><title>流言常客・政治人物／政黨：0.19</title></rect><rect x="771" y="251" width="18" height="9" class="fg-bar c1"><title>流言常客・政治評論者：0.06</title></rect><rect x="792" y="215" width="18" height="45" class="fg-bar c2"><title>流言常客・媒體與知識：0.31</title></rect><rect x="814" y="260" width="18" height="0" class="fg-bar c3"><title>流言常客・藝人與網紅：0.0</title></rect><rect x="836" y="260" width="18" height="0" class="fg-bar c4"><title>流言常客・品牌與購物：0.0</title></rect><rect x="857" y="233" width="18" height="27" class="fg-bar c5"><title>流言常客・Meta 官方：0.19</title></rect><text x="814" y="282" class="fg-t2" text-anchor="middle">流言常客</text><text x="814" y="300" class="fg-s" text-anchor="middle">17 人的平均</text><rect x="40" y="326" width="12" height="12" class="fg-bar c0"/><text x="58" y="336" class="fg-s">政治人物／政黨</text><rect x="260" y="326" width="12" height="12" class="fg-bar c1"/><text x="278" y="336" class="fg-s">政治評論者</text><rect x="480" y="326" width="12" height="12" class="fg-bar c2"/><text x="498" y="336" class="fg-s">媒體與知識</text><rect x="40" y="344" width="12" height="12" class="fg-bar c3"/><text x="58" y="354" class="fg-s">藝人與網紅</text><rect x="260" y="344" width="12" height="12" class="fg-bar c4"/><text x="278" y="354" class="fg-s">品牌與購物</text><rect x="480" y="344" width="12" height="12" class="fg-bar c5"/><text x="498" y="354" class="fg-s">Meta 官方</text></svg><div class="zoom-hint">點圖放大</div></div>
+<article class="pcard rv"><div class="pc-head"><div class="pc-av av1"></div><div><div class="pc-name">一、被題材帶走的台灣讀者</div><div class="pc-meta">在一般使用者偶發轉貼的貼文底下留言 · 隨機 75 人</div></div></div><p class="pc-bio">這類讀者在一般使用者偶發轉貼的貼文底下留言。隨機抽取的 75 人中，有 51 人自述位於台灣，另有 6 人自述位於香港；其中 35 人在 2024 年註冊。他們的追蹤名單中位數為 64 個帳號，是五種類型中最長的一組；他們也最熟悉 Threads 的使用方式。他們的追蹤名單平均每人包含 0.63 個政治人物或政黨帳號，最常見的帳號是蔡英文、沈伯洋與賴清德；泛科學和 Netflix 台灣也經常出現在名單中。這類讀者在晚間 18 到 23 時最活躍。他們回應的是事件本身，而不是資訊來源：</p><div class="pstats"><div class="pstat"><b>51／75</b><span>自述位於台灣</span></div><div class="pstat"><b>64</b><span>追蹤名單中位數</span></div><div class="pstat"><b>0.63</b><span>每人追蹤的政治人物數</span></div><div class="pstat"><b>5／318</b><span>提到來源的留言</span></div></div><div class="bub"><span class="bub-av"></span><div><p>太辛苦了，警察工作真的是包山又包海，工作時數過長，完全沒有基本的人權</p><span class="bub-src">ENews 群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>什麼？！剛才發現貝納頌也是味全的？！人啊！有什麼新發現真的要多發文 能救一個是一個！起碼救到我了！</p><span class="bub-src">eatmary 群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>只要我有錢 or 有勢力 or 倚老賣老 或者是藍白的大樁腳 只要我想…沒有什麼不可以！！</p><span class="bub-src">ENews 群貼文底下</span></div></div><p class="pc-note">少數讀者會注意資訊來源，但這類留言在該層 318 則留言中只有 5 則：</p><div class="bub"><span class="bub-av"></span><div><p>這新聞不是好幾年前的事了嗎？</p><span class="bub-src">looker 系群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>現在知識的定義已經變成 AI 引用維基百科然後說內容農場是新聞的時代了嗎</p><span class="bub-src">參照群貼文底下</span></div></div></article>
+<article class="pcard rv"><div class="pc-head"><div class="pc-av av2"></div><div><div class="pc-name">二、中國政治流言的兩極讀者</div><div class="pc-meta">在 chinanewscenter 官方帳號底下留言 · 隨機 75 人</div></div></div><p class="pc-bio">這類讀者在 chinanewscenter 官方帳號底下留言，也是「農場官方帳號」這一層的主體。隨機抽取的 75 人中，有 34 人自述位於台灣、10 人自述位於香港、9 人自述位於中國、4 人自述位於美國；這一類型的所在地分布在五種類型中最為分散。其中有 9 人到 2026 年才註冊。他們的追蹤名單中位數只有 20 個帳號，許多人的追蹤名單只包含 Threads 預設推薦的 Meta 官方帳號。隨機樣本最常追蹤的帳號是 Team Trump、蔣萬安與國民黨。我們另外刻意挑選了留言較長的活躍留言者，而這組對照樣本最常追蹤的帳號是苗博雅與明居正。政治光譜兩端的讀者會在同一個留言區中彼此對話：</p><div class="pstats"><div class="pstat"><b>34／10／9</b><span>自述台灣／香港／中國</span></div><div class="pstat"><b>20</b><span>追蹤名單中位數</span></div><div class="pstat"><b>9／75</b><span>2026 年才註冊</span></div><div class="pstat"><b>3.4%</b><span>質疑真偽的留言</span></div></div><div class="bub"><span class="bub-av"></span><div><p>習近平主席是對的，必須抓張</p><span class="bub-src">單站候選群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>停止改革開放，中共政權必死無疑</p><span class="bub-src">單站候選群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>习在中国地位穩如泰山，請勿造謠。</p><span class="bub-src">單站候選群貼文底下</span></div></div><p class="pc-note">在四層留言者中，這一層質疑資訊真偽的留言比例最高，但這些讀者質疑的是內容本身，而不是資訊來源：</p><div class="bub"><span class="bub-av"></span><div><p>李克強女兒不可能做這種無腦的事情來自取絕路的。造謠首先要能在邏輯上說的通。</p><span class="bub-src">單站候選群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>很好奇那些相信这种讯息的都是一些什么人？</p><span class="bub-src">單站候選群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>这是真的吗 meta.ai</p><span class="bub-src">單站候選群貼文底下</span></div></div><p class="pc-note">最後一則留言是一名路人直接詢問 Meta 的 AI 這是不是真的，Meta AI 也確實回覆了。</p></article>
+<article class="pcard rv"><div class="pc-head"><div class="pc-av av3"></div><div><div class="pc-name">三、TVB 劇迷</div><div class="pc-meta">在工具化帳號底下留言 · 隨機 75 人</div></div></div><p class="pc-bio">這類讀者在工具化帳號底下留言。隨機抽取的 75 人中，有 37 人自述位於香港，另有 22 人自述位於台灣；其中 46 人在 2024 年註冊。他們的追蹤名單中位數為 20 個帳號，名單中常見古天樂、李施嬅與朱晨麗等香港藝人，沒有政治人物。這類讀者有四分之一的留言只有表情符號，包含文字的留言則使用粵語：</p><div class="pstats"><div class="pstat"><b>37／75</b><span>自述位於香港</span></div><div class="pstat"><b>46／75</b><span>2024 年註冊</span></div><div class="pstat"><b>20</b><span>追蹤名單中位數</span></div><div class="pstat"><b>0</b><span>追蹤的政治人物</span></div></div><div class="bub"><span class="bub-av"></span><div><p>「創世紀」葉孝勤 × 李碧珍呢螢幕夫妻，演活得精彩，令人印象留下深刻。粵語片年代至今都是名星世一，永遠懷念。雪妮姨＋驄叔 安心上路🌹 家人保重🙏</p><span class="bub-src">vivi01 影片站群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>吓，咁就瓜咗 因為個位置俾阿黃宗澤取代啊？</p><span class="bub-src">vivi01 影片站群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>南無阿彌陀佛，祝早日康復🙏🙏🙏</p><span class="bub-src">vivi01 影片站群貼文底下</span></div></div><p class="pc-note">工具化帳號透過分潤碼張貼 TVB 藝人新聞後，在 Threads 上觸及的主要是香港讀者，而不是台灣讀者。同一層中，少數來自台灣的留言出現在 dsawjk 群的山老鼠盜伐貼文底下：</p><div class="bub"><span class="bub-av"></span><div><p>殺人都不會判死刑了，何況只是當山老鼠</p><span class="bub-src">dsawjk 群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>當見證台灣歷史的生命只是變成一塊塊磚頭擺在案頭，那一份沉默台灣人承擔的起嗎？</p><span class="bub-src">dsawjk 群貼文底下</span></div></div></article>
+<article class="pcard rv"><div class="pc-head"><div class="pc-av av4"></div><div><div class="pc-name">四、專職轉貼帳號底下幾乎沒有讀者</div><div class="pc-meta">在專職轉貼帳號底下留言 · 留下華語文字的只有 8 人</div></div></div><p class="pc-bio">在專職轉貼帳號底下留言的人非常少。專職轉貼帳號發布的 288 篇貼文中，只有 19 篇收到留言；全部 102 則留言中，有 83 則是同一個巴西帳號（該帳號推廣面向巴西的農場網域，屬專職轉貼，依本文規則不具名）收到的葡萄牙文政治留言，與台灣無關。扣除這些留言後，資料中只剩下華語留言 8 則與純表情留言 8 則。這 8 名留下文字的讀者追蹤 7-ELEVEn、蝦皮與熊貓影片帳號，沒有追蹤政治人物。他們回應的是貼文內容，不是轉貼者：</p><div class="pstats"><div class="pstat"><b>288</b><span>專職帳號的貼文</span></div><div class="pstat"><b>19</b><span>收到留言的貼文</span></div><div class="pstat"><b>83／102</b><span>一個巴西帳號底下的葡萄牙文</span></div><div class="pstat"><b>8</b><span>華語留言者</span></div></div><div class="bub"><span class="bub-av"></span><div><p>這張照片的四妹好Q,好可愛😍❤️❤️❤️</p><span class="bub-src">vivi01 影片站群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>希望他身體健康平安快樂</p><span class="bub-src">vivi01 影片站群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>連結錯了？</p><span class="bub-src">anyelse 網候選群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>謝謝分享</p><span class="bub-src">anyelse 網候選群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>👍👍👍👍</p><span class="bub-src">vivi01 影片站群貼文底下</span></div></div><p class="pc-note">專職轉貼帳號雖然長期推送單一農場的內容，在 Threads 上卻幾乎得不到回應。這些帳號的功能，是在站方帳號之外增加一個散布出口，而不是經營受眾。</p></article>
+<article class="pcard rv"><div class="pc-head"><div class="pc-av av5"></div><div><div class="pc-name">五、中國政治流言的常客</div><div class="pc-meta">回覆兩篇以上的 17 人 · 全部納入</div></div></div><p class="pc-bio">這類讀者是曾回覆兩篇以上貼文的 17 人。其中有 12 人只在 chinanewscenter 底下留言，另外 5 人則分別固定在 TVB 影片站帳號、eatmary 或一般使用者的轉貼底下留言。他們的追蹤者人數中位數為 36 人，其中 10 人的追蹤者不到 50 人；他們的追蹤名單中位數為 20 個帳號。沒有任何人追蹤自己留言的農場帳號。他們自述的所在地包括台灣 7 人、美國 2 人、香港 2 人，以及新加坡、俄羅斯、中國各 1 人。他們分布在政治立場的兩端，同一名留言者可能連續回覆十多篇貼文：</p><div class="pstats"><div class="pstat"><b>12／17</b><span>在 chinanewscenter 底下</span></div><div class="pstat"><b>36</b><span>追蹤者中位數</span></div><div class="pstat"><b>0</b><span>追蹤自己留言的農場帳號</span></div><div class="pstat"><b>12</b><span>單人最多回覆篇數</span></div></div><div class="bub"><span class="bub-av"></span><div><p>習近平主席是聰明滴，永遠給咱指明方向💖👍</p><span class="bub-src">單站候選群，同一人回了 12 篇</span></div></div><div class="bub"><span class="bub-av"></span><div><p>不幹掉習畜生就會被習畜生幹掉。</p><span class="bub-src">單站候選群，同一人回了 5 篇</span></div></div><div class="bub"><span class="bub-av"></span><div><p>老爸被带出会场后不久，儿子破格升副部长。这次升隔了三年算是常规。</p><span class="bub-src">單站候選群貼文底下</span></div></div><div class="bub"><span class="bub-av"></span><div><p>這班時間帶如果能改成10點半出發一定爆滿</p><span class="bub-src">eatmary 群，同一人回了 3 篇</span></div></div><p class="pc-note">現有資料無法判定這 17 人是否為人頭帳號。部分跡象支持人頭帳號的可能性：有些帳號的追蹤者只有個位數，有些在 2025 或 2026 年才註冊，有些只在單一帳號底下出現，也有帳號自述位於美國或俄羅斯，卻密集發表支持習近平的留言。另一些跡象則較接近真人使用行為：留言長短不一，內容包含反問、引用與錯字，顯示這些使用者可能把留言區當成論壇。另外還有 3 人是貼文數上萬的台灣重度使用者，只是剛好在兩篇貼文底下都留下留言。目前唯一能確定的是，這些常客是特定帳號的常客，而不是內容農場的常客。</p></article>
+<div class="lf" style="margin-top:36px"><p>綜合這五種類型，內容農場貼文在 Threads 上接觸到的並不是同一群人，而是五種彼此不重疊、分別受到不同題材吸引的路人。<b>沒有任何一種類型可以稱為「農場的受眾」；唯一近似常客的類型，長期停留在單一政治流言帳號，而不是整個農場。</b> 在隨機樣本中有自述所在地的留言者裡，台灣人約占一半，香港人約占四分之一；香港人集中在工具化帳號底下那一層，占該層近半。兩端政治傾向的讀者都有。</p></div></div></section>
+<section id="farms" data-num="03" data-name="25 個群"><div class="wrap"><header class="sec-head rv"><span class="sec-num">03</span><h2 class="sec-title">25 個群</h2><p class="sec-lead">25 個群在 Threads 上的散布樣態。讀者閱讀這張表時可以注意三點，列於表後。</p></header><div class="lf"><p><b>如何閱讀這張表。</b>「驗過連結的貼文」是站內搜尋擷取後，逐篇解開連結並確認指向該群網域的貼文數。「Threads 帳號」是盤點表中標記為該群的帳號數，一個帳號張貼多個群的連結時會重複計入。「工具化／專職／站方」是三種散布帳號的數量：工具化帳號的連結帶有分享工具識別碼或分潤碼，或以「原文加 2 / 2 回覆」的固定格式發文；專職帳號張貼過 5 篇以上，但沒有工具痕跡；站方帳號是農場自己的官方帳號。「分享工具痕跡」表示該群的貼文中是否出現識別碼或分潤碼。「留言區每篇回覆」是該群貼文的留言區中，平均每篇的路人留言數。完整定義見 §04。</p></div>
+<div class="flagship rv"><div class="flag-lab">§03 · 旗艦表</div><div class="flag-h">25 個農場群在 Threads 上的散布樣態與受眾</div>
+<div class="tbl-scroll"><table class="flag-tbl"><thead><tr><th>群</th><th>網域</th><th>驗過連結的貼文</th><th>Threads 帳號</th><th>工具化／專職／站方</th><th>分享工具痕跡</th><th>留言區每篇回覆</th></tr></thead><tbody><tr><td>dsawjk 群</td><td>78</td><td>1,839</td><td>299</td><td class="dom">100／13／0</td><td>有</td><td>0.98</td></tr>
+<tr><td>參照群：仍在營運的老牌農場</td><td>13</td><td>174</td><td>183</td><td>0／0／1</td><td>無</td><td>1.16</td></tr>
+<tr><td>ENews／LIFE 群</td><td>3</td><td>259</td><td>149</td><td>0／0／1</td><td>有</td><td>1.39</td></tr>
+<tr><td>looker 系群</td><td>23</td><td>38</td><td>118</td><td>0／0／0</td><td>無</td><td>5.07</td></tr>
+<tr><td>東南亞敘事放大器候選群</td><td>11</td><td>588</td><td>117</td><td>0／2／4</td><td>無</td><td>0.07</td></tr>
+<tr><td>anyelse 網候選群</td><td>31</td><td>436</td><td>100</td><td class="dom">19／4／0</td><td>有</td><td>0.75</td></tr>
+<tr><td>ads.txt 模板候選群（qhd）</td><td>22</td><td>220</td><td>91</td><td class="dom">12／6／1</td><td>有</td><td>2.88</td></tr>
+<tr><td>vivi01 影片站群</td><td>11</td><td>573</td><td>90</td><td class="dom">19／4／0</td><td>有</td><td>0.42</td></tr>
+<tr><td>picread 群</td><td>35</td><td>18</td><td>84</td><td>2／1／0</td><td>有</td><td>0.17</td></tr>
+<tr><td>越南向 AdSense 群</td><td>8</td><td>96</td><td>50</td><td>0／0／0</td><td>無</td><td>0.18</td></tr>
+<tr><td>picelse／luckyelse 群</td><td>3</td><td>230</td><td>48</td><td class="dom">21／5／0</td><td>有</td><td>0.77</td></tr>
+<tr><td>泰國 news01／HSU 群</td><td>28</td><td>1</td><td>47</td><td>0／0／0</td><td>無</td><td>1.0</td></tr>
+<tr><td>單站候選群</td><td>11</td><td>306</td><td>37</td><td>1／0／1</td><td>無</td><td>1.13</td></tr>
+<tr><td>eatmary 群</td><td>2</td><td>337</td><td>29</td><td>0／1／2</td><td>無</td><td>0.91</td></tr>
+<tr><td>docilepuppy 系候選群</td><td>22</td><td>15</td><td>29</td><td>5／0／0</td><td>有</td><td>無互動</td></tr>
+<tr><td>ptt 系候選群</td><td>7</td><td>7</td><td>7</td><td>0／0／0</td><td>無</td><td>1.67</td></tr>
+<tr><td>happyshare 候選群</td><td>2</td><td>2</td><td>5</td><td>0／0／0</td><td>無</td><td>1.0</td></tr>
+<tr><td>twqiang 群</td><td>5</td><td>63</td><td>5</td><td>0／1／0</td><td>無</td><td>無互動</td></tr>
+<tr><td>台灣小站候選群</td><td>4</td><td>0</td><td>3</td><td>0／0／0</td><td>無</td><td>無互動</td></tr>
+<tr><td>中國範文站候選群</td><td>6</td><td>0</td><td>1</td><td>0／0／0</td><td>無</td><td>無互動</td></tr>
+<tr><td>香港農場候選群</td><td>3</td><td>0</td><td>1</td><td>0／0／0</td><td>無</td><td>無互動</td></tr>
+<tr><td>ezvivi 群</td><td>3</td><td>0</td><td>0</td><td>0／0／0</td><td>無</td><td>無互動</td></tr>
+<tr><td>qastack 多語候選群</td><td>6</td><td>0</td><td>0</td><td>0／0／0</td><td>無</td><td>無互動</td></tr>
+<tr><td>泰國 wdwire 群</td><td>4</td><td>0</td><td>0</td><td>0／0／0</td><td>無</td><td>無互動</td></tr></tbody></table></div>
+<p class="flag-note">群名以核心網域命名；完整網域清單列於附錄 A。帳號數是盤點表中標記為該群的 Threads 帳號數，一個帳號張貼多個群的連結時會重複計入。標色的五列是具有散布帳號網絡的群。</p></div>
+<div class="lf" style="margin-top:44px"><ul>
+<li><b>真正具有散布帳號網絡的只有五個群</b>：dsawjk、vivi01 影片站、picelse／luckyelse，以及 dsawjk 的兩個模板候選群 anyelse 與 qhd。這五個群的共同特徵，是貼文中帶有分享工具的痕跡。其餘 20 群有些主要依靠站方自營帳號發文（ENews、eatmary、chinanewscenter），有些只有一般使用者偶發轉貼，有些則未出現在 Threads 上。</li>
+<li><b>東南亞向與越南向的群雖然有貼文，卻沒有華語受眾</b>：這些群分別有 588 篇與 96 篇驗過連結的貼文，留言區平均每篇分別有 0.07 則與 0.18 則回覆，而且所有回覆都不是華語。泰國 news01／HSU 群的 28 個網域中，只有 1 篇貼文命中。</li>
+<li><b>參照群的 183 個帳號幾乎都是偶發轉貼者</b>：teepr、kknews 等老牌農場的連結是由一般使用者轉貼，並未形成散布網絡。參照群呈現的是「有農場但沒有操作」的對照情況。</li>
+</ul></div></div></section>
+<section id="method" data-num="04" data-name="我們怎麼知道的"><div class="wrap"><header class="sec-head rv"><span class="sec-num">04</span><h2 class="sec-title">我們怎麼知道的</h2><p class="sec-lead">五層設計、證據層級、帳號類型、預期與實際、抽樣與偏差、不能主張的。</p></header><div class="lf">
+<h3 class="sub-h">五層設計</h3>
+<p>每一層的研究母體，都是上一層篩選或蒐集後的結果。我們為每一層設定明確邊界，說明資料蒐集到何處才算完整，也交代未處理邊界以外資料的理由。</p>
+<div class="tbl-scroll"><table class="mini-tbl"><thead><tr><th>層</th><th>對象</th><th>邊界</th><th>實際涵蓋</th></tr></thead><tbody>
+<tr><td>L0 網域</td><td>340 個農場網域</td><td>清單採用 2026-09-10 快照，所有網域皆反向搜尋</td><td class="r">340／340</td></tr>
+<tr><td>L1 貼文</td><td>張貼這些網域連結的 Threads 貼文</td><td>站內搜尋每個網域最多 300 篇，另加 Google 索引前 10 筆；搜尋不到的貼文不在母體內</td><td class="r">逐篇驗證連結 5,202 篇</td></tr>
+<tr><td>L2 帳號</td><td>張貼農場連結的帳號</td><td>完整擷取張貼驗過連結 5 篇以上或帶有自動化痕跡者的發文史；張貼 1 到 4 篇者只分析至貼文層</td><td class="r">1,520 個，296 個經核實</td></tr>
+<tr><td>L3 留言區</td><td>這些貼文底下的互動</td><td>完整擷取 L1 母體中有任何互動的貼文</td><td class="r">1,106／1,114 篇</td></tr>
+<tr><td>L4 路人</td><td>留言者</td><td>分層隨機抽樣有中文文字留言者，另納入所有回過兩篇以上貼文者</td><td class="r">250／833 人</td></tr>
+</tbody></table></div>
+<p style="margin-top:22px">證據層級代表我們對單一帳號查到的深度：0 代表只有搜尋引擎命中，1 代表摘要含有連結，2 代表逐篇驗證過連結，3 代表已核實完整發文史。我們在層級 3 才會把帳號判定為散布者，判定門檻是發文史中帶有農場連結的貼文達 5 篇以上，或占全部貼文的 20% 以上。我們依據可觀察的行為痕跡，把帳號分為四種類型：<b>站方自營</b>帳號的名稱與農場品牌相同；<b>工具化散布</b>帳號的連結帶有 <span class="mono">#threads</span> 識別碼、<span class="mono">utm_term=</span> 或 <span class="mono">uid=</span> 分潤碼 3 次以上，或使用「原文加 2 / 2 回覆帶連結」的固定格式注入；<b>專職轉貼</b>帳號張貼農場連結 5 篇以上，但沒有工具使用痕跡；<b>偶發轉貼</b>帳號則只張貼 1 到 4 篇。</p>
+<p>我們以 Threads Crawl Tool 的三種模式擷取資料，全程未登入任何平台。我們透過 Facebook 公開的 Page Plugin，在未登入的狀態下取得臉書粉專名稱與追蹤數；Google 索引則透過 SerpApi 與 Serper 查詢。</p>
+<h3 class="sub-h">預期與實際</h3>
+<table class="verify rv"><thead><tr><th>開始前的假設</th><th style="width:44%">實際結果</th><th style="width:110px">判定</th></tr></thead><tbody>
+<tr><td>農場靠一批散布帳號擴散，帳號之間存在組織痕跡</td><td>只出現在五個群；其餘群依靠站方帳號，或根本未出現</td><td class="upd">部分成立</td></tr>
+<tr><td>散布帳號之間存在協作</td><td>散布帳號彼此回覆 0 次，共用的是代碼而不是關係</td><td class="upd">不成立</td></tr>
+<tr><td>農場擁有固定受眾</td><td>833 人中只有 23 人曾回覆兩篇貼文</td><td class="upd">不成立</td></tr>
+<tr><td>受眾會識別並質疑資訊</td><td>質疑來源的留言不到 2%</td><td class="upd">不成立</td></tr>
+</tbody></table>
+<h3 class="sub-h">抽樣與偏差</h3>
+<p>L0 到 L3 的數字是研究母體，只有 L4 採取抽樣。我們依留言者所回貼文的帳號類型分為四層，原則上從每層有中文文字留言的人中隨機抽取 75 人；專職層只有 8 人留下文字，因此全部納入。我們再加入曾回覆兩篇以上貼文的 17 人，樣本合計 250 人，並使用固定亂數種子抽樣。另一組 189 人，是我們先前刻意選取留言字數較長者所建立的對照組。兩組結果一致的部分可信度較高；兩組結果不一致時，本文以隨機組為準。</p>
+<p>L1 的貼文數受到 Threads 搜尋召回能力限制，因此只能視為下限。在搜尋結果中只出現 2 到 5 篇貼文的帳號，若進一步查完其發文史，會發現其中四成其實是張貼 50 篇以上的專職出口。340 個網域中，有 195 個沒有搜尋結果，但沒有搜尋結果不代表無人張貼。L3 完整涵蓋「有互動的貼文」，但不包括前期針對 dsawjk 群單獨調查的 565 篇，也不包括完全沒有互動的約一半貼文。L4 排除只留表情符號與非中文留言者。專職轉貼層的 102 則留言中，有 83 則是同一個巴西帳號收到的葡萄牙文留言，因此該層可用的華語留言者只有 8 人。</p>
+<h3 class="sub-h">不能主張的</h3>
+<ul class="gaps rv">
+<li><b>本文不主張任何群的操作者國籍、主機位置，或是否受到國家指使。</b>分潤碼能證明的是「同一套分潤系統」，不能證明「同一個人」。</li>
+<li><b>本文對受眾政治傾向的描述，只根據追蹤名單中的關鍵字分類。</b>每層樣本為 75 人，因此本文只能描述傾向；農場官方帳號底下的留言者，在兩種抽樣方式中都呈現政治光譜兩端，因此本文也只能描述為兩極。</li>
+<li><b>我們無法取得按讚與轉發名單。</b>2026 年 8 月時，同一項工具仍能取得這些名單；從 9 月起，Threads 只回傳引用名單。按讚者是互動的主體，留言者只是願意發言的少數。</li>
+<li><b>臉書的留言區在未登入時無法查看，而本研究不登入平台。</b>內容農場主要在臉書變現，因此本文的受眾結論僅適用於 Threads。</li>
+<li><b>我們無法取得使用者的年齡、性別與真實地點。</b>本文所稱的所在地，都是使用者自述。</li>
+</ul>
+<h3 class="sub-h">個資與後續</h3>
+<p>散布帳號是公開帳號，也有公開可見的散布行為，因此本文會具名，但具名範圍只限工具化散布與站方自營兩類帳號。本文一律不具名偶發轉貼帳號與留言路人，只呈現聚合後的輪廓。原始資料存放在未公開的本機倉庫中。</p>
+<p>後續工作包括：監測工作應以識別碼與分潤碼為單位建立觀察名單；若要研究臉書受眾，研究者必須先決定是否接受使用需登入的研究帳號；研究者應回到臉書與公關稿網站，追查面向泰國與越南的群；研究者也應以更大的隨機樣本，確認 chinanewscenter 這類網站受眾的政治光譜。</p>
+</div></div></section>
+<section id="appendix" data-num="05" data-name="附錄"><div class="wrap"><header class="sec-head rv"><span class="sec-num">05</span><h2 class="sec-title">附錄</h2><p class="sec-lead">網域清單依群摺疊，具名帳號可篩選。</p></header><div class="lf">
+<h3 class="sub-h" id="apx-a">附錄 A　網域清單（依群）</h3>
+<p>清單為 2026-09-10 快照。候選群是依模板或廣告帳號重疊列入、尚未以追蹤碼確證同操作者的群；參照群不是調查對象，只作對照。點群名展開。</p>
+<details class="apx"><summary><b>dsawjk 群</b><span class="apx-n">78 域</span></summary><p class="apx-doms">dsawjk.com、cookicway.com、didadiadi.com、wiusbh.com、99funnews.com、welook365.com、idforread.com、voohappy.com、mrbigtalking.com、storynia.com、77petshome.com、bettermombaby.com、funnews61.com、parentups.com、furnishwe.com、412lala.com、87choicefood.com、babyucute.com、coolsaid.com、ddojoy.com、firhub69.com、housesdevise.com、mmuscular.com、voosweet.com、12luckyhome.com、19globalnews.com、animefans21.com、bestone-work.com、blibliread.com、child-loves.com、ilove-top.com、lifenewsjr.com、melhoresaqui.com、supertime01.com、article.praiseme12.com、meall-times.com、jp.paintbucke.com、comeworlds.com、firstsinfo.com、gowellwork.com、kidy-kidy.com、wduiwg.com、jp.adorable-pet.com、jp.bestone-work.com、kidy-party.com、kknsays.com、woof-puppys.com、eoeonews.com、welove-gourmet.com、77firstfood.com、99tango.com、lemonlin.com、recipes-forfood.com、lovehouse456.com、12beststar.com、666.44finefood.com、aigo7.com、cartoontalking.com、co-47.com、designiwe.com、dreamwe1.com、fgnj1634.com、foodszon.com、itigeryou.com、jkingtimes.com、lfqgj.com、lovewdk.com、lovey-puppys.com、pets-dote.com、pets-naivety.com、picture.t9y3c.com、roadstert.com、sarahtalkshow.com、uoovo.com、veltot.com、with-summer.com、wujfu.com、zavideo.successs-experience.com</p></details>
+<details class="apx"><summary><b>picelse／luckyelse 群</b><span class="apx-n">3 域</span></summary><p class="apx-doms">picelse.com、luckyelse.com、tvsilo.com</p></details>
+<details class="apx"><summary><b>picread 群</b><span class="apx-n">35 域</span></summary><p class="apx-doms">picread.net、picread.org、maimai.pro、limte.net、eeurl.club、grabla.org、kimishare.org、manomo.org、needfound.org、newslah.net、quiz321.com、thinklol.org、thisreader.com、wantread.org、hker.life、hkerfeed.com、hknews.me、hknews.pro、coms.pub、okjust.cc、goodlah.org、justshare.live、cklive.live、videowatch.fun、vidonline.org、kanwatch.site、kanwatch.com、gogovideo.net、share-video.cc、vidlah.com、ytttube.com、eeurl.press、photoshare.pro、funshare.pro、ppoo.club</p></details>
+<details class="apx"><summary><b>vivi01 影片站群</b><span class="apx-n">11 域</span></summary><p class="apx-doms">cklive.net、cocovn.net、coolgirl01.com、fav543.com、ntdream.com、ptttube.com、restcookie.com、vivi01.com、runelse.com、tmmlove.com、vodsilo.cc</p></details>
+<details class="apx"><summary><b>looker 系群</b><span class="apx-n">23 域</span></summary><p class="apx-doms">17travel.net、eathealth.net、lookerpets.com、lookforward.cc、tw100s.com、17moveon.com、how543.com、itislooker.com、mycomic.cc、17readthis.com、buzzhand.com、look543.com、omg4fun.com、how01.com、17goforward.com、lookingforward.info、omgnews.cc、funtoday.news、happyday543.com、lookernew.com、omg543.com、read543.com、starfocus.news</p></details>
+<details class="apx"><summary><b>eatmary 群</b><span class="apx-n">2 域</span></summary><p class="apx-doms">eatmary.net、kikinote.net</p></details>
+<details class="apx"><summary><b>ezvivi 群</b><span class="apx-n">3 域</span></summary><p class="apx-doms">ezvivi.com、ezvivi2.com、ezvivi3.com</p></details>
+<details class="apx"><summary><b>ENews／LIFE 群</b><span class="apx-n">3 域</span></summary><p class="apx-doms">enews.tw、healthylives.tw、life.tw</p></details>
+<details class="apx"><summary><b>twqiang 群</b><span class="apx-n">5 域</span></summary><p class="apx-doms">twqiang.com、bpic.lawtw.com、bodhi.lawtw.com、human.lawtw.com、whlwell.com</p></details>
+<details class="apx"><summary><b>越南向 AdSense 群</b><span class="apx-n">8 域</span></summary><p class="apx-doms">abc24times.com、gialai24.com、kenhnhadep.com、mstfootball.com、newsnews24h.com、tin356.com、yeuhanoi.net、thebustednews.com</p></details>
+<details class="apx"><summary><b>泰國 news01／HSU 群</b><span class="apx-n">28 域</span></summary><p class="apx-doms">sportsexpressasia.com、prnewsreleaser.com、news01.digitalpress.blog、words.vn、koreabusinessnews.com、newsbeat.asia、page.tokyo、prtimes.org、thaibusiness.news、topicnews.cn、news24.tw、lingoexp.com、hinews.cc、amicnews.com、article.org.in、apacnews.org、news24.today、thnews.org、thailandscoop.com、koreascoop.com、skorea.news、skoreanews.com、news24.my、news24.ph、myanmarpost.net、cambodiapost.net、vietnamscoop.com、vietwriter.vip</p></details>
+<details class="apx"><summary><b>泰國 wdwire 群</b><span class="apx-n">4 域</span></summary><p class="apx-doms">voiceofthailand.com、dailybangkokpost.com、bangkokpeop.com、thailandexp.com</p></details>
+<details class="apx"><summary><b>東南亞敘事放大器候選群</b><span class="apx-n">11 域</span></summary><p class="apx-doms">enewspolar.com、samachardainik.com、gelora.co、vietnaminsiders.com、harianaceh.co.id、laoinfo.net、58lao.com、cari.com.my、jakartakita.com、mtnewstoday.com、malay.news</p></details>
+<details class="apx"><summary><b>docilepuppy 系候選群</b><span class="apx-n">22 域</span></summary><p class="apx-doms">docilepuppy.com、channel2025.com、friend-color.com、knowledgekhabar.com、acgfansclub.com、babiesjh.com、bestlovetop.com、energy-healthy.com、gunews97.com、healthdst.com、healthgoi.com、inspirational-saying.com、itigeryou.com、jinglemom.com、life-knowhow.com、newstvd.com、pets-master.com、remodelsh.com、svsvves.com、toopartner.com、trhen.com、zoomnewslive.com</p></details>
+<details class="apx"><summary><b>happyshare 候選群</b><span class="apx-n">2 域</span></summary><p class="apx-doms">happyshare101.com、read1read.com</p></details>
+<details class="apx"><summary><b>單站候選群</b><span class="apx-n">11 域</span></summary><p class="apx-doms">dailytin24.com、newsentertai.com、newstoday123.com、updatetinus.com、nguongmo.com、onplusnews.com、janeeyrego.com、18read.net、74novel.com、healthlooker.com、chinanewscenter.com</p></details>
+<details class="apx"><summary><b>ptt 系候選群</b><span class="apx-n">7 域</span></summary><p class="apx-doms">pttboygirl.com、pttcareers.com、pttcomics.com、pttconsumer.com、pttdigits.com、pttfoodtravel.com、pttgamer.com</p></details>
+<details class="apx"><summary><b>台灣小站候選群</b><span class="apx-n">4 域</span></summary><p class="apx-doms">cocoptt.com、hotptt.com、ilife97.com、mission-tw.com</p></details>
+<details class="apx"><summary><b>中國範文站候選群</b><span class="apx-n">6 域</span></summary><p class="apx-doms">qiuxuenet.com、unjs.com、wenshubang.com、yjbys.com、yuwenmi.com、yxfanwen.com</p></details>
+<details class="apx"><summary><b>qastack 多語候選群</b><span class="apx-n">6 域</span></summary><p class="apx-doms">qastack.in.th、qastack.cn、qastack.jp、qastack.kr、qastack.com.br、qastack.id</p></details>
+<details class="apx"><summary><b>香港農場候選群</b><span class="apx-n">3 域</span></summary><p class="apx-doms">hkdaliynew.com、nofail8.com、1563.com.hk</p></details>
+<details class="apx"><summary><b>ads.txt 模板候選群（qhd）</b><span class="apx-n">22 域</span></summary><p class="apx-doms">2020funtv.com、delicacy-map.com、hklocalfeed.com、jojosunny.com、lovelyhi.com、mild-way.com、taaparty.com、acworld666.com、ally8799.com、ananfree.com、cartoonfans766.com、companion-healthy.com、fbiavip.com、health-am.com、healthy-blessed.com、keeping-health.com、lovers521.com、nvbad.com、one-sups.com、t9y3c.com、wendybaby127.com、acg1213.com</p></details>
+<details class="apx"><summary><b>anyelse 網候選群</b><span class="apx-n">31 域</span></summary><p class="apx-doms">praiseme12.com、article.wealwomen.com、beauty-families.com、bestinfo365.com、bjtriz.com、carconts.com、cheeselikes.com、cutetale.com、delicioushare.com、goodtime-life.com、gowork-place.com、healthyhubv.com、houseborn.com、keeeping-healthy.com、onbest-pets.com、photo.15lifetalking.com、baby0world.com、jp.abc-talks.com、jp.eoomiss.com、15lovingclub.com、chiyidavip.com、comeon-petts.com、decoration-skills.com、eoeodream.com、sunflyday.com、t5y7c.com、tarooot.com、jaqvr.xkbkn.com、17sex.vip、okazu.cc、jp.daily-novel.net</p></details>
+<details class="apx"><summary><b>參照群：仍在營運的老牌農場</b><span class="apx-n">13 域</span></summary><p class="apx-doms">kknews.cc、read01.com、teepr.com、juksy.com、twgreatdaily.com、baoxiaovideo.com、eazon.com、onefunnyjoke.com、viralane.com、momdata.blogspot.com、cyhappytify.info、dmhappytify.info、jkhappytify.info</p></details>
+<details class="apx"><summary><b>參照群：集團名條目</b><span class="apx-n">7 域</span></summary><p class="apx-doms">COCO01 集團、GreatDaily/大榴槤/閃文、bomb01 集團、teepr 集團、歡享網 happytify、kknews 每日頭條、密訊(Mission)輪替鏈</p></details>
+<h3 class="sub-h" id="apx-b">附錄 B　具名帳號清單</h3>
+<p>只列行為類型為站方自營與工具化散布的 Threads 帳號，共 212 個（站方 11、工具化 201）。「農場貼文」在證據層級 3 是發文史 100 篇中帶農場連結的篇數，層級 2 是搜尋驗過連結的篇數。偶發轉貼帳號與留言者不列。</p>
+<div class="filter"><input id="apx-q" type="search" placeholder="篩選帳號、群、分潤碼…" aria-label="篩選"><select id="apx-t" aria-label="類型"><option value="">全部類型</option><option>站方自營</option><option>工具化散布</option></select><span class="cnt" id="apx-cnt"></span></div>
+<div class="tbl-scroll"><table class="mini-tbl" id="apx-tbl"><thead><tr><th>帳號</th><th>類型</th><th>群</th><th class="r">層級</th><th class="r">農場貼文</th><th>識別碼／分潤碼</th><th>註冊</th><th>自述所在地</th></tr></thead><tbody><tr data-type="站方自營"><td class="mono">@juksy_mag</td><td>站方自營</td><td>參照群：仍在營運的老牌農場</td><td class="r">S</td><td class="r">26</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">@chinesehotnews</td><td>站方自營</td><td>單站候選群</td><td class="r">S</td><td class="r">22</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">@kikinote123</td><td>站方自營</td><td>eatmary 群</td><td class="r">S</td><td class="r">21</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">@caridotmy</td><td>站方自營</td><td>東南亞敘事放大器候選群</td><td class="r">S</td><td class="r">20</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">@enews.tw</td><td>站方自營</td><td>ENews／LIFE 群</td><td class="r">S</td><td class="r">11</td><td class="mono small">uid=310 x30,uid=3100 x1,uid=990 x41</td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">@harianacehindonesia</td><td>站方自營</td><td>東南亞敘事放大器候選群</td><td class="r">S</td><td class="r">8</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">@geloranews</td><td>站方自營</td><td>東南亞敘事放大器候選群</td><td class="r">S</td><td class="r">2</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">@teeprnews</td><td>站方自營</td><td>ads.txt 模板候選群（qhd）</td><td class="r">S</td><td class="r">1</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">@getconnectx.news</td><td>站方自營</td><td>東南亞敘事放大器候選群</td><td class="r">S</td><td class="r">1</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">@rubenlin</td><td>站方自營</td><td>LIFE／ENews／我是OO人 粉專網（全通集團）</td><td class="r">S</td><td class="r">0</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="站方自營"><td class="mono">eatmary2020</td><td>站方自營</td><td>eatmary 群</td><td class="r">S</td><td class="r">0</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@aabb112112112</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">241</td><td class="mono small"></td><td>July 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ook1401</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">183</td><td class="mono small"></td><td>July 2024</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@jingcaifung</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">150</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@zyy71687</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">150</td><td class="mono small">#threads7374 x141</td><td>April 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@bangbadrulkerenbanget</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">113</td><td class="mono small">#threads1840 x1</td><td>August 2024</td><td>Indonesia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@cheungna3</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">112</td><td class="mono small">#threads5168 x30</td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@zhuxiaowu3</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">111</td><td class="mono small">#threads183 x1</td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@qiushuangyanyan</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">106</td><td class="mono small"></td><td>November 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@lilonghui28382</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">106</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ccz73928</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">104</td><td class="mono small">#threads1841</td><td>August 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@viva_benard_</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">104</td><td class="mono small"></td><td>December 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@lihaiwei2904</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">104</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@xian.nong</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">101</td><td class="mono small"></td><td>March 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@newsnews_forlife</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">101</td><td class="mono small">utm_term=8901 x100</td><td>July 2025</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@xiaoxiasaya</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">100</td><td class="mono small"></td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@jbn03297</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">100</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@srb02145</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">100</td><td class="mono small"></td><td>August 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@iovd5k</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">100</td><td class="mono small">#threads7422 x3</td><td>April 2025</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@doushijiahao265</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">100</td><td class="mono small">#threads5248 x1</td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@haha123zx</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">100</td><td class="mono small">uid=8752,utm_term=8752 x4</td><td>December 2024</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@leealy796</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">99</td><td class="mono small">#threads9656 x99</td><td>June 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@kpopdailylife_22</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">99</td><td class="mono small">utm_term=8901 x99</td><td>January 2025</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@chen95244822</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">95</td><td class="mono small"></td><td>August 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@tvbzuixinzixun</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）、vivi01 影片站群</td><td class="r">3</td><td class="r">95</td><td class="mono small">utm_term=576 x95</td><td></td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@summer_699</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">92</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@inzwg2025</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">90</td><td class="mono small"></td><td>April 2025</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@shiminyuya</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">86</td><td class="mono small">#threads1822 x1</td><td>December 2023</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@runliangchan</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">83</td><td class="mono small">#shaoqingyan x11,#threads3290 x1</td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yetta30422</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">78</td><td class="mono small"></td><td>August 2024</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@zhengjiazhizheng</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">76</td><td class="mono small"></td><td>July 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@paul2756a</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">72</td><td class="mono small">#threads1205 x24</td><td></td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@hui1181_2</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">70</td><td class="mono small">utm_term=3863 x65</td><td>November 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@madinkaa__0027</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">69</td><td class="mono small"></td><td>December 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@katheryn_baez</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">69</td><td class="mono small">#threads2269 x22,#gw#threads2269 x2</td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@hui1.181</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">68</td><td class="mono small">utm_term=3863 x62</td><td>August 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@n510197</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">64</td><td class="mono small"></td><td>August 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@tiktoknews747</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">64</td><td class="mono small">utm_term=1883 x64</td><td>November 2024</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@phpnews747</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">62</td><td class="mono small">utm_term=1883 x55</td><td>July 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@girlsnews747</td><td>工具化散布</td><td>vivi01 影片站群、picelse／luckyelse 群</td><td class="r">3</td><td class="r">61</td><td class="mono small">utm_term=1883 x60</td><td>July 2023</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yunghuiwong</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">61</td><td class="mono small">utm_term=3863 x55</td><td>August 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@erliusanjiu</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">60</td><td class="mono small"></td><td>August 2024</td><td>Cambodia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ailing_law</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">59</td><td class="mono small"></td><td>August 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@win34922024</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">58</td><td class="mono small">#threads1264 x5,#gw#threads1264 x4,#thre</td><td>August 2024</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@chinesenews747</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">58</td><td class="mono small">utm_term=1883 x55</td><td>July 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@mariaheloise260</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">57</td><td class="mono small">#threads3214 x8</td><td>August 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@yangji8500</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">57</td><td class="mono small">utm_term=8842 x57</td><td>July 2024</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ashabalemd</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">56</td><td class="mono small"></td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@tvbfanssharingnews1712</td><td>工具化散布</td><td>vivi01 影片站群、picread 群</td><td class="r">3</td><td class="r">56</td><td class="mono small">utm_term=36 x44,uid=1712 x12</td><td>June 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@junyan5858</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">56</td><td class="mono small"></td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@kennyng5291</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">56</td><td class="mono small">utm_term=8842 x55</td><td>February 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@burnellharveyharvey</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">56</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@katherineouz__</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">55</td><td class="mono small"></td><td>December 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@langjuwu</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">55</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@youtubenews747</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">55</td><td class="mono small">utm_term=1883 x55</td><td>November 2024</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@news.xinwen</td><td>工具化散布</td><td>vivi01 影片站群、picread 群</td><td class="r">3</td><td class="r">54</td><td class="mono small">utm_term=9223 x48</td><td>July 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@kkme124412026</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">54</td><td class="mono small">utm_term=8842 x54</td><td>February 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@shangtianyayi22</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">53</td><td class="mono small"></td><td>August 2024</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@anime_thenews_</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">52</td><td class="mono small">utm_term=8901 x50</td><td>August 2025</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@huying904</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">52</td><td class="mono small"></td><td>October 2024</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@jingliang374</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">52</td><td class="mono small"></td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@xinyuan3399</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">52</td><td class="mono small">#threads2994 x18</td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@may_1123_0</td><td>工具化散布</td><td>docilepuppy 系候選群</td><td class="r">3</td><td class="r">52</td><td class="mono small"></td><td>December 2023</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@hia153866</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">52</td><td class="mono small"></td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@kpopbreaking2026</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">52</td><td class="mono small">utm_term=8842 x51</td><td>February 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ooooe113</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">52</td><td class="mono small">utm_term=8600 x48,utm_term=1883 x1</td><td>July 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yupeikwok</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）、dsawjk 群</td><td class="r">3</td><td class="r">52</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@minilovenovel</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>December 2023</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ory315844</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">51</td><td class="mono small">#threads2771 x2</td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@wangting.ning</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>November 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@q1i1jg</td><td>工具化散布</td><td>單站候選群</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>March 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@cpsoqt</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">51</td><td class="mono small">utm_term=1127 x51</td><td>July 2026</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@doushijiahao123</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>October 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@fbnews747</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">51</td><td class="mono small">utm_term=1883 x51</td><td>November 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@hongjingru96</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@hongrong74</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@lailinlin0916</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@liuyuqing929</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@rosewhittier6</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>June 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@nny3086222025</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">51</td><td class="mono small"></td><td>April 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@setllacecillia2</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">51</td><td class="mono small">#threads9658 x1</td><td>June 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@hanqiuyue2</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ovc59181</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>April 2025</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@arrietlinor3235</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>September 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@cute.cute1229</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">50</td><td class="mono small">utm_term=1185 x39</td><td>July 2024</td><td>Singapore</td></tr>
+<tr data-type="工具化散布"><td class="mono">@hia3473112025</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>April 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ivanovivanebe</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small">#threads2384 x3</td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@jyuhuai</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small">#threads2399 x6</td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@kjmjunga2</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>December 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@kybfz2025</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>March 2025</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@sun.yunxia</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yaping3121</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small">#threads2067 x50</td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yixue.xiang</td><td>工具化散布</td><td>anyelse 網候選群、dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@bgy49052</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@bufengwuna</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@poo2dr</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td>March 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@shokodotani</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">50</td><td class="mono small"></td><td></td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@video_clips818</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">50</td><td class="mono small">utm_term=1185 x42</td><td>July 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@aimuhui</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">49</td><td class="mono small"></td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@kaobeiahxi101</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">49</td><td class="mono small">utm_term=8842 x49</td><td>February 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ericcheww</td><td>工具化散布</td><td>vivi01 影片站群、picelse／luckyelse 群</td><td class="r">3</td><td class="r">48</td><td class="mono small">utm_term=8427 x40,uid=1143 x3,uid=12853 </td><td>January 2025</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@kpopnews1999</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">48</td><td class="mono small">utm_term=8427 x40,uid=1143 x3,uid=12853 </td><td>November 2025</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@kpopd_aily21</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">47</td><td class="mono small">utm_term=8842 x47</td><td>February 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@prudencesaulsaul</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">45</td><td class="mono small"></td><td>August 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@dcu97874</td><td>工具化散布</td><td>anyelse 網候選群、dsawjk 群</td><td class="r">3</td><td class="r">44</td><td class="mono small">#threads5043 x3</td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@fararrinews747</td><td>工具化散布</td><td>vivi01 影片站群</td><td class="r">3</td><td class="r">44</td><td class="mono small">utm_term=1883 x44</td><td>January 2025</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ksxyiy</td><td>工具化散布</td><td>docilepuppy 系候選群</td><td class="r">3</td><td class="r">44</td><td class="mono small">#threads7482 x2</td><td>April 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yiqsj2025</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">44</td><td class="mono small">#threads7036 x44</td><td>June 2025</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@shaoqianglee</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">43</td><td class="mono small">#threads1700#threads1700 x38</td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@dison26475</td><td>工具化散布</td><td>docilepuppy 系候選群</td><td class="r">3</td><td class="r">43</td><td class="mono small">#threads14074 x43</td><td>September 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@qhw39489</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">42</td><td class="mono small"></td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@turnerhugheshughes</td><td>工具化散布</td><td>vivi01 影片站群、picelse／luckyelse 群</td><td class="r">3</td><td class="r">42</td><td class="mono small">#12724 x1,uid=12742 x40,utm_term=8958 x2</td><td>May 2025</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@hemiho4545</td><td>工具化散布</td><td>docilepuppy 系候選群</td><td class="r">3</td><td class="r">42</td><td class="mono small">#threads4423 x1</td><td>October 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@mibg1yurc2024</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">42</td><td class="mono small"></td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@dunaykin.igor</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">40</td><td class="mono small"></td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@1blanchecarter4</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">38</td><td class="mono small">#threads9137 x31</td><td>June 2025</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ha0lqz2025</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">37</td><td class="mono small">#threads7950 x30</td><td>April 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@violet374546</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">36</td><td class="mono small"></td><td>August 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@mariakeppel8</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">35</td><td class="mono small">#threads9603 x2</td><td>June 2025</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@springfred4</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">35</td><td class="mono small"></td><td>June 2025</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@linpingyuan1</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">35</td><td class="mono small"></td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@avyvq1</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">34</td><td class="mono small"></td><td>August 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@chew8313</td><td>工具化散布</td><td>vivi01 影片站群、picelse／luckyelse 群</td><td class="r">3</td><td class="r">34</td><td class="mono small">utm_term=8427 x26,uid=12853 x4,uid=12690</td><td>June 2025</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@shixiaoqi6554</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">30</td><td class="mono small">utm_term=8427 x22,uid=12853 x4,utm_term=</td><td>November 2025</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@016c5276757</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">29</td><td class="mono small">#threads4956 x24</td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@keatcek000003</td><td>工具化散布</td><td>vivi01 影片站群、picelse／luckyelse 群</td><td class="r">3</td><td class="r">25</td><td class="mono small">utm_term=8649 x14</td><td>January 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@wupeiting2893</td><td>工具化散布</td><td>anyelse 網候選群、ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">20</td><td class="mono small">#threads323 x8</td><td>August 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@loxonac515</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">18</td><td class="mono small">#threads3961 x16</td><td>September 2024</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@gm2hfo1</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">17</td><td class="mono small">#threads7453 x13</td><td>April 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@lp000000012026</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">17</td><td class="mono small">utm_term=9510 x15,utm_term=8134 x1</td><td>May 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@tohaq1b2025</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">17</td><td class="mono small">#threads7755 x14</td><td>April 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@aimeiseyyuan</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">17</td><td class="mono small">#threads3997 x1</td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@lp000000042026</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">16</td><td class="mono small">utm_term=9510 x14,utm_term=8134 x1</td><td>May 2026</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@lp000000082026</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">15</td><td class="mono small">utm_term=9510 x13,utm_term=8134 x1</td><td>June 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@huntereleanor11</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">14</td><td class="mono small">#threads3219 x4,#threads1700#threads3219</td><td>August 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@lkv07771</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">14</td><td class="mono small">#threads4191 x2</td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@bikulov.petr</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">12</td><td class="mono small">#threads1700 x1</td><td>August 2024</td><td>China</td></tr>
+<tr data-type="工具化散布"><td class="mono">@stout.terrie</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">12</td><td class="mono small">#threads2315 x5</td><td>September 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yuehpaichen</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">12</td><td class="mono small">#threads4195 x2</td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@novel.daily520</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">11</td><td class="mono small">uid=1062</td><td>February 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@lp00000014</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">11</td><td class="mono small">utm_term=9510 x11</td><td>May 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@jza00060</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">10</td><td class="mono small">#threads744 x4,#gw#threads744 x3,#thread</td><td>August 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@gld50844</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">9</td><td class="mono small">#threads4219 x2</td><td>October 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@jlsilv.902</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">9</td><td class="mono small">#threads336 x8,#gw#threads336 x1</td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@urx90127</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">9</td><td class="mono small">#threads4223 x1</td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@zqz41186</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">9</td><td class="mono small">#threads4175 x2</td><td>October 2024</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@bixianovel520</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">5</td><td class="mono small">uid=1062</td><td>February 2026</td><td>Pakistan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@hedy.pater</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">5</td><td class="mono small"></td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@juliana551107</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">5</td><td class="mono small">#threads11044 x12</td><td>July 2025</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@jedsonzieyyh</td><td>工具化散布</td><td>picelse／luckyelse 群</td><td class="r">3</td><td class="r">5</td><td class="mono small">utm_term=8842 x5</td><td>August 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@mina_love_doctormarcus_forever</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">4</td><td class="mono small">uid=577</td><td>July 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@lvv86689</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">4</td><td class="mono small">#threads745 x9</td><td>August 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@chia_jung1004</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">2</td><td class="mono small">uid=576</td><td>February 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@chumonmon</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">2</td><td class="mono small">uid=576,619</td><td>July 2023</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@claire.chen921</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">2</td><td class="mono small">uid=576</td><td>October 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@happylin.88</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">2</td><td class="mono small">uid=963</td><td>May 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@hypnocrystal</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">2</td><td class="mono small">uid=798</td><td>June 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@k710920</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">2</td><td class="mono small">uid=668</td><td>July 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@mech.elleagotting</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">2</td><td class="mono small">#threads4820photographers x1,#threads482</td><td>October 2024</td><td>United Kingdom</td></tr>
+<tr data-type="工具化散布"><td class="mono">@kadowatavuch</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">2</td><td class="mono small">#threads4167 x2</td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@akkliang</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=668</td><td>April 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@atenza_ma6</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=3296</td><td>March 2025</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@c.kei0408</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=3494</td><td>July 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@d0936870764</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=963</td><td>February 2025</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@easonsu426</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=936</td><td>July 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ft_ana</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=680</td><td>December 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@j0938130090</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=576</td><td>November 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@jack55kao</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=619</td><td>May 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@janniel2205</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=576</td><td>January 2025</td><td>Canada</td></tr>
+<tr data-type="工具化散布"><td class="mono">@jasmine.chong.132888</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=619</td><td>June 2024</td><td>Not shared</td></tr>
+<tr data-type="工具化散布"><td class="mono">@jenniferliu0605</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=648</td><td>March 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@meilanorchid</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=660</td><td>November 2023</td><td>Myanmar</td></tr>
+<tr data-type="工具化散布"><td class="mono">@moriz.jpg</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=602</td><td>July 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@nan680220</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=1060</td><td>August 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@nina274748</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=3298</td><td>July 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@peko8788</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=576</td><td>May 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@rupennyhenry</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=576</td><td></td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@sam088250</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=572</td><td>July 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@sam65712001</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=572</td><td>August 2023</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@saptufb</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=3298</td><td>December 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@sato.sakura.00</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=763</td><td>June 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@todaynovel5201</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=1062</td><td>March 2026</td><td>Malaysia</td></tr>
+<tr data-type="工具化散布"><td class="mono">@wu_yahui_0721</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=608</td><td>April 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@xufengpin1</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=613</td><td>June 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yddonxu680205</td><td>工具化散布</td><td>qsh-gamma（文章線）</td><td class="r">2</td><td class="r">1</td><td class="mono small">uid=576</td><td>July 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@cco5b5</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">1</td><td class="mono small">#threads7743 x1</td><td>April 2025</td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@yomogi.sari</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">1</td><td class="mono small">#threads1064 x1</td><td>September 2025</td><td>Japan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@gitin.grisha</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">1</td><td class="mono small">#threads2094</td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@mii._.tan34</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">1</td><td class="mono small">#threads2838 x1</td><td>June 2024</td><td>Japan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@chikatengsen</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">1</td><td class="mono small">#threads3974 x1</td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ylm17698</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads7407 x1</td><td>April 2025</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@situbuscaslaverdad</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads5508</td><td>August 2023</td><td>Japan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ueno_kaz</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads5512</td><td>July 2023</td><td>Japan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@etsuko_takei</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads2831</td><td>July 2023</td><td>Japan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@daxizhiwen</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads4209</td><td></td><td></td></tr>
+<tr data-type="工具化散布"><td class="mono">@lio5895768</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads6310</td><td>June 2024</td><td>Japan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@cc.feng123</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads2051 x1</td><td>May 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@vvr23684</td><td>工具化散布</td><td>dsawjk 群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads4179 x2</td><td>October 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yejemav128</td><td>工具化散布</td><td>docilepuppy 系候選群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads4397 x1</td><td>October 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@ixp44954</td><td>工具化散布</td><td>ads.txt 模板候選群（qhd）</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads527 x1</td><td>August 2024</td><td>Taiwan</td></tr>
+<tr data-type="工具化散布"><td class="mono">@linlinwen5</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads2264 x2</td><td>September 2024</td><td>Hong Kong</td></tr>
+<tr data-type="工具化散布"><td class="mono">@yizhen.qin</td><td>工具化散布</td><td>anyelse 網候選群</td><td class="r">3</td><td class="r">0</td><td class="mono small">#threads2262 x1</td><td>September 2024</td><td>China</td></tr></tbody></table></div>
+</div></div></section>
+<section id="sources" data-num="06" data-name="資料來源"><div class="wrap"><header class="sec-head rv"><span class="sec-num">06</span><h2 class="sec-title">資料來源</h2></header><div class="src-grid rv">
+<div class="src"><span class="sid">[1]</span><div class="sx"><b>內容農場網域清單（registry）</b>，25 群 347 條目，2026-09-10 快照。本機倉庫，未公開。</div></div>
+<div class="src"><span class="sid">[2]</span><div class="sx"><b>跨平台社群帳號盤點表</b>，3,784 筆，含證據層級、行為類型、識別碼與分潤碼欄位。本機倉庫，未公開。</div></div>
+<div class="src"><span class="sid">[3]</span><div class="sx"><b>Threads Crawl Tool 1.9.x</b> 三種模式的原始輸出，2026-09-03 至 09-14，共 23 個抓取批次，逐批封存並附 SHA-256 清單。</div></div>
+<div class="src"><span class="sid">[4]</span><div class="sx"><b>SerpApi 與 Serper</b> 的 <span class="mono">site:threads.com</span>、<span class="mono">site:facebook.com</span> 查詢結果，2026-09-05，原始 JSON 封存。</div></div>
+<div class="src"><span class="sid">[5]</span><div class="sx"><b>Facebook Page Plugin</b> 零登入查詢，1,573 個粉專識別字，2026-09-09。</div></div>
+<div class="src"><span class="sid">[6]</span><div class="sx"><b>分析腳本</b>：連結驗證與帳號判定、留言區彙整、路人輪廓聚合，隨案件倉庫保存，可重現。</div></div>
+</div></div></section>
+</main></div>
+<footer><div class="ft-inner"><b>內容農場在 Threads 的散布網絡與受眾</b><br>
+25 個農場群、340 個網域的社群層調查 · 2026 年 9 月<br>
+立場：散布帳號具名、路人不具名；不主張操作者國籍或國家指使；受眾結論僅適用於 Threads。<br>
+研究儲存庫 · <a href="https://github.com/wcl-dev/research-site">github.com/wcl-dev/research-site</a> · <a href="../">回 weichen's Research 首頁</a></div></footer>
+<script>
+(function(){
+  const progress=document.getElementById('progress'),badge=document.getElementById('badge'),badgeNum=document.getElementById('badgenum'),badgeName=document.getElementById('badgename');
+  const sections=Array.from(document.querySelectorAll('section[data-num]'));
+  function update(){const docH=document.documentElement.scrollHeight-window.innerHeight;const pct=docH>0?Math.min(100,(window.scrollY/docH)*100):0;if(progress)progress.style.width=pct+'%';const y=window.scrollY+120;let active=sections[0];for(const s of sections){if(s.offsetTop<=y)active=s;}if(active&&badgeNum){badgeNum.textContent=active.dataset.num;badgeName.textContent=active.dataset.name||'';if(window.scrollY>240)badge.classList.add('show');else badge.classList.remove('show');}}
+  window.addEventListener('scroll',update,{passive:true});update();
+})();
+// reveal.js — IntersectionObserver scroll reveal for .rv elements
+// Inline into report HTML before </body>.
+//
+// Pair with .rv class in base.css. Elements with .rv start at opacity 0 and
+// transform translateY(22px); when they intersect the viewport, .in class is
+// added which transitions them to opacity 1 / no transform.
+
+(function () {
+  const els = document.querySelectorAll('.rv');
+  if (!els.length || !('IntersectionObserver' in window)) {
+    // graceful fallback — show all
+    els.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+(function(){
+  document.querySelectorAll('.figwrap[data-zoom]').forEach(f=>{f.addEventListener('click',()=>{f.classList.toggle('zoom');document.body.style.overflow=f.classList.contains('zoom')?'hidden':'';});});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.figwrap.zoom').forEach(f=>f.classList.remove('zoom'));document.body.style.overflow='';}});
+})();
+(function(){
+  const q=document.getElementById('apx-q'),t=document.getElementById('apx-t'),tbl=document.getElementById('apx-tbl'),cnt=document.getElementById('apx-cnt');
+  if(!q||!tbl)return;const rows=Array.from(tbl.tBodies[0].rows);
+  function run(){const s=q.value.trim().toLowerCase(),ty=t.value;let n=0;rows.forEach(r=>{const ok=(!ty||r.dataset.type===ty)&&(!s||r.textContent.toLowerCase().includes(s));r.hidden=!ok;if(ok)n++;});cnt.textContent=n+' / '+rows.length;}
+  q.addEventListener('input',run);t.addEventListener('change',run);run();
+})();
+</script>
+</body>
+</html>

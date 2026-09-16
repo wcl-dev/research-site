@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-09-11_10-07-51",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-11T10:36:41+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "account",
+  "tier": "r3_session3",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-11_10-07-51",
+  "input_file": {
+    "path": "inputs/accounts_r3_session3.csv",
+    "sha256": "9f9efe33ca00a81699dd1a30cc23e726969fe0cf854a7d234be1dae925bc30ae"
+  },
+  "settings": {
+    "post_num": 100,
+    "crawl_followers": false,
+    "crawl_following": false,
+    "skip_if_over": 1000,
+    "auth_mode": "chrome",
+    "note": "2026-09-11；L2 最後一批：CASE-003 α R1 只用 Keyword 抓到、未跑過 Account 的 21 帳號"
+  },
+  "files": {
+    "account_posts_20260911_100751.csv": {
+      "sha256": "68e67bf9beb706bc722f87c5590b42aabfeebfa016d2e6b2a7e25848ef0b4058",
+      "bytes": 1738198
+    },
+    "account_posts_20260911_100751.xlsx": {
+      "sha256": "e3999ade5ddf7d73140216c5c871ea56766970dd98a6192c3cce91c8c61b82a2",
+      "bytes": 794960
+    },
+    "accounts_20260911_100751.csv": {
+      "sha256": "758c93edd5e9eab5c61011f65ce0fde5410475c90bf8a60ebd8c0b8870b23418",
+      "bytes": 13189
+    },
+    "accounts_20260911_100751.xlsx": {
+      "sha256": "d34f2f89123a1e414cff1773979938170117363f44ccbdfb08a05bd27f029071",
+      "bytes": 11751
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

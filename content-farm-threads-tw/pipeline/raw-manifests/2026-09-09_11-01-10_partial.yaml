@@ -1,0 +1,44 @@
+{
+  "run_id": "2026-09-09_11-01-10",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-09T15:12:01+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "link",
+  "tier": "audience_v2 (partial, stalled)",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/link/2026-09-09_11-01-10",
+  "input_file": {
+    "path": "inputs/links_audience_v2.csv"
+  },
+  "settings": {
+    "activity_max_items": 1000,
+    "comment_scroll_rounds": 5,
+    "note": "2026-09-09 11:01 起跑，12:13 後檢查點停止更新（193/244 篇），15:11 手動保全 temp 檔（quirks §9）。link_behaviors 只有 14 列，Likes/Reposts 幾乎未抓到。"
+  },
+  "files": {
+    "link_behaviors_temp.csv": {
+      "sha256": "fa063708052b539caddc8248885059dce7a39a33f3a57614ca809dfd8f6e9af1",
+      "bytes": 2647
+    },
+    "link_behaviors_temp.xlsx": {
+      "sha256": "83952e2cd8636c0361a7998eb211d470c59bc267a872bf5d2367376b9d0615e7",
+      "bytes": 6329
+    },
+    "link_posts_temp.csv": {
+      "sha256": "3aaf423a312aabeeebf21e0ad24d16c07b5713e27443c2fb958abcb08c6be5c1",
+      "bytes": 316823
+    },
+    "link_posts_temp.xlsx": {
+      "sha256": "ecc1662d474fdfef9b2f918ed4ad5a3ef96197c57bf746133b3dde3e985bf65c",
+      "bytes": 186100
+    }
+  },
+  "temp_checkpoints_present_in_source": [
+    "link_behaviors_temp.csv",
+    "link_behaviors_temp.xlsx",
+    "link_posts_temp.csv",
+    "link_posts_temp.xlsx"
+  ],
+  "raw_source_modified": false,
+  "partial": true
+}

@@ -1,0 +1,278 @@
+{
+ "rows_raw": 9429,
+ "verified_hits": 2146,
+ "input": "inputs/keywords_b1_confirmed_tw.csv",
+ "clusters": {
+  "cand-docilepuppy": {
+   "searched": 1,
+   "domains_hit": {
+    "itigeryou.com": 15
+   },
+   "zero_hit": [],
+   "posts": 15,
+   "accounts": 9,
+   "accounts_ge2": 3,
+   "accounts_ge5": 1,
+   "tags": {
+    "threads9656": 5,
+    "threads14074": 2,
+    "threads7482": 2,
+    "threads4397": 1,
+    "threads4423": 1,
+    "threads5248": 1,
+    "threads9603": 1
+   },
+   "uids": {},
+   "overlap_prior": {
+    "doushijiahao265": "CASE-2026-003",
+    "leealy796": "CASE-2026-003",
+    "mariakeppel8": "CASE-2026-003",
+    "summer_699": "CASE-2026-003"
+   }
+  },
+  "family-01": {
+   "searched": 11,
+   "domains_hit": {
+    "vodsilo.cc": 254,
+    "runelse.com": 152,
+    "vivi01.com": 110,
+    "cocovn.net": 37,
+    "ptttube.com": 19,
+    "ntdream.com": 1
+   },
+   "zero_hit": [
+    "cklive.net",
+    "coolgirl01.com",
+    "fav543.com",
+    "restcookie.com",
+    "tmmlove.com"
+   ],
+   "posts": 573,
+   "accounts": 57,
+   "accounts_ge2": 22,
+   "accounts_ge5": 12,
+   "tags": {},
+   "uids": {
+    "1883": 115,
+    "576": 95,
+    "3863": 22,
+    "8901": 13,
+    "8427": 3,
+    "742": 1,
+    "9223": 1,
+    "145": 1,
+    "8958": 1,
+    "8600": 1,
+    "710": 1,
+    "8772": 1,
+    "36": 1
+   },
+   "overlap_prior": {}
+  },
+  "looker-17": {
+   "searched": 23,
+   "domains_hit": {
+    "17travel.net": 15,
+    "17moveon.com": 8,
+    "tw100s.com": 5,
+    "eathealth.net": 3,
+    "lookforward.cc": 3,
+    "17goforward.com": 2,
+    "mycomic.cc": 1
+   },
+   "zero_hit": [
+    "lookerpets.com",
+    "how543.com",
+    "itislooker.com",
+    "17readthis.com",
+    "buzzhand.com",
+    "look543.com",
+    "omg4fun.com",
+    "how01.com",
+    "lookingforward.info",
+    "omgnews.cc",
+    "funtoday.news",
+    "happyday543.com",
+    "lookernew.com",
+    "omg543.com",
+    "read543.com",
+    "starfocus.news"
+   ],
+   "posts": 37,
+   "accounts": 35,
+   "accounts_ge2": 2,
+   "accounts_ge5": 0,
+   "tags": {
+    "m274d7qncj199cshcz": 1,
+    "m19c33rablpvpcjx7r": 1,
+    "m0kp3gsmlfgi5b8xp4": 1
+   },
+   "uids": {},
+   "overlap_prior": {
+    "[帳號已隱去]": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003"
+   }
+  },
+  "qsh-alpha": {
+   "searched": 23,
+   "domains_hit": {
+    "fgnj1634.com": 152,
+    "wujfu.com": 152,
+    "cartoontalking.com": 151,
+    "lfqgj.com": 151,
+    "lovewdk.com": 151,
+    "picture.t9y3c.com": 151,
+    "roadstert.com": 150,
+    "uoovo.com": 111,
+    "sarahtalkshow.com": 50,
+    "veltot.com": 21,
+    "12beststar.com": 17,
+    "foodszon.com": 16
+   },
+   "zero_hit": [
+    "666.44finefood.com",
+    "aigo7.com",
+    "co-47.com",
+    "designiwe.com",
+    "dreamwe1.com",
+    "jkingtimes.com",
+    "lovey-puppys.com",
+    "pets-dote.com",
+    "pets-naivety.com",
+    "with-summer.com",
+    "zavideo.successs-experience.com"
+   ],
+   "posts": 1273,
+   "accounts": 83,
+   "accounts_ge2": 61,
+   "accounts_ge5": 47,
+   "tags": {
+    "threads7374": 97,
+    "threads1700": 31,
+    "threads11044": 12,
+    "threads745": 9,
+    "threads3214": 8,
+    "threads2269": 8,
+    "threads336": 8,
+    "threads9656": 7,
+    "threads2399": 6,
+    "threads2315": 5,
+    "threads3219": 3,
+    "threads7422": 3,
+    "threads1205": 3,
+    "threads2384": 3,
+    "threads744": 2
+   },
+   "uids": {},
+   "overlap_prior": {
+    "016c5276757": "CASE-2026-003",
+    "cco5b5": "CASE-2026-003",
+    "ccz73928": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "dunaykin.igor": "CASE-2026-003",
+    "hanqiuyue2": "CASE-2026-003",
+    "iovd5k": "CASE-2026-003",
+    "jbn03297": "CASE-2026-003",
+    "jingcaifung": "CASE-2026-003",
+    "katheryn_baez": "CASE-2026-003",
+    "leealy796": "CASE-2026-003",
+    "lihaiwei2904": "CASE-2026-003",
+    "mariakeppel8": "CASE-2026-003",
+    "n510197": "CASE-2026-003",
+    "ovc59181": "CASE-2026-003",
+    "paul2756a": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "runliangchan": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "shaoqianglee": "CASE-2026-003",
+    "srb02145": "CASE-2026-003",
+    "summer_699": "CASE-2026-003",
+    "viva_benard_": "CASE-2026-003",
+    "win34922024": "CASE-2026-003",
+    "xian.nong": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "zyy71687": "CASE-2026-003"
+   }
+  },
+  "qsh-beta": {
+   "searched": 3,
+   "domains_hit": {
+    "luckyelse.com": 137,
+    "picelse.com": 93
+   },
+   "zero_hit": [
+    "tvsilo.com"
+   ],
+   "posts": 230,
+   "accounts": 47,
+   "accounts_ge2": 30,
+   "accounts_ge5": 12,
+   "tags": {},
+   "uids": {
+    "8842": 41,
+    "1127": 18,
+    "8427": 14,
+    "9510": 12,
+    "8901": 10,
+    "8752": 4,
+    "8584": 4,
+    "6303": 2,
+    "319": 2,
+    "8898": 2,
+    "3863": 1,
+    "8134": 1,
+    "751": 1,
+    "8661": 1,
+    "1161": 1
+   },
+   "overlap_prior": {
+    "[帳號已隱去]": "CASE-2026-003",
+    "kpopdailylife_22": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003"
+   }
+  },
+  "qsh-gamma": {
+   "searched": 17,
+   "domains_hit": {
+    "goodlah.org": 14,
+    "okjust.cc": 3,
+    "kanwatch.com": 1
+   },
+   "zero_hit": [
+    "coms.pub",
+    "justshare.live",
+    "cklive.live",
+    "videowatch.fun",
+    "vidonline.org",
+    "kanwatch.site",
+    "gogovideo.net",
+    "share-video.cc",
+    "vidlah.com",
+    "ytttube.com",
+    "eeurl.press",
+    "photoshare.pro",
+    "funshare.pro",
+    "ppoo.club"
+   ],
+   "posts": 18,
+   "accounts": 15,
+   "accounts_ge2": 2,
+   "accounts_ge5": 0,
+   "tags": {
+    "7": 4,
+    "1046": 3,
+    "2157": 2,
+    "27": 2,
+    "1864": 2,
+    "1253%E9%98%B2%E6%AD%A2%E8%A1%80": 1,
+    "2851": 1,
+    "12": 1
+   },
+   "uids": {},
+   "overlap_prior": {
+    "[帳號已隱去]": "CASE-2026-003"
+   }
+  }
+ }
+}

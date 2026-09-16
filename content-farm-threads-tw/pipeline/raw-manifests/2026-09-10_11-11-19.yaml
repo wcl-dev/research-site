@@ -1,0 +1,32 @@
+{
+  "run_id": "2026-09-10_11-11-19",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-10T13:28:20+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "keyword",
+  "tier": "keyword_b3_alpha_cands",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/keyword/2026-09-10_11-11-19",
+  "input_file": {
+    "path": "inputs/keywords_b3_alpha_cands.csv",
+    "sha256": "defb4a70b22ac41d1544043806d06e864ffd0c27b01bec20bf4695f24bd3b6f5"
+  },
+  "settings": {
+    "keyword_tab": "Recent",
+    "max_posts": 300,
+    "auth_mode": "chrome",
+    "note": "2026-09-10 11:11–12:25；b3 59 域（anyelse 31、qhd-adstxt 22、cn-fanwen 6），36 有回傳、23 零結果；L0 至此 340/340"
+  },
+  "files": {
+    "keyword_result_20260910_111119.csv": {
+      "sha256": "e059ccb5446ebf2ed6e6f82d2b73b6405c0c330d56192b4107e81d0aa37cc97c",
+      "bytes": 6782187
+    },
+    "keyword_result_20260910_111119.xlsx": {
+      "sha256": "351a365257c557b0690f75a2afac93df0210aff0e33174c4fbbb91cc1ff9f034",
+      "bytes": 3011173
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

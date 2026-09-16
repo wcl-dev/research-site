@@ -1,0 +1,18 @@
+case_id: CASE-2026-004
+slug: all-clusters-threads-sweep
+title: registry 其餘各群網域 Threads 反搜（擴增社群帳號清單）
+status: L0–L4 all at boundary (2026-09-14): 340 domains, tier3 296 accounts, 1,106 posts, 833 repliers, 250 random profiles
+created_at: 2026-09-05
+updated_at: 2026-09-14
+timezone: Asia/Taipei
+platforms:
+  - threads
+research_modules:
+  - content-farm-diffusion
+attribution_status: not-attributed
+data_sensitivity: public-platform-data-with-account-identifiers
+upstream:
+  registry: ~/kwara-farm-registry/registry.yaml
+  registry_clusters: all except already-searched (qsh-gamma 文章線 18＋影片線 FB、qsh-alpha 原 54)
+  prior_cases: [CASE-2026-002, CASE-2026-003]
+  known_domains_count: 276

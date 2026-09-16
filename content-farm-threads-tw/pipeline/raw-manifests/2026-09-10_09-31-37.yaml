@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-09-10_09-31-37",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-10T10:42:24+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "account",
+  "tier": "audience_repliers_rerun",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-10_09-31-37",
+  "input_file": {
+    "path": "inputs/accounts_audience_all_rerun.csv",
+    "sha256": "10b5d9ba3278adc3f5e06ffa488ef708c0f243f7cac5bceff643336d715e96fe"
+  },
+  "settings": {
+    "post_num": 30,
+    "crawl_following": true,
+    "crawl_followers": false,
+    "skip_if_over": 2000,
+    "auth_mode": "chrome",
+    "note": "2026-09-10 09:31 起；前一輪因筆電休眠出錯的 58 個回覆者補跑（試點六群）；一般民眾，只出聚合輪廓"
+  },
+  "files": {
+    "account_posts_20260910_093137.csv": {
+      "sha256": "7378ff66e08fe91144e486d22c82a2bed8b807dc3996b342c3472f9b30add1c0",
+      "bytes": 2212345
+    },
+    "account_posts_20260910_093137.xlsx": {
+      "sha256": "d82b7dec17b2f8b124749ab25b09dd80fd9be72546cf6521d744dfddfa8852f8",
+      "bytes": 1037548
+    },
+    "accounts_20260910_093137.csv": {
+      "sha256": "e89afe6a4b16b45e604026c0b6a5a20c063f4fab9cadb380bb3d971a5d10a91b",
+      "bytes": 205094
+    },
+    "accounts_20260910_093137.xlsx": {
+      "sha256": "2419924f052c0712bf43a7bf8a52da4450d3f55f1db0d3bd9d7bbc6edf1e0f72",
+      "bytes": 80141
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

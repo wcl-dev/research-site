@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-09-10_13-39-30",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-10T15:16:43+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "account",
+  "tier": "r3_session1",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-10_13-39-30",
+  "input_file": {
+    "path": "inputs/accounts_r3_session1.csv",
+    "sha256": "6536ebba6789e281f6383b8f8d96cf460f134a5d76e33d4cc62e4ff34c38fda7"
+  },
+  "settings": {
+    "post_num": 100,
+    "crawl_followers": false,
+    "crawl_following": false,
+    "skip_if_over": 1000,
+    "auth_mode": "chrome",
+    "note": "2026-09-10 13:39 起；第二層核實 r3 合併名單 session1（篇數 ≥5 的 82 帳號），82/82 回傳"
+  },
+  "files": {
+    "account_posts_20260910_133930.csv": {
+      "sha256": "5c6eb954ce4ec95e85cbe4c0fd59f865a23312325c6c5faeb03586214b65acd3",
+      "bytes": 6167538
+    },
+    "account_posts_20260910_133930.xlsx": {
+      "sha256": "94511ff2019866a5bbdee7a9ad0a2823dbe7b84937bd66703999fbbf0efb6224",
+      "bytes": 2689722
+    },
+    "accounts_20260910_133930.csv": {
+      "sha256": "62339f1032c7cfc260a66d2c352987d05c1f0e28a6eeeef8af17a44d0cff447b",
+      "bytes": 50989
+    },
+    "accounts_20260910_133930.xlsx": {
+      "sha256": "0cb8a2fbb1d80f1a93c56d9d4981f63b4aafcc8cc48f72ef5cd4bbf93006365a",
+      "bytes": 29565
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

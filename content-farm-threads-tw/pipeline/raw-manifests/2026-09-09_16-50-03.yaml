@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-09-09_16-50-03",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-10T09:27:43+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "account",
+  "tier": "audience_repliers",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-09_16-50-03",
+  "input_file": {
+    "path": "inputs/accounts_audience_all.csv",
+    "sha256": "d65e972f01e328b6ecc03143a798cac372daaed12ddab818254f76681d23432e"
+  },
+  "settings": {
+    "post_num": 30,
+    "crawl_following": true,
+    "crawl_followers": false,
+    "skip_if_over": 2000,
+    "auth_mode": "chrome",
+    "note": "2026-09-09 16:50–18:48；受眾回覆者 190 帳號（四分層各 25＋試點 90）；★一般民眾，只出聚合輪廓不點名"
+  },
+  "files": {
+    "account_posts_20260909_165003.csv": {
+      "sha256": "2dedcd8f4057ba6c0f1fcc02a3aec5feaea4dd903850016d282a2fcdc9e305af",
+      "bytes": 4711930
+    },
+    "account_posts_20260909_165003.xlsx": {
+      "sha256": "f899b1fb5640ca52c789eff71c07e1fcf038f6b97a85439f63de20f3aba177c3",
+      "bytes": 2255148
+    },
+    "accounts_20260909_165003.csv": {
+      "sha256": "a6c793b12b219606c1191fa66f9d48beb9b946d88a41382e76b28fe622f37885",
+      "bytes": 678970
+    },
+    "accounts_20260909_165003.xlsx": {
+      "sha256": "704fec88bafb75ffbd3d76712c226e5e528f2a64ac9a6fe1a3b9374579f2190a",
+      "bytes": 239073
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

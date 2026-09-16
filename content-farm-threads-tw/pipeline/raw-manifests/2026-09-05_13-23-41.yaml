@@ -1,0 +1,32 @@
+{
+  "run_id": "2026-09-05_13-23-41",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-08T00:53:50+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "keyword",
+  "tier": "keyword_b1_confirmed_tw",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/keyword/2026-09-05_13-23-41",
+  "input_file": {
+    "path": "inputs/keywords_b1_confirmed_tw.csv",
+    "sha256": "e46d67a07ec34f8730f0d575467394cea35660f9b8284301b98f72dc055504b2"
+  },
+  "settings": {
+    "keyword_tab": "Recent",
+    "max_posts": 300,
+    "auth_mode": "chrome",
+    "note": "run_id 沿用 2026-09-05 13:23 被 Meta 節流（quirks §10）那次的目錄（§9 行為）；實際成功抓取為 2026-09-07 晚間至 09-08 00:50；b1 78 域"
+  },
+  "files": {
+    "keyword_result_20260905_132341.csv": {
+      "sha256": "dcb3f858bff4e09b8abbd77c02ccd84b819ba87f8ee2c415e9901d3ef8217825",
+      "bytes": 9795532
+    },
+    "keyword_result_20260905_132341.xlsx": {
+      "sha256": "d7028a6288c8dec23051332cca79ada699df36315b6ae75926b7785eea680f24",
+      "bytes": 4629418
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

@@ -1,0 +1,37 @@
+{
+  "run_id": "2026-09-09_09-13-14",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-09T10:36:45+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "link",
+  "tier": "audience_pilot",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/link/2026-09-09_09-13-14",
+  "input_file": {
+    "path": "inputs/links_audience_pilot.csv",
+    "sha256": "b27504591797a590d1c6117c44bbe00592edf3e36cf916acdabbad036c54e1e4"
+  },
+  "settings": {
+    "note": "2026-09-09 09:13–09:45；受眾試點 44 篇台灣向農場母文；link_behaviors 只有 Quotes 47 筆、無 Likes/Reposts（原因待查：GUI 選項或 Threads 讚名單可見性）"
+  },
+  "files": {
+    "link_behaviors_20260909_091314.csv": {
+      "sha256": "8cc8b152e096d6e7903b23c826ef84ddc1e9abf2c8a4f38245bdd1b00ed68373",
+      "bytes": 8004
+    },
+    "link_behaviors_20260909_091314.xlsx": {
+      "sha256": "930ff0d844c88524a0eeaed441ff73a9371c4e33411d1b75aee04c6d10037fc9",
+      "bytes": 8509
+    },
+    "link_posts_20260909_091314.csv": {
+      "sha256": "4d50b884652f2350e357890f86f6c7ac6bc14f8a38d8756c0a2faecd163ac1d0",
+      "bytes": 152650
+    },
+    "link_posts_20260909_091314.xlsx": {
+      "sha256": "a1d98107278563f3edd04a1d41116b46fc7a760716acfb27fadb502944fc0534",
+      "bytes": 93344
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

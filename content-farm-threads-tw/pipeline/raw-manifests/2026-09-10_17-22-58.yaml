@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-09-10_17-22-58",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-11T09:18:17+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "account",
+  "tier": "r3_session2",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-10_17-22-58",
+  "input_file": {
+    "path": "inputs/accounts_r3_session2.csv",
+    "sha256": "70a478e09b551bcb800ad587388b22a400c26f7ee333318d94866ffe6b5c900b"
+  },
+  "settings": {
+    "post_num": 100,
+    "crawl_followers": false,
+    "crawl_following": false,
+    "skip_if_over": 1000,
+    "auth_mode": "chrome",
+    "note": "2026-09-10 17:22–18:50；r3 session2（2–5 篇的 81 帳號）；18:48 筆電合蓋，工具把剩餘 12 個標 error 後寫出 final（quirks §13），69/81 有資料"
+  },
+  "files": {
+    "account_posts_20260910_172258.csv": {
+      "sha256": "e8cba26f122db9da2fd093355db1522c2617c196c6c82c997bf3988d1b644681",
+      "bytes": 5304531
+    },
+    "account_posts_20260910_172258.xlsx": {
+      "sha256": "f278886e7662d5cbfd7e07330b43a47be22a49feffba5711cb70b09f743ef103",
+      "bytes": 2464926
+    },
+    "accounts_20260910_172258.csv": {
+      "sha256": "f63c2c1b342a9a434d6645e29d3ce73b618c388963f8c5a0c149d8afbd930151",
+      "bytes": 45961
+    },
+    "accounts_20260910_172258.xlsx": {
+      "sha256": "817c32e71f0d29b1f37f6af6512272caf2ada337d43e484e8faaee9fa0213d97",
+      "bytes": 29157
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

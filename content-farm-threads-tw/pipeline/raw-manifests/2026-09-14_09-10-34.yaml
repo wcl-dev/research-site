@@ -1,0 +1,39 @@
+{
+  "run_id": "2026-09-14_09-10-34",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-14T10:37:33+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "link",
+  "tier": "audience_full_session4",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/link/2026-09-14_09-10-34",
+  "input_file": {
+    "path": "inputs/links_audience_full_session4.csv",
+    "sha256": "6e9a264f385bcc692f2c5a59a3a4de8866c23f0e90e40930ab0c9984cc8889ea"
+  },
+  "settings": {
+    "comment_scroll_rounds": 5,
+    "activity_max_items": 1000,
+    "note": "2026-09-14；L3 全量 Link session4（220 篇），L3 邊界達成"
+  },
+  "files": {
+    "link_behaviors_20260914_091034.csv": {
+      "sha256": "b15bd230ebc9e679758adaad2864aaaed24c4fd26446943d06ae29a6bafde61f",
+      "bytes": 664
+    },
+    "link_behaviors_20260914_091034.xlsx": {
+      "sha256": "0c6e5c21caff26b10a3b9cfa7b55f077e94bf3c1bf1f6604349f638cf6a807fd",
+      "bytes": 5222
+    },
+    "link_posts_20260914_091034.csv": {
+      "sha256": "9350dc1acd2e4b158c3fa9cfe57a52c1b3cb9c00a05fceccf9ef4b6d9324ee95",
+      "bytes": 244150
+    },
+    "link_posts_20260914_091034.xlsx": {
+      "sha256": "e57dc4e3d2be1e8a6f14ad2173d47af1b98a7849be9b364fbf6316adbab92c6c",
+      "bytes": 131248
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

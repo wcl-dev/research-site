@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-09-07_09-44-01",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-07T13:34:21+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "account",
+  "tier": "serp_candidates_r2",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/account/2026-09-07_09-44-01",
+  "input_file": {
+    "path": "inputs/accounts_serp_candidates_r2.csv",
+    "sha256": "8ce3ae6a3b0622a26ece14c564b513ad710e0e2044777cc476fa467cc956fd72"
+  },
+  "settings": {
+    "post_num": 100,
+    "crawl_followers": false,
+    "crawl_following": false,
+    "skip_if_over": 1000,
+    "auth_mode": "chrome",
+    "note": "2026-09-07 09:44–11:00；第二層核實 Google 索引候選 76 帳號，62 有結果"
+  },
+  "files": {
+    "account_posts_20260907_094401.csv": {
+      "sha256": "53bf9aeedcb88a606ca58db228039b766ef66a906a4e428490ccebee859e0f50",
+      "bytes": 6097006
+    },
+    "account_posts_20260907_094401.xlsx": {
+      "sha256": "0d85eca2882554900df84566a18801e5d4d12302136e927ea3904905c43a95b4",
+      "bytes": 2764209
+    },
+    "accounts_20260907_094401.csv": {
+      "sha256": "9178a477f4aa49d5f37c57c2f16e4182fff72d05ee3731fc186e9a4b9c4a34dd",
+      "bytes": 38111
+    },
+    "accounts_20260907_094401.xlsx": {
+      "sha256": "674ff75fc06097c7cce9bbc31b2e68eba4a5b3a0e2d7465a757bf640e682442a",
+      "bytes": 25147
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}

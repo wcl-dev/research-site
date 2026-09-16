@@ -1,0 +1,135 @@
+{
+ "rows_raw": 6285,
+ "verified_hits": 657,
+ "input": "inputs/keywords_b3_alpha_cands.csv",
+ "clusters": {
+  "cand-anyelse-net": {
+   "searched": 31,
+   "domains_hit": {
+    "15lovingclub.com": 151,
+    "tarooot.com": 150,
+    "jp.eoomiss.com": 85,
+    "cheeselikes.com": 18,
+    "okazu.cc": 12,
+    "sunflyday.com": 12,
+    "eoeodream.com": 3,
+    "article.wealwomen.com": 2,
+    "jp.abc-talks.com": 2,
+    "praiseme12.com": 1
+   },
+   "zero_hit": [
+    "beauty-families.com",
+    "bestinfo365.com",
+    "bjtriz.com",
+    "carconts.com",
+    "cutetale.com",
+    "delicioushare.com",
+    "goodtime-life.com",
+    "gowork-place.com",
+    "healthyhubv.com",
+    "houseborn.com",
+    "keeeping-healthy.com",
+    "onbest-pets.com",
+    "photo.15lifetalking.com",
+    "baby0world.com",
+    "chiyidavip.com",
+    "comeon-petts.com",
+    "decoration-skills.com",
+    "t5y7c.com",
+    "jaqvr.xkbkn.com",
+    "17sex.vip",
+    "jp.daily-novel.net"
+   ],
+   "posts": 436,
+   "accounts": 42,
+   "accounts_ge2": 21,
+   "accounts_ge5": 15,
+   "tags": {
+    "threads9656": 4,
+    "threads2264": 2,
+    "threads3997": 1,
+    "threads9658": 1,
+    "threads7407": 1,
+    "threads7482": 1,
+    "zxxhmt": 1,
+    "threads2262": 1
+   },
+   "uids": {},
+   "overlap_prior": {
+    "leealy796": "CASE-2026-003",
+    "shangtianyayi22": "CASE-2026-003",
+    "shaoqianglee": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "ylm17698": "CASE-2026-003"
+   }
+  },
+  "cand-qhd-adstxt": {
+   "searched": 22,
+   "domains_hit": {
+    "acg1213.com": 152,
+    "2020funtv.com": 40,
+    "t9y3c.com": 19,
+    "ananfree.com": 4,
+    "fbiavip.com": 2,
+    "keeping-health.com": 2,
+    "hklocalfeed.com": 1
+   },
+   "zero_hit": [
+    "delicacy-map.com",
+    "jojosunny.com",
+    "lovelyhi.com",
+    "mild-way.com",
+    "taaparty.com",
+    "acworld666.com",
+    "ally8799.com",
+    "cartoonfans766.com",
+    "companion-healthy.com",
+    "health-am.com",
+    "healthy-blessed.com",
+    "lovers521.com",
+    "nvbad.com",
+    "one-sups.com",
+    "wendybaby127.com"
+   ],
+   "posts": 220,
+   "accounts": 37,
+   "accounts_ge2": 19,
+   "accounts_ge5": 7,
+   "tags": {
+    "jg": 1,
+    "s7": 1,
+    "trc16": 1,
+    "threads1530": 1,
+    "m1lrj5qa44ii14iwoqs": 1,
+    "threads527": 1
+   },
+   "uids": {},
+   "overlap_prior": {
+    "016c5276757": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "ccz73928": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "lilonghui28382": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003",
+    "[帳號已隱去]": "CASE-2026-003"
+   }
+  },
+  "qsh-alpha": {
+   "searched": 0,
+   "domains_hit": {
+    "lovewdk.com": 1
+   },
+   "zero_hit": [],
+   "posts": 1,
+   "accounts": 1,
+   "accounts_ge2": 0,
+   "accounts_ge5": 0,
+   "tags": {},
+   "uids": {},
+   "overlap_prior": {}
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+  "run_id": "2026-09-13_14-40-34",
+  "case_id": "CASE-2026-004-all-clusters-threads-sweep",
+  "archived_at": "2026-09-14T09:09:07+08:00",
+  "tool": "Threads Crawl Tool 1.9.2",
+  "mode": "link",
+  "tier": "audience_full_session3",
+  "auth": "chrome-profile-cookie (no credentials stored)",
+  "source_path": "~/Documents/Local Crawl Tool/output/link/2026-09-13_14-40-34",
+  "input_file": {
+    "path": "inputs/links_audience_full_session3.csv",
+    "sha256": "31b82a85c1922f85f638c984d3f3b814adb5fed8f575c4a8003a4b7f6170ae35"
+  },
+  "settings": {
+    "comment_scroll_rounds": 5,
+    "activity_max_items": 1000,
+    "note": "2026-09-13 14:40–15:46；L3 全量 Link session3（222 篇，221 回傳；[帳號已隱去] 一篇未回傳，該帳號在 v2 也未回傳）；09-11 節流兩天後解除"
+  },
+  "files": {
+    "link_behaviors_20260913_144034.csv": {
+      "sha256": "b15bd230ebc9e679758adaad2864aaaed24c4fd26446943d06ae29a6bafde61f",
+      "bytes": 664
+    },
+    "link_behaviors_20260913_144034.xlsx": {
+      "sha256": "6e918886cc481372fa8fce0d191c75c9de4c34e45d1230bbc1d782a89ce15983",
+      "bytes": 5223
+    },
+    "link_posts_20260913_144034.csv": {
+      "sha256": "1cfd1d1ab5432a28cf98f57442d62e0fdebeea3c529f383e66aed3227cac35bf",
+      "bytes": 204883
+    },
+    "link_posts_20260913_144034.xlsx": {
+      "sha256": "7f41fef969da1e0f65018c9176688d5071e66741b1712e3eeb5f08351139f676",
+      "bytes": 117922
+    }
+  },
+  "temp_checkpoints_present_in_source": [],
+  "raw_source_modified": false
+}
