@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美國國會眼中的下一個華為｜《Beijing's AI Playbook》導讀</title>
+<!-- og:auto:start -->
+<meta name="description" content="美國眾議院兩個委員會 2026 年 11 月發表的聯合調查報告《Beijing&#x27;s AI Playbook》導讀。 把 49 頁拆成一個類比、五步推論、六個思考習慣和十二項建議，說明華府怎麼看中國開發的開放權重模型。 只整理報告的論證方式，不評斷其證據是否成立。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="weichen&#x27;s Research">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="美國國會眼中的下一個華為">
+<meta property="og:description" content="美國眾議院兩個委員會 2026 年 11 月發表的聯合調查報告《Beijing&#x27;s AI Playbook》導讀。 把 49 頁拆成一個類比、五步推論、六個思考習慣和十二項建議，說明華府怎麼看中國開發的開放權重模型。 只整理報告的論證方式，不評斷其證據是否成立。">
+<meta property="og:url" content="https://wcl-dev.github.io/research-site/beijing-ai-playbook-us-house/">
+<meta property="og:image" content="https://wcl-dev.github.io/research-site/beijing-ai-playbook-us-house/og.png?v=6">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="美國國會眼中的下一個華為">
+<meta name="twitter:description" content="美國眾議院兩個委員會 2026 年 11 月發表的聯合調查報告《Beijing&#x27;s AI Playbook》導讀。 把 49 頁拆成一個類比、五步推論、六個思考習慣和十二項建議，說明華府怎麼看中國開發的開放權重模型。 只整理報告的論證方式，不評斷其證據是否成立。">
+<meta name="twitter:image" content="https://wcl-dev.github.io/research-site/beijing-ai-playbook-us-house/og.png?v=6">
+<!-- og:auto:end -->
+<meta name="description" content="美國眾議院聯合調查報告《Beijing's AI Playbook》導讀：一個類比、五步推論、六個思考習慣、十二項建議。">
+<!-- generate-research-html · Template B · palette: research-default (default; legs-roadmap needs AA white-on-role) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/open-props/easings.min.css">
+<link rel="stylesheet" href="https://unpkg.com/open-props/sizes.min.css">
+<style>
+/* ============================================================
+ * brand-tokens.css
+ *
+ * Anchor design tokens for weichen's Research site.
+ * Every report MUST consume these — do not redeclare in report HTML.
+ *
+ * Layered architecture:
+ *   1. Open Props (external)     scale tokens — font sizes, spacing, easing
+ *   2. brand-tokens.css (this)   anchor colors + font stacks + semantic roles
+ *   3. palette.yaml (per-report) optional override of semantic role colors
+ *   4. base.css                  typography reset, consumes 1 + 2 + 3
+ *
+ * Token taxonomy:
+ *   --c-*       raw color (do not use directly in components)
+ *   --role-*    semantic alias (USE THESE in components)
+ *   --ff-*      font-family stacks
+ *   --maxw-*    canonical content widths
+ *
+ * Note on 3-semantic-color discipline:
+ *   The revise-research-html skill audit prefers ≤4 colors.
+ *   Template B uses 3 semantic role colors (primary/method/emphasis).
+ *   This is a PRINCIPLED EXCEPTION, not visual sprawl — each role
+ *   has a stable referent across the report. See PALETTE_PRINCIPLES.md.
+ * ============================================================ */
+
+:root {
+  /* ---------- canvas (anchor, never overridden per-report) ----------
+     hardcore-mono skin (2026-06)：對齊 research-site 全站報告 + 首頁 site_brand.css。
+     原暖紙/深墨襯線版已退役——全站統一 cool paper + IBM Plex Mono。 */
+  --c-paper:        #fbfaf6;
+  --c-paper-card:   #f5f3ec;
+  --c-paper-sink:   #efece4;
+  --c-ink:          #333333;
+  --c-ink-soft:     #555555;
+  --c-ink-faint:    #888888;
+  --c-watermark:    #aaaaaa;   /* sec-title 中階灰（mono 版特徵） */
+  --c-rule:         #cfc9b9;
+  --c-rule-soft:    #dfd9c5;
+
+  /* ---------- semantic roles (default; palette.yaml may override) ---------- */
+  --c-navy:         #1B4A66;
+  --c-jade:         #2B7458;
+  --c-clay:         #B5402B;
+
+  --role-primary:   var(--c-navy);   /* Template B: 一手實證 / 主結構 */
+  --role-method:    var(--c-jade);   /* Template B: 方法論 / 工具 */
+  --role-emphasis:  var(--c-clay);   /* Template B: 關鍵發現 / 風險 */
+
+  /* Template A single-accent — separate var so A and B don't collide */
+  --role-accent:    #b03a2e;         /* Template A: rust */
+
+  /* ---------- Template C roles (advocacy / AI-comparison) ---------- */
+  /* Template C has its own 3-role system with DIFFERENT semantics from B.
+     Don't conflate role-thread with role-primary — they fire in different
+     contexts (B's "primary evidence" vs C's "article thread color"). */
+  --c-orange:       #b45309;         /* Template C thread accent */
+  --c-orange-soft:  #fef3e2;         /* Template C accent tint 1 */
+  --c-orange-soft2: #f9e7c8;         /* Template C accent tint 2 (em highlight) */
+  --c-warn:         #9d2929;         /* Template C danger / refuse / aligned-output */
+  --c-warn-soft:    #fae8e7;
+  --c-warn-soft2:   #f5d4d3;
+  --c-teal:         #2b5e5e;         /* Template C unlock / uncensored / success */
+  --c-teal-soft:    #e3eded;
+  --c-quote-bg:     #f3efe5;         /* Template C analyst-commentary box bg */
+
+  --role-thread:    var(--c-orange); /* Template C: article main thread */
+  --role-refuse:    var(--c-warn);   /* Template C: model refusal / aligned output */
+  --role-unlock:    var(--c-teal);   /* Template C: uncensored / abliterated success */
+
+  /* Template C uses a different ink (cooler, more navy) — separate to avoid
+     stepping on Template B's warmer --c-ink */
+  --c-ink-cool:     #14172a;
+  --c-ink-cool-soft:#2e314a;
+  --c-paper-cool:   #fbfaf5;
+  --c-rule-cool:    #d4cfc4;
+  --c-muted-cool:   #5b5e69;
+
+  /* ---------- font families ---------- */
+  --ff-display:     'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;  /* Template A + B headings + body (hardcore mono) */
+  --ff-serif:       'IBM Plex Mono','PingFang TC','Microsoft JhengHei','Noto Sans TC',ui-monospace,'SF Mono',Menlo,monospace;  /* Template B body alias (hardcore mono) */
+  --ff-narrative:   'Iowan Old Style','Source Serif Pro','Charter','Noto Serif TC','Songti TC',Georgia,serif;  /* LEGACY (Template A narrative serif; unused 2026-06+ — Template A 改 mono 對齊 sycophancy) */
+  --ff-editorial:   'Noto Serif TC','PingFang TC','Songti TC',serif;  /* Template C body — serif for advocacy prose */
+  --ff-cards:       'PingFang TC','Helvetica Neue','Arial',sans-serif;/* Template C cards — sans for AI-response simulacrum */
+  --ff-kicker:      'Helvetica Neue','PingFang TC','Arial',sans-serif;/* Template C kicker / labels — sans uppercase tracked */
+  --ff-mono:        'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---------- canonical widths ---------- */
+  --maxw-prose:     680px;            /* Template A narrow column */
+  --maxw-content:   920px;            /* Template B main column */
+  --maxw-wide:      1080px;
+  --w-sidebar:      300px;            /* Template B sidebar */
+
+  /* ---------- CJK line-height adjustments (override Open Props western defaults) ---------- */
+  --lh-tight:       1.4;              /* CJK headlines */
+  --lh-body-cjk:    1.82;             /* CJK body — Open Props default 1.5 too tight for Chinese */
+  --lh-prose-cjk:   1.9;              /* long-form CJK paragraphs */
+  --lh-narrative:   1.72;             /* LEGACY (Template A narrative serif; unused 2026-06+) */
+}
+
+/*  ASCII reference: all variables at a glance
+ *  ┌─────────────────────────────────────────────────────┐
+ *  │ CANVAS         paper / paper-card / paper-sink      │
+ *  │                ink   / ink-soft   / ink-faint       │
+ *  │                rule  / rule-soft                    │
+ *  │ ROLE (B)       primary(navy) / method(jade)         │
+ *  │                emphasis(clay)                       │
+ *  │ ROLE (A)       accent(rust)                         │
+ *  │ FONT           display / serif / narrative / mono   │
+ *  │ WIDTH          prose 680 / content 920 / wide 1080  │
+ *  │                sidebar 300                          │
+ *  └─────────────────────────────────────────────────────┘
+ */
+
+/* ============================================================
+ * base.css
+ *
+ * Typography reset + universal page chrome.
+ * Consumes brand-tokens.css and (optionally) Open Props.
+ *
+ * Open Props tokens used (load via <link> in report HTML):
+ *   sizes.min.css     — used for spacing / max-widths if needed
+ *   easings.min.css   — used by reveal.js animations
+ *
+ * NOTE: we DO NOT use Open Props' font-size scale, because:
+ *   - Open Props western-centric defaults (line-height 1.5) are too tight for CJK
+ *   - Long-form research reports want fluid clamp() pinned to content density,
+ *     not a 7-step scale
+ *   We keep custom clamp() sizes in template-specific CSS instead.
+ * ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--c-paper);
+  color: var(--c-ink);
+  font-family: var(--ff-serif);
+  font-weight: 400;
+  font-size: 19px;
+  line-height: var(--lh-prose-cjk);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* paper grain — universal subtle texture for warmth */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: .42;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+a { color: inherit; }
+
+::selection {
+  background: var(--c-paper-card);
+}
+
+/* reveal helper class — paired with reveal.js IntersectionObserver */
+.rv {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================================
+ * Template B (sidebar + modular) — layout & component CSS
+ *
+ * Loaded AFTER shared/brand-tokens.css + shared/base.css.
+ * Defines: shell layout, sidebar nav, hero, section headers,
+ *          sub-h, TL;DR list, find cards, section dividers,
+ *          responsive collapse, sources/footer.
+ *
+ * Extension modules ship their own CSS in _modules/*.html
+ * (each module is HTML + scoped <style> when needed).
+ * ============================================================ */
+
+/* ---------- mono skin overrides (hardcore mono, 對齊 research-site 全站) ---------- */
+body { font-size: 15.5px; line-height: 1.65; }   /* mono 比襯線寬，body 收到 15.5/1.65 */
+body::before { opacity: .18; }                    /* 紙紋更淡（base.css 預設 .42 給襯線版） */
+
+/* ---------- shell (B merged into A: 無側欄 linear scroll) ---------- */
+.shell { display: block; }
+
+/* ---------- linear chrome: progress bar + scroll-spy badge + 水平 inline-toc ----------
+   2026-06：Template B 的左側欄已退役，併入 Template A 的 linear chrome。
+   全站 6 篇報告皆此版面（無側欄）；保留 .find/.tldr/.schema 等模組於 linear scroll 中。 */
+.progress { position: fixed; top: 0; left: 0; height: 2px; width: 0;
+  background: var(--role-emphasis); z-index: 200; transition: width .12s linear; }
+.badge { position: fixed; top: 18px; right: 24px; z-index: 100;
+  font-family: var(--ff-mono); font-size: 13px; letter-spacing: .12em;
+  text-transform: uppercase; font-weight: 600; color: var(--c-ink);
+  opacity: 0; transition: opacity .25s; padding: 8px 14px;
+  background: var(--c-paper); border: 1px solid var(--c-rule); }
+.badge.show { opacity: .85; }
+.badge b { color: var(--role-emphasis); font-weight: 700; margin-right: 8px; }
+.inline-toc { max-width: var(--maxw-content); margin: 0 auto; padding: 36px 48px 0;
+  display: flex; flex-wrap: wrap; gap: 8px; }
+.inline-toc a { font-family: var(--ff-mono); font-size: 12.5px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--c-ink-soft); padding: 7px 12px;
+  border: 1px solid var(--c-rule); background: var(--c-paper); text-decoration: none;
+  transition: background .12s, border-color .12s, color .12s; }
+.inline-toc a:hover { background: var(--c-ink); color: var(--c-paper); border-color: var(--c-ink); }
+.inline-toc .ix { color: var(--c-ink-faint); margin-right: 6px; }
+
+/* ---------- main ---------- */
+main { display: block; }
+.wrap { max-width: var(--maxw-content); margin: 0 auto; padding: 0 48px; }
+section { padding: 96px 0; border-bottom: 1px solid var(--c-rule); }
+section:last-of-type { border-bottom: none; }
+
+/* ---------- hero (base) ---------- */
+.hero {
+  border-bottom: 4px double var(--c-rule);
+  background: linear-gradient(180deg, var(--c-paper-card), transparent 72%);
+}
+.hero-inner {
+  max-width: var(--maxw-content);
+  margin: 0 auto;
+  padding: 74px 48px 64px;
+}
+.hero-kicker {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--role-emphasis);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+.hero-kicker::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--c-rule);
+}
+h1.hero-title {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  font-size: clamp(28px, 4.4vw, 52px);
+  line-height: 1.25;
+  letter-spacing: -.008em;
+  margin-bottom: 28px;
+}
+h1.hero-title .cut { color: var(--role-emphasis); font-weight: 600; }
+.hero-stand {
+  font-size: 18px;
+  line-height: 1.78;
+  color: var(--c-ink-soft);
+  max-width: var(--maxw-prose);
+  margin-bottom: 38px;
+}
+.hero-stand b { color: var(--c-ink); font-weight: 700; }
+.hero-scope {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  color: var(--c-ink);
+  font-size: clamp(18px, 2.2vw, 22px);
+  line-height: 1.5;
+  margin: -6px 0 34px;
+  padding-left: 16px;
+  border-left: 4px solid var(--role-primary);
+}
+.hero-foot {
+  margin-top: 34px;
+  font-size: 15px;
+  color: var(--c-ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hero-foot .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--role-emphasis);
+  display: inline-block;
+  flex: none;
+}
+
+/* ---------- section headers ---------- */
+.sec-head { margin-bottom: 52px; }
+.sec-num {
+  font-family: var(--ff-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  color: var(--c-ink-faint);
+  display: block;
+  margin-bottom: 16px;
+}
+h2.sec-title {
+  font-family: var(--ff-display);
+  font-weight: 600;
+  color: var(--c-watermark);
+  font-size: clamp(24px, 3.2vw, 36px);
+  line-height: 1.3;
+  letter-spacing: -.005em;
+}
+.sec-lead {
+  font-size: 18px;
+  color: var(--c-ink-soft);
+  margin-top: 20px;
+  max-width: var(--maxw-prose);
+  line-height: 1.78;
+}
+
+/* ---------- sub-h (in-section sub-heading) ---------- */
+.sub-h {
+  font-family: var(--ff-display);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--c-ink);
+  margin: 0 0 26px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--c-rule);
+  line-height: 1.4;
+}
+.block { margin-top: 64px; }
+.cap {
+  font-family: var(--ff-mono);
+  font-size: 13.5px;
+  color: var(--c-ink-soft);
+  margin-bottom: 18px;
+  font-weight: 500;
+  letter-spacing: .01em;
+}
+
+/* ---------- TL;DR list ---------- */
+.tldr-list { display: flex; flex-direction: column; gap: 14px; }
+.tldr {
+  display: flex;
+  gap: 28px;
+  padding: 32px 34px;
+  background: var(--c-paper-card);
+  border: 1px solid var(--c-rule);
+  border-radius: 12px;
+  align-items: flex-start;
+}
+.tldr .num {
+  font-family: var(--ff-display);
+  font-size: 50px;
+  font-weight: 600;
+  line-height: .85;
+  color: var(--role-primary);
+  flex: none;
+  width: 54px;
+}
+.tldr .body p { font-size: 18.5px; line-height: 1.82; }
+.tldr .body b { font-weight: 700; }
+.tldr .tag {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  color: var(--c-ink-faint);
+  margin-top: 14px;
+}
+
+/* ---------- find card ---------- */
+.find {
+  background: var(--c-paper-card);
+  border: 1px solid var(--c-rule);
+  border-radius: 16px;
+  padding: 40px 42px;
+  margin-bottom: 24px;
+}
+.find-top {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.find-no {
+  font-family: var(--ff-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--c-paper-card);
+  background: var(--c-ink);
+  padding: 7px 12px;
+  border-radius: 6px;
+  flex: none;
+}
+.find h3 {
+  font-family: var(--ff-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.42;
+  flex: 1;
+  min-width: 260px;
+}
+.find-sum { font-size: 18px; line-height: 1.84; color: var(--c-ink-soft); }
+.find-sum b { color: var(--c-ink); font-weight: 700; }
+.find-sum .em {
+  font-weight: 700;
+  background: var(--c-paper-sink);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+.find-key {
+  margin-top: 24px;
+  padding: 22px 26px;
+  background: var(--c-paper-sink);
+  border-radius: 11px;
+  font-size: 17px;
+  line-height: 1.74;
+}
+.find-key .kl {
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  letter-spacing: .08em;
+  color: var(--role-emphasis);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+.find-key b { font-weight: 700; }
+.find .block { margin-top: 34px; }
+
+/* ---------- footer (canonical 4-line, hardcore mono base) ----------
+   全站統一規格——若調動，請同步 Template A / Template C / 既有 8 篇報告。 */
+footer {
+  background: var(--c-ink);
+  color: var(--c-ink-faint);
+  padding: 48px 28px;
+  font-size: 14.5px;
+  line-height: 1.85;
+}
+footer .ft-inner {
+  max-width: var(--maxw-content);
+  margin: 0 auto;
+}
+footer b { color: var(--c-paper-card); font-weight: 700; }
+footer a {
+  color: var(--c-paper-card);
+  border-bottom: 1px solid rgba(255, 255, 255, .25);
+  text-decoration: none;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 1040px) {
+  .wrap, .hero-inner { padding-left: 32px; padding-right: 32px; }
+}
+@media (max-width: 600px) {
+  body { font-size: 14.5px; }
+  .badge { display: none; }
+  .inline-toc { padding: 24px 24px 0; }
+  .wrap, .hero-inner { padding-left: 24px; padding-right: 24px; }
+  section { padding: 64px 0; }
+  .hero-inner { padding-top: 52px; }
+  .find { padding: 28px 24px; }
+  .tldr { padding: 24px; gap: 18px; }
+  .tldr .num { font-size: 40px; width: 42px; }
+  footer { padding: 36px 24px; }
+}
+
+
+.hero-numbers{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+  margin:38px 0 8px; border:1px solid var(--c-rule);
+  border-radius:14px; overflow:hidden; background:var(--c-paper-card);
+}
+.hn-cell{padding:30px 28px}
+.hn-cell+.hn-cell{border-left:1px solid var(--c-rule)}
+.hn-big{font-family:var(--ff-display); font-size:32px; font-weight:600;
+  line-height:1.1; color:var(--role-primary); margin-bottom:10px}
+.hn-big .unit{font-size:18px; color:var(--c-ink-soft); font-weight:500; margin-left:4px}
+.hn-lbl{font-family:var(--ff-mono); font-size:11.5px; color:var(--c-ink-faint);
+  letter-spacing:.12em; text-transform:uppercase; font-weight:600; margin-bottom:6px}
+.hn-sub{font-size:14.5px; color:var(--c-ink-soft); line-height:1.6}
+@media(max-width:1040px){
+  .hero-numbers{grid-template-columns:1fr}
+  .hn-cell+.hn-cell{border-left:none; border-top:1px solid var(--c-rule)}
+}
+
+
+.legs{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+.leg{border:1px solid var(--c-rule); border-radius:16px; overflow:hidden;
+  background:var(--c-paper-card)}
+.leg-top{padding:24px 26px}
+.leg.A .leg-top{background:var(--role-primary)}
+.leg.B .leg-top{background:var(--role-method)}
+.leg.C .leg-top{background:var(--role-emphasis)}
+.leg-top *{color:#fff}
+.leg-tag{font-family:var(--ff-mono); font-size:13px; letter-spacing:.1em;
+  opacity:.82; text-transform:uppercase}
+.leg-name{font-family:var(--ff-display); font-size:22px; font-weight:600; margin-top:7px}
+.leg-sub{font-size:14px; opacity:.9; margin-top:8px; line-height:1.6}
+.leg-body{padding:22px 26px 26px}
+.leg-row{padding:12px 0}
+.leg-row+.leg-row{border-top:1px solid var(--c-rule-soft)}
+.leg-row .lbl{font-size:13px; color:var(--c-ink-faint); margin-bottom:6px;
+  font-family:var(--ff-mono); letter-spacing:.05em; text-transform:uppercase}
+.leg-row .val{font-size:16px; line-height:1.65; color:var(--c-ink)}
+.leg-row .val b{font-weight:700}
+@media(max-width:1040px){
+  .legs{grid-template-columns:1fr}
+}
+
+
+.flagship{
+  margin-top:16px; padding:32px 30px; background:var(--c-ink);
+  border-radius:16px; color:var(--c-paper-card);
+}
+.flag-lab{font-family:var(--ff-mono); font-size:12.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--c-paper-sink); opacity:.7; margin-bottom:8px;
+  font-weight:600}
+.flag-h{font-family:var(--ff-display); font-size:24px; font-weight:600; color:#fff;
+  margin-bottom:22px; line-height:1.36}
+.flag-tbl{width:100%; border-collapse:collapse; font-size:15px; color:var(--c-paper-card)}
+.flag-tbl th, .flag-tbl td{
+  padding:14px 10px; text-align:center; border-bottom:1px solid rgba(255,255,255,.1);
+}
+.flag-tbl th{font-family:var(--ff-mono); font-size:11.5px; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--c-paper-sink); opacity:.75; font-weight:600;
+  background:rgba(255,255,255,.04)}
+.flag-tbl th:first-child, .flag-tbl td:first-child{text-align:left;
+  font-family:var(--ff-display); font-size:16px; font-weight:500; color:#fff;
+  padding-left:14px;}
+.flag-tbl tr.total td{font-weight:700; color:#fff; background:rgba(255,255,255,.05);
+  border-bottom:none}
+.flag-tbl .dom{background:var(--role-emphasis); color:#fff; font-weight:700;
+  border-radius:4px}
+.flag-tbl .pct{font-family:var(--ff-mono); font-size:11.5px;
+  color:rgba(255,255,255,.55); display:block; margin-top:2px}
+.flag-note{font-size:14.5px; color:var(--c-paper-sink); opacity:.78; margin-top:18px;
+  line-height:1.7}
+@media(max-width:600px){
+  .flagship{padding:24px 18px}
+  .flag-tbl{font-size:13px}
+  .flag-tbl th, .flag-tbl td{padding:10px 6px}
+}
+
+
+/* ---------- report-specific: prose, tables, sources ---------- */
+.lf{max-width:var(--maxw-prose)}
+.lf p{font-size:17px; line-height:1.9; color:var(--c-ink-soft); margin-bottom:20px}
+.lf p b{color:var(--c-ink); font-weight:700}
+.lf.after-module{margin-top:44px}
+.block.first{margin-top:0}
+
+.habit{max-width:var(--maxw-prose); margin-bottom:44px}
+.habit h3{font-family:var(--ff-display); font-size:21px; font-weight:600; line-height:1.45;
+  color:var(--c-ink); margin-bottom:14px; display:flex; gap:14px; align-items:baseline}
+.habit .hn{font-family:var(--ff-mono); font-size:14px; font-weight:600; color:var(--role-emphasis);
+  flex:none}
+.habit p{font-size:17px; line-height:1.9; color:var(--c-ink-soft); margin-bottom:16px}
+.habit p b{color:var(--c-ink); font-weight:700}
+.legs{margin:-12px 0 16px}
+.pgline{font-family:var(--ff-mono); font-size:13px; color:var(--c-ink-faint); margin-bottom:52px}
+.pg{font-family:var(--ff-mono); font-size:12.5px; color:var(--c-ink-faint); margin-left:8px;
+  white-space:nowrap}
+
+.mini-tbl{width:100%; border-collapse:collapse; font-size:15.5px; margin-top:6px}
+.mini-tbl th, .mini-tbl td{border-bottom:1px solid var(--c-rule-soft); padding:13px 14px;
+  text-align:left; vertical-align:top; line-height:1.7}
+.mini-tbl th{font-family:var(--ff-mono); font-size:12px; color:var(--c-ink-faint);
+  letter-spacing:.08em; text-transform:uppercase; font-weight:600; background:var(--c-paper-sink)}
+.mini-tbl td.r, .mini-tbl th.r{text-align:right; font-family:var(--ff-mono); font-weight:600;
+  white-space:nowrap}
+.mini-tbl .hi{color:var(--role-emphasis); font-weight:700}
+.mini-tbl td:first-child{color:var(--c-ink); font-weight:600}
+.mini-tbl .en{font-family:var(--ff-mono); font-size:12.5px; color:var(--c-ink-faint); font-weight:400}
+.mini-tbl.recs td[rowspan], .mini-tbl.watch td:first-child{width:24%}
+.mini-tbl.recs td[rowspan]{border-right:1px solid var(--c-rule-soft)}
+.mini-tbl.recs th.r, .mini-tbl.recs td.r{width:2.6em; padding-left:6px; padding-right:6px}
+.mini-tbl.price th:nth-child(3), .mini-tbl.price td:nth-child(3){white-space:nowrap}
+.mini-tbl.recs td:not([rowspan]):not(.r){color:var(--c-ink-soft); font-weight:400}
+.mini-tbl td+td{color:var(--c-ink-soft)}
+.flag-tbl td{line-height:1.6}
+.flag-tbl td:first-child{white-space:nowrap}
+
+.src-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+.src{padding:18px 20px; border:1px solid var(--c-rule); border-radius:10px; background:var(--c-paper-card)}
+.src .sid{display:block; font-family:var(--ff-mono); font-size:12px; letter-spacing:.1em;
+  color:var(--role-primary); font-weight:600; margin-bottom:8px}
+.src .sx{font-size:14.5px; line-height:1.75; color:var(--c-ink-soft)}
+.src a{color:var(--role-primary)}
+.src:first-child{grid-column:1 / -1}
+
+@media(max-width:1040px){ .src-grid{grid-template-columns:1fr} }
+@media(max-width:600px){
+  .mini-tbl{font-size:14px}
+  .mini-tbl th, .mini-tbl td{padding:10px 8px}
+  .flag-tbl{font-size:12.5px}
+  .flag-tbl th, .flag-tbl td{padding:10px 4px}
+  .flag-tbl th:first-child, .flag-tbl td:first-child{white-space:normal; font-size:13.5px; padding-left:4px}
+  .mini-tbl.recs td[rowspan]{width:27%}
+  .habit h3{font-size:19px}
+}
+
+</style>
+</head>
+
+<body>
+<div class="progress" id="progress"></div>
+<div class="badge" id="badge"><b id="badgenum">01</b><span id="badgename">重點</span></div>
+
+<div class="shell">
+  <main>
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-kicker">導讀 · 美國眾議院聯合調查報告</div>
+        <h1 class="hero-title">美國國會眼中的<span class="cut">下一個華為</span></h1>
+        <p class="hero-scope">49 頁的《Beijing's AI Playbook》，拆成一個類比、五步推論、六個思考習慣和十二項建議。</p>
+        <p class="hero-stand">
+          2026 年 11 月，美國眾議院兩個委員會發表聯合調查報告，主題是中國開發的<b>開放權重模型</b>正在進入美國企業的系統。開放權重（open-weight）指訓練好的模型參數可以下載，使用者能自己架設、自己修改。這份導讀整理報告怎麼想，不評斷它的證據是否成立。報告把這件事看成華為和大疆的重演，也承認企業採用中國模型是合理的市場選擇，所以它主張的順序是<b>先扶植美國自己的開放權重模型，再把中國模型分層移出政府和關鍵基礎設施</b>。
+        </p>
+
+        <div class="hero-numbers">
+          <div class="hn-cell">
+            <div class="hn-lbl">用量</div>
+            <div class="hn-big">26 → 60<span class="unit">%</span></div>
+            <div class="hn-sub">一個大型模型市集上，美國流量走向開放權重模型的比例，一年內的變化。多數是中國模型。</div>
+          </div>
+          <div class="hn-cell">
+            <div class="hn-lbl">價差</div>
+            <div class="hn-big">6–30<span class="unit">倍</span></div>
+            <div class="hn-sub">同樣的工作量，美國頂級封閉模型比中國開放權重模型貴的倍數，依公開牌價計算。</div>
+          </div>
+          <div class="hn-cell">
+            <div class="hn-lbl">美國的位置</div>
+            <div class="hn-big">第 10<span class="unit">名</span></div>
+            <div class="hn-sub">最好的美國開放權重模型在獨立能力排行上的名次，前面有六個中國模型。</div>
+          </div>
+        </div>
+
+        <div class="hero-foot">
+          <span class="dot"></span><span>2026 年 11 月 · 文中頁碼均指報告內文頁碼 · 原文連結見 §09</span>
+        </div>
+      </div>
+    </header>
+
+    <nav class="inline-toc" aria-label="目次">
+      <a href="#tldr"><span class="ix">§01</span>重點</a>
+      <a href="#background"><span class="ix">§02</span>文件背景</a>
+      <a href="#analogy"><span class="ix">§03</span>華為類比</a>
+      <a href="#reasoning"><span class="ix">§04</span>五步推論</a>
+      <a href="#habits"><span class="ix">§05</span>思考習慣</a>
+      <a href="#recs"><span class="ix">§06</span>十二項建議</a>
+      <a href="#tensions"><span class="ix">§07</span>未解難題</a>
+      <a href="#watch"><span class="ix">§08</span>後續觀察</a>
+      <a href="#sources"><span class="ix">§09</span>資料來源</a>
+    </nav>
+
+    <!-- 01 -->
+    <section id="tldr" data-num="01" data-name="重點">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">先看五件事</h2>
+          <p class="sec-lead">Airbnb 的客服助理每天處理約 8 萬次對話，背後跑的是阿里巴巴的 Qwen 模型。Airbnb 沒有付過阿里巴巴一毛錢，雙方也沒有合約。報告從這種情況出發。</p>
+        </header>
+
+        <div class="tldr-list">
+          <article class="tldr rv">
+            <div class="num">01</div>
+            <div class="body">
+              <p><b>整份報告建立在華為類比上。</b>便宜又堪用的外國技術先被市場大量採用，等華府確認有風險時已經拆不掉。報告認為 AI 模型正走上同一條路，而且比設備更難清查。</p>
+              <div class="tag">前言，第 2–5 頁；表 5，第 34 頁</div>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">02</div>
+            <div class="body">
+              <p><b>報告承認中國模型有真實的優勢。</b>便宜、可以自己改、能力接近最前沿。受調查的三家企業都把它們當成有競爭力的選項，沒有當成退而求其次。</p>
+              <div class="tag">發現 2，第 16–20 頁</div>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">03</div>
+            <div class="body">
+              <p><b>優勢的來源被界定為不公平。</b>報告列出三個來源：大規模擷取美國模型的輸出來訓練自己的模型、向美國公司購買訓練資料、中國政府的資金與補貼。</p>
+              <div class="tag">發現 3、4，第 20–29 頁</div>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">04</div>
+            <div class="body">
+              <p><b>風險分成兩種。</b>一種是依賴，條款和供應可能被開發商或北京改變。另一種是能力擴散，強大的網路攻擊能力變成任何人都能下載，沒採用中國模型的公司也會受影響。</p>
+              <div class="tag">發現 4、5，第 22–33 頁</div>
+            </div>
+          </article>
+          <article class="tldr rv">
+            <div class="num">05</div>
+            <div class="body">
+              <p><b>解法沒有針對開放權重這種做法。</b>報告要美國自己做出有競爭力的開放權重模型，並讓它成為各國的預設選擇。禁用只針對中國開發的模型，強度依場合遞減。</p>
+              <div class="tag">建議 1、2、4，第 35–39 頁</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 -->
+    <section id="background" data-num="02" data-name="文件背景">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">02</span>
+          <h2 class="sec-title">這是一份什麼樣的文件</h2>
+          <p class="sec-lead">標題裡的 playbook 指的是「北京的劇本」，不是美國的行動手冊。報告的工作是描述它認定的中國做法，再提出美國該怎麼回應。</p>
+        </header>
+
+        <div class="lf rv">
+          <p><b>誰寫的。</b>眾議院國土安全委員會與美中戰略競爭特別委員會，由兩位主席 Andrew Garbarino 與 John Moolenaar 具名發表，日期是 2026 年 11 月 16 日。完整標題是 <i>Beijing's AI Playbook: How AI Models Developed in the People's Republic of China Became Embedded in America's Technology Stack and What It Will Take to Avoid the Next Huawei</i>。</p>
+          <p><b>怎麼做的。</b>調查從 2026 年 4 月 29 日開始，歷時約七個月。委員會向三家美國企業要求文件與簡報：短租平台 Airbnb、開發程式編輯器 Cursor 的 Anysphere、外送平台 DoorDash。另外聽取機密簡報、舉辦閉門圓桌，幕僚在 8 月走訪日本、南韓、台灣，也去了矽谷、新加坡、馬來西亞和越南（第 12–14 頁）。</p>
+          <p><b>有什麼效力。</b>國會委員會的報告沒有法律效力。它的作用是設定議程，替之後的立法和行政部門行動準備論述。所以比較適合把它讀成「華府一部分決策者現在怎麼想」，不要讀成已經定案的政策。報告另有一份未公開的機密附錄。</p>
+          <p><b>這份導讀做什麼。</b>說明報告的問題設定、推論步驟和政策主張，讓讀者不必讀完 49 頁也能掌握它的思路。導讀沒有查核報告引用的事件與數據，轉述時一律以「報告主張」「報告引用」表示。</p>
+        </div>
+
+        <div class="block rv">
+          <div class="cap">讀下去會遇到的名詞</div>
+          <table class="mini-tbl">
+            <thead><tr><th>名詞</th><th>意思</th></tr></thead>
+            <tbody>
+              <tr><td>開放權重<br><span class="en">open-weight</span></td><td>模型訓練完成後的參數公開供人下載。使用者可以在自己的機器上跑，也可以再訓練、修改。相對的是只能透過開發商服務使用的封閉模型。</td></tr>
+              <tr><td>蒸餾<br><span class="en">distillation</span></td><td>拿一個模型的輸出去訓練另一個模型，是常見的訓練技術。報告說的「非法蒸餾」專指用假帳號、代理網路、違反服務條款的方式大規模擷取。</td></tr>
+              <tr><td>微調<br><span class="en">fine-tuning</span></td><td>拿現成的模型，用自己的資料再訓練一段，讓它適合特定工作。</td></tr>
+              <tr><td>前沿模型<br><span class="en">frontier model</span></td><td>當下能力最強的那一批模型。報告說的「美國前沿開發商」指做這類模型的公司，它們的頂級模型多半不公開權重。</td></tr>
+              <tr><td>AI 代理人<br><span class="en">AI agent</span></td><td>能自己拆解任務、呼叫工具、連續執行多個步驟的 AI 系統，不只是回答問題。</td></tr>
+              <tr><td>Token</td><td>模型讀寫文字的計量單位，大約是字或詞的片段。模型服務通常依 token 數量計費。</td></tr>
+              <tr><td>模型履歷<br><span class="en">provenance</span></td><td>一個模型是從哪個基礎模型、經過哪些訓練步驟而來的紀錄。</td></tr>
+              <tr><td>CISA</td><td>國土安全部底下的網路安全暨基礎設施安全局。另有一部 2015 年的資訊分享法律縮寫也是 CISA，本文寫作「CISA 2015」以示區別。</td></tr>
+              <tr><td>NIST、CAISSI</td><td>國家標準與技術研究院，以及它底下負責評測 AI 模型的中心。</td></tr>
+              <tr><td>實體清單<br><span class="en">Entity List</span></td><td>美國商務部的出口管制名單，列名者取得美國技術要另外申請許可。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section id="analogy" data-num="03" data-name="華為類比">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">03</span>
+          <h2 class="sec-title">整份報告建立在一個類比上</h2>
+          <p class="sec-lead">前言第一句是「美國看過這部電影」。報告把華為、中興的電信設備和大疆的無人機當成前例，認為中國的開放權重模型是第三次。</p>
+        </header>
+
+        <div class="lf rv">
+          <p>報告描述的模式有四步。一項外國技術以美國對手跟不上的價格進入市場，性能夠用。它解決了真實的問題，所以擴散得很快。等華府確認它受中國共產黨管轄時，它已經深入網路、產品和公共服務。最後拆除要花好幾年和幾十億美元。</p>
+          <p>下面這張表是報告自己做的對照。<b>由上往下讀是每一項技術的經過，由左往右讀是三個案例的異同。</b>最右欄的最後兩列是報告想傳達的重點：前兩次的代價至少算得出來，這一次連規模都不知道。</p>
+        </div>
+
+        <div class="flagship rv">
+          <div class="flag-lab">報告表 5 · 第 34 頁</div>
+          <div class="flag-h">三次對中國技術的依賴</div>
+          <table class="flag-tbl">
+            <thead>
+              <tr><th></th><th>華為、中興</th><th>大疆</th><th>中國開放權重模型</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>為什麼採用</td><td>便宜、堪用的電信設備</td><td>便宜、堪用的無人機</td><td>便宜、堪用、可客製的模型</td></tr>
+              <tr><td>何時出現疑慮</td><td>2012 年眾院情報委員會警告</td><td>2017–2025 年聯邦限制逐步增加</td><td>2026 年白宮與聯邦機構警告</td></tr>
+              <tr><td>後來怎麼處理</td><td>2020 年立法並啟動拆換</td><td>2025 年 12 月列入管制清單</td><td>研議中</td></tr>
+              <tr><td>依賴有多深</td><td>設備留在鄉村網路裡</td><td>公共安全與商業用戶仍廣泛使用</td><td class="dom">全貌未知</td></tr>
+              <tr><td>拆除成本</td><td>約 49.8 億美元</td><td>替換品平均貴約 6 倍</td><td class="dom">未知，持續增加</td></tr>
+            </tbody>
+          </table>
+          <p class="flag-note">華為、中興的拆換計畫原始撥款 19 億美元，後來估計需要 49.8 億，缺口 30.8 億。國會在 2024 年 12 月補上經費，距離最初的警告已超過十年，拆除仍未完成（第 34–35 頁）。</p>
+        </div>
+
+        <div class="lf rv after-module">
+          <p>報告接著說明這次為什麼更難。基地台和無人機是看得見的硬體，可以在邊境攔下，也可以靠設備認證管制。模型可以被複製、修改、改名，再嵌進別的產品好幾層底下，在任何地方執行。報告的原話是，開放權重「沒有可相比的管制節點」。</p>
+          <p>從前例得出的教訓有三件事，也就是後面所有建議的骨架：<b>先做出有競爭力的替代品、先看得見哪裡在用、先規劃怎麼替換</b>，三件事都要趕在依賴深到拆不起之前。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section id="reasoning" data-num="04" data-name="五步推論">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">從現象到結論的五步推論</h2>
+          <p class="sec-lead">報告有五項「發現」。把它們依序排起來，是一條從「大家都在用」走到「必須處理」的推論。每張卡片先整理報告的說法，最後一格是這一步在整體論證裡的作用。</p>
+        </header>
+
+        <article id="finding-1" class="find rv">
+          <div class="find-top">
+            <span class="find-no">第 1 步</span>
+            <h3>用量已經很大，而且多數看不見</h3>
+          </div>
+          <p class="find-sum">
+            報告引用幾組數據。模型市集 OpenRouter 上，來自美國的請求導向開放權重模型的比例，從 2025 年 9 月的 <span class="em">26%</span> 升到 2026 年 8 月的 <span class="em">60%</span>，多數是中國實驗室的模型。模型儲存庫 Hugging Face 過去一年的下載量有 <span class="em">41%</span> 來自中國模型，阿里巴巴 Qwen 系列的衍生模型超過 15.1 萬個。<br><br>
+            花費資料卻反映不出這個規模。某開發平台上，DeepSeek 處理了 17% 的 token，只佔 1% 的支出。原因是權重下載之後，使用者在自己的機器上跑，<b>沒有合約、沒有發票、沒有持續的供應商關係</b>。Airbnb 和 DoorDash 都沒有付過錢給中國開發商。<br><br>
+            模型的來源也會越來越難辨認。經過微調、合併、蒸餾之後，產品可能已經看不出底下是哪個模型。Anysphere 的旗艦程式模型 Composer 2 以月之暗面（Moonshot）的 Kimi K2.5 為基底，是外部開發者發現之後才公開的。
+          </p>
+          <div class="find-key">
+            <span class="kl">這一步的作用</span>
+            問題被界定成「看不見」。一旦某個廣泛使用的模型出狀況，沒有人查得出哪些下游產品受影響。這直接通向建議 3 的模型履歷標準。<span class="pg">第 15–16 頁</span>
+          </div>
+        </article>
+
+        <article id="finding-2" class="find rv">
+          <div class="find-top">
+            <span class="find-no">第 2 步</span>
+            <h3>企業選中國模型是合理的商業決定</h3>
+          </div>
+          <p class="find-sum">
+            Airbnb 執行長公開說過選阿里巴巴的模型是因為「又快又便宜」。報告沒有反駁，還補上三個理由。<br><br>
+            <b>價格。</b>同樣的工作量，美國頂級封閉模型的公開牌價是中國開放權重模型的 6 到 30 倍，見下表。<br>
+            <b>可控。</b>開放權重可以用自己的資料微調、在自己的機器上跑。DoorDash 告訴委員會，這樣能降低單一開發商無預警改變或關閉服務的風險。<br>
+            <b>能力。</b>DoorDash 的內部程式碼審查測試裡，Kimi K2.6 搭配一個美國前沿模型的組合拿到最高分。<br><br>
+            接著報告指出美國自己的缺口。在它引用的獨立能力排行上，最好的美國開放權重模型排第十，前面有六個中國模型。報告的解釋是美國公司「照不同的規則在比賽」：它們要靠封閉存取回收訓練成本，不能合法地去蒸餾別人的模型，也沒有國家補貼。
+          </p>
+          <div class="block">
+            <div class="cap">報告表 2 · 一百萬輸入加一百萬輸出 token 的公開牌價（未依能力調整，不含快取、批次折扣與自架成本）</div>
+            <table class="mini-tbl price">
+              <thead><tr><th>模型</th><th>開發商</th><th>來源</th><th class="r">美元</th></tr></thead>
+              <tbody>
+                <tr><td>Qwen3-235B-A22B-Instruct</td><td>阿里巴巴</td><td>中國</td><td class="r">1.15</td></tr>
+                <tr><td>DeepSeek-R1</td><td>DeepSeek</td><td>中國</td><td class="r">2.74</td></tr>
+                <tr><td>Kimi K2.6</td><td>月之暗面</td><td>中國</td><td class="r">4.95</td></tr>
+                <tr><td>Claude Opus 4.8</td><td>Anthropic</td><td>美國</td><td class="r"><span class="hi">30.00</span></td></tr>
+                <tr><td>GPT-5.5</td><td>OpenAI</td><td>美國</td><td class="r"><span class="hi">35.00</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="find-key">
+            <span class="kl">這一步的作用</span>
+            既然需求是真的，只下禁令會讓企業成本上升，還會把市場推向少數幾家封閉模型的供應商。報告因此把「做出美國的替代品」排在所有建議的第一項。<span class="pg">第 16–20 頁</span>
+          </div>
+        </article>
+
+        <article id="finding-3" class="find rv">
+          <div class="find-top">
+            <span class="find-no">第 3 步</span>
+            <h3>中國模型的進步有一部分取自美國</h3>
+          </div>
+          <p class="find-sum">
+            報告說有兩條管道。<br><br>
+            <b>第一條是非法蒸餾。</b>2026 年 2 月，美國前沿開發商揭露 DeepSeek、月之暗面、MiniMax 透過約 2.4 萬個假帳號，和美國模型產生了超過 1,600 萬次對話。同年 9 月，國安局、CISA 和聯邦調查局發出聯合通告，點名六家中國開發商從事大規模擷取，並稱中國政府可能知情。委員會以「高度信心」評估，這些行為實質加快了數個模型家族的發展。<br><br>
+            <b>第二條是合法買賣。</b>報告引用媒體報導，美國的資料標註公司每年賣約 <span class="em">5 億美元</span>的訓練資料給中國實驗室，內容包括專家推理、程式和評測資料。其中有些公司同時服務美國的前沿實驗室和軍方。報告明說這些交易目前不違法，只是提出該不該繼續開放的政策問題。
+          </p>
+          <div class="find-key">
+            <span class="kl">這一步的作用</span>
+            第 2 步承認的價格優勢，在這裡被重新解釋成不公平競爭的結果：美國公司負擔研發成本，對手取用成果後再低價賣回市場。有了這層解釋，制裁和出口管制才成為說得通的選項，對應建議 9 和 10。<span class="pg">第 20–22 頁</span>
+          </div>
+        </article>
+
+        <article id="finding-4" class="find rv">
+          <div class="find-top">
+            <span class="find-no">第 4 步</span>
+            <h3>開放權重被視為北京的刻意戰略</h3>
+          </div>
+          <p class="find-sum">
+            到這一步，報告要回答的是「這只是商業競爭嗎」。它主張不是，並提出四類材料。<br><br>
+            <b>意圖。</b>報告引用中國的政策文件與學者論述，主張北京把開源 AI 當成擴大國際影響力的工具。<br>
+            <b>資源。</b>報告列出國家級 AI 產業投資基金（82 億美元）、國資股東、地方政府的算力補貼，指出主要開發商在大幅虧損下仍能低價供應。<br>
+            <b>軍方關聯。</b>報告引用美國政府的認定和解放軍採購公告，指出這些模型已進入軍方的運算環境。<br>
+            <b>條件開始改變。</b>月之暗面的新授權條款要求年營收超過 2,000 萬美元的模型服務商另簽商業協議。報告也引用媒體報導，稱阿里巴巴打算向大型商業用戶收費，以及北京曾討論限制最先進模型的海外取用。<br><br>
+            報告還提到依賴不限於美國。它引用微軟的分析，稱 DeepSeek 在數個非洲市場有 11% 到 14% 的市佔，在白俄羅斯、古巴、俄羅斯更高。
+          </p>
+          <div class="find-key">
+            <span class="kl">這一步的作用</span>
+            把「便宜」和「依賴」接起來。前言的說法是，開始時採用成本很低的東西，之後依賴的代價會變高，替換更難。風險有兩個來源，一個是開發商改條款，一個是北京決定收緊。<span class="pg">第 22–29 頁</span>
+          </div>
+        </article>
+
+        <article id="finding-5" class="find rv">
+          <div class="find-top">
+            <span class="find-no">第 5 步</span>
+            <h3>模型越強，風險越難用一般測試看出來</h3>
+          </div>
+          <p class="find-sum">
+            最後一步講安全，分成兩個層面。<br><br>
+            <b>行為會隨情境改變。</b>報告引用資安公司 CrowdStrike 的測試：提示裡出現中共視為政治敏感的話題時，DeepSeek 的旗艦模型產出嚴重漏洞程式碼的機率最多高出 50%。顧問公司 Booz Allen Hamilton 的測試則發現，使用者自稱美國政府人員時，受測的四個中國模型有三個產出明顯較不安全的程式碼。這類差異在一般的性能評測裡不會出現。<br><br>
+            <b>攻擊能力變成人人可得。</b>報告引用 NIST 的評估，稱智譜的開放權重模型 GLM-5.3 能自主完成整條網路攻擊鏈，在政府的資安評測上只落後美國最前沿約四個月。因為權重公開，研究者花了約 <span class="em">4,400 美元</span>的運算費用，就把它拒絕有害請求的比例從約 95% 壓到 3% 至 6%。報告也舉南韓為例：2026 年秋天多家銀行遭入侵，據報導攻擊者用的是以中國模型驅動的開源滲透工具。<br><br>
+            很多企業的做法是把模型架在自己的或美國的機器上。報告認為這能大幅降低資料直接流向中國的風險，但改變不了模型是怎麼訓練出來的，也改變不了它在沒人測過的情境下會怎麼表現。
+          </p>
+          <div class="find-key">
+            <span class="kl">這一步的作用</span>
+            兩個常見的安心理由在這裡被排除。「自己架就安全」不成立，因為風險在模型本身。「我們沒用所以沒事」也不成立，因為別人可以拿這些模型來攻擊你。風險的範圍從採用者擴大到所有人。<span class="pg">第 29–33 頁</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section id="habits" data-num="05" data-name="思考習慣">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">美國的六個思考習慣</h2>
+          <p class="sec-lead">五步推論是報告明講的。這一節整理它沒有明講、但貫穿全文的想法。要預測美國下一步會怎麼做，這幾點比個別數據有用。</p>
+        </header>
+
+        <div class="habit rv">
+          <h3><span class="hn">1</span>用拆除的代價衡量風險</h3>
+          <p>報告論證的重心放在以後要付的代價，已經發生的損害只佔很小的篇幅。華為、中興的拆換花了約 50 億美元和十幾年，這件事在前言、建議和結論都被拿出來講。</p>
+          <p>在這套邏輯裡，時機本身就是論點。前言的結尾是：現在就該行動，趁還有機會和籌碼。所以「目前還沒出事」不會被當成反對的理由，反而會被當成還來得及的證明。</p>
+        </div>
+
+        <div class="habit rv">
+          <h3><span class="hn">2</span>市場問題和安全問題一起處理</h3>
+          <p>報告沒有把企業說成不負責任。它接受企業是照價格和性能做選擇，所以結論落在供給面：美國缺少同等價位和性能的開放權重模型。</p>
+          <p>前言有一句話把兩件事綁在一起：做出替代品不能取代限制，替代品是讓限制行得通的條件。對應的做法在建議 1，包括開放公共運算資源、建立共用的評測環境、讓聯邦機關當第一批客戶。其中還有一項是讓美國的前沿開發商自願把模型輸出授權給本國的開放權重開發者拿去訓練。報告說這是替美國公司開一條合法的路，取得中國開發商靠非法手段拿到的那種能力轉移。</p>
+        </div>
+
+        <div class="habit rv">
+          <h3><span class="hn">3</span>分層設限，強度隨敏感度遞減</h3>
+          <p>報告沒有主張全面禁用。它依場合分成三層，越靠近政府和實體安全越嚴。</p>
+        </div>
+
+        <div class="legs">
+          <article class="leg A rv">
+            <div class="leg-top">
+              <div class="leg-tag">第一層 · 最嚴</div>
+              <div class="leg-name">聯邦系統與承包商</div>
+              <div class="leg-sub">政府自己的資訊系統，以及替政府做事、處理政府資料的廠商</div>
+            </div>
+            <div class="leg-body">
+              <div class="leg-row"><div class="lbl">做法</div><div class="val">禁用中國開發的模型，<b>衍生模型也算</b>。把已經對 DeepSeek 下的排除令擴及其他開發商。</div></div>
+              <div class="leg-row"><div class="lbl">例外</div><div class="val">只限研究、評測、測試和防禦性的資安工作，程序要透明。</div></div>
+              <div class="leg-row"><div class="lbl">時程</div><div class="val">承包商先從合約金額最大的開始，其餘給過渡期。過渡期間要揭露使用情況並提出替換計畫。</div></div>
+            </div>
+          </article>
+          <article class="leg B rv">
+            <div class="leg-top">
+              <div class="leg-tag">第二層 · 限定範圍</div>
+              <div class="leg-name">關鍵基礎設施的高風險功能</div>
+              <div class="leg-sub">模型被操縱會造成人身傷害或中斷基本服務的用途</div>
+            </div>
+            <div class="leg-body">
+              <div class="leg-row"><div class="lbl">做法</div><div class="val">新部署立即禁止。已經在用的要通報並限期移除。</div></div>
+              <div class="leg-row"><div class="lbl">範圍</div><div class="val">定義要窄。例子是能接觸營運設備的 AI 代理人、工業控制與安全系統，以及替這些環境寫或審程式碼的工具。</div></div>
+              <div class="leg-row"><div class="lbl">例外</div><div class="val">沒有可信任的替代品時，由國土安全部依 CAISSI 的評測給有期限的例外，並向國會報告。</div></div>
+            </div>
+          </article>
+          <article class="leg C rv">
+            <div class="leg-top">
+              <div class="leg-tag">第三層 · 不禁</div>
+              <div class="leg-name">其餘的經濟活動</div>
+              <div class="leg-sub">一般企業、新創、研究者</div>
+            </div>
+            <div class="leg-body">
+              <div class="leg-row"><div class="lbl">做法</div><div class="val">不設禁令。目標是替代品一成熟就盡快降低依賴。</div></div>
+              <div class="leg-row"><div class="lbl">工具</div><div class="val">政府提供評測結果、使用指引和針對特定開發商的威脅情資。模型履歷標準在這一層是自願採用。</div></div>
+              <div class="leg-row"><div class="lbl">理由</div><div class="val">多數公司的日常工作不需要最貴的前沿模型。在替代品出現前逼它們換掉，成本會上升，市場會更集中。</div></div>
+            </div>
+          </article>
+        </div>
+        <p class="pgline rv">前言第 4–5 頁；建議 4，第 36–39 頁</p>
+
+        <div class="habit rv">
+          <h3><span class="hn">4</span>審查的對象從模型移到開發者</h3>
+          <p>報告區分兩種檢查。測試模型，能知道它在受測條件下的表現。審查開發者，問的是模型怎麼做出來的、受哪些法律約束、背後有哪些機構支持。報告說三家企業在前一種下了很多工夫，後一種提供的說明少得多。</p>
+          <p>這個想法落實在「中國開發的模型」的定義上（第 38 頁）。判斷依據是原始權重由誰訓練：在中國設立、設總部或主要營運，或受中國管轄的實體。從這些權重經過微調、持續訓練、合併或壓縮做出來的模型都算在內。有一種情況明確不算：美國或盟國的模型只是用了中國模型產生的資料來訓練，不會因此被列入，但要在模型履歷裡記錄。</p>
+        </div>
+
+        <div class="habit rv">
+          <h3><span class="hn">5</span>先求看得見，再談管得住</h3>
+          <p>十二項建議裡有相當一部分在處理「知道」這件事。報告的說法是，禁令的效果取決於機關能不能看到自己網路上在跑什麼。</p>
+          <p>具體有四樣東西。一是模型履歷標準，記錄基礎模型、重大的微調和蒸餾來源。二是 AI 物料清單，一份機器可讀的清單，列出產品裡嵌了哪些模型。三是讓聯邦機關能持續盤點網路上的 AI 系統、模型和代理人。四是 AI 相關的資安事件統一向 CISA 通報，通報內容要包含涉及的模型由誰開發、權重是否公開。</p>
+        </div>
+
+        <div class="habit rv">
+          <h3><span class="hn">6</span>開放權重是要爭的陣地</h3>
+          <p>報告沒有主張限制開放權重這種發布方式。結論的第一段是：問題不在美國人該不該用到強大又便宜的 AI，他們應該。問題在這些 AI 由誰開發。</p>
+          <p>建議 2 要用出口推廣、開發金融和外交，讓「可信任的美國 AI」成為各國的預設選擇，並且優先針對中國模型市佔正在上升的國家。建議 11 要求政策同時涵蓋封閉和開放模型，訂定聯邦層級的基準時不能壓垮新創、研究者和非營利組織。報告也引用了行政部門的 AI 行動計畫，那份計畫的目標同樣是讓美國的開放模型成為全球標準。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section id="recs" data-num="06" data-name="十二項建議">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">06</span>
+          <h2 class="sec-title">十二項建議的讀法</h2>
+          <p class="sec-lead">建議分成五組。先看完整清單，再看哪些是主軸、哪些最可能先動。</p>
+        </header>
+
+        <div class="block first rv">
+          <div class="cap">報告的十二項建議 · 第 35–45 頁</div>
+          <table class="mini-tbl recs">
+            <thead><tr><th>目標</th><th class="r">#</th><th>內容</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="2">做出美國的替代品</td><td class="r">1</td><td>啟動國家級的美國開放權重計畫：公共運算資源、共用評測環境、前沿模型輸出的合法授權、聯邦採購當第一批客戶。</td></tr>
+              <tr><td class="r">2</td><td>用出口推廣、開發金融和外交，讓可信任的美國 AI 成為各國的預設選擇。</td></tr>
+              <tr><td rowspan="2">知道系統裡跑的是什麼</td><td class="r">3</td><td>訂定模型履歷標準與 AI 物料清單。聯邦承包商和關鍵基礎設施的高風險功能必須採用，其他自願。</td></tr>
+              <tr><td class="r">4</td><td>把 DeepSeek 排除令擴及其他中國開發商。聯邦系統、聯邦合約、關鍵基礎設施的高風險功能禁用。讓機關有能力盤點網路上的模型。</td></tr>
+              <tr><td rowspan="4">分享威脅情資、加強防禦</td><td class="r">5</td><td>長期延長 CISA 2015 和州與地方政府的資安補助。補助款不得用來買中國模型，可以用來替換。建立針對特定開發商的威脅情資管道。</td></tr>
+              <tr><td class="r">6</td><td>CAISSI 定期評測主要的中國模型，CISA 把結果轉成指引。明定 CISA 為資訊科技部門的主責機關，範圍包含 AI 模型、運算設施和開源儲存庫。</td></tr>
+              <tr><td class="r">7</td><td>國土安全部試辦引進民間的 AI 與資安人才。CISA 主責聯邦網路上 AI 代理人的安全。</td></tr>
+              <tr><td class="r">8</td><td>AI 相關的資安事件統一向 CISA 通報。設立獨立、不具管制權的委員會調查重大事件的根本原因。</td></tr>
+              <tr><td rowspan="2">讓擷取付出代價</td><td class="r">9</td><td>對從事大規模非法蒸餾的業者動用制裁和實體清單。訂定身分驗證標準，封堵代轉請求的「中轉站」。</td></tr>
+              <tr><td class="r">10</td><td>檢視美國公司把訓練資料賣給被美國政府列名的中國實驗室，考慮揭露義務或出口管制。</td></tr>
+              <tr><td rowspan="2">訂長期規則、與盟友合作</td><td class="r">11</td><td>政策同時涵蓋封閉與開放模型。訂定聯邦基準，不過度加重新創、研究者和非營利組織的負擔。</td></tr>
+              <tr><td class="r">12</td><td>擴大與盟友的聯合評測和標準合作。要求情報體系評估中國政府對開放權重策略的介入程度。</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="lf rv after-module">
+          <p><b>建議 1 和 4 是主軸，而且互為條件。</b>一個建、一個禁。報告在好幾處強調兩者要一起走：沒有替代品，禁令的移除時程就排不出來；沒有禁令和聯邦採購，替代品也缺少起步的市場。</p>
+          <p><b>建議 5 到 8 接在既有的法案和制度上。</b>延長 CISA 2015 的法案已由眾議院通過並併入 2027 年度國防授權法，州與地方補助的法案也已在 2025 年 11 月通過眾議院。事件通報則沿用 2022 年的關鍵基礎設施通報法。這幾項不需要從零開始，報告把延長 CISA 2015 稱為 AI 資安威脅方面的「第一優先」。</p>
+          <p><b>建議 9 和 10 的性質不同。</b>制裁和實體清單是行政部門現有的權限，報告要求用起來。訓練資料買賣則還在「請商務部評估」的階段。</p>
+          <p><b>建議 12 的後半值得留意。</b>報告要求情報體系提交評估，說明中國政府在開發商的開放權重策略裡介入多深，包括資金、指示，以及能否取得模型權重和使用者資料。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section id="tensions" data-num="07" data-name="未解難題">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">07</span>
+          <h2 class="sec-title">報告自己留下的五個難題</h2>
+          <p class="sec-lead">以下五點都寫在報告裡，不是外部的批評。它們顯示撰寫者清楚這套方案的代價，也是之後政策辯論最可能卡住的地方。</p>
+        </header>
+
+        <div class="habit rv">
+          <h3><span class="hn">1</span>業界不想被切斷</h3>
+          <p>報告記錄了近 200 家新創與科技公司聯名呼籲政府不要切斷中國開放權重模型，理由是許多年輕公司已經依賴它們。大型科技公司也另外提醒不要「過早限制」。報告的回應是把這件事當成依賴已經很深的證據，並推測實際受影響的公司比公開表態的多。<span class="pg">第 29 頁</span></p>
+        </div>
+
+        <div class="habit rv">
+          <h3><span class="hn">2</span>能自己改的模型對防守方有用</h3>
+          <p>報告舉了一個例子。2026 年 7 月 Hugging Face 的網路遭入侵，處理過程中美國的前沿模型拒絕協助部分防禦工作，因為它們的安全機制分不出提問的是防守方還是攻擊方。Hugging Face 最後用智譜的開放權重模型完成那部分工作。報告承認這說明了企業和資安研究者為什麼重視可以自己執行和修改的模型。<span class="pg">第 17–18 頁</span></p>
+        </div>
+
+        <div class="habit rv">
+          <h3><span class="hn">3</span>美國的替代品還沒到位</h3>
+          <p>排行上最好的美國開放權重模型是 Thinking Machines Lab 的 Inkling。開發者自己揭露，它初期的訓練用了其他開放權重模型產生的合成資料，其中包括月之暗面的 Kimi K2.5。報告的評語是，連美國做替代品的努力也還在取用中國模型。報告提到 2026 年 10 月有新的美國和法國模型發布，同時註明其中一家的性能宣稱尚未經過獨立驗證。<span class="pg">第 19–20 頁</span></p>
+        </div>
+
+        <div class="habit rv">
+          <h3><span class="hn">4</span>異常行為是故意的還是副作用</h3>
+          <p>對於模型在政治敏感情境下產出較不安全的程式碼，報告引用的 CrowdStrike 自己判斷，這比較可能是訓練模型遵守中共政治要求時產生的非預期後果。報告沒有主張這是蓄意設計，它的立場是對使用者來說安全上的後果相同。<span class="pg">第 29 頁</span></p>
+        </div>
+
+        <div class="habit rv">
+          <h3><span class="hn">5</span>依賴到底多深，沒有人知道</h3>
+          <p>§03 那張對照表裡，AI 模型一欄的依賴規模和拆除成本都寫「未知」。這是報告主張要盡快建立履歷標準的理由，也表示目前所有關於嚴重程度的判斷，都建立在不完整的數字上。<span class="pg">第 34 頁</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section id="watch" data-num="08" data-name="後續觀察">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">08</span>
+          <h2 class="sec-title">接下來值得看的事</h2>
+          <p class="sec-lead">這一節是導讀者依報告內容整理的觀察點，不是報告的結論。前三項有明確的時間或文件可以追蹤，後四項和做模型、用模型的人關係比較直接。</p>
+        </header>
+
+        <div class="block first rv">
+          <table class="mini-tbl watch">
+            <thead><tr><th>觀察點</th><th>為什麼值得看</th></tr></thead>
+            <tbody>
+              <tr><td>2026 年 12 月 11 日</td><td>CISA 2015 目前的短期授權到這一天為止。報告把長期延長列為第一優先，這是最近的一個立法節點。</td></tr>
+              <tr><td>DeepSeek 排除令會不會擴大</td><td>國土安全部 2026 年 7 月下令、10 月公開的排除令目前只涵蓋一家開發商，不適用於民間使用。報告要求比照評估其他開發商。</td></tr>
+              <tr><td>No Adversarial AI Act</td><td>2025 年 6 月提出的法案，要求建立一份外國對手開發的 AI 公開清單，供機關考慮排除。報告說它方向一致。</td></tr>
+              <tr><td>模型履歷標準長什麼樣</td><td>做衍生模型、做下游產品、經營模型託管平台的人，最先碰到的會是這個。要記錄到多細、小團隊負擔多少，報告只說要降低對新創和開源開發者的負擔，細節留給 NIST。</td></tr>
+              <tr><td>開源儲存庫被納入主責範圍</td><td>建議 6 把軟體發布管道，包含開源儲存庫，列進 CISA 作為資訊科技部門主責機關的職責。模型託管平台和政府之間的關係會因此改變。</td></tr>
+              <tr><td>蒸餾的法律定位</td><td>建議 9 要國會檢視，違反服務條款取得的模型輸出和推理過程，是否落在營業秘密法和電腦詐欺法的範圍內。答案會影響整個產業對「拿模型輸出來訓練」的界線。</td></tr>
+              <tr><td>盟友和夥伴國家的角色</td><td>建議 2 和 12 都指向境外：推廣美國模型供各國自主部署、與盟國的 AI 安全機構聯合評測、共同訂定履歷標準。報告提到美英已聯合評測過一個中國模型，委員會幕僚 8 月也到過日本、南韓和台灣。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 -->
+    <section id="sources" data-num="09" data-name="資料來源">
+      <div class="wrap">
+        <header class="sec-head rv">
+          <span class="sec-num">09</span>
+          <h2 class="sec-title">資料來源</h2>
+          <p class="sec-lead">導讀的內容全部取自報告本身。報告引用的其他文件列在下方供查找，導讀者沒有另外查閱。</p>
+        </header>
+        <div class="src-grid">
+          <div class="src"><span class="sid">主要來源</span><span class="sx">U.S. House Committee on Homeland Security &amp; Select Committee on the Strategic Competition Between the United States and the Chinese Communist Party, <i>Beijing's AI Playbook: How AI Models Developed in the People's Republic of China Became Embedded in America's Technology Stack and What It Will Take to Avoid the Next Huawei</i>，2026 年 11 月 16 日，49 頁。<a href="https://chinaselectcommittee.house.gov/sites/evo-subsites/selectcommitteeontheccp.house.gov/files/evo-media-document/2026.11.16-joint-report-prc-ai-models-signed-final-1.pdf">原文 PDF</a></span></div>
+          <div class="src"><span class="sid">報告引用</span><span class="sx">國安局、CISA、聯邦調查局聯合資安通告，關於中國 AI 公司對美國 AI 公司進行大規模蒸餾，2026 年 9 月 8 日。</span></div>
+          <div class="src"><span class="sid">報告引用</span><span class="sx">國土安全部對 DeepSeek 產品的排除與移除令，91 Fed. Reg. 66,346，2026 年 10 月 20 日公告。</span></div>
+          <div class="src"><span class="sid">報告引用</span><span class="sx">No Adversarial AI Act，H.R. 4142 與 S. 2177，第 119 屆國會，2025 年。</span></div>
+          <div class="src"><span class="sid">報告引用</span><span class="sx">WIMWIG Act（H.R. 5079，延長 CISA 2015）與 PILLAR Act（H.R. 5078，延長州與地方資安補助），第 119 屆國會。</span></div>
+          <div class="src"><span class="sid">報告引用</span><span class="sx">眾議院常設情報特別委員會，關於華為與中興的調查報告，2012 年 10 月 8 日。</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="ft-inner">
+    <b>美國國會眼中的下一個華為：《Beijing's AI Playbook》導讀</b><br>
+    美國眾議院聯合調查報告的結構化導讀 · 2026 年 11 月<br>
+    立場：整理報告的論證方式，不代表同意或反對其結論，也未查核其引用的證據。<br>
+    研究儲存庫 · <a href="https://github.com/wcl-dev/research-site">github.com/wcl-dev/research-site</a> · <a href="../">回 weichen's Research 首頁</a>
+  </div>
+</footer>
+
+<script>
+
+  /* progress bar + scroll-spy badge (linear chrome) — uses section[data-num] */
+  (function(){
+    const progress=document.getElementById('progress');
+    const badge=document.getElementById('badge');
+    const badgeNum=document.getElementById('badgenum');
+    const badgeName=document.getElementById('badgename');
+    const sections=Array.from(document.querySelectorAll('section[data-num]'));
+    function update(){
+      const docH=document.documentElement.scrollHeight-window.innerHeight;
+      const pct=docH>0?Math.min(100,(window.scrollY/docH)*100):0;
+      if(progress)progress.style.width=pct+'%';
+      const y=window.scrollY+120;let active=sections[0];
+      for(const s of sections){if(s.offsetTop<=y)active=s;}
+      if(active&&badgeNum){
+        badgeNum.textContent=active.dataset.num;
+        badgeName.textContent=active.dataset.name||'';
+        if(window.scrollY>240)badge.classList.add('show');else badge.classList.remove('show');
+      }
+    }
+    window.addEventListener('scroll',update,{passive:true});update();
+  })();
+
+  
+// reveal.js — IntersectionObserver scroll reveal for .rv elements
+// Inline into report HTML before </body>.
+//
+// Pair with .rv class in base.css. Elements with .rv start at opacity 0 and
+// transform translateY(22px); when they intersect the viewport, .in class is
+// added which transitions them to opacity 1 / no transform.
+
+(function () {
+  const els = document.querySelectorAll('.rv');
+  if (!els.length || !('IntersectionObserver' in window)) {
+    // graceful fallback — show all
+    els.forEach(el => el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(el => io.observe(el));
+})();
+
+</script>
+</body>
+</html>
